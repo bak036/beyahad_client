@@ -174,3 +174,100 @@
 [ 2026-09-11 17:24:28 ] 📦 [STEP 4/5] CREATING DEPLOYMENT PACKAGE
 [ 2026-09-11 17:24:29 ] ===================================================
 [ 2026-09-11 17:24:29 ] ❌ Build output folder not found: C:/Users/alexk/Desktop/Automation/BitBuketProject/beyahad_client/build
+[ 2026-09-11 17:29:11 ] 🔍 Project: beyahad_client
+[ 2026-09-11 17:29:11 ] 🔍 Branch: PP
+[ 2026-09-11 17:29:11 ]    ✓ DB credentials loaded from .env (server: 172.29.92.20\sql2005, db: NofTest, user: alexk)
+[ 2026-09-11 17:29:11 ] 
+[ 2026-09-11 17:29:11 ] ===================================================
+[ 2026-09-11 17:29:12 ] 🔧 CHECKING PIPELINE PREREQUISITES (PowerShell / SQL)
+[ 2026-09-11 17:29:12 ] ===================================================
+[ 2026-09-11 17:29:22 ]    ✓ PowerShell/SqlServer module ready
+[ 2026-09-11 17:29:23 ]    ✓ Robocopy ready
+[ 2026-09-11 17:29:23 ] 
+[ 2026-09-11 17:29:23 ] 🌐 Checking network connectivity to 172.29.92.20:1433...
+[ 2026-09-11 17:29:30 ]    ✓ Network reachable
+[ 2026-09-11 17:29:30 ] 
+[ 2026-09-11 17:29:30 ] ===================================================
+[ 2026-09-11 17:29:31 ] 🚀 DEPLOYMENT STARTED
+[ 2026-09-11 17:29:31 ] ===================================================
+[ 2026-09-11 17:29:31 ] 
+[ 2026-09-11 17:29:31 ] ===================================================
+[ 2026-09-11 17:29:32 ] 🔎 [STEP 1/5] CHECKING PROJECT DEPENDENCIES
+[ 2026-09-11 17:29:32 ] ===================================================
+[ 2026-09-11 17:29:32 ]    ✓ node: v24.16.0
+[ 2026-09-11 17:29:34 ]    ✓ npm: 11.13.0
+[ 2026-09-11 17:29:34 ]    Checking local ("file:") sibling dependencies...
+[ 2026-09-11 17:29:34 ]    ✓ Found local dependency 'nofshonit-base-web-client' at /c/Users/alexk/Desktop/Automation/BitBuketProject/nofshonit-base-web-client
+[ 2026-09-11 17:29:35 ]    ✓ node_modules present
+[ 2026-09-11 17:29:35 ]    ✓ cross-env resolvable
+[ 2026-09-11 17:29:35 ] 
+[ 2026-09-11 17:29:35 ] ===================================================
+[ 2026-09-11 17:29:36 ] 🏗️  [STEP 2/5] BUILDING (npm run build:preprod)
+[ 2026-09-11 17:29:36 ] ===================================================
+[ 2026-09-11 17:29:36 ]    ✓ Build completed
+[ 2026-09-11 17:29:36 ] 
+[ 2026-09-11 17:29:37 ] ===================================================
+[ 2026-09-11 17:29:37 ] 🔒 DEVSEC VULNERABILITY SCAN
+[ 2026-09-11 17:29:37 ] ===================================================
+[ 2026-09-11 17:29:37 ]    📦 Scanning npm dependencies (npm audit)...
+[ 2026-09-11 17:29:38 ]    ✓ npm audit: no known vulnerabilities found
+[ 2026-09-11 17:29:38 ]    🌐 Scanning installed packages (retire.js) in: C:/Users/alexk/Desktop/Automation/BitBuketProject/beyahad_client/node_modules
+[ 2026-09-11 17:29:38 ]    ✓ retire.js: no known-vulnerable libraries found
+[ 2026-09-11 17:29:39 ] ===================================================
+[ 2026-09-11 17:29:39 ] ✓ DevSec scan complete
+[ 2026-09-11 17:29:39 ] ===================================================
+[ 2026-09-11 17:29:39 ] 
+[ 2026-09-11 17:29:40 ] ===================================================
+[ 2026-09-11 17:29:40 ] ⏭  [STEP 3/5] PUBLISH — skipped (not applicable to front-end projects)
+[ 2026-09-11 17:29:40 ] ===================================================
+[ 2026-09-11 17:29:40 ] 
+[ 2026-09-11 17:29:40 ] ===================================================
+[ 2026-09-11 17:29:41 ] 📦 [STEP 4/5] CREATING DEPLOYMENT PACKAGE
+[ 2026-09-11 17:29:41 ] ===================================================
+[ 2026-09-11 17:29:41 ] ⚠️  Build output folder not found — creating it: C:/Users/alexk/Desktop/Automation/BitBuketProject/beyahad_client/build
+[ 2026-09-11 17:29:42 ] ⚠️  WARNING: C:/Users/alexk/Desktop/Automation/BitBuketProject/beyahad_client/build is EMPTY — npm run build:preprod did not produce any output.
+[ 2026-09-11 17:29:42 ] ⚠️  Continuing anyway (as requested), but the resulting ZIP will be empty and the site will break on deploy.
+[ 2026-09-11 17:29:43 ]    Copying build/ to temp directory (excluding configuration.json, web.config)...
+[ 2026-09-11 17:29:44 ]    ✓ Files staged (configuration.json / web.config excluded from the ZIP)
+[ 2026-09-11 17:29:44 ]    Creating ZIP archive...
+[ 2026-09-11 17:29:45 ]    ✓ ZIP created: beyahad_client_PP_publish.zip
+[ 2026-09-11 17:29:45 ] 
+[ 2026-09-11 17:29:45 ] ===================================================
+[ 2026-09-11 17:29:45 ] 📤 [STEP 5/5] UPLOADING TO SFTP VAULT (sftp.dts.co.il:22/pp)
+[ 2026-09-11 17:29:46 ] ===================================================
+[ 2026-09-11 17:29:48 ]    ✓ Uploaded to /pp/beyahad_client_PP_publish.zip
+[ 2026-09-11 17:29:48 ] 
+[ 2026-09-11 17:29:48 ] ===================================================
+[ 2026-09-11 17:29:49 ] ⏳ WAITING FOR WATCHER CONFIRMATION
+[ 2026-09-11 17:29:49 ] ===================================================
+[ 2026-09-11 17:29:51 ]    Expecting responses from 1 server(s)...
+[ 2026-09-11 17:35:41 ] 🔍 Project: beyahad_client
+[ 2026-09-11 17:35:41 ] 🔍 Branch: PP
+[ 2026-09-11 17:35:41 ]    ✓ DB credentials loaded from .env (server: 172.29.92.20\sql2005, db: NofTest, user: alexk)
+[ 2026-09-11 17:35:42 ] 
+[ 2026-09-11 17:35:42 ] ===================================================
+[ 2026-09-11 17:35:42 ] 🔧 CHECKING PIPELINE PREREQUISITES (PowerShell / SQL)
+[ 2026-09-11 17:35:42 ] ===================================================
+[ 2026-09-11 17:35:52 ]    ✓ PowerShell/SqlServer module ready
+[ 2026-09-11 17:35:53 ]    ✓ Robocopy ready
+[ 2026-09-11 17:35:53 ] 
+[ 2026-09-11 17:35:53 ] 🌐 Checking network connectivity to 172.29.92.20:1433...
+[ 2026-09-11 17:36:00 ]    ✓ Network reachable
+[ 2026-09-11 17:36:00 ] 
+[ 2026-09-11 17:36:00 ] ===================================================
+[ 2026-09-11 17:36:01 ] 🚀 DEPLOYMENT STARTED
+[ 2026-09-11 17:36:01 ] ===================================================
+[ 2026-09-11 17:36:01 ] 
+[ 2026-09-11 17:36:01 ] ===================================================
+[ 2026-09-11 17:36:01 ] 🔎 [STEP 1/5] CHECKING PROJECT DEPENDENCIES
+[ 2026-09-11 17:36:02 ] ===================================================
+[ 2026-09-11 17:36:02 ]    ✓ node: v24.16.0
+[ 2026-09-11 17:36:04 ]    ✓ npm: 11.13.0
+[ 2026-09-11 17:36:04 ]    Checking local ("file:") sibling dependencies...
+[ 2026-09-11 17:36:04 ]    ✓ Found local dependency 'nofshonit-base-web-client' at /c/Users/alexk/Desktop/Automation/BitBuketProject/nofshonit-base-web-client
+[ 2026-09-11 17:36:05 ]    ✓ node_modules present
+[ 2026-09-11 17:36:05 ]    ✓ cross-env resolvable
+[ 2026-09-11 17:36:05 ] 
+[ 2026-09-11 17:36:06 ] ===================================================
+[ 2026-09-11 17:36:06 ] 🏗️  [STEP 2/5] BUILDING (npm run build:preprod)
+[ 2026-09-11 17:36:06 ] ===================================================

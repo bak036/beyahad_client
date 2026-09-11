@@ -28,16 +28,47 @@ if (set -o pipefail >/dev/null 2>&1); then set -o pipefail; fi
 # translation corrupts the quoting cmd.exe uses to spawn the nested
 # node process. Running npm through cmd.exe /c sidesteps this by
 # keeping the whole call chain in native Windows context.
+#
+# cmd.exe does NOT get a usable PATH from Git Bash (bash's PATH is
+# Unix-style, e.g. "/c/Program Files/nodejs", which cmd.exe cannot
+# parse) — so a bare "npm"/"npx" inside the cmd.exe call is not found
+# at all. We resolve npm.cmd / npx.cmd's actual Windows path (the
+# .cmd shim, not the extension-less POSIX shell script bash itself
+# uses) and invoke that directly instead of relying on PATH.
+_resolve_win_shim() {
+    # $1 = bash command name (npm/npx); finds the sibling ".cmd" shim
+    # next to whatever "command -v" resolves in bash, and returns its
+    # native Windows path.
+    local bin dir shim
+    bin=$(command -v "$1" 2>/dev/null) || return 1
+    dir=$(dirname "$bin" 2>/dev/null)
+    shim="$dir/$1.cmd"
+    [[ -f "$shim" ]] || return 1
+    cygpath -w "$shim" 2>/dev/null || echo "$shim"
+}
+
 run_npm() {
     if command -v cmd.exe >/dev/null 2>&1; then
-        cmd.exe /d /s /c "npm $*"
+        local npm_win
+        npm_win=$(_resolve_win_shim npm)
+        if [[ -n "$npm_win" ]]; then
+            MSYS_NO_PATHCONV=1 cmd.exe /d /s /c "\"$npm_win\" $*"
+        else
+            MSYS_NO_PATHCONV=1 cmd.exe /d /s /c "npm $*"
+        fi
     else
         npm "$@"
     fi
 }
 run_npx() {
     if command -v cmd.exe >/dev/null 2>&1; then
-        cmd.exe /d /s /c "npx $*"
+        local npx_win
+        npx_win=$(_resolve_win_shim npx)
+        if [[ -n "$npx_win" ]]; then
+            MSYS_NO_PATHCONV=1 cmd.exe /d /s /c "\"$npx_win\" $*"
+        else
+            MSYS_NO_PATHCONV=1 cmd.exe /d /s /c "npx $*"
+        fi
     else
         npx "$@"
     fi
@@ -498,14 +529,16 @@ log "==================================================="
 
 BUILD_DIR="$ROOT/build"
 if [[ ! -d "$BUILD_DIR" ]]; then
-    log "⚠️  Build output folder not found — creating it: $BUILD_DIR"
-    mkdir -p "$BUILD_DIR"
+    log "❌ Build output folder not found: $BUILD_DIR"
+    log "❌ npm run build:preprod should have created and populated this folder — the build did not actually succeed."
+    exit 1
 fi
 
 BUILD_FILE_COUNT=$(find "$BUILD_DIR" -type f 2>/dev/null | wc -l | tr -d ' ')
 if [[ "$BUILD_FILE_COUNT" -eq 0 ]]; then
-    log "⚠️  WARNING: $BUILD_DIR is EMPTY — npm run build:preprod did not produce any output."
-    log "⚠️  Continuing anyway (as requested), but the resulting ZIP will be empty and the site will break on deploy."
+    log "❌ Build output folder exists but is EMPTY: $BUILD_DIR"
+    log "❌ npm run build:preprod should have populated this folder — the build did not actually succeed."
+    exit 1
 fi
 
 TEMP="$ROOT/.deploy_temp"
