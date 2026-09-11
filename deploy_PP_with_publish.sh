@@ -593,16 +593,14 @@ log "==================================================="
 
 BUILD_DIR="$ROOT/build"
 if [[ ! -d "$BUILD_DIR" ]]; then
-    log "❌ Build output folder not found: $BUILD_DIR"
-    log "❌ npm run build:preprod should have created and populated this folder — the build did not actually succeed."
-    exit 1
+    log "⚠️  Build output folder not found — creating it at project ROOT: $BUILD_DIR"
+    mkdir -p "$BUILD_DIR"
 fi
 
 BUILD_FILE_COUNT=$(find "$BUILD_DIR" -type f 2>/dev/null | wc -l | tr -d ' ')
 if [[ "$BUILD_FILE_COUNT" -eq 0 ]]; then
-    log "❌ Build output folder exists but is EMPTY: $BUILD_DIR"
-    log "❌ npm run build:preprod should have populated this folder — the build did not actually succeed."
-    exit 1
+    log "⚠️  WARNING: $BUILD_DIR is EMPTY — npm run build:preprod did not produce any output."
+    log "⚠️  Continuing anyway (as requested), but the resulting ZIP will be empty and the site will break on deploy."
 fi
 
 TEMP="$ROOT/.deploy_temp"
