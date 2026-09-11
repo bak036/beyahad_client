@@ -498,8 +498,14 @@ log "==================================================="
 
 BUILD_DIR="$ROOT/build"
 if [[ ! -d "$BUILD_DIR" ]]; then
-    log "❌ Build output folder not found: $BUILD_DIR"
-    exit 1
+    log "⚠️  Build output folder not found — creating it: $BUILD_DIR"
+    mkdir -p "$BUILD_DIR"
+fi
+
+BUILD_FILE_COUNT=$(find "$BUILD_DIR" -type f 2>/dev/null | wc -l | tr -d ' ')
+if [[ "$BUILD_FILE_COUNT" -eq 0 ]]; then
+    log "⚠️  WARNING: $BUILD_DIR is EMPTY — npm run build:preprod did not produce any output."
+    log "⚠️  Continuing anyway (as requested), but the resulting ZIP will be empty and the site will break on deploy."
 fi
 
 TEMP="$ROOT/.deploy_temp"
@@ -797,7 +803,6 @@ log ""
 log "✅ Done!"
 log ""
 log "==================================================="
-log "🏁 PIPELINE FINISHED"
 log "🏁 PIPELINE FINISHED"
 log "==================================================="
 
