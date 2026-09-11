@@ -431,9 +431,50 @@ log "==================================================="
 log "🏗️  [STEP 2/5] BUILDING (npm run build:preprod)"
 log "==================================================="
 
-run_npm run build:preprod
+# "build:preprod" is defined as: cross-env REACT_APP_ENV=<url> npm run build
+# — cross-env setting an env var, then npm calling npm again for the actual
+# "build" script. That inner "npm run build", spawned FROM WITHIN an already
+# running npm process, is what triggers the '"node"' is not recognized
+# Windows bug (npm-calling-npm loses/mis-quotes its own node path in that
+# scenario) — this happens regardless of how the outer npm was invoked, so
+# wrapping it in cmd.exe alone doesn't fix it. Instead: parse out cross-env's
+# assignment(s) and the real target script ourselves, export the variable(s)
+# directly, and call the target script with a single npm layer.
+BUILD_SCRIPT_PARSE=$(node -e '
+const pkg = require("./package.json");
+const script = (pkg.scripts && pkg.scripts["build:preprod"]) || "";
+const m = script.match(/^cross-env\s+((?:\S+=\S+\s+)+)npm run (\S+)\s*$/);
+if (m) {
+    console.log("MATCH");
+    for (const a of m[1].trim().split(/\s+/)) console.log("ASSIGN\t" + a);
+    console.log("TARGET\t" + m[2]);
+} else {
+    console.log("NOMATCH");
+}
+' 2>&1)
+
+if [[ "$BUILD_SCRIPT_PARSE" == MATCH* ]]; then
+    BUILD_TARGET="build"
+    while IFS=$'\t' read -r kind value; do
+        case "$kind" in
+            ASSIGN)
+                export "${value?}"
+                log "   Set $value (from cross-env, applied directly — no nested npm call)"
+                ;;
+            TARGET)
+                BUILD_TARGET="$value"
+                ;;
+        esac
+    done <<< "$(echo "$BUILD_SCRIPT_PARSE" | tail -n +2)"
+    log "   Running: npm run $BUILD_TARGET (single npm layer)"
+    run_npm run "$BUILD_TARGET"
+else
+    log "   ⚠️  Could not parse build:preprod as \"cross-env VAR=val npm run <target>\" — falling back to running it as-is"
+    run_npm run build:preprod
+fi
+
 if [[ $? -ne 0 ]]; then
-    log "❌ npm run build:preprod failed"
+    log "❌ Build failed"
     exit 1
 fi
 log "   ✓ Build completed"
