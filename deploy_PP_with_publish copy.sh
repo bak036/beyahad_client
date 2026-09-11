@@ -53,32 +53,11 @@ _resolve_win_shim() {
 # plain "node" via a normal (Windows-style) PATH search when running a
 # script like "node scripts/build.js" — and with a Unix-style PATH inherited
 # from bash, that lookup fails ("'node' is not recognized"), even though
-# node is right there in the Windows PATH.
-#
-# Converting the WHOLE ambient $PATH via "cygpath -w -p" is fragile: any
-# single MSYS-specific or otherwise unconvertible entry in bash's real
-# $PATH can make the whole conversion fail/return empty, silently
-# disabling the override. Instead, build a minimal, targeted Windows PATH
-# containing only what's actually needed: node's own directory, npm's own
-# directory, and System32/Windows (so cmd.exe's own built-ins keep
-# working) — each converted individually, so one bad entry can't break
-# the rest.
+# node is right there in the Windows PATH. Converting $PATH to native
+# Windows form before invoking cmd.exe fixes this for every such nested
+# lookup, not just node.
 _win_path() {
-    local node_bin npm_bin node_dir npm_dir parts=()
-    node_bin=$(command -v node 2>/dev/null)
-    npm_bin=$(command -v npm 2>/dev/null)
-    if [[ -n "$node_bin" ]]; then
-        node_dir=$(cygpath -w "$(dirname "$node_bin")" 2>/dev/null)
-        [[ -n "$node_dir" ]] && parts+=("$node_dir")
-    fi
-    if [[ -n "$npm_bin" ]]; then
-        npm_dir=$(cygpath -w "$(dirname "$npm_bin")" 2>/dev/null)
-        [[ -n "$npm_dir" ]] && parts+=("$npm_dir")
-    fi
-    parts+=("C:\\Windows\\System32")
-    parts+=("C:\\Windows")
-    parts+=("C:\\Windows\\System32\\Wbem")
-    (IFS=';'; echo "${parts[*]}")
+    cygpath -w -p "$PATH" 2>/dev/null
 }
 
 run_npm() {
