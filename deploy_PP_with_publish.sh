@@ -52,9 +52,9 @@ run_npm() {
         local npm_win
         npm_win=$(_resolve_win_shim npm)
         if [[ -n "$npm_win" ]]; then
-            MSYS_NO_PATHCONV=1 cmd.exe /d /s /c "\"$npm_win\" $*"
+            MSYS_NO_PATHCONV=1 cmd.exe /d /s /c "$npm_win" "$@"
         else
-            MSYS_NO_PATHCONV=1 cmd.exe /d /s /c "npm $*"
+            MSYS_NO_PATHCONV=1 cmd.exe /d /s /c npm "$@"
         fi
     else
         npm "$@"
@@ -65,9 +65,9 @@ run_npx() {
         local npx_win
         npx_win=$(_resolve_win_shim npx)
         if [[ -n "$npx_win" ]]; then
-            MSYS_NO_PATHCONV=1 cmd.exe /d /s /c "\"$npx_win\" $*"
+            MSYS_NO_PATHCONV=1 cmd.exe /d /s /c "$npx_win" "$@"
         else
-            MSYS_NO_PATHCONV=1 cmd.exe /d /s /c "npx $*"
+            MSYS_NO_PATHCONV=1 cmd.exe /d /s /c npx "$@"
         fi
     else
         npx "$@"
