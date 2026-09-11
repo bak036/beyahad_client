@@ -1,0 +1,171 @@
+.profile-card-main-modal {
+	.img-first-modal{
+		width: max-content;
+		margin: auto;
+		margin-top: 30px;
+		@media only screen and (max-width: $max-mobile-width) {
+			img{
+				width: 35px;
+				height: 33px;
+			}
+		}
+	}
+	.text-coontainer {
+		font-family: 'Rubik-Light';
+		color: $color-blue-normal;
+		// .custom-header-text {
+		// 	font-size: 20px;
+		// }
+		.skyblue-header {
+			.custom-header-text {
+				color: #489bcd;
+				font-size: 30px;
+			}
+		}
+		.phone-container {
+			font-family: 'Rubik-Light';
+			font-size: 16px;
+			font-weight: 300;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 1.88;
+			letter-spacing: normal;
+			margin: 20px 15%;
+			margin-top: 20px;
+			color: #000;
+			.bold{
+				font-family: 'Rubik-Bold';
+			}
+			@media only screen and (min-width: $max-mobile-width) {
+				display: flex;
+				flex-direction: column;
+			}
+			@media only screen and (max-width: $max-mobile-width) {
+				text-align: center;
+			}
+
+			@media only screen and (max-width: $max-mobile-width) {
+				font-size: 14px;
+				line-height: 1.33;
+				margin: 5% 3%;
+				text-align: right;
+				h3 {
+					display: inline;
+				}
+			}
+		}
+		.first-text{
+			margin-top: 10px;
+			line-height: 1.67;
+			font-weight: 300;
+			font-size: 24px;
+			text-align: center;
+			@media only screen and (max-width: $max-mobile-width) {
+				font-size: 18px;
+				line-height: 1.33;
+			}
+		}
+		.card-number{
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+		.second-text{
+			line-height: 1.67;
+			font-weight: bold;
+			font-size: 24px;
+			text-align: center;
+			@media only screen and (max-width: $max-mobile-width) {
+				font-size: 18px;
+				line-height: 1.33;
+			}
+		}
+		.copy-icon {
+			height: fit-content;
+			margin-right: 0.4rem;
+			margin-top: 0.89rem;
+			width: 17px;
+			@media only screen and (max-width: $max-mobile-width) {
+				margin-top: 0.2rem;
+			}
+		}
+	}
+	.third-text{
+		line-height: 1.67;
+			font-size: 16px;
+			text-align: center;
+			@media only screen and (max-width: $max-mobile-width) {
+				font-size: 13px;
+				line-height: 1.33;
+			}
+	}
+	.fourth-text{
+		line-height: 1.67;
+			font-size: 16px;
+			text-align: center;
+			display: flex;
+            justify-content: center;
+            direction: rtl;
+			@media only screen and (max-width: $max-mobile-width) {
+				font-size: 13px;
+				line-height: 1.33;
+			}
+			.cvv-text {
+				order: 2; /* Display CVV text on the right */
+			}
+	
+			.cvv-number {
+				order: 2; /* Display CVV number on the left */
+			}
+	}
+	}
+	.btn-group {
+		padding: 15px 0px;
+		.btn-item {
+			padding-bottom: 7px;
+		}
+	}
+	.buttons-container{
+		display: flex;
+		width: 88%;
+    	margin: auto;
+		@media only screen and (max-width: $max-mobile-width) {
+			width: 100%;
+			margin: 32px 0;
+		}
+		.blue-button{
+			color: $color-blue-normal;
+			font-family: 'Rubik-Bold';
+			font-size: 16px;
+			width: 218px;
+			margin: auto;
+			border: solid 1px $color-blue-light;
+			padding: 10px 0;
+			border-radius: 10px;
+			text-align: center;
+			margin-top: 10px;
+			&.margin-buttom{
+				margin-bottom: 20px;
+			}
+			&.blue-button-disabled{
+				color: white;
+				background: #d9d9d9;
+				border: none;
+			}
+			@media only screen and (max-width: $max-mobile-width) {
+				width: 128px;
+				height: 54px;
+				font-size: 14px;
+				padding: 7px;
+				justify-content: center;
+				display: flex;
+				align-items: center;
+			}
+		}
+		.blue-button-hover:hover{
+			cursor: pointer;
+			background: $color-blue-normal;
+			color: #ffffff;
+		}
+	}
+}
+

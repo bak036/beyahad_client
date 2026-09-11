@@ -1,0 +1,57 @@
+.short-code-payment-form {
+
+    .short-code-payment-btn,
+    .short-code-container {
+        border-radius: 22px;
+        box-shadow: #ddd 0px 0px 20px;
+        margin-top: 20px;
+        padding: 3%;
+		margin: 7px;
+
+        .code-header {
+            margin-bottom: 15px;
+            .short-code-header {
+                color: $color-blue-normal;
+                font-size: x-large;
+            }
+        }
+
+        .input-code {
+            .custom-input-text-input-container {
+                border-radius: 5px;
+            }
+        }
+
+        @media only screen and (min-width: $max-mobile-width) {
+            .input-code {
+                width: 30%;
+            }
+        }
+    }
+
+    .agreement-container {
+        display: flex;
+        padding-bottom: 20px;
+
+        .agree-checkbox {
+            margin-left: 8px;
+        }
+    }
+
+    .short-code-payment-btn {
+        .custom-button-container>button {
+            border-radius: 10px;
+            background-color: $color-blue-normal;
+        }
+    }
+
+    .forgot-short-code {
+        cursor: pointer;
+
+        .text-checkbox>.custom-span-text {
+            color: $color-blue-normal;
+            border-bottom: 1px solid $color-blue-normal;
+            padding-bottom: 0;
+        }
+    }
+}

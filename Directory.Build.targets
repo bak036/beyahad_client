@@ -1,0 +1,31 @@
+﻿<Project>
+  <!--
+    ===========================================================
+    Auto-configure git core.hooksPath on every build.
+    ===========================================================
+    Why this exists: git deliberately does NOT let a repository
+    auto-configure hooks on clone (that would be a security hole -
+    any malicious repo could silently run code on clone). So
+    "core.hooksPath" has to be set manually, once, by every
+    developer. Relying on developers to remember a one-time README
+    step is fragile.
+
+    Building the project, however, is NOT optional - every
+    developer builds before they can do anything else. Piggy-
+    backing on Build (rather than a git hook) sidesteps git's
+    consent requirement entirely, since running MSBuild tooling
+    on a freshly cloned repo is already an inherently trusted
+    action, unrelated to git's own hook-security boundary.
+
+    The command is idempotent - safe to run on every single build,
+    whether or not it was already configured.
+    ===========================================================
+  -->
+  <Target Name="EnsureGitHooksConfigured" BeforeTargets="Build;Rebuild" Condition="Exists('$(MSBuildThisFileDirectory).githooks')">
+    <Exec Command="git config core.hooksPath .githooks"
+          WorkingDirectory="$(MSBuildThisFileDirectory)"
+          ContinueOnError="true"
+          StandardOutputImportance="low"
+          StandardErrorImportance="low" />
+  </Target>
+</Project>

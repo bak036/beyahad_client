@@ -1,0 +1,66 @@
+// Override external components css
+
+// Accessability component
+#OA_Icon {
+	min-height: 50px !important;
+	min-width: 50px !important;
+	right: 0px !important;
+	bottom: 20px !important;
+	box-shadow: -3px 0px 12px 0px rgba(50, 50, 50, 0.29);
+
+	// media query for IE - https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet
+	@media all and (-ms-high-contrast: none),
+	(-ms-high-contrast: active) {
+		top: 92.1%;
+	}
+
+	//hard coded to match the chat plugin media queries
+	@media only screen and (min-width:500px) {
+		min-height: 60px !important;
+		min-width: 60px !important;
+		right: 20px !important;
+	}
+}
+
+#glassix-widget-launcher-container {
+	bottom: 4rem !important;
+	left: 30px !important;
+	// display: none;
+}
+
+@media only screen and (max-width:$max-mobile-width) {
+	#glassix-widget-launcher-container {
+		bottom: 3.1rem !important;
+		left: 0 !important;
+		// display: none;
+	}
+
+	#glassix-widget-launcher {
+		width: 40px !important;
+		height: 40px !important;
+		padding-right: 3px;
+		padding-bottom: 3px;
+	}
+
+	#glassix-widget-launcher-opened-wrapper,
+	#glassix-widget-launcher-closed-wrapper {
+		width: 30%;
+		height: 50%;
+	}
+
+	#glassix-widget-launcher-closed .glassix-widget-icon-wrapper img {
+		max-width: 33px !important;
+	}
+
+	#INDmenu-btn {
+		width: 85px !important;
+		height: 85px !important;
+	}
+}
+
+
+
+// Another css for hiding the "DisableAccessibility" button IN the Accessability component
+.OA_Button[data-component='DisableAccessibility'] {
+	display: none !important;
+}

@@ -1,0 +1,62 @@
+.custom-span-text {
+	padding-bottom: 7px;
+	color: black;
+	&.bold {
+		font-family: 'Rubik-Bold';
+	}
+	&.green {
+		color: $color-green;
+	}
+	&.orange {
+		color: $color-orange;
+	}
+	&.blue-normal {
+		color: #{$color-blue-normal};
+	}
+	&.white {
+		color: $background-color;
+	}
+	&.bluefont {
+		color: blue;
+	}
+	&.gray {
+		color: gray;
+	}
+	&.small-font {
+		font-size: 1rem;
+	}
+	&.mobile-small-font {
+		font-size: 0.8rem;
+	}
+	&.medium-font {
+		font-size: 1.2rem;
+	}
+	&.mobile-medium-font {
+		font-size: 0.9rem;
+	}
+	&.large-font {
+		font-size: 1.5rem;
+	}
+	&.underline {
+		text-decoration: underline;
+	}
+	&.red {
+		color: red;
+	}
+	&.medium-size {
+		width: 80px;
+	}
+	&.burger {
+		position: absolute;
+		top: 12px;
+		margin-left: 30px;
+	}
+
+	h1.custom-span-text {
+		font-size: 0.8rem;
+	}
+
+	h2.custom-span-text {
+		font-size: 0.9rem;
+	}
+}

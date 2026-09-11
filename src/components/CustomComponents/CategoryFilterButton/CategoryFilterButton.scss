@@ -1,0 +1,43 @@
+.category-filter-button-container {
+  display: flex;
+  align-items: center;
+  align-self:center;
+  gap: 30px;
+  margin-left: 28px;
+
+  @media only screen and (max-width: $max-mobile-width) {
+    gap: 15px;
+  }
+
+  .results-count {
+    color: black;
+    font-size: 16px;
+    font-weight: 400;
+
+    @media only screen and (max-width: $max-mobile-width) {
+      font-size: 14px;
+    }
+  }
+}
+
+.category-filter-button {
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  .filter-button-image {
+    height: auto;
+    width: auto;
+    display: block;
+    transform: scale(1.4);
+    
+    @media only screen and (max-width: $max-mobile-width) {
+      transform: scale(1.1);
+    }
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+}

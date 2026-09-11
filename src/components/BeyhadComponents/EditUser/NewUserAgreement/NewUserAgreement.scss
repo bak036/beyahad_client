@@ -1,0 +1,60 @@
+.new-user-agreement {
+	line-height: 15px;
+	text-align: right;
+	display: flex;
+
+	@media only screen and (min-width:$max-mobile-width) {
+		flex-direction: row;
+	}
+	@media only screen and (max-width:$max-mobile-width) {
+		flex-direction: row;
+	}
+	.text-container {
+		margin-bottom: 5px;
+	}
+
+	.agree-message {
+		margin: 13px 0;
+		font-family: 'Rubik-Regular';
+		font-size: 14px;
+
+	}
+	.agree-message1 {
+		font-family: 'Rubik-Regular';
+		font-size: 14px;
+	}
+	.agreement-text-container{
+		margin-right: 9px;
+	}
+	.agreement-container {
+		// @media only screen and (min-width:$max-mobile-width) {
+			flex-direction: column;
+		// }
+		
+		.checkbox {
+			margin-left: 5px;
+			cursor: pointer;
+		}
+		.checkbox-line{
+			display: flex;
+			align-items: flex-start;
+			gap: 7px;
+		}
+		
+	}
+
+
+	.hilight {
+		font-size: 1.2rem;
+	}
+}
+.new-user-agreement-container{
+	.submit-button-container {
+		margin-top: 15px;
+	
+		.custom-button-container>button {
+			border-radius: 10px;
+			background-color: #179bd3;
+		}
+	}
+}

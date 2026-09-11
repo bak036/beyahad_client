@@ -1,0 +1,325 @@
+.tickets-variants-list-container {
+
+	padding-bottom: 20px;
+	border-bottom: 2px solid $color-light-gray;
+	margin-bottom: 30px;
+	// Title
+	.title-container {
+		display: flex;
+		align-items: center;
+		padding-top: 10px;
+
+		.img-choose-ticket-icon {
+			height: 25px;
+		}
+
+		.custom-header-container.choose-ticket-title-container {
+			margin: 0;
+
+			.custom-header-text.choost-ticket-title {
+				color: black;
+				font-size: 1.3rem;
+				font-weight: bold;
+				margin-right: 7px;
+			}
+		}
+	}
+
+	.events-header-page-sub-title-varients {
+		display: flex;
+		margin-top: 0px;
+		margin-bottom: 10px;
+		font-weight: 600;
+		font-size: 1.5rem;
+
+		@media only screen and (max-width:$min-desktop-width) {
+			margin-top: 1rem;
+			margin-bottom: 0rem;
+		}
+
+		img {
+			height: 25px;
+			width: 25px;
+		}
+
+		.product-header-page-sub-title-varients-black {
+			color: black;
+			margin-right: 4px;
+		}
+	}
+
+	.events-header-varient-titles {
+
+		display: grid;
+		grid-template-columns: 53% 32% 15%;
+		flex-direction: row;
+		font-size: 1.2rem;
+		color: $text-color;
+		width: 100%;
+		border-bottom: 1px solid lightgray;
+		padding-bottom: 6px;
+		margin-bottom: 20px;
+
+		@media only screen and (max-width:$max-mobile-width) {
+			font-weight: 600;
+			padding-bottom: 0.3rem;
+			border-bottom: 1px solid lightgray;
+			grid-template-columns: 40% 25% 35%;
+
+			&.col-2 {
+				grid-template-columns: 80% 20%;
+			}
+		}
+
+		&.col-2 {
+			grid-template-columns: 75% 25%;
+
+			.events-header-varient-title-name {
+				flex: 48;
+			}
+		}
+
+		.events-header-varient-title-name {
+			min-width: 168px;
+			flex: 11;
+
+			@media only screen and (min-width:$max-mobile-width) {
+				flex: 15;
+
+			}
+
+			@media only screen and (max-width:$min-desktop-width) {
+				min-width: 100px;
+				flex: 8
+			}
+
+			// media query for IE - https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet
+			@media all and (-ms-high-contrast: none),
+			(-ms-high-contrast: active) {
+				flex: 5.5;
+			}
+		}
+
+		.events-header-varient-title-price {
+			text-align: center;
+		}
+
+		.events-header-varient-title-quantity {
+			text-align: center;
+
+			@media only screen and (max-width:$max-mobile-width) {
+				padding-right: 30px;
+			}
+
+		}
+	}
+
+	// events catalog
+	.tickets-list-rows {
+		.ticket-row {
+
+			.ticket-row-order-limit {
+				padding: 5px;
+				margin-top: 0px;
+
+				@media only screen and (min-width:$max-mobile-width) {
+					margin-top: -22px;
+				}
+			}
+
+			.ticket-row-data {
+				height: unset;
+				display: flex;
+				align-items: center;
+				padding: 4px;
+				justify-content: space-between;
+
+				@media only screen and (min-width:$max-mobile-width) {
+					height: 70px;
+				}
+
+				.ticket-name-outer-container {
+					display: flex;
+					flex-direction: column;
+
+					.sale-container {
+						width: 50px;
+						text-align: center;
+						background-color: red;
+
+
+						.sale-text {
+							color: white;
+							font-weight: bold;
+						}
+					}
+
+					.ticket-name-container {
+						margin: 0;
+
+						.ticket-name-title {
+							color: black;
+							font-weight: bold;
+						}
+
+						.ticket-name-title-red {
+							color: red;
+							font-weight: bold;
+						}
+					}
+				}
+
+				.price-and-quantity-container {
+					display: flex;
+					height: 100%;
+
+					.price-container {
+						height: 100%;
+						display: flex;
+						justify-content: space-evenly;
+						align-items: center;
+						flex-direction: column;
+						min-width: 40px;
+						padding-top: 5px;
+
+						.discount-text {
+							color: gray;
+							text-decoration: line-through;
+						}
+
+
+						.custom-span-text {
+							padding-bottom: 0px;
+						}
+
+						.display-block {
+							display: block;
+						}
+					}
+
+					.quantity-container {
+						height: 100%;
+						min-width: 100px;
+						display: flex;
+						align-items: center;
+						justify-content: space-evenly;
+						max-width: 130px;
+						padding-right: 20px;
+
+						.quantity-input-container {
+							width: 30px;
+
+							.quantity-input {
+								width: 100%;
+								text-align: center;
+								border: 1px solid lightgray;
+								border-radius: 5px;
+							}
+						}
+
+						.arrow {
+							padding: 5px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// Payment button
+	.custom-button-container.payment-button-container {
+		padding-top: 10px;
+	}
+
+
+	&.col-2 {
+		padding-bottom: 0px;
+		border-bottom: 0px solid $color-light-gray;
+		margin-bottom: 0px
+	}
+
+	@media only screen and (max-width:$max-mobile-width) {
+		padding-bottom: 0px;
+		border-bottom: 0px solid $color-light-gray;
+		margin-bottom: 15px;
+	}
+}
+
+.red-bold-text {
+	color: red;
+	font-weight: bold;
+}
+
+.varient-main-container {
+	.varient-item-prices {
+		justify-self: center;
+		margin-left: 10px;
+
+		.varient-item-discount {
+			.ticket-discount-explanation-icon-div {
+				position: absolute;
+				width: 40px;
+				height: 40px;
+				justify-content: center;
+				align-items: center;
+				display: flex;
+				cursor: pointer;
+				z-index: 0;
+				margin-right: -5px;
+				margin-top: -11px;
+			}
+
+			.ticket-discount-explanation-message {
+				position: absolute;
+				width: 257px;
+				padding: 10px;
+				border: 1px solid lightgray;
+				border-radius: 12px;
+				margin-top: 41px;
+				background-color: white;
+				font-size: 14px;
+				z-index: 1;
+				margin-right: -48px;
+
+				@media only screen and (max-width:$max-mobile-width) {
+					width: 209px;
+					margin-right: -170px;
+					margin-top: 44px;
+				}
+			}
+
+			.ticket-discount-explanation-message:after {
+				content: '';
+				position: absolute;
+				bottom: 76px;
+				width: 0;
+				height: 0;
+				border: 14px solid transparent;
+				border-bottom: 25px solid lightgray;
+				right: 48px;
+
+				@media only screen and (max-width:$max-mobile-width) {
+					bottom: 91px;
+					right: 170px;
+				}
+			}
+
+			.ticket-discount-explanation-message:before {
+				content: '';
+				position: absolute;
+				bottom: 74px;
+				left: 180px;
+				width: 0;
+				height: 0;
+				border: 14px solid transparent;
+				border-bottom: 25px solid white;
+				z-index: 1;
+
+				@media only screen and (max-width:$max-mobile-width) {
+					bottom: 89px;
+					left: 10px;
+				}
+			}
+		}
+	}
+}

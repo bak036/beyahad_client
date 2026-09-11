@@ -1,0 +1,125 @@
+$contact-inputs-width: 90%;
+
+.contact-container {
+	height: 100%;
+	display: block;
+	background-color: $background-color;
+
+	// padding: 0 10px 10px 10px;
+	.custom-button-container {
+		.primary-design {
+			border-radius: 10px;
+			background-color: $color-blue-normal;
+		}
+	}
+
+	.contact-padding {
+		width: 100%;
+		background-color: white;
+
+		@media only screen and (min-width:$max-mobile-width) {
+			border-radius: 20px;
+			box-shadow: #ddd 0px 0px 20px;
+		}
+	}
+
+	.title-container {
+		line-height: 40px;
+		text-align: center;
+	}
+
+	.body-padding {
+		width: 100%;
+		margin: auto;
+		@media only screen and (min-width:$max-mobile-width) {
+			width: 90%;
+		}
+
+
+	}
+
+	.form-container {
+		display: block;
+		width: 100%;
+
+		@media only screen and (min-width:$max-mobile-width) {
+			padding: 30px;
+		}
+
+		@media only screen and (max-width:$max-mobile-width) {
+			.form-body {
+				border-radius: 20px;
+				box-shadow: #ddd 0px 0px 20px;
+				padding: 15px;
+			}
+		}
+
+		.desktop-left-inputs,
+		.desktop-right-inputs {
+			width: 100%;
+			flex-grow: 1;
+			@media only screen and (min-width:$max-mobile-width) {
+				width: 47%;
+			}
+
+
+
+
+			.custom-input-text-container {
+				margin-left: 0;
+
+				.custom-input-text-input-container,
+				textarea {
+					border-radius: 5px;
+					border: solid 1px $color-light-gray;
+				}
+			}
+
+			.label-text {
+				font-family: 'Rubik-Light';
+				font-size: 16px;
+				font-weight: 300;
+				font-stretch: normal;
+				font-style: normal;
+				line-height: 1.19;
+				letter-spacing: normal;
+				color: #000;
+			}
+		}
+
+		.desktop-right-inputs {
+			margin-left: 6%;
+		}
+
+		.form-body {
+			margin: 0;
+		}
+	}
+
+}
+
+.mobile-contact-message {
+	margin-top: 20px;
+}
+
+@media only screen and (min-width:$max-mobile-width) {
+	.contact-container {
+		display: flex;
+
+		.title-text {
+			font-size: 1.8em;
+		}
+
+		.body-padding {
+			display: flex;
+			width: 100%;
+		}
+	}
+}
+
+.btn-delete-member {
+	cursor: pointer;
+	background-color: #fff;
+	padding: 3% 0;
+	width: 90%;
+}

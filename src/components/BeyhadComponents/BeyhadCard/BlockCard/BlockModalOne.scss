@@ -1,0 +1,81 @@
+.first-modal-container {
+	// img{
+	// 	width: 15px;
+	// 	height: 15px;
+	// }
+	.img-first-modal{
+		width: max-content;
+		margin: auto;
+	}
+	width: 85%;
+
+	margin: auto;
+	margin-top: 24px;
+	.center{
+		h1{
+			font-family: 'Rubik-Medium';
+			font-size: 24px;
+			font-weight: 500;
+		}
+	}
+	.blue-button{
+		color: $color-blue-normal;
+		font-family: 'Rubik-Bold';
+		font-size: 16px;
+		width: 246px;
+		margin: auto;
+		border: solid 1px $color-blue-light;
+		padding: 10px 0;
+		border-radius: 10px;
+		text-align: center;
+		margin-top: 10px;
+		&.margin-buttom{
+			margin-bottom: 20px;
+		}
+		&.blue-button-disabled{
+			color: #c1c1c1;
+			border-color: #c1c1c1;
+		}
+		@media only screen and (max-width: $max-mobile-width) {
+			font-size: 14px;
+		}
+	}
+	.blue-button:hover{
+		cursor: pointer;
+		background: $color-blue-normal;
+		color: #ffffff;
+	}
+	.buttons-container {
+		padding-top: 0 !important;
+		font-size: 16px;
+		@media only screen and (max-width: $max-mobile-width) {
+			font-size: 14px;
+		}
+		.block-btn {
+			padding-bottom: 15px;
+		}
+		.block-and-order {
+			padding-bottom: 15px;
+		}
+		.footer-text {
+			text-align: center;
+			margin-top: 10px;
+			@media only screen and (max-width: $max-mobile-width) {
+				font-size: 14px;
+			}
+		}
+		.footer-text-2{
+			font-family: 'Rubik-Light';
+			margin-top: 20px;
+			font-weight: 300;
+			line-height: 17px;
+			color: #000;
+			a{
+				color: $color-blue-normal;
+			}
+		}
+	}
+	@media only screen and (max-width: $max-mobile-width) {
+		width: 95%;
+	}
+}

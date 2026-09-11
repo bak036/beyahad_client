@@ -1,0 +1,80 @@
+.product-page-tab-desktop {
+	border-radius: 20px;
+	box-shadow: #ddd 0px 0px 20px;
+	width: 100%;
+	background-color: $color-white;
+	margin: auto;
+	padding: 50px;
+	display: flex;
+	margin-top: 50px;
+	margin-bottom:50px;
+	border: 1px solid lightgray;
+}
+/*
+
+	width: 100%;
+	background-color: white;
+	margin: auto;
+	padding-top: 20px;
+	margin-bottom: 10px;
+	display: flex;
+	border: 0.1px solid lightgrey;
+
+	.side-tabs-menu-container {
+		flex: 1;
+		margin-right: 20px;
+
+		.menu-side-item {
+			padding-top: 5px;
+			display: flex;
+			cursor: pointer;
+			height: 35px;
+
+			.logo-container {
+				width: 13%;
+
+				.icon-item {
+				}
+			}
+
+			.title-container {
+				padding-right: 15px;
+				margin-right: 10px;
+				margin-top: 3px;
+
+				.title-item {
+					font-size: 1.2rem;
+					color: black;
+					font-weight: bold;
+
+					&.selected {
+						border-bottom: 2px solid black;
+						padding-bottom: 1px;
+					}
+				}
+			}
+		}
+	}
+
+	.content-container {
+		flex: 6;
+		padding-right: 40px;
+
+		.content-text {
+			height: 250px;
+			overflow: auto;
+			width: 99%;
+			margin-bottom: 10px;
+			color: black;
+			font-size: 1rem;
+			@media only screen and (min-width:$max-mobile-width) {
+				font-size: 1.2rem;
+			}
+
+			.text {
+				width: 95%;
+			}
+		}
+	}
+}
+*/

@@ -1,0 +1,631 @@
+@import 'ProfileHover/ProfileHover.scss';
+@import 'ShoppingCartHover/ShoppingCartHover.scss';
+@import 'SubCatergories/SubCatergories.scss';
+
+
+
+.navbar-container-1{
+	max-width: 1600px;
+	margin: auto;
+	height: 150px;
+	background: white;
+	position: relative;
+	z-index: 300;
+	.navbar-container{
+		display: flex;
+		padding: 10px;
+		height: 100%;
+		.navbar-left{
+			width: 200px;
+			margin-top: -10px;
+			box-shadow: $box-shadow-element;
+			border-radius: 0 0 30px 30px;
+			.navbar-left-container{
+				height: 95%;
+				width: 95%;
+				margin: auto;
+				margin-top: 2%;
+				display: flex;
+				flex-direction: column;
+				color: #de2626;
+				font-weight: bold;
+				.first-line{
+					text-align: center;
+					padding: 2px 0;
+					margin-top: 7px;
+				}
+				.second-line{
+					display: flex;
+					flex-direction: row;
+					.second-line-container{
+						cursor: pointer;
+						display: flex;
+						flex-direction: column;
+						margin: auto;
+						margin-top: 10px;
+						.svg-nav-bar{
+							width:25px;
+							height:25px;
+							fill: #de2626;
+							margin: auto;
+						}
+						.second-line-img{
+							margin: auto;
+							width: 25px;
+							height: 20px;
+						}
+						.custom-span-text{
+							font-weight: bold;
+							margin-top: 5px;
+							padding: 0;
+							color: #de2626;
+						}
+					}
+					.second-line-container:hover{
+						.custom-span-text{
+							font-weight: bold;
+							margin-top: 5px;
+							padding: 0;
+							color: $color-blue-normal;
+						}
+						.svg-nav-bar{
+							width:25px;
+							height:25px;
+							fill: $color-blue-normal;
+							margin: auto;
+						}
+					}
+				}
+				.third-line{
+					cursor: pointer;
+					img{
+						margin-left: 10px;
+					}
+					margin-top: 10px;
+					.third-line-container{
+						color: white;
+						width: max-content;
+						margin: auto;
+						background-color: #de2626;
+						align-items: center;
+						display: flex;
+						padding: 7px 30px;
+						border-radius: 30px;
+						font-size: 16px;
+						font-weight: bold;
+						margin-top: 3px;
+					}
+				}
+			}
+		}
+		.navbar-right{
+			width: calc(100% - 200px);
+			display: flex;
+			flex-direction: column;
+			margin-left: 10px;
+			font-weight: 500;
+			.navbar-right-up{
+				height: 50%;
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				.logo-item{
+					width: 119px;
+					height: 80%;
+				}	
+				.by-top-nav-bar-middle {
+					color: #1c4ca1;
+					font-size: 15px;
+					margin: auto;
+					font-weight: normal;
+					display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+					display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+					display: -ms-flexbox; /* TWEENER - IE 10 */
+					display: -webkit-flex; /* NEW - Chrome */
+					display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+					justify-content: space-between;
+					.separation{
+						width: 1px;
+						height: 50px;
+						background-color: #f0f0f2;
+						margin-top: -16px;
+					}
+					.by-top-nav-bar-middle-item {
+						margin: auto 2px auto 1%;
+						text-align: center;
+						min-width: 7%;
+						text-overflow: ellipsis;
+						overflow: hidden;
+						padding: 10px;
+						font-size: 16px;
+  						font-weight: 500;
+						font-family: 'Rubik-Regular';
+						cursor: pointer;
+						&.orange {
+							font-weight: bold;
+						}
+						// media query for IE - https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet
+						@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+							word-spacing: 0vw;
+						}
+					}
+	
+					.button-card {
+						word-spacing: unset;
+						position: absolute;
+						background: #07a6f4;
+						color: white;
+						max-width: 110px;
+						min-width: 110px;
+						height: 37px;
+						margin: auto;
+						padding-top: 4px;
+						margin-top: -17px;
+						font-weight: bold;
+						border: white;
+						// media query for IE - https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet
+						@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+							padding-top: 9px;
+							margin-top: -2px;
+							margin-right: 24px;
+						}
+					}
+				}	
+			}
+			.navbar-right-botoom{
+				display: flex;
+				align-items: center;
+			.navbar-right-botoom1{
+				height: 60%;
+				background: #fff;
+				width: 48.5%;
+				border-radius: 30px;
+				box-shadow: $box-shadow-element;
+				.by-buttom-nav-bar-right{
+					display: flex;
+					width: 100%;
+    				margin: auto;
+					margin-top: 9px;
+					&.search-box{
+						border: 0;
+    					outline: 0;
+						background: white;
+					}
+					.input-container{
+						display: flex;
+						flex-direction: row;
+						width: calc(100% - 150px);
+						border-radius: 21px;
+						border: solid 1px $color-light-gray;
+						margin-right: 10px;
+						img{
+							height: 20px;
+							width: 20px;
+							margin-top: 12px;
+							margin-right: 10px;
+						}
+					}
+					input{
+						padding: 16px 10px;
+						background: white;
+						height: 32px;
+						border: none;
+						width: 93%;
+						margin: inherit;
+					}
+					input:focus {
+						border: none;
+					}
+					.custom-button-container{
+						.button{
+							height: 35px;
+							border-radius: 30px;
+						}
+						width: 150px;
+						
+					}
+				
+			}
+}
+				.navbar-right-botoom2{
+					width: 48.5%;
+					height: 60%;
+					margin: 22px 2px 23px 52px;
+					padding: 11px 16px;
+					object-fit: contain;
+					border-radius: 30px;
+					box-shadow: $box-shadow-element;
+					background: #fff;
+					margin-right: 20px;
+					display: flex;
+					align-items: center;
+					.max-button{
+						height: 130%;
+						margin: 2px;
+						object-fit: contain;
+						border-radius: 21px;
+						background-color:#15244d;
+						color: white;
+						text-align: center;
+						cursor: pointer;
+						&:hover{
+							opacity: 0.8;
+						}
+					}
+					.right-button{
+						width: 40%;
+						background-image: url('../assets/background_sky_points.png');
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						.sky-img{
+							bottom:1px;
+							position: relative;
+						}
+					}
+					.left-button{
+						width: 60%;
+						background-image: url('../assets/background_max_benefits.png');
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						.max-img{
+							bottom: 1px;
+							position: relative;
+							}
+					}
+				}
+		}
+	}
+	}
+}
+
+.by-navbar-floating-box {
+	z-index: 2;
+	position: absolute;
+	border: 1px solid gray;
+	color: white;
+	background: white;
+	line-height: 26px;
+	.show-all-button {
+		font-size: 16px;
+		text-align: left;
+		left: 20px;
+		cursor: pointer;
+		border: 1px $color-blue-light solid;
+		width: max-content;
+		float: left;
+		padding: 6px 15px;
+		border-radius: 30px;
+		.custom-span-text {
+			padding-bottom: 7px;
+			color: #1c4ca1;
+		}
+		
+	}
+
+	&.sub-categories {
+		border: 0;
+		border-radius: 30px;
+		box-shadow: $box-shadow-element;
+		// media query for IE - https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet
+		@media only screen and (-ms-high-contrast: none) and (min-width: '1025px') and (max-width: '1300px'),
+			only screen and (-ms-high-contrast: active) and (min-width: '1025px') and (max-width: '1300px') {
+			right: 0;
+		}
+		@media only screen and (-ms-high-contrast: none) and (min-width: '1300px'),
+			only screen and (-ms-high-contrast: active) and (min-width: '1300px') {
+			right: calc((100% - 1300px) / 2);
+		}
+	}
+	&.hide {
+		display: none;
+	}
+	&.top {
+		width: 300px;
+		height: auto;
+
+		&.search  {
+			width: calc(100% - 200px);
+			margin-top: 144px;
+			max-width: 1057px;
+			/* margin-right: 17px; */
+			padding: 20px;
+			background: white;
+			/* border: 1px solid gray; */
+			border: none;
+			box-shadow: $box-shadow-element;
+			border-radius: 30px;
+			color: #1c4ca1;
+		}
+		
+		&.profile {
+			margin-top: 40px;
+			margin-right: -260px;
+			box-shadow: $box-shadow-element;
+			border: none;
+			border-radius: 30px;
+		}
+
+		&.shopping-cart {
+			margin-right: -255px;
+			margin-top: 40px;
+			box-shadow: $box-shadow-element;
+			border: none;
+			border-radius: 30px;
+		}
+
+		&.sub-categories {
+			width: 69%;
+			max-width: 1030px;
+			top: 60px;
+			margin-right: 12%;
+		}
+
+		
+	}
+}
+
+.by-main-navbar-main-continer {
+	max-width: 1300px;
+	margin: auto;
+
+	.by-main-nav-bar {
+		background-color: #{$color-white};
+
+		.by-top-nav-bar {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: flex-start;
+			height: auto;
+			position: relative;
+
+			.by-top-nav-bar-right {
+				.logo-container {
+					.logo-item {
+						width: 100px;
+						@media only screen and (min-width:$max-mobile-width) {
+							width: 155px;
+						}
+						
+					}
+					img{
+					width: 119px;
+					height: 80%;
+				}
+				}
+			}
+			.by-top-nav-bar-left {
+				display: flex;
+				margin-right: auto;
+				align-items: center;
+				text-align: center;
+				height: 80px;
+				.by-top-nav-bar-left-item {
+					width: 80px;
+					height: 80px;
+					background: #214fa2;
+					&.color {
+						background: #15a0cf;
+					}
+					.navbar-icon-container {
+						width: 80px;
+						height: 80px;
+						.icon-text-navbar {
+							position: absolute;
+							color: white;
+							margin-top: 54px;
+							font-size: 1.1rem;
+							width: 80px;
+						}
+						.icon-text-profile {
+							margin-right: -40px;
+						}
+						.icon-text-cart {
+							margin-right: -46px;
+						}
+						// media query for IE - https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet
+						@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+							.icon-text-profile {
+								margin-right: -1px;
+							}
+							.icon-text-cart {
+								margin-right: -8px;
+							}
+						}
+					}
+				}
+
+				&.item-image {
+					position: absolute;
+					margin-top: 12px;
+					margin-bottom: 9px;
+					margin-right: 25px;
+					cursor: pointer;
+				}
+				&.shopping-cart-icon {
+					width: 27px;
+					height: 32px;
+				}
+				&.profile-icon {
+					width: 29px;
+					height: 32px;
+				}
+
+				&.profile {
+					cursor: pointer;
+				}
+			}
+
+			.by-navbar-floating-box {
+				z-index: 2;
+				position: absolute;
+				border: 1px solid gray;
+				color: white;
+				background: white;
+				line-height: 26px;
+
+				.show-all-button {
+					font-size: 20px;
+					text-align: left;
+					left: 20px;
+					border: 1px solid gray;
+					cursor: pointer;
+				}
+
+				&.sub-categories {
+					// media query for IE - https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet
+					@media only screen and (-ms-high-contrast: none) and (min-width: '1025px') and (max-width: '1300px'),
+						only screen and (-ms-high-contrast: active) and (min-width: '1025px') and (max-width: '1300px') {
+						right: 0;
+					}
+					@media only screen and (-ms-high-contrast: none) and (min-width: '1300px'),
+						only screen and (-ms-high-contrast: active) and (min-width: '1300px') {
+						right: calc((100% - 1600px) / 2);
+					}
+				}
+
+				&.top {
+					width: 300px;
+					height: auto;
+
+					&.profile {
+						margin-right: -220px;
+					}
+
+					&.shopping-cart {
+						margin-top: -150px;
+						margin-right: -220px;
+						border: none;
+					}
+
+					&.sub-categories {
+						width: 69%;
+						max-width: 1041px;
+						margin-top: 12px;
+						top: 68px;
+					}
+
+					
+				}
+			}
+		}
+
+		.by-buttom-nav-bar {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			height: 50px;
+			background: #214fa2;
+			align-items: center;
+
+			// .by-buttom-nav-bar-right {
+			// 	position: relative;
+			// 	width: 100%;
+			// 	margin-left: 34px;
+
+			// 	&.search-box {
+			// 		width: 100%;
+			// 		height: 30px;
+			// 		direction: rtl;
+			// 		margin-right: 19px;
+			// 	}
+
+			// 	&.search-box:disabled {
+			// 		background: white;
+			// 	}
+			// 	.search-icon {
+			// 		cursor: text;
+			// 		position: absolute;
+			// 		top: 7px;
+			// 		left: -13px;
+			// 	}
+			// 	.delete-text-icon {
+			// 		cursor: text;
+			// 		position: absolute;
+			// 		top: 7px;
+			// 		width: 17px;
+			// 		height: 18px;
+			// 		margin-right: 1px;
+			// 		background: white;
+			// 		z-index: 1;
+			// 		left: 13px;
+			// 	}
+			// }
+
+			.by-buttom-nav-bar-left {
+				display: flex;
+				flex-direction: row;
+				margin-left: 2px;
+
+				&.hide {
+					display: none;
+				}
+
+				&.item {
+					margin-left: 14px;
+
+					.by-buttom-nav-bar-left-item-select {
+						background: url('../assets/dropdown.png') left / 20px no-repeat #fff;
+						min-width: 20px;
+						margin-bottom: 8px;
+						margin-left: 100px;
+						-webkit-appearance: none;
+						-moz-appearance: none;
+						appearance: none;
+						padding-right: 6px;
+					}
+
+					.custom-button-container {
+						.button {
+							width: 110px;
+							height: 32px;
+							margin-top: 3px;
+						}
+					}
+				}
+			}
+		}
+
+		// css for the select liabery
+		// define the width of the dropwown item
+		.css-10nd86i {
+			width: 150px;
+			z-index: 1;
+		}
+
+		.css-1492t68 {
+			font-weight: bold;
+		}
+
+		.css-d8oujb {
+			display: none;
+		}
+	}
+}
+
+.subcatergories-custom-seperator {
+	background: rgba(0, 23, 58, 0.3);
+	margin-left: 10px;
+	margin-top: 10px;
+
+	&.seperator {
+		&.vertical {
+			height: 100%;
+			margin-left: 10px;
+		}
+	}
+}
+
+.by-navbar-floating-search-box-item {
+	padding-bottom: 8px;
+	font-size: 20px;
+	color: #1c4ca1 !important;
+}
+.custom-span-text-show-all {
+	padding-bottom: 7px;
+	color: #1c4ca1 !important;
+	font-size: 14px;
+  	font-weight: normal;
+}

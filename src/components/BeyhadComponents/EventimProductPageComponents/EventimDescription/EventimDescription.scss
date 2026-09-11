@@ -1,0 +1,142 @@
+.eventim-description-container {
+	width: 100%;
+	background: white;
+
+	.custom-header-container {
+		margin-bottom:20px;
+	}
+	// Category page name
+	.custom-header-text.category-name-title {
+		font-weight: bold;
+	}
+
+	// Description page name
+	.description-container {
+		padding-bottom: 10px;
+
+		.custom-span-text {
+			font-size: 1.05rem;
+		}
+	}
+
+	// Vanue name and date-time explaination
+	.vanue-name-and-date-container {
+		margin-bottom: 0px;
+
+		.explain-container-event-time {
+			padding-top: 8px;
+			padding-right: 10px;
+		}
+
+		.explain-container {
+			height: 100%;
+			display: flex;
+			align-items: center;
+			color: #aaa;
+
+			span {
+				padding: 0;
+			}
+
+			// Icons
+			.explain-icon {
+				margin: 5px 0 5px 5px;
+				height: 20px;
+
+				&.location {
+					content: url('../assets/location.png');
+				}
+
+				&.date {
+					content: url('../assets/calendar-full.png');
+					margin-right: 10px;
+				}
+			}
+		}
+
+		.explain-container:nth-child(2) {
+			.custom-span-text {
+				padding-top: 1px;
+			}
+		}
+	}
+
+	// Short description page name
+	.custom-header-container.short-description-container {
+		margin-bottom: 5px;
+
+		.custom-header-text.short-description-subtitle {
+			color: black;
+			font-size: 1.4rem;
+		}
+	}
+
+	@media only screen and (max-width:$max-mobile-width) {
+		border-radius: 0;
+		padding: 0;
+	}
+
+	.custom-item-wrapper {
+		@media only screen and (max-width: $max-mobile-width)
+		{
+			border-bottom: 1px solid lightgray;
+			margin-bottom: 15px;
+			padding-bottom: 0.5rem;
+		}
+	}
+}
+
+.event-empty-container{
+	display: flex;
+    flex-direction: column;
+	margin-top: 150px;
+
+	img {
+		max-width: 45px;
+		margin: auto;
+		margin-bottom: 20px;
+	}
+
+	.custom-item-wrapper{
+		justify-content: center;
+		border-right: 0px solid lightgray !important;
+		padding-right: 0px !important;
+		margin-left: 0px !important;
+	}
+
+	a.custom-link-container{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-decoration-line: unset;
+		opacity: 1;
+		color: $color-blue-normal;
+		background-color: transparent;
+		padding: 0px;
+		.text-container {
+			color: $color-blue-normal;
+    		position: relative;
+
+			&::after {
+				position: absolute;
+				width: 100%;
+				bottom: -2px;
+				height: 1px;
+				content: '';
+				background-color: $color-blue-normal;
+				right: 0;
+				left: 0;
+			}
+		}
+	}
+
+	@media only screen and (max-width:$max-mobile-width){
+		margin-top: 30px;
+		margin-bottom: 50px;
+	}
+}
+.calendar-event,.location-event{
+	border: none !important;
+	margin: 0;
+	padding: 0;
+}

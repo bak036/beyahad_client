@@ -1,0 +1,14 @@
+.side-bar-custom-collapsible-main-container {
+	font-size: 1.4rem;
+	.side-bar-custom-collapsible-header {
+		color: black;
+		margin-top: 12px;
+		margin-bottom: 12px;
+	}
+	.side-bar-custom-collapsible-item {
+		margin-top: 11px;
+		&.hide {
+			display: none;
+		}
+	}
+}

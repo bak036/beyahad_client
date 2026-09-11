@@ -1,0 +1,39 @@
+@import './CustomerServiceRoutes//CustomerServiceRoutes.scss';
+@import './CustomServiceMenu/CustomServiceMenu.scss';
+.customer-service-main{
+	padding: 10px;
+}
+.title-header{
+	margin: 20px 0;
+	font-size: 36px;
+	font-weight: 500;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.22;
+	letter-spacing: normal;
+	font-family: 'Rubik-Medium';
+}
+.customer-menu-and-content-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 10px;
+	background-color: white;
+	.menu {
+	}
+
+	.content {
+		width: 100%;
+	}
+}
+
+@media only screen and (min-width:$max-mobile-width) {
+	.customer-menu-and-content-container {
+		flex-direction: row;
+		padding: 0 0 20px 0;
+		background-color: unset; // Use parent background
+		.menu {
+			padding-left: 45px;
+		}
+	}
+}

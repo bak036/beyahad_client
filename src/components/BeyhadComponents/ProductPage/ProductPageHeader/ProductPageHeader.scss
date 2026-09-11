@@ -1,0 +1,263 @@
+.prouct-page-header-container {
+	padding-bottom: 30px;
+	margin-bottom: 30px;
+	@media only screen and (min-width:$max-mobile-width) {
+		margin-top: 0px;
+		margin-bottom: 30px;
+		margin-left: 0px;
+		width: 100%;
+	}
+	@media only screen and (max-width: $min-desktop-width) {
+		padding: 1rem 1rem 0;
+	}
+
+
+	.prouct-page-header-title {
+		margin-bottom: 12px;
+
+		.custom-header-container {
+			margin-block-end: 0px;
+		}
+
+		.custom-header-text {
+			font-weight: bold;
+			font-size: 2.4rem;
+    		line-height: 3rem;
+		}
+	}
+
+	.prouct-page-header-info {
+		margin-bottom: 0px;    
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+
+		.custom-span-text {
+			font-size: 1.2rem;
+		}
+
+		.custom-text  {
+			max-width: 120px;
+			line-height: 1.5rem;
+		}
+
+		@media only screen and (max-width: $min-desktop-width)
+		{
+			border-bottom: 1px solid #f0f0f2;
+			margin-bottom: 15px;
+		}
+
+
+		.prouct-page-header-info-price {
+			margin-right: 5px;
+			text-decoration: line-through;
+			margin-left: 5px;
+		}
+
+		.prouct-page-header-info-price-bold {
+			font-weight: bold;
+		}
+		
+		.custom-item-wrapper {
+			border-right: 2px solid #f0f0f2;
+			padding-right: 9px;
+			display: flex;
+			flex-direction: row;
+
+			@media only screen and (max-width: $min-desktop-width)
+			{
+				border-right: 0px solid #f0f0f2;
+				padding-right: 0px;
+			}
+
+		}
+
+		.custom-item-wrapper:first-child {
+			border-right: 0px solid #f0f0f2;
+			padding-right: 0;
+			display: flex;
+		}
+
+	}
+
+	.prouct-page-header-location-date {
+		display: flex;
+		margin-top: 0x;
+		align-items: center;
+
+		.prouct-page-header-location-date-item {
+			margin-left: 5px;
+			padding-bottom: 0px;
+		}
+	}
+
+	.prouct-page-header-sub-title {
+		.custom-header-container {
+			margin-block-end: 0px;
+		}
+
+		.prouct-page-header-sub-title-black {
+			color: black;
+		}
+	}
+
+	.product-header-page-short-discripton {
+		line-height: 20px;
+	}
+
+	.product-header-page-sub-title-varients {
+		display: flex;
+		margin-top: 0px;
+		margin-bottom: 10px;
+		font-weight: 600;
+		font-size: 1.5rem;
+
+		@media only screen and (max-width:$min-desktop-width){
+			margin-top: 1rem;
+			margin-bottom: 0rem;
+		}
+
+		img {
+			height: 25px;
+			width: 25px;
+		}
+
+		.product-header-page-sub-title-varients-black {
+			color: black;
+			margin-right: 4px;
+		}
+	}
+
+	.product-header-page-cart-button {
+		@media only screen and (max-width: $min-desktop-width){
+			max-width: 100%;
+			width: 100%;
+		}
+
+		.product-header-page-cart {
+			width: 100%;
+			background: $color-blue-normal;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 10px;
+			padding: 0.3rem 6rem;
+
+			.product-header-page-cart-button-icon {
+				height: 25px;
+			}
+
+			.product-header-page-cart-button-text {
+				text-align: center;
+				background: $color-blue-normal;
+				border-color: $color-blue-normal;
+				color: white;
+				margin-top: 10px;
+				margin-bottom: 10px;
+				border: none;
+				font-size: 16px;
+			}
+		}
+	}
+
+	.product-header-varient-titles {
+		display: grid;
+		grid-template-columns: 50% 35% 15%;
+		font-size: 1.2rem;
+		color: $text-color;
+		width: 100%;
+		padding-bottom: 5px;
+		border-bottom: 1px solid #f0f0f2;
+		margin-bottom:15px;
+		@media only screen and (max-width:$max-mobile-width){
+			display: grid;
+			grid-template-columns: 40% 30% 30%;
+			font-weight: 600;
+			padding-bottom: 0.3rem;
+			border-bottom: 1px solid #f0f0f2;
+		}
+
+		.product-header-varient-title-name, .product-header-varient-title-amount, .product-header-varient-title-price {
+			@media only screen and (min-width:$max-mobile-width) {
+			}
+			@media only screen and (max-width:$min-desktop-width) {
+			}
+			// media query for IE - https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet
+			@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+			}
+		}
+
+		.product-header-varient-title-price {
+			justify-self: center;
+		}
+
+		.product-header-varient-title-quantity {
+			justify-self: center;
+		}
+	}
+}
+
+.description_modified_container {
+	font-size: 1.2rem;
+	position: relative;
+	top: -3px;
+	
+	.line_1{
+		margin-bottom: 5px;
+		.amount_description{
+			font-size:1.5rem;
+		}
+	}
+}
+
+.bottom-product-page-cart {
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+	padding-top: 30px;
+    border-top: 1px solid #f0f0f2;
+	align-items: center;
+
+	@media only screen and (max-width:$min-desktop-width){
+		flex-direction: column;
+	}
+
+	.product-header-page-cart-sum {
+		font-weight: bold;
+		color: black;
+		line-height: 1.35rem;
+		margin-top: -0.3rem;
+		text-align: start;
+		font-size: 1.2rem;
+		font-weight: bold;
+	}
+
+	.product-header-page-cart-button{
+		.button-wrapper{
+			margin-left: 0px;
+		}
+	}
+}
+
+.product-page-header-pop-up {
+	padding: 20px;
+
+	p{
+		margin-top: 10px;
+		font-family: 'Rubik-Bold';
+		font-size: 14px;
+	}
+
+	.external-coupon-message p,
+	.internal-coupon-message p {
+		font-family: 'Rubik-Regular';
+		font-weight: normal;
+		font-size: 16px;
+	}
+
+
+	.product-page-button-pop-up {
+		margin-top: 20px;
+	}
+}

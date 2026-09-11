@@ -1,0 +1,278 @@
+.geo-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 999;
+}
+
+.geo-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 420px;
+  height: 100%;
+  background: #fff;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.3s ease forwards;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+
+  @keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+  }
+
+   &.closing {
+    animation: slideOut 0.3s ease forwards;
+  }
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+  /* ===== HEADER ===== */
+  .geo-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+
+    .geo-close img {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+
+       @media only screen and (max-width: $max-mobile-width) {
+          width: 13.5px;
+          height: 13.5px;
+       }
+    }
+
+    .geo-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Rubik-Bold';
+      color: black;
+      font-weight: 600;
+      font-size: 18px;
+
+        @media only screen and (max-width: $max-mobile-width) {
+          font-size: 14px;
+        }
+    }
+
+    .geo-reset {
+      background: none;
+      border: none;
+      font-size: 18px;
+      color: black;
+      cursor: pointer;
+      font-family: 'Rubik-Regular';
+
+        @media only screen and (max-width: $max-mobile-width) {
+          font-size: 14px;
+        }
+      
+    }
+  }
+
+  /* ===== BODY ===== */
+  .geo-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+    overflow: hidden; 
+    flex: 1; 
+    padding: 12px 20px 33px 10px;
+
+      @media only screen and (max-width: $max-mobile-width) {
+          padding-left: 20px;
+          padding-bottom: 15px;
+          padding-top: 15px;
+      }
+
+    .geo-search-box {
+      position: sticky;
+      top: 0;
+      background: #fff; 
+      z-index: 5;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 10px;
+
+       @media only screen and (max-width: $max-mobile-width) {
+          padding-left: 0px;
+      }
+
+
+      input {
+        width: 100%;
+        height: 46px;
+        border-radius: 7px;
+        border: 1px solid #ccc;
+        padding: 0 15px;
+        font-size: 16px;
+        color: rgba(0, 0, 0, 1);
+        outline: none; 
+        box-shadow: none; 
+
+          @media only screen and (max-width: $max-mobile-width) {
+            font-size: 14px;
+          }
+      }
+    }
+
+    .geo-scrollable {
+      flex: 1;
+      overflow-y: auto;
+      margin-top: 10px;
+  }
+
+
+/* ===== לפי עיר ואזור ===== */
+    .regions-and-cities-section ,.near-me-section{
+      margin-top: 24px;
+      margin-right: 36px;
+      margin-left: 36px;
+
+      .geo-subtitle {
+        font-size: 18px;
+        font-weight: 400;
+        color: #0f6bb3;
+        margin-bottom: 6px;
+
+          @media only screen and (max-width: $max-mobile-width) {
+          font-size: 14px;
+        }
+      }
+      
+
+      .geo-option {
+        position: relative;
+        padding: 20px 4px;
+        border-bottom: 1px solid #eee;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        cursor: pointer;
+        color: rgba(0, 0, 0, 1);
+        overflow: hidden; 
+        
+
+          @media only screen and (max-width: $max-mobile-width) {
+          font-size: 14px;
+        }
+
+        img {
+          width: 18px;
+          height: 18px;
+        }
+
+        .geo-option-content {
+          display: flex;
+          align-items: center;
+          gap: 8px; 
+          position: relative;
+          z-index: 1;
+        }
+
+
+        .geo-bg {
+          background:rgba(15, 107, 180, 0.05);
+          height: calc(100% - 20px);
+          width: 100%;
+          position: absolute;
+          top: 10px;
+          left: 0;
+          right: 0;
+          z-index: 0;
+        }
+
+          .checkmark {
+            width: 16px;   
+            height: 16px;
+            object-fit: contain;
+            margin-left: 4px; 
+          }
+
+        span,
+        .checkmark {
+          position: relative;
+          z-index: 1; 
+        }
+
+        &.selected {
+          font-weight: 600;
+        }
+      }
+
+      .geo-option:last-child {          
+        border-bottom: none;
+      }
+    }
+
+  .near-me-section {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+    .geo-option {
+      border-bottom: none;
+      padding: 16px 4px; 
+
+      .geo-bg {
+          height: calc(100% - 10px);
+          position: absolute;
+          top: 5px;
+        }
+    }
+  }
+
+
+  }
+
+  /* ===== FOOTER ===== */
+  .geo-footer {
+    padding: 10px 25px 30px 25px;
+
+    .geo-apply-btn {
+      width: 100%;
+      background: #0f6bb3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      height: 40px;
+      font-size: 16px;
+      cursor: pointer;
+
+       @media only screen and (max-width: $max-mobile-width) {
+         font-size: 14px;
+      }
+
+
+      &:hover {
+        background: #0c5a9a;
+      }
+    }
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+ @media only screen and (max-width: $max-mobile-width) {
+  .geo-popup {
+    width: 100%;
+  }
+}

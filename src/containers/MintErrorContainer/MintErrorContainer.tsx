@@ -1,0 +1,28 @@
+import {observer} from 'mobx-react';
+import * as React from 'react';
+import Lang from '../../config/Language';
+import {CustomHeader} from 'nofshonit-base-web-client';
+import MintStore from '../../stores/MintStore';
+import rootStores from '../../stores';
+import {MINT_STORE} from '../../consts/stores';
+import { useEffect } from 'react';
+
+interface Props {}
+
+interface IState {}
+
+const mintStore: MintStore = rootStores[MINT_STORE];
+
+const MintErrorContainer : React.FC<Props> = () => {
+
+	useEffect(() => {
+		mintStore.setMintButtonActivation(false);
+	},[])
+
+	return (
+		<div className='mint-error-container'>
+			<div className='error'>{<CustomHeader text={Lang.format('Mint106Error')} />}</div>
+		</div>
+	);
+}
+export default MintErrorContainer;

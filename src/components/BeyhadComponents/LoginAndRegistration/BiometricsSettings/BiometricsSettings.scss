@@ -1,0 +1,160 @@
+.root-biometrics-initial {
+    padding: 24px;
+
+    .mainTitle {
+        font-family: 'Rubik-Medium';
+        font-size: 30px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.2;
+        letter-spacing: normal;
+        color: $color-blue-normal;
+    }
+
+    .main-biometrics-initial {
+        margin-top: 30px;
+        border-radius: 20px;
+        background-color: #fff;
+        box-shadow: #ddd 0px 0px 20px;
+        padding:20px 20px 40px 20px;
+
+    }
+
+    .container-biometrics-initial {
+        .secondaryTitleFingerprint {
+            font-family: 'Rubik-Medium';
+            font-size: 18px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.06;
+            letter-spacing: normal;
+            color: $color-blue-normal;
+            margin-bottom: 20px;
+        }
+
+        .bodyTextFingerprint {
+            font-family: 'Rubik-Light';
+            font-size: 14px;
+            font-weight: 300;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.36;
+            letter-spacing: normal;
+            color: #000;
+        }
+    }
+
+    .continer-buttons-biometrics-settings {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .btn-biometrics-settings {
+        width: 100%;
+        border-radius: 10px;
+        height: 38px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+        font-family: 'Rubik-Bold';
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.14;
+        letter-spacing: normal;
+        text-align: center;
+        border: none;
+    }
+
+    .white-btn {
+        background-color: white;
+        border: solid 1px #19a4de;
+        color: $color-blue-normal;
+    }
+
+    .signautre-button,.blue-btn {
+        background-color: $color-blue-normal;
+        color: white;
+    }
+
+    .container-biometrics-instructions {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .text-biometrics-instructions {
+            font-family: 'Rubik-Medium';
+            font-size: 18px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.06;
+            letter-spacing: normal;
+            color: $color-blue-normal;
+            text-align: right;
+        }
+
+        .popup-biometrics-signautre-fail {
+            height: 60%;
+            width: 100%;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            text-align: center;
+        }
+    }
+
+    .signautre-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--background-color-base-three);
+    }
+
+    .signautre-text {
+        font-size: 1.1rem;
+    }
+
+    .signautre-icon {
+        width: 4rem;
+    }
+
+    .container-success-biometrics-initial {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      .signautre-title{
+        margin: 20px 0;
+        font-family: 'Rubik-Medium';
+        font-size: 30px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        text-align: center;
+        color: $color-blue-normal;
+      }
+      .signautre-text{
+        margin-bottom: 20px;
+        font-family: 'Rubik-Light';
+        font-size: 14px;
+        font-weight: 300;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.36;
+        letter-spacing: normal;
+        color: #000;
+      }
+    }
+}

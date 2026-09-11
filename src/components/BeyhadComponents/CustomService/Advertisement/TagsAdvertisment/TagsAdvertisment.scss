@@ -1,0 +1,75 @@
+.carusel-products-container {
+	//max-width: 90%;
+	margin-top: 0px;
+	// margin-bottom: 20px;
+	//margin-right: 40px;
+	background: white;
+	@media only screen and (min-width:$max-mobile-width) {
+		//margin: auto;
+		//max-width: 95%;
+		//margin-right: 30px ;
+	}
+	.tags-header {
+		padding: 15px 0;
+		text-align: center;
+	}
+	.home-page-advertisement {
+		height: 200px;
+	}
+	.main-text-homepage-best {
+		background: white;
+		margin: auto;
+		display: flex;
+		align-items: baseline;
+		width: 91%;
+		@media only screen and (max-width:$max-mobile-width) {
+			text-align: center;
+			margin:0px auto ;
+			display: block;
+			.small-text{
+				margin: auto;
+			}
+		}
+		// padding-bottom: 20px;
+		.large-text {
+			.large-text-item {
+				font-size: 25px;
+				color: #{$color-blue-normal};
+				font-weight: bold;
+				
+			}
+			@media only screen and (min-width:$max-mobile-width) {
+				font-size: 30px;
+			}
+		}
+		.lice-carousel__next-btn-item{
+			width: 30px;
+			height: 30px;
+			margin: 256px 89px 296px 24px;
+			object-fit: contain;
+			background-color: $color-blue-light;
+		}
+		.small-text {
+			display: inline-block;
+			border-radius: 22px;
+  			border: solid 1px $color-blue-normal;
+			padding: 10px 15px;
+			margin-right: 27px;
+			// padding: 21px 6px 0px 0px; // TODO: Tom - checkout if this is needed (was conflict in merge)
+			.small-text-item {
+				color: $color-blue-normal;
+				user-select: none;
+				@media only screen and (min-width:$max-mobile-width) {
+					font-size: 13px;
+				}
+			}
+		}
+	}
+	.small-text-mobile{
+		width: max-content;
+	}
+	.advertisement-main-container{
+		width: 97%;
+		margin:10px auto;
+	}
+}

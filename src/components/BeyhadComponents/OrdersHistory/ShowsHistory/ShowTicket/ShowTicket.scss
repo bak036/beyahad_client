@@ -1,0 +1,29 @@
+.show-ticket-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	line-height: 30px;
+	align-items: center;
+
+	.info {
+		display: inline-flex;
+		font-weight: bold;
+	}
+
+	.button-container {
+		width: 80px;
+		font-size: 0.8em;
+	}
+	.info-margin-auto {
+		margin: auto;
+	}
+}
+
+@media only screen and (min-width:$max-mobile-width) {
+	.show-ticket-container {
+		justify-content: unset;
+		.info {
+			width: $shows-info-item-width;
+		}
+	}
+}

@@ -1,0 +1,41 @@
+.balance-desktop-container {
+	// @include custom-border(1px solid #e1e1e1);
+	border-radius: 22px;
+	box-shadow: #ddd 0px 0px 20px;
+
+	background: white;
+	padding: 10px;
+	padding-left: 20px;
+
+	.wallet-and-transaction-container {
+		display: flex;
+		flex-direction: column;
+
+		.wallet-container {
+			flex: 1;
+			padding-right: 15px;
+			padding-top: 44px;
+			margin-bottom: 40px;
+			margin-right: 10px;
+
+			.wallet-details {
+				.item-detail {
+					padding-bottom: 12px;
+				}
+			}
+		}
+
+		.transactions-container {
+			flex: 3;
+
+			.titles-container {
+				.title-container {
+					font-weight: bold;
+					&.sum {
+						padding-right: 7px;
+					}
+				}
+			}
+		}
+	}
+}

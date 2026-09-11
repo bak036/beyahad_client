@@ -1,0 +1,86 @@
+.button-wrapper {
+    &.full-width {
+        width:100%;
+        margin-left: 0;
+        max-width: 100%;
+    }
+    
+
+
+
+    margin-left: 15px;
+    max-width: 24rem;
+    min-width: 18rem;
+    margin-bottom: 1.5rem;
+
+    &.narrow {
+        max-width: 12rem;
+        min-width: 12rem;
+    }
+
+    .button-con {
+        width: 100%;
+        background: $color-blue-normal;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        padding: 0.3rem 1.5rem;
+
+        .button-icon {
+            max-width: 1.2rem;
+            width: auto;
+        }
+
+        &.cursor-pointer{
+            cursor: pointer;
+        }
+
+        .button-text {
+            text-align: center;
+            background: $color-blue-normal;
+            border-color: $color-blue-normal;
+            color: $color-white;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    }
+
+
+    &.white {
+        .button-con {
+            background: $color-white;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50px;
+            padding: 0.3rem 0.5rem;
+            border: 1px solid $color-blue-normal; 
+    
+            .button-icon {
+                max-width: 1.2rem;
+                width: auto;
+            }
+        }
+        .button-text {
+            color: $color-blue-normal;
+            text-align: center;
+            border-color: $color-blue-normal;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: $color-white;
+            cursor: pointer;
+        }
+    }
+    @media only screen and (max-width:$max-mobile-width){
+        margin-left: 0;
+        max-width: 100%;
+    }
+}

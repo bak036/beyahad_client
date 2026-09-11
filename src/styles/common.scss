@@ -1,0 +1,152 @@
+@import './externalComponent.scss';
+
+.swal2-popup {
+	border-radius: 10px !important;
+	box-shadow: $box-shadow-element !important;
+	padding: 10px 0px 10px 0px !important;
+}
+
+.swal2-styled.swal2-cancel {
+	color: $color-blue-normal;
+	font-family: 'Rubik-Bold';
+	font-size: 16px;
+	width: 40%;
+	margin: auto;
+	border: solid 1px $color-blue-light;
+	border-radius: 10px;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.swal2-html-container,
+.swal2-html-container * {
+	font-family: 'Rubik-Light', sans-serif !important;
+	margin-top: 10px !important;
+}
+
+.swal2-rtl .swal2-close {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1.2em;
+	height: 1.2em;
+	transition: color 0.1s ease-out;
+	border: none;
+	background: transparent;
+	color: #000000;
+	font-family: 'Rubik-Light';
+	font-size: 40px;
+	cursor: pointer;
+}
+
+.swal2-confirm.swal2-styled {
+	background-color: #0f6bb3 !important;
+	font-family: 'Rubik-Bold', sans-serif !important;
+	color: white !important;
+	border: none !important;
+	font-size: 16px !important;
+	width: 40%;
+}
+
+.swal2-styled:focus {
+	outline: 0;
+	/* box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgb(50 100 150 / 40%); */
+	box-shadow: none !important;
+}
+
+.error {
+	color: $error-color;
+}
+
+.hide-on-mobile {
+	display: none;
+}
+
+.disabled-link {
+	pointer-events: none;
+	cursor: text;
+}
+
+.required::before {
+	content: ' * ';
+	color: #ff8c00;
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.swal2-actions {
+	width: 100%;
+	justify-content: space-between;
+
+	button {
+		color: $color-blue-normal !important;
+		font-family: 'Rubik-Bold' !important;
+		font-size: 16px;
+		width: 120px;
+		margin: auto;
+		border: solid 1px $color-blue-light !important;
+		padding: 10px 4px;
+		border-radius: 10px;
+		text-align: center;
+		margin-top: 10px;
+		background: white !important;
+		border-radius: 10px !important;
+	}
+
+	button:hover {
+		color: white !important;
+		background: #179bd3 !important;
+	}
+}
+
+// This is in order to remove the spinners from <input type=number/>
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+@media only screen and (min-width:$max-mobile-width) {
+	.hide-on-mobile {
+		display: block;
+	}
+
+	.hide-on-desktop {
+		display: none;
+	}
+}
+
+
+.confirm-for-delete-user {
+	.swal2-actions {
+		button {
+			height: 66px;
+			width: 46%;
+		}
+	}
+}
+
+
+
+.swal-wide-confirm-alert-html {
+	.swal2-html-container {
+		text-align: right;
+		.MsoNormal {
+			margin-right: 0px !important;
+		}
+
+	}
+
+	.swal2-title {
+		color: #0f6bb3;
+		
+	}
+
+	.swal2-actions {
+		button {
+			height: 50px;
+		}
+	}
+}

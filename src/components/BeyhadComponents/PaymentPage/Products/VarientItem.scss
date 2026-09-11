@@ -1,0 +1,455 @@
+.varient-main-container {
+	// padding-top:16px; 
+
+	display: grid;
+	width: 100%;
+	margin: auto;
+
+	&.sale {
+		// background-color: #f7f7f7;
+	}
+
+	// Removes input field (number) side arrows for Chrome, Firefox, Safari & Some IE
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	input[type='number'] {
+		-moz-appearance: textfield;
+		/* Firefox */
+	}
+
+	.varient-item-container {
+		display: grid;
+		grid-template-columns: 45% 15% 20% 20%;
+
+		flex-direction: row;
+		font-size: 1.2rem;
+		color: $text-color;
+		width: 100%;
+		padding-bottom: 0.3rem;
+		align-items: center;
+
+		border-bottom: 1px solid $color-light-gray;
+
+		@media only screen and (max-width: $max-mobile-width) {
+			align-items: start;
+			font-weight: 300;
+			font-size: 1.2rem;
+			margin-bottom: 0.6rem;
+		}
+
+		&.sale {
+			background: white;
+		}
+
+		.varient-item-text-container {
+			@media only screen and (max-width:$max-mobile-width) {
+				padding-top: 0px;
+			}
+
+			.main-title {
+				display: flex;
+
+				&.sale {
+					flex-direction: row;
+				}
+
+				.varient-item-sale-title-container {
+					&.flex-column {
+						flex-direction: column;
+					}
+
+					width: 100%;
+					display: flex;
+					flex-direction: row;
+					align-items: flex-start;
+
+					.event-details {
+						padding: 10px 0px;
+						display: flex;
+						flex-direction: column;
+						text-align: right;
+
+						.custom-span-text {
+							padding: 0px;
+						}
+					}
+
+					@media only screen and (max-width:$max-mobile-width) {
+						flex-direction: column;
+					}
+				}
+
+				.sale-container {
+					width: 120px;
+					min-width: 70px;
+					max-width: 80px;
+					text-align: center;
+					background-color: $color-red;
+					padding: 0.3rem;
+					margin-left: 0.9rem;
+					margin-bottom: 0.3rem;
+					border-radius: 4px;
+					display: flex;
+					align-items: center;
+					position: relative;
+					top: -3px;
+
+					.sale-text {
+						color: white;
+						//color: red;
+						font-weight: 300;
+						padding-bottom: 0;
+					}
+
+					img {
+						width: 18px;
+						display: inline-block;
+						margin-left: 6px;
+					}
+				}
+
+				.title-text-container {
+					text-overflow: ellipsis;
+
+					@media only screen and (min-width:$max-mobile-width) {
+						display: flex;
+						justify-content: space-between;
+					}
+
+					@media only screen and (max-width:$max-mobile-width) {
+						align-items: center;
+					}
+
+					.varient-name {
+						width: calc(100% - 24px);
+						font-weight: bold;
+						color: black;
+
+						font-size: 16px;
+						width: 100%;
+						line-height: 1.5rem;
+						margin-top: -0.3rem;
+						white-space: pre-wrap;
+						text-align: start;
+						font-size: 1.2rem;
+						font-weight: bold;
+						@media only screen and (max-width:$max-mobile-width) {
+							// max-width: 124px;
+							font-size: 1rem;
+							font-weight: 300;
+						}
+
+
+
+						// media query for IE - https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet
+						@media all and (-ms-high-contrast: none),
+						(-ms-high-contrast: active) {
+							text-align: right;
+						}
+
+
+
+						@media only screen and (min-width:$max-mobile-width) {
+							overflow: hidden;
+							text-overflow: ellipsis;
+						}
+
+						&.red {
+							color: red;
+						}
+					}
+				}
+			}
+
+			.desc-container {
+				width: 100%;
+				display: flex;
+				justify-content: flex-start;
+
+				@media only screen and (min-width:$max-mobile-width) {
+					padding-top: 0px;
+					// margin-right: 135px;
+				}
+
+				.valid-date-container {
+					@media only screen and (max-width:$max-mobile-width) {
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+					}
+
+					.valid-date {
+						font-size: 1rem;
+
+						@media only screen and (min-width:$max-mobile-width) {
+							font-size: 1rem;
+						}
+					}
+				}
+
+				.max-buy-container {
+					@media only screen and (max-width:$max-mobile-width) {
+						white-space: nowrap;
+						overflow: visible;
+						text-overflow: ellipsis;
+					}
+
+					.max-buy {
+						font-size: 12px;
+						color: rgb(26, 25, 25);
+
+						@media only screen and (min-width:$max-mobile-width) {
+							font-size: 1rem;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.varient-item-prices {
+		&.sale {
+			font-size: 1.2rem;
+
+			@media only screen and (max-width:$max-mobile-width) {
+				padding-top: 0px;
+				font-size: 1.2rem;
+				align-self: flex-start;
+			}
+		}
+
+		.varient-item-price {
+			.price-text {
+				font-weight: bold;
+
+				&.red {
+					color: red;
+				}
+			}
+
+			margin-bottom: 0.5rem;
+
+			@media only screen and (max-width:$max-mobile-width) {
+				text-align: left;
+			}
+		}
+
+		.varient-item-discount {
+			display: flex;
+			position: relative;
+
+			.discount-text {
+				font-weight: 300;
+				color: $text-color-gray;
+				text-decoration: line-through;
+			}
+
+			.discount-explanation-icon-div {
+				position: absolute;
+				width: 40px;
+				height: 40px;
+				justify-content: center;
+				align-items: center;
+				display: flex;
+				bottom: -12px;
+				cursor: pointer;
+				z-index: 0;
+				margin-right: -7px;
+
+			}
+
+			.discount-explanation-message {
+				position: absolute;
+				width: 257px;
+				padding: 10px;
+				border: 1px solid lightgray;
+				border-radius: 12px;
+				margin-top: 42px;
+				background-color: white;
+				font-size: 14px;
+				z-index: 1;
+				margin-right: -50px;
+
+				@media only screen and (max-width:$max-mobile-width) {
+					width: 210px;
+					margin-right: -97px;
+					margin-top: 45px;
+				}
+			}
+
+			.discount-explanation-message:after {
+				content: '';
+				position: absolute;
+				bottom: 106px;
+				width: 0;
+				height: 0;
+				border: 14px solid transparent;
+				border-bottom: 25px solid lightgray;
+				right: 48px;
+
+				@media only screen and (max-width:$max-mobile-width) {
+					bottom: 119px;
+					right: 96px;
+				}
+			}
+
+			.discount-explanation-message:before {
+				content: '';
+				position: absolute;
+				bottom: 104px;
+				left: 180px;
+				width: 0;
+				height: 0;
+				border: 14px solid transparent;
+				border-bottom: 25px solid white;
+				z-index: 1;
+
+				@media only screen and (max-width:$max-mobile-width) {
+					bottom: 117px;
+					left: 85px;
+				}
+			}
+		}
+	}
+
+	.varient-item-quantity {
+		display: flex;
+		justify-content: center;
+
+		&.sale {
+			@media only screen and (max-width:$max-mobile-width) {
+				padding-top: 0px;
+			}
+		}
+
+		.disabled {
+			pointer-events: none;
+		}
+
+		.varient-item-quantity-button {
+			width: 85px;
+			font-size: 1.2rem;
+			color: white;
+			background: #00173a;
+			border-color: #00173a;
+			margin-top: 7px;
+		}
+
+		.out-of-stock {
+			font-size: 1.2rem;
+			font-weight: bold;
+			color: $color-red;
+		}
+
+		.quantity-counter {
+			margin-left: 0px;
+			display: flex;
+
+			.upper-arrow-container {
+				padding-left: 5px;
+				margin-top: 2px;
+
+				.arrow-up-item {}
+			}
+
+			.quantity-input-container {
+				.input-data {
+					width: 23px;
+					text-align: center;
+					padding: 2px;
+					border: 0px;
+					font-size: 1.2rem;
+					border: 1px solid lightgray;
+					border-radius: 5px;
+					width: 28px;
+				}
+
+				&.disabled {
+					input {
+						background: silver;
+					}
+				}
+			}
+
+			.down-arrow-container {
+				padding-right: 5px;
+				margin-top: 2px;
+
+				.arrow-down-item {}
+			}
+		}
+
+		.varient-quantity-container {
+			.custom-item-wrapper {
+				margin: 0;
+				padding-bottom: 7px;
+			}
+		}
+
+
+	}
+
+
+	.delete-logo-container {
+		width: 1.5rem;
+		justify-self: end;
+	}
+}
+
+.cart-main-container {
+	.varient-item-container {
+		border-bottom: 0px solid $color-light-gray;
+
+		.main-title {
+			.varient-item-sale-title-container {
+				.title-text-container {
+					.varient-name {
+						font-weight: 300;
+
+						@media only screen and (max-width:$max-mobile-width) {
+							font-size: 1.2rem;
+							line-height: 1.5rem;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.varient-item-prices {
+		.varient-item-price {
+			margin-bottom: 0.5rem;
+
+			.price-text {
+				font-weight: 300;
+			}
+
+			@media only screen and (max-width:$max-mobile-width) {
+				text-align: left;
+			}
+		}
+	}
+
+	.desc-container {
+		width: 100%;
+		display: flex;
+		justify-content: flex-start;
+
+		@media only screen and (max-width:$max-mobile-width) {
+			text-align: right;
+			flex-direction: column;
+		}
+	}
+}
+
+.cart-without-header-wrapper {
+	.varient-item-container {
+		display: grid;
+		grid-template-columns: 65% 15% 15% 5%;
+	}
+
+}

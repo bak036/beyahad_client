@@ -1,0 +1,152 @@
+.actions-container {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+
+	&.disabled {
+		pointer-events: none;
+	}
+
+	.row {
+		display: flex;
+		justify-content: space-between;
+		height: 70px;
+
+		.custom-link-container {
+			.text-container {
+				font-size: calc(1rem + 1.1vw);
+
+				@media only screen and (min-width:$max-mobile-width) {
+					font-size: 16px;
+				}
+			}
+		}
+
+		>a {
+			width: 32%;
+		}
+	}
+
+	.link-with-icon-container {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		margin-bottom: 10px;
+
+		@media only screen and (max-width:$max-mobile-width) {
+			margin-bottom: 1rem;
+		}
+
+		.text-container {
+			font-size: 16px;
+		}
+	}
+
+	.container-with-icon {
+		width: 49%;
+		background-color: $color-blue-dark;
+
+		@media only screen and (max-width:$max-mobile-width) {
+			margin-inline: 0.6rem;
+			border-radius: 10px;
+			box-shadow: 0px 0px 8px 6px $color-grey;
+		}
+
+		&.full-opacity {
+			opacity: 1;
+		}
+
+		.icon-container {
+			// padding-top: 2rem;
+			margin: 0;
+		}
+	}
+
+	.text-container-short-width {
+		width: 75%;
+	}
+
+	.icon-element {
+		height: 50px;
+	}
+
+	.card-icon {
+		content: url('../assets/card.png');
+	}
+
+	//the after is for for IE
+	.card-icon::after {
+		content: url('../assets/card.png');
+	}
+
+	//the after is for for IE
+	.member-icon::after {
+		content: url('../assets/member-card.png');
+	}
+
+	.member-card-icon {
+		content: url('../assets/credit-card.png');
+	}
+
+	@media only screen and (max-width:$max-mobile-width) {
+		.custom-link-container {
+			padding: 2rem 5px;
+			justify-content: space-between;
+
+			.text-container {
+				margin: 0;
+				font-size: 16px;
+				color: $color-blue-normal;
+				width: 100%;
+				font-weight: bold;
+			}
+		}
+
+		.container-with-icon {
+			background-color: $color-white;
+		}
+
+		.icon-container {
+			margin: 0;
+		}
+
+		.icon-element {
+			height: fit-content;
+		}
+
+		.card-icon {
+			content: url('../assets/wallet-icon.png');
+		}
+
+		//the after is for for IE
+		.card-icon::after {
+			content: url('../assets/wallet-icon.png');
+		}
+
+		//the after is for for IE
+		.member-icon::after {
+			content: url('../assets//credit-card-icon.png');
+		}
+
+		.member-card-icon {
+			content: url('../assets//credit-card-icon.png');
+		}
+	}
+}
+
+@media only screen and (min-width:$max-mobile-width) {
+	.actions-container {
+		width: 300px;
+
+		.row {
+			flex-direction: column;
+			height: unset;
+
+			>a {
+				width: 100%;
+				margin: 5px 0;
+			}
+		}
+	}
+}

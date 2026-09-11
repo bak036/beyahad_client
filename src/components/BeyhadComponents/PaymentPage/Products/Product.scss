@@ -1,0 +1,100 @@
+.product-item-container {
+	.delete-logo-container {
+		@media only screen and (min-width:$max-mobile-width) {
+		}
+	}
+	.product-title {
+	}
+
+	.product-description-container {
+	}
+
+	.product-titles-container {
+		display: grid;
+		grid-template-columns: 65% 15% 15% 5%;
+		margin-bottom: 20px;
+		flex-direction: row;
+		font-size: 1.2rem;
+		color: $text-color;
+		width: 100%;
+		padding-bottom: 0.3rem;
+
+		border-bottom: 1px solid #c5c4c4;
+
+		@media only screen and (max-width:$max-mobile-width){
+			font-weight: 600;
+			padding-bottom: 0.3rem;
+			border-bottom: 1px solid $color-light-gray;
+			font-size: 1rem;
+		}
+
+		.product-header-varient-title-name, .product-header-varient-title-amount, .product-header-varient-title-price{
+			font-weight: bold;
+			&:first-child {
+				text-align:right;
+			}
+		}
+
+
+		.custom-header-text {
+			font-size: 1.3rem;
+		}
+
+		.custom-header-container {
+			text-align: right;
+		}
+
+		.custom-header-container:nth-child(2) {
+			flex-grow: 1;
+			width: 30%;
+			padding-right: 17px;
+			@media only screen and (min-width: $max-mobile-width - 250) and (max-width: $max-mobile-width) {
+				padding-right: 27px;
+			}
+			@media only screen and (min-width: $max-mobile-width - 650) and (max-width: $max-mobile-width - 450) {
+				padding-right: 12px;
+			}
+
+			@media only screen and (min-width:$max-mobile-width) {
+				padding-right: 0px;
+				text-align: center;
+			}
+		}
+
+		.custom-header-container:nth-child(3) {
+			flex-grow: 1;
+			width: 10%;
+			margin-left: 20px;
+			text-align: left;
+			@media only screen and (min-width: $max-mobile-width - 100) and (max-width: $max-mobile-width) {
+				margin-left: 35px;
+			}
+			@media only screen and (min-width: $max-mobile-width - 200) and (max-width: $max-mobile-width - 100) {
+				margin-left: 30px;
+			}
+		}
+	}
+
+	.product-events-titles-container {
+		// Event Variant
+		display: flex;
+		margin-top: 10px;
+
+		.custom-header-text {
+			font-size: 1.3rem;
+		}
+
+		.custom-header-container {
+			text-align: right;
+		}
+		.product-header-varient-title-name, .product-header-varient-title-amount, .product-header-varient-title-price {
+			@media only screen and (min-width:$max-mobile-width) {
+			}
+			@media only screen and (max-width:$min-desktop-width) {
+			}
+			// media query for IE - https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet
+			@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+			}
+		}
+	}
+}

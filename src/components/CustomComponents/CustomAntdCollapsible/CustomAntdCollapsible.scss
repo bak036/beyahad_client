@@ -1,0 +1,18 @@
+.ant-collapse-item {
+
+    &.ant-collapse-item-active {
+        .custom_collapse_icon {
+            img {
+                transform: rotate(90deg) !important;
+                } 
+        }   
+    }
+
+    .custom_collapse_icon {
+        img {
+            width: 1.65rem;
+            height: auto;
+        }
+    }
+
+}

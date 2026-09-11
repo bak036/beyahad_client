@@ -1,0 +1,227 @@
+.product-page-info-tabs-main-container {
+	display: inline-block;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+	background-color: white;
+
+	@media only screen and (min-width:$max-mobile-width) {
+		flex-direction: column;
+		margin-bottom: 30px;
+		margin-top: 0px;
+		max-width: 100%;
+		//width: 570px;
+	}
+
+	.product-page-info-tabs-component-title {
+		display: flex;
+		flex-direction: row;
+		margin-right: 10px;
+		align-items: center;
+
+		@media only screen and (min-width:$max-mobile-width) {
+			margin-bottom: 10px;
+			margin-top: 10px;
+			width: 100%;
+		}
+
+		.product-page-info-tabs-component-title-img {
+			position: absolute;
+			margin-top: 25px;
+
+			@media only screen and (min-width:$max-mobile-width) {
+				position: relative;
+				margin-left: 8px;
+				margin-top: 0px;
+			}
+		}
+
+		.custom-header-container {
+			margin-top: 8px;
+
+			&.product-page-info-tabs-component-title {
+				color: black;
+			}
+		}
+	}
+
+	.product-page-info-tabs-component-name {
+		width: 76%;
+		height: 42px;
+		font-size: 1.5rem;
+		font-weight: bold;
+		margin-top: 10px;
+		margin-right: 10px;
+		width: 540px;
+	}
+
+	.product-page-info-tabs-component-data-header {
+		margin-right: 10px;
+		align-self: start;
+		margin-bottom: 7px;
+		width: 100px;
+
+		@media only screen and (min-width:$max-mobile-width) {}
+
+		.custom-span-text {
+			font-size: 15px;
+		}
+	}
+
+	.product-page-info-tabs-component-data-map {
+		display: table;
+		width: 100%;
+		z-index: 0;
+	}
+
+	iframe {
+		width: 100%;
+	}
+
+	.product-page-info-tabs-component-data-text {
+		text-align: center;
+
+		.how-to-reach-text {
+			margin: 0 18px;
+		}
+	}
+
+	.product-page-info-tabs-component-data-phone-website {
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+		padding-top: 5px;
+
+		a {
+			.custom-item-wrapper .custom-text {
+				color: $color-blue-normal;
+				position: relative;
+
+				&::after {
+					position: absolute;
+					width: 100%;
+					bottom: -2px;
+					height: 1px;
+					content: '';
+					background-color: $color-blue-normal;
+					right: 0;
+					left: 0;
+				}
+			}
+		}
+
+		@media only screen and (max-width:$max-mobile-width) {
+			flex-direction: column;
+		}
+
+		.product-page-info-tabs-component-data-phone {}
+	}
+
+	.product-page-info-tabs-component-data-webSite {
+		text-align: center;
+		margin-top: 7px;
+		font-size: 1.3rem;
+		direction: ltr;
+		text-decoration: underline;
+
+		.website-link-container {
+			margin-bottom: 5px;
+
+			.website-link {
+				text-decoration: none;
+				color: blue;
+			}
+		}
+
+		&.blue {
+			color: blue;
+			text-decoration-line: underline;
+			height: 40px;
+		}
+	}
+}
+
+//for mobile
+.Collapsible {
+	.Collapsible__contentOuter {
+		.Collapsible__contentInner {
+			.product-page-info-tabs-component-data {
+				display: flex;
+				margin-top: 12px;
+
+				.menu-item-img {
+					height: 100px;
+					width: 110px;
+				}
+			}
+
+			.product-page-info-tabs-component-data-header {
+				font-size: 1.3rem;
+				font-weight: bold;
+				margin-top: 12px;
+			}
+
+			.product-page-info-tabs-component-data-map {
+				z-index: 0;
+
+				iframe {
+					width: 100%;
+				}
+			}
+
+			.product-page-info-tabs-component-data-phone {
+				margin-top: 10px;
+				text-align: center;
+				height: 28px;
+				color: white;
+				background: #00173a;
+				padding-top: 11px;
+				margin-left: 20px;
+				text-decoration-line: underline;
+			}
+
+			.product-page-info-tabs-component-data-webSite {
+				text-align: center;
+				margin-top: 5px;
+				font-size: 1.3rem;
+				text-decoration: underline;
+
+				&.blue {
+					color: blue;
+					text-decoration-line: underline;
+					height: 40px;
+				}
+			}
+		}
+	}
+}
+
+.Collapsible {
+	text-align: center;
+
+	.Collapsible__trigger {
+		&.is-open {
+			//font-size: 2rem;
+			margin-top: 10px;
+			margin-right: 10px;
+			margin-bottom: 10px;
+		}
+	}
+}
+
+.product-page-info-tabs-component-img-vector {
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.phone-white {
+	color: white;
+}
+
+.inline {
+	display: inline;
+
+	.custom-text {
+		top: 0;
+	}
+}

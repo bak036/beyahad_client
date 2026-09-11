@@ -1,0 +1,156 @@
+{
+	"name": "beyahad-web-client",
+	"version": "1.0.80",
+	"private": false,
+	"scripts": {
+		"analyze": "source-map-explorer 'build/static/js/*.js'",
+		"start": "cross-env REACT_APP_ENV=http://localhost:3000 HOST=0.0.0.0 node scripts/start.js",
+		"start:iis": "cross-env REACT_APP_ENV=http://192.168.200.64:3000 HOST=0.0.0.0 node scripts/start.js",
+		"start:pp": "cross-env REACT_APP_ENV=https://histbackpp.dts.co.il HOST=0.0.0.0 node scripts/start.js",
+		"start:test": "cross-env REACT_APP_ENV=https://histbacktest.dts.co.il HOST=0.0.0.0 node scripts/start.js",
+		"build": "node scripts/build.js",
+		"test": "node scripts/test.js --env=jsdom",
+		"postinstall": "patch-package",
+		"build:test": "cross-env REACT_APP_ENV=https://histbacktest.dts.co.il npm run build",
+		"build:mint": "cross-env REACT_APP_ENV=http://199.203.131.14:3005 npm run build",
+		"build:preprod": "cross-env REACT_APP_ENV=https://histbackpp.dts.co.il npm run build",
+		"build:prod": "cross-env REACT_APP_ENV=https://server.hist.org.il GENERATE_SOURCEMAP=false npm run build"
+	},
+	"dependencies": {
+		"@babel/core": "^7.29.0",
+		"@babel/preset-env": "^7.29.0",
+		"@types/jquery": "^3.5.33",
+		"antd": "^3.15.0",
+		"awesome-typescript-loader": "^5.2.1",
+		"axios": "1.13.5",
+		"babel-loader": "^8.0.5",
+		"babel-preset-es2015": "^6.24.1",
+		"dotenv": "^7.0.0",
+		"history": "^4.9.0",
+		"jest": "^24.7.1",
+		"jquery": "^3.7.1",
+		"lodash": "4.17.21",
+		"mobx": "^6.11.0",
+		"mobx-persist": "^0.4.1",
+		"mobx-react": "^7.6.0",
+		"moment": "^2.30.1",
+		"nofshonit-base-web-client": "file:../nofshonit-base-web-client",
+		"or": "^0.2.0",
+		"promise": "8.0.1",
+		"raf": "3.4.0",
+		"react": "^16.8.3",
+		"react-app-polyfill": "^0.2.2",
+		"react-barcode": "1.4.6",
+		"react-bootstrap": "^1.0.0-beta.5",
+		"react-burger-menu": "^2.6.3",
+		"react-dev-utils": "^5.0.3",
+		"react-dom": "^16.8.3",
+		"react-google-invisible-recaptcha": "^0.2.12",
+		"react-input-range-rtl": "^0.0.4",
+		"react-leaflet": "^2.2.1",
+		"react-loading": "^2.0.3",
+		"react-localization": "^1.0.13",
+		"react-native": "^0.70.1",
+		"react-native-web": "0.17.0",
+		"react-responsive": "^4.1.0",
+		"react-responsive-carousel": "3.1.49",
+		"react-router-dom": "^4.3.1",
+		"react-scripts": "^2.0.0",
+		"react-skylight": "^0.5.1",
+		"styled-components": "^6.1.12",
+		"sweetalert2": "^11.12.4",
+		"sweetalert2-react-content": "^1.1.0",
+		"swiper": "^6.8.4",
+		"typescript": "^3.3.3"
+	},
+	"devDependencies": {
+		"@types/axios": "^0.14.0",
+		"@types/file-saver": "^1.3.1",
+		"@types/history": "^4.7.2",
+		"@types/jest": "^22.2.3",
+		"@types/lodash": "4.14.120",
+		"@types/moment": "^2.13.0",
+		"@types/node": "^11.9.3",
+		"@types/react": "^16.8.3",
+		"@types/react-dom": "^16.0.11",
+		"@types/react-responsive": "^3.0.2",
+		"@types/react-router": "^4.4.3",
+		"@types/react-router-dom": "^4.3.1",
+		"autoprefixer": "9.6.0",
+		"case-sensitive-paths-webpack-plugin": "2.1.1",
+		"compression-webpack-plugin": "^1.1.12",
+		"cross-env": "^5.2.0",
+		"css-loader": "0.28.7",
+		"extract-text-webpack-plugin": "3.0.2",
+		"file-loader": "0.11.2",
+		"fork-ts-checker-webpack-plugin": "^0.2.8",
+		"fs-extra": "3.0.1",
+		"html-webpack-plugin": "2.29.0",
+		"object-assign": "^4.1.1",
+		"patch-package": "^5.1.2",
+		"postcss-flexbugs-fixes": "^4.1.0",
+		"postcss-loader": "^3.0.0",
+		"react-alice-carousel": "^1.13.11",
+		"sass": "1.79.4",
+		"sass-loader": "7.3.1",
+		"source-map-explorer": "^1.8.0",
+		"source-map-loader": "^0.2.4",
+		"style-loader": "0.19.0",
+		"ts-jest": "^20.0.7",
+		"ts-loader": "^2.3.7",
+		"tsconfig-paths-webpack-plugin": "^2.0.0",
+		"tslint": "^5.12.1",
+		"tslint-react": "^3.6.0",
+		"typescript-eslint-parser": "^15.0.1",
+		"url-loader": "0.6.2",
+		"webpack": "^3.12.0",
+		"webpack-dev-server": "2.9.4",
+		"webpack-manifest-plugin": "1.3.2"
+	},
+	"jest": {
+		"collectCoverageFrom": [
+			"src/**/*.{js,jsx,ts,tsx}"
+		],
+		"setupFiles": [
+			"<rootDir>/config/polyfills.js"
+		],
+		"testMatch": [
+			"<rootDir>/src/**/__tests__/**/*.ts?(x)",
+			"<rootDir>/src/**/?(*.)(spec|test).ts?(x)"
+		],
+		"testEnvironment": "node",
+		"testURL": "http://localhost",
+		"transform": {
+			"^.+\\.tsx?$": "<rootDir>/config/jest/typescriptTransform.js",
+			"^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+			"^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+		},
+		"transformIgnorePatterns": [
+			"[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|ts|tsx)$"
+		],
+		"moduleNameMapper": {
+			"^react-native$": "react-native-web"
+		},
+		"moduleFileExtensions": [
+			"mjs",
+			"web.ts",
+			"ts",
+			"web.tsx",
+			"tsx",
+			"web.js",
+			"js",
+			"web.jsx",
+			"jsx",
+			"json",
+			"node"
+		]
+	},
+	"babel": {
+		"presets": [
+			"react-app"
+		]
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	}
+}

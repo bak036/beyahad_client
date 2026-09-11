@@ -1,0 +1,1010 @@
+@import './LoadCardModal';
+
+@media only screen and (min-width: $max-mobile-width) {
+	.load-wallet-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding-top: 10px;
+		background-color: white;
+		// border: 0.1px solid lightgray;
+		border-radius: 22px;
+		box-shadow: #ddd 0px 0px 20px;
+
+		.save-short-code-inputs-container {
+			display: flex;
+			flex-direction: row;
+			margin-bottom: 10px;
+
+			.confirmed-code,
+			.code-container {
+				width: 30%;
+			}
+		}
+
+		.title-red {
+			color: red;
+			text-align: center;
+			max-width: 300px;
+			margin: auto;
+			margin-bottom: 5px;
+		}
+
+		.spacer {
+			height: 5px;
+			width: 1px;
+		}
+
+		.load-card-with-short-code {
+			width: 50%;
+			padding: 16px 19px 19px 0px;
+
+			.input-and-btn {
+				width: 80%;
+				padding: 10px 0px;
+
+				.num-of-paymnents {
+					padding: 7px;
+				}
+
+				.forgot-short-code {
+					display: flex;
+
+					.text-checkbox {
+						padding-right: 5px;
+					}
+				}
+
+				.agreement-container {
+					display: flex;
+
+					.agree-text {
+						padding-right: 5px;
+					}
+				}
+			}
+		}
+
+		.wallet-card-container {
+			padding: 3%;
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+
+			.card-with-btn {
+				border: none;
+			}
+
+			.loading-contianer {
+				width: 60%;
+
+
+
+				.sum-to-pay {
+					display: flex;
+					justify-content: center;
+					height: 40px;
+
+					.sum-text {
+						padding-top: 17px;
+					}
+
+					.input-sum {
+						width: 70px;
+						margin-right: 50px;
+
+						input {
+							text-align: center;
+						}
+					}
+				}
+
+				.sum-on-credit-container {
+					text-align: right;
+					margin: 10px 110px 10px 0;
+
+					.check-out-text {
+						margin-right: 152px;
+						margin-top: -13px;
+					}
+				}
+			}
+		}
+
+		.payment-credit-card-details {
+			padding-top: 25px;
+			width: 96%;
+			margin-right: calc(70% - 220px);
+
+			.payment-form {
+				margin-left: calc(70% - 230px);
+
+				.discount-code-container {
+					width: 60%;
+					margin: auto;
+					padding: 25px 0px;
+
+					.input-and-btn {
+						display: flex;
+						padding-top: 10px;
+
+						.input-code {
+							width: 35%;
+						}
+
+						.code-btn {
+							width: 10%;
+							padding-right: 10px;
+							padding-top: 23px;
+						}
+
+						.forgot-short-code {
+							display: flex;
+
+							.text-checkbox {
+								padding-right: 5px;
+							}
+						}
+
+						.agreement-container {
+							display: flex;
+
+							.agree-text {
+								padding-right: 5px;
+							}
+						}
+					}
+				}
+
+				.payment-form-content {
+					.full-name-detail {
+						display: flex;
+
+						.firstName-detail {
+							width: 50%;
+						}
+
+						.lastName-detail {
+							width: 50%;
+							margin-right: 30px;
+						}
+					}
+
+					.phone-and-email {
+						display: flex;
+
+						.phone-detail {
+							width: 100%;
+							margin-left: 30px;
+							display: flex;
+
+							.phone-number {
+								width: 100% !important;
+							}
+
+							.prefix-number {
+								padding-top: 14px;
+								margin-right: 5px;
+								min-width: 70px;
+
+								select {
+									height: 33px;
+								}
+							}
+						}
+
+						.email-detail {
+							width: 100%;
+						}
+					}
+
+					.credit-and-id {
+						display: flex;
+
+						.credit-card-detail {
+							width: 50%;
+						}
+
+						.id-detail {
+							width: 50%;
+							margin-right: 30px;
+						}
+					}
+
+					.validation-card {
+						display: flex;
+						flex-direction: row;
+						padding-bottom: 10px;
+
+						.date-detail-month {
+							width: 30%;
+							padding-right: 10px;
+
+							select {
+								height: 33px;
+							}
+						}
+
+						.date-detail-year {
+							// margin-right: calc(5% - 10px);
+							width: 30%;
+							// padding-right: 10px;
+
+							select {
+								height: 33px;
+							}
+						}
+
+						.cvv-input {
+							width: 30%;
+							padding-right: 12px;
+						}
+					}
+
+					.num-of-paymnents {
+						width: 20%;
+					}
+
+					.agreement-container {
+						display: flex;
+						padding: 10px 0px;
+
+						.agree-text {
+							margin-right: 10px;
+
+							.black-text {
+								color: black;
+							}
+						}
+					}
+
+					.is-discharge {
+						padding-top: 15px;
+						justify-content: space-between;
+						align-items: center;
+
+						.date-detail-year,
+						.date-detail-month,
+						.cvv-input {
+							margin: 0;
+							padding: 0;
+						}
+
+						.date-detail-year {
+							padding-bottom: 13px;
+						}
+					}
+				}
+			}
+
+
+			.payment-btn {
+				width: 100%;
+				padding-bottom: 15px;
+			}
+		}
+	}
+
+	.is-discharge {
+		width: 100%;
+
+		.card-main-container {
+			width: 100%;
+		}
+	}
+
+}
+
+@media only screen and (max-width:$max-mobile-width) {
+	.load-wallet-container {
+		padding-top: 20px;
+		background-color: white;
+		// border: 0.1px solid lightgray;
+		border-radius: 22px;
+		box-shadow: #ddd 0px 0px 20px;
+		margin: 7px;
+
+		.title-red {
+			color: red;
+			text-align: center;
+			max-width: 250px;
+			margin: auto;
+			margin-bottom: 5px;
+		}
+
+
+		.spacer {
+			height: 5px;
+			width: 1px;
+		}
+
+		.card-discharge-fix {
+			.card-main-container {
+				background-size: 300px 170px;
+				width: 300px;
+			}
+		}
+
+		.card-load-fix {
+			.card-main-container {
+				background-size: 300px 147px;
+				width: 300px;
+			}
+		}
+
+		.load-card-with-short-code {
+			width: 70%;
+			margin: auto;
+			padding-bottom: 30px;
+
+			.code-header {
+				margin-bottom: 10px;
+			}
+
+			.forgot-short-code {
+				display: flex;
+				margin-bottom: 15px;
+
+				.input-container {
+					margin-left: 10px;
+				}
+			}
+
+			.agreement-container {
+				display: flex;
+				margin-bottom: 15px;
+
+				.agree-checkbox {
+					margin-left: 10px;
+				}
+			}
+		}
+
+		.wallet-card-container {
+			.load-error {
+				text-align: center;
+				color: #de2626;
+				width: 100%;
+			}
+
+			.card-with-btn {
+				border: none;
+
+				.card-inner-container {
+					width: 240px;
+				}
+			}
+
+			.loading-contianer {
+				padding-bottom: 20px;
+
+
+
+				.sum-to-pay {
+					display: flex;
+					flex-direction: column;
+
+					.sum-text {
+						text-align: center;
+					}
+
+					.input-sum {
+						width: 30%;
+						margin: auto;
+
+						input {
+							text-align: center;
+						}
+					}
+				}
+
+				.sum-on-credit-container {
+					text-align: center;
+					margin-bottom: 10px;
+
+					.credit-text {
+						padding-bottom: 5px;
+					}
+
+					.check-out-text {}
+				}
+			}
+		}
+
+		.payment-credit-card-details {
+			width: 94%;
+			margin: auto;
+
+			.payment-form {
+				.discount-code-container {
+					.input-and-btn {
+						display: flex;
+
+						.code-btn {
+							padding-top: 25.3px;
+							width: 27%;
+							margin-right: 5px;
+						}
+					}
+				}
+
+				.payment-form-title {
+					height: 20px;
+				}
+
+				.payment-form-content {
+					.phone-and-email {
+						.phone-detail {
+							display: flex;
+
+							.prefix-number {
+								padding-top: 15px;
+								margin-right: 10px;
+								width: 35%;
+
+								select {
+									height: 33px;
+								}
+							}
+
+							.phone-number {
+								width: 100%;
+							}
+						}
+					}
+
+					.validation-card {
+						display: flex;
+
+						.date-detail-year {
+							width: 30%;
+							margin-left: 10px;
+
+							select {
+								height: 33px;
+							}
+						}
+
+						.date-detail-month {
+							width: 30%;
+							margin-left: 10px;
+
+							select {
+								height: 33px;
+							}
+						}
+
+						.cvv-input {
+							width: 30%;
+						}
+					}
+
+					.agreement-container {
+						display: flex;
+						padding: 10px 0px;
+
+						.agree-text {
+							padding-right: 10px;
+						}
+					}
+
+					.attention-container {
+						padding-bottom: 10px;
+					}
+
+					.is-discharge {
+						padding-top: 15px;
+						justify-content: space-between;
+						align-items: center;
+
+						.date-detail-year,
+						.date-detail-month,
+						.cvv-input {
+							margin: 0;
+							padding: 0;
+						}
+
+						.date-detail-year {
+							padding-bottom: 13px;
+						}
+					}
+				}
+
+				.payment-btn {
+					padding: 10px 0px;
+				}
+			}
+		}
+	}
+
+	.is-discharge {
+		padding-top: 15px;
+		justify-content: space-between;
+		align-items: center;
+
+		.date-detail-year,
+		.date-detail-month,
+		.cvv-input {
+			margin: 0;
+			padding: 0;
+		}
+
+		.date-detail-year {
+			padding-bottom: 13px;
+		}
+	}
+}
+
+.payment-btn {
+	width: 100%;
+	padding-bottom: 15px;
+}
+
+
+
+.mint-error-container {
+	width: 80%;
+	padding: 40px;
+	margin: auto;
+
+	.error {
+		text-align: right;
+		margin: auto;
+	}
+}
+
+.validation-card {
+	justify-content: space-between;
+}
+
+.card-details-container {
+
+	.card-details-container>*,
+	.header-card-container>* {
+		color: $color-blue-normal;
+		font-size: medium;
+	}
+
+	.card-details-container>* {
+		font-weight: bold;
+	}
+
+	.header-card-container,
+	.card-details-container,
+	.header-card-container {
+		margin-bottom: 15px;
+	}
+}
+
+.footer-container {
+	.regulations-link {
+		color: $color-blue-light;
+		text-decoration: underline;
+		cursor: pointer;
+
+		&:hover,
+		&:focus {
+			color: $color-blue-light;
+			text-decoration: underline;
+		}
+	}
+}
+
+.sum-to-load-container {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 50px;
+
+	.sum-to-load {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.card-load-fix {
+	width: 30%;
+}
+
+.check-to-load-text>* {
+	color: $color-blue-normal;
+}
+
+.sign-money {
+	font-size: medium;
+	margin-right: 2px;
+}
+
+.check-text,
+.check-to-load-text {
+	@media only screen and (min-width: $max-mobile-width) {
+		margin-top: 20px;
+	}
+}
+
+.calculate-sum {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.custom-input-text-input-container {
+		border-radius: 5px;
+	}
+}
+
+@media only screen and (max-width: $max-mobile-width) {
+	.discharge-card-container {
+
+		.id-detail,
+		.credit-card-detail,
+		.validation-card-with-payments {
+			margin-top: 20px;
+		}
+
+	}
+
+	.load-wallet-container {
+		padding: 3%;
+
+		.sum-to-load-container {
+			flex-direction: column;
+
+			.recharge-balance {
+				color: $color-blue-normal;
+			}
+
+			.sum-to-load {
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				margin: 10px 0;
+			}
+		}
+	}
+
+	.calculate-sum {
+		width: 30%;
+	}
+
+	.short-code-container {
+		.input-and-btn {
+			.input-code {
+				width: 100%;
+			}
+		}
+	}
+
+	.row {
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.payment-card-and-user-details .input {
+		width: 100%;
+
+	}
+}
+
+.load-card-mobile {
+	margin-top: 20px;
+	border-radius: 22px;
+	box-shadow: #ddd 0px 0px 20px;
+	padding: 3%;
+	margin: 7px;
+}
+
+.card-details-container>.custom-span-text {
+	font-family: 'Rubik-Bold';
+	color: $color-blue-normal;
+	font-weight: bold;
+	font-size: 18px;
+	font-weight: bold;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.06;
+	letter-spacing: normal;
+	text-align: left;
+}
+
+.discharge-card-container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+
+	.card-main-container {
+		width: 55%;
+		padding: 0;
+		margin: 0;
+	}
+
+	.card-with-btn {
+		margin: 0;
+		width: 100%;
+		padding: 0;
+
+		.card-inner-container {
+			display: flex;
+
+			justify-content: space-between;
+			padding: 30px;
+
+			@media only screen and (min-width: $max-mobile-width) {
+				flex-direction: row-reverse;
+
+				.header-container {
+					width: 45%;
+				}
+
+				.content-container {
+					margin: 0;
+				}
+			}
+
+
+
+		}
+	}
+
+	.discharge-box {
+
+
+		margin-top: 15px;
+		padding: 20px;
+
+		.custom-span-text {
+			font-family: 'Rubik-Light';
+			font-size: 16px;
+			font-weight: 300;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 1.19;
+			letter-spacing: normal;
+			color: #000;
+		}
+
+		.property {
+			color: #de2626;
+
+			.bold {
+				font-family: 'Rubik-Bold';
+			}
+		}
+
+
+		.discharge-contianer-sum-amount {
+			display: flex;
+
+
+
+			justify-content: space-between;
+			margin: 25px 0;
+
+			.left-discharge-box {
+				width: 140px;
+				height: 32px;
+				display: flex;
+				align-items: center;
+				margin-top: 10px;
+				padding: 0 5px;
+				border-radius: 5px;
+
+				.custom-input-text-input-container {
+					height: 30px;
+					line-height: 30px;
+					border: solid 1px #8080804f;
+					border-radius: 5px;
+					width: 100%;
+					padding: 0 5px;
+				}
+
+				.custom-input-text-input-container:focus-within {
+					border-color: #000;
+					border-width: 2px;
+				}
+
+				input {
+					height: 20px;
+					border: 0;
+					outline: 0;
+					width: 100%;
+				}
+			}
+
+			.sum-amount {
+				border: solid 1px #8080804f;
+				border-radius: 5px;
+
+			}
+
+			@media only screen and (min-width: $max-mobile-width) {
+				flex-direction: row;
+				width: 65%;
+
+			}
+		}
+
+		@media only screen and (min-width: $max-mobile-width) {
+			box-shadow: $box-shadow-element;
+			border-radius: 20px;
+			min-height: 240px;
+		}
+
+	}
+}
+
+@media only screen and (max-width: $max-mobile-width) {
+	.discharge-card-container {
+		box-shadow: $box-shadow-element;
+		border-radius: 20px;
+		padding: 40px 0;
+
+		.card-with-btn .card-main-container .card-inner-container .content-container {
+			width: 90%;
+		}
+
+		.sum-amount {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 30%;
+			height: 36px;
+
+			.custom-input-text-input-container {
+				border: 0;
+				width: 100%;
+				margin: 0;
+				height: max-content;
+			}
+
+			.custom-input-text-container {
+				margin: 0;
+				height: max-content;
+				display: flex;
+				align-items: center;
+			}
+
+			.custom-input-label-container {
+				margin: 0;
+				padding: 0;
+			}
+
+			.custom-input-text-input-container:focus-within {
+				border-color: #000;
+				border-width: 2px;
+			}
+
+			input {
+				outline: 0;
+				width: 100%;
+			}
+
+			.custom-input-text-container-without-error {
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
+				flex-direction: row-reverse;
+			}
+		}
+
+		.card-with-btn {
+			box-shadow: none;
+			border-radius: 0;
+
+			.card-inner-container {
+				padding: 0;
+			}
+		}
+
+		.card-with-btn {
+			margin: 0;
+			width: 100%;
+			padding: 0;
+
+			.card-main-container {
+				width: 100%;
+
+			}
+
+			.card-inner-container {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.header-container {
+				width: 90%;
+			}
+		}
+
+		.discharge-box {
+			.discharge-box {
+				height: max-content;
+			}
+
+			.discharge-contianer-sum-amount {
+				width: 100%;
+				flex-direction: column;
+			}
+
+			.discharge-contianer-sum-amount>div {
+				display: flex;
+				flex-direction: column;
+				border-bottom: solid 1px $color-light-gray;
+				padding-bottom: 10px;
+
+			}
+
+			.discharge-contianer-sum-amount {
+				.last-child-ischarge-contianer-sum-amount {
+					flex-direction: row;
+					justify-content: space-between;
+					align-items: center;
+				}
+			}
+
+
+			.title-and-property-discharge {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				margin: 15px 0;
+
+			}
+		}
+	}
+}
+
+.property {
+	color: #de2626;
+
+	.bold {
+		font-family: 'Rubik-Bold';
+	}
+}
+
+.title-and-property-discharge {
+	.bold {
+		font-family: 'Rubik-Bold' !important;
+		font-size: 16px;
+		font-weight: bold;
+		font-stretch: normal;
+		font-style: normal;
+		line-height: 1.38;
+		letter-spacing: normal;
+		color: #000;
+	}
+}
+
+.title-ischarge-card-container-nobile {
+	font-family: 'Rubik-Bold';
+	font-size: 24px;
+	font-weight: bold;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.06;
+	letter-spacing: normal;
+	color: $color-blue-normal;
+	display: block;
+	margin-bottom: 20px;
+}
+
+.load-error {
+	text-align: right;
+	width: 100%;
+	white-space: pre-line;
+	margin-bottom: 12px;
+
+	.red {
+		color: #de2626;
+	}
+}
+
+.club-color-text {
+	color: #0057b8 !important;
+}
+
+.discharge-monthly-limit-info {
+	white-space: pre-line;
+	margin-bottom: 12px;
+}

@@ -1,0 +1,144 @@
+.cancel-modal-level2 {
+	@media only screen and (max-width: $max-mobile-width) {
+		margin: 64px 0;
+	}	
+	.icon-x{
+		width: 39px;
+  		height: 39px;
+		border-radius: 50%;
+		border: $color-blue-normal 3px solid;
+		margin: auto;
+		text-align: center;
+		align-items: center;
+		font-size: 25px;
+		color: $color-blue-normal;
+		font-weight: bold;
+		margin-top: 25px;
+		p{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 32px;
+			text-align: center;
+			font-size: 28px;
+		}
+		@media only screen and (max-width: $max-mobile-width) {
+			margin-top: 10px;
+		}
+	}
+	
+	.header-container{
+		.custom-header-container{
+			margin: 0;
+			.custom-header-text{
+				margin-top: 10px;
+				font-family: 'Rubik-Medium';
+				font-size: 24px;
+  				font-weight: 500;
+				  @media only screen and (max-width: $max-mobile-width) {
+					margin-top: 10px;
+					font-size: 20px;
+				}
+			}
+		}
+	}
+	.checkbox:checked{
+		background-color: white;
+  		color: #595959;
+	}
+	.sub-text-container {
+		text-align: center;
+		padding-bottom: 15px;
+		font-family: 'Rubik-Light';
+  		font-size: 24px;
+  		font-weight: 300;
+		line-height: 1.25;
+		color: #000;
+		width: 45%;
+		margin: auto;
+		margin-top: 12px;
+		@media only screen and (max-width: $max-mobile-width) {
+			width: 86%;
+		}
+		.agreement-container {
+			display: flex;    
+			flex-direction: row;     
+			align-items: center;   
+			gap: 8px;            
+			margin-top: 15px;        
+			direction: rtl;       
+		}
+
+		.agreement-text {
+		font-size: 16px;
+		margin-right: 10px;    // רווח בין הצ'קבוקס לטקסט
+		}
+		.check-box{
+			width: 20px;
+			height: 20px;
+			border: 1px solid #c1c1c1;
+			border-radius: 5px;
+			cursor: pointer;
+			img{
+				width: 8px;
+				height: 8px;
+				margin-right: 5px;
+			}
+		}
+		&.coupon{
+			font-size: 16px;
+			text-align: right;
+			width: 100%;
+			margin-right: 20px;
+			font-family: 'Rubik-Light';
+			color: #000;
+			@media only screen and (max-width: $max-mobile-width) {
+				text-align: center;
+			}
+		}
+	}
+	
+	.buttons-container{
+		display: flex;
+		width: 67%;
+		margin: auto;
+		margin-bottom: 42px;
+		@media only screen and (max-width: $max-mobile-width) {
+			width: 100%;
+			margin: 0;
+		}
+		.white-button{
+			color: $color-blue-normal;
+			font-family: 'Rubik-Bold';
+			font-size: 16px;
+			width: 200px;
+			margin: auto;
+			border: solid 1px $color-blue-light;
+			padding: 7px 0;
+			border-radius: 10px;
+			text-align: center;
+			margin-top: 10px;
+			&.margin-buttom{
+				margin-bottom: 20px;
+			}
+			&.blue-button{
+				background: $color-blue-normal;
+				color: white;
+			}
+			&.disabled{
+				color: white;
+				background: #d9d9d9;
+				border: none;
+			}
+			@media only screen and (max-width: $max-mobile-width) {
+				width: 128px;
+				font-size: 14px;
+			}
+		}
+		.blue-button-hover:hover{
+			cursor: pointer;
+			background:#009fd9;
+			color: white;
+		}
+	}	
+}

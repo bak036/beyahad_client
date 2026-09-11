@@ -1,0 +1,59 @@
+.input-date-container {
+	margin-bottom: 10px;
+
+	/* label container & label */
+	.custom-input-label-container {
+		font-weight: bold;
+		color: #{$color-blue-dark};
+		margin-bottom: 10px;
+		text-align: right;
+	}
+
+	input[type='date'] {
+		width: 100%;
+		font-size: 0.8rem;
+		border: 1px solid #e1e1e1;
+		line-height: 27.5px;
+		height:33px;
+	}
+
+	//// Set placeholder
+	//input[type="date"]:before {
+	//  content: attr(placeholder) !important;
+	//  color: #aaa;
+	//  text-align: center;
+	//}
+	//
+	//// Remove placeholder
+	//input[type="date"]:focus:valid:before {
+	//  content: "";
+	//  display: none;
+	//}
+
+	////// Hide default text
+	//input[type=date]::-webkit-datetime-edit {
+	//  color: transparent;
+	//}
+	//
+	//// Display text
+	//input[type=date]:vaild::-webkit-datetime-edit {
+	//  color: black !important;
+	//}
+
+	// Hide default spinning button and clear icon
+	.unstyled::-webkit-inner-spin-button,
+	.unstyled::-webkit-clear-button {
+		display: none;
+		-webkit-appearance: none;
+	}
+
+	// Change default date picker icon
+	.unstyled::-webkit-calendar-picker-indicator {
+		background-image: url('../assets/calendar-full.png');
+		background-size: 12px;
+		background-position: left;
+		background-repeat: no-repeat;
+		color: rgba(204, 204, 204, 0);
+		opacity: 1;
+	}
+}

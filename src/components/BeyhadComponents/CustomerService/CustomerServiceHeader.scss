@@ -1,0 +1,48 @@
+.custom-service-header-container {
+	padding:0 17px;
+	padding-top: 7px;
+	width: 90%;
+	margin: auto;
+
+	.title-container {
+		margin: 13px 0;
+		span {
+			font-family: 'Rubik-Bold';
+			font-size: 18px;
+			font-weight: bold;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 1.06;
+			letter-spacing: normal;
+			color: $color-blue-normal;
+		}
+	}
+
+	.header-content {
+		width: 246px;
+		font-family: 'Rubik-Light';
+		font-size: 16px;
+		font-weight: 300;
+		font-stretch: normal;
+		font-style: normal;
+		line-height: 1.25;
+		letter-spacing: normal;
+		color: #000;
+		.header-text {
+			padding-bottom: 5px;
+
+			.regular {
+				font-size: 15px;
+			}
+
+			.bold {
+				font-size: 15px;
+				font-family: 'Rubik-Bold';
+			}
+		}
+
+		.active-hours-text {
+			font-weight: bold;
+		}
+	}
+}

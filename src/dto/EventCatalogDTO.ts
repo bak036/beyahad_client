@@ -1,0 +1,29 @@
+export default class EventCatalogDTO {
+	fullBarCode: string;
+	varName: string;
+	isSendToFriend: boolean;
+	orderLimit: number;
+	finalPrice: number;
+	cupaPrice: number;
+	coins: number;
+	expireDate: string;
+	redimTypeId: number;
+	redimTypeName: string;
+	ticketTypeId: number;
+	priceLevelId: number;
+	eventimPriceId: number;
+	eventId: number;
+	tourId: number;
+	mapJson: string;
+	eventDate: string;
+	eventTime: string;
+	eventSeriesId: number;
+	venueId: number;
+	veneueName: string;
+	isSeatMap: boolean;
+	eventimPriceLevelName: string;
+	eventimTicketTypeName: string;
+	title: string;
+	isCampagin: boolean;
+	isSelfPrint: boolean;
+}

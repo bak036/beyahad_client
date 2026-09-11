@@ -1,0 +1,12 @@
+.shop-logo {
+	height: 140px;
+	width: 140px;
+	object-fit: contain;
+}
+
+@media only screen and (min-width:$max-mobile-width) {
+	.shop-logo {
+		height: 100px;
+		width: 100px;
+	}
+}

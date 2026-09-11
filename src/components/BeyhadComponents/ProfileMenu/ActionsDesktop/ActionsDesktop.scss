@@ -1,0 +1,114 @@
+.actions-container-desktop {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+
+	&.disabled {
+		pointer-events: none;
+	}
+
+	.row {
+		display: flex;
+		justify-content: space-between;
+		height: 70px;
+
+		.custom-link-container {
+			.text-container {
+				font-size: calc(1rem + 1.1vw);
+			}
+		}
+
+		>a {
+			width: 32%;
+		}
+	}
+
+	.link-with-icon-container {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		// margin-bottom: 10px;
+		flex-direction: column;
+		
+		.text-container {
+			font-size: 16px;
+		}
+		
+		>a {
+			border-top: 1px solid $color-grey;
+			padding: 1rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-weight: bold;
+
+			&:hover {
+				opacity: 0.9;
+			}
+		}
+	}
+
+	.container-with-icon {
+		width: 100%;
+		background-color: $background-color;
+		flex-direction: row;
+
+		&.full-opacity {
+			opacity: 1;
+		}
+
+		.icon-container {
+			// padding-top: 2rem;
+			margin: 0;
+		}
+
+		.text-container {
+			color: $color-blue-normal;
+		}
+	}
+
+	.text-container-short-width {
+		width: 75%;
+	}
+
+	.icon-element {
+		height: 50px;
+	}
+
+	.card-icon {
+		content: url('../assets/wallet-icon.png');
+		width: 26px;
+		height: 27px;
+	}
+
+	//the after is for for IE
+	.card-icon::after {
+		content: url('../assets/wallet-icon.png');
+	}
+
+	//the after is for for IE
+	.member-icon::after {
+		content: url('../assets//credit-card-icon.png');
+	}
+
+	.member-card-icon {
+		content: url('../assets//credit-card-icon.png');
+	}
+}
+
+// @media only screen and (min-width:$max-mobile-width) {
+// 	.actions-container {
+// 		width: 300px;
+
+// 		.row {
+// 			flex-direction: column;
+// 			height: unset;
+
+// 			>a {
+// 				width: 100%;
+// 				margin: 5px 0;
+// 			}
+// 		}
+// 	}
+// }

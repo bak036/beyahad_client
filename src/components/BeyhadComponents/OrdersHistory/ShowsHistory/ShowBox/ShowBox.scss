@@ -1,0 +1,88 @@
+$text-black-color: #00173a;
+$date-red-color: #ff0000;
+$date-green-color: #8dbd22;
+
+.show-box-container {
+	display: block;
+	position: relative;
+	width: 100%;
+	text-align: start;
+	margin: 10px 0;
+
+	.row {
+		line-height: 20px;
+	}
+
+	.arrow-container {
+		position: absolute;
+		left: 0;
+		top: 0;
+		cursor: pointer;
+	}
+
+	.arrow-down {
+		content: url('../assets/arrow-down.png');
+		top: 5px;
+		height: 10px;
+	}
+
+	.arrow-left {
+		content: url('../assets/Arrow-left.png');
+		bottom: 0;
+		height: 15px;
+		margin: auto;
+	}
+
+	.description-container {
+		max-width: 90%;
+	}
+
+	.display-items {
+		display: flex;
+		height: auto;
+		max-height: 1000px; // still have to hard-code a value!
+		overflow: hidden;
+		transition: max-height 1s ease-out; // note that we're transitioning max-height, not height!
+		margin: 10px 0;
+	}
+
+	.hide-items {
+		display: none;
+		max-height: 0;
+	}
+
+	.info-text {
+		font-size: 0.8em;
+		font-weight: bold;
+		color: $text-black-color;
+	}
+
+	.space {
+		margin-left: 4px;
+	}
+
+	.ticket-spot-container {
+		width: 100%;
+	}
+}
+
+@media only screen and (min-width:$max-mobile-width) {
+	.show-box-container {
+		.ticket-info-container {
+			width: $title-container-width;
+			display: flex;
+			flex-direction: column;
+			line-height: 30px;
+			font-weight: bold;
+			position: relative;
+		}
+		.ticket-spot-container {
+			width: $show-time-container-width;
+		}
+		.separator-container {
+			position: absolute;
+			left: 0;
+			height: 100%;
+		}
+	}
+}

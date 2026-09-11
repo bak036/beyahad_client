@@ -1,0 +1,15 @@
+.menu-and-content-container {
+	display: flex;
+	width: 450px;
+	border: 1px solid pink;
+
+	.menu {
+		border: 1px solid blue;
+		flex: 1;
+	}
+
+	.content {
+		border: 1px solid brown;
+		flex: 1;
+	}
+}

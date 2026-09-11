@@ -1,0 +1,108 @@
+.custom-button-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.button {
+		border: 0px solid rgb(121, 121, 121);
+		border-radius: 2px;
+		height: 40px;
+		width: 100%;
+		cursor: pointer;
+		color: white;
+		font-size: 16px;
+
+		&.small-font {
+			font-size: 12px;
+		}
+
+		&.tags-home-page{
+			border-radius: 10px;
+			width: 80%;
+			height: 30px;
+		}
+		&.mint-design {
+			background: white;
+			color: black;
+		}
+
+		&.center {
+			justify-content: center;
+		}
+
+		&.green {
+			background: #8dbd22;
+		}
+
+		&.secondry-design {
+			background-color: #{$color-orange};
+			color: white;
+		}
+
+		&.primary-design {
+			background-color: #{$color-blue-dark};
+			color: white;
+		}
+
+		&.red {
+			background-color: red;
+			color: white;
+		}
+
+		&.cancel-order {
+			background-color: white;
+			color: red;
+			border: 1.5px solid red;
+		}
+
+		&.order-details {
+			background-color: white;
+			color: black;
+			border: 1.5px solid black;
+		}
+
+		&.normal-blue {
+			background-color: #{$color-blue-normal};
+		}
+
+		&.mintButtonDesign {
+			background-color: #214fa2;
+			color: white;
+			width: 97%;
+			margin-top: 10px;
+		}
+
+		&.large {
+			font-size: 1.3rem;
+			height: 86px;
+			padding: 0 20px;
+		}
+
+		&.small {
+			font-size: 0.9rem;
+			height: 30px;
+			width: 60px;
+		}
+
+		&.disabled {
+			background: #{$input-disabled};
+		}
+
+		&.smallHeight {
+			height: 30px;
+		}
+
+		&.smallWidth {
+			width: 100px;
+		}
+
+		&.largeWidth {
+			width: 130px;
+		}
+
+		&.full-width {
+			width: 100%;
+		}
+	}
+}

@@ -1,0 +1,69 @@
+.pick-card-container {
+	.img-first-modal{
+		width: max-content;
+		margin: auto;
+	}
+	.custom-header-container{
+		.custom-header-text{
+			font-size: 26px;
+			@media only screen and (max-width: $max-mobile-width) {
+				font-size: 24px;
+			}
+		}
+	}
+	.blue-button{
+		color: $color-blue-normal;
+		font-family: 'Rubik-Bold';
+		font-size: 16px;
+		width: 208px;
+		margin: auto;
+		border: solid 1px $color-blue-light;
+		padding: 10px 0;
+		border-radius: 10px;
+		text-align: center;
+		margin-top: 10px;
+		padding: 10px;
+		&.margin-buttom{
+			margin-bottom: 20px;
+		}
+		&.blue-button-disabled{
+			color: white;
+			background: #d9d9d9;
+			border: none;
+		}
+		@media only screen and (max-width: $max-mobile-width) {
+			width: 128px;
+			height: max-content;
+			font-size: 14px;
+			padding: 7px;
+		}
+	}
+	.blue-button-hover:hover{
+		cursor: pointer;
+		background: $color-blue-normal;
+		color: #ffffff;
+	}
+
+	.custom-button-container {
+		margin-top: 10px;
+	}
+	.pick-card-radio-button {
+		display: flex;
+		align-items: center;
+
+		input[type='radio'] {
+			margin-left: 10px;
+		}
+		&.margin-top{
+			margin-top: 10px;
+		}
+	}
+	.buttons-container {
+		display: flex;
+		padding-top: 15px;
+		@media only screen and (min-width: $max-mobile-width) {
+			width: 95%;
+    		margin: auto;
+		}
+	}
+}

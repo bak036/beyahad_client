@@ -1,0 +1,240 @@
+.edit-user {
+	// display: block;
+	// padding: 0 10px;
+	// display: flex;
+	// justify-content: end;
+
+	.title-container {
+		font-family: 'Rubik-Bold';
+		width: fit-content;
+		@media only screen and (min-width:$max-mobile-width) {
+			line-height: 30px;
+		}
+
+
+
+		.custom-header-container {
+			margin: 0;
+
+			.custom-header-text {
+				font-family: 'Rubik-Bold';
+				font-weight: bold;
+				font-stretch: normal;
+				font-style: normal;
+				letter-spacing: normal;
+
+				@media only screen and (min-width:$max-mobile-width) {
+					font-size: 24px;
+					line-height: 0.79;
+				}
+
+				@media only screen and (max-width:$max-mobile-width) {
+					font-size: 18px;
+
+					line-height: 1.06;
+				}
+			}
+		}
+	}
+
+	.body-container {
+		@media only screen and (max-width:$max-mobile-width) {
+			width: 100%;
+			padding: 10% 5% 5% 5%;
+			border-radius: 20px;
+			box-shadow: #ddd 0px 0px 20px;
+
+			.header-edit-user {
+				margin-bottom: 0;
+			}
+
+			.custom-header-container {
+				margin-bottom: 5px;
+			}
+
+			.row-with-2-equal-elements {
+				margin-bottom: 14px;
+			}
+		}
+
+		.title-seconde {
+			h1 {
+				font-family: 'Rubik-Bold';
+				font-size: 18px;
+				font-weight: bold;
+				font-stretch: normal;
+				font-style: normal;
+				line-height: 1.06;
+				letter-spacing: normal;
+			}
+		}
+
+		.custom-input-text-container,
+		.custom-selector-container,
+		.input-date-container,
+		.custom-auto-complete-container {
+
+			.custom-lable-container,
+			.label-text,
+			input,
+			.custom-lable-container,
+			.custom-select-input-container,
+			.custom-input-label-container,
+			select,
+			input {
+				font-family: 'Rubik-Regular';
+				font-size: 16px;
+				font-weight: 300;
+				font-stretch: normal;
+				font-style: normal;
+				line-height: 1.19;
+				letter-spacing: normal;
+				color: #000;
+				text-align: right;
+			}
+
+			.custom-input-label-container {
+				padding: 0;
+				margin: 0;
+			}
+
+			.custom-input-text-input-container,
+			input,
+			select,
+			.select-prefix-phone-number {
+				height: 40px;
+
+				input {
+					height: 90%;
+				}
+			}
+
+		}
+
+		.new-user-agreement {
+
+			line-height: 15px;
+			text-align: right;
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			
+			.checkbox-line
+			.agreement-container,
+			.editor-message,
+			.custom-span-text {
+				font-family: 'Rubik-Light';
+				font-size: 16px;
+				font-weight: 300;
+				font-stretch: normal;
+				font-style: normal;
+				line-height: 1.28;
+				letter-spacing: normal;
+				color: #000;
+			}
+		}
+
+		.header-edit-user {
+			display: flex;
+			justify-content: space-between;
+
+			@media only screen and (min-width:$max-mobile-width) {
+				margin-bottom: 30px;
+				border-bottom: 1px solid #e7e7e9;
+			}
+
+			.submit-button-container {
+				width: 230px;
+
+				.custom-button-container>button {
+					font-family: 'Rubik-Bold';
+					border-radius: 10px;
+					background-color: #179bd3;
+					font-size: 18px;
+					font-weight: bold;
+					font-stretch: normal;
+					font-style: normal;
+					line-height: 0.89;
+					letter-spacing: normal;
+					color: #fff;
+				}
+			}
+		}
+	}
+
+	.main-container {
+		max-width: 98%;
+		margin: auto;
+		padding: 30px;
+
+		@media only screen and (max-width:$max-mobile-width) {
+			padding: 0;
+		}
+	}
+
+	.padding-container {
+		background-color: white;
+
+		@media only screen and (min-width:$max-mobile-width) {
+			border-radius: 20px;
+			box-shadow: #ddd 0px 0px 20px;
+		}
+
+		@media only screen and (max-width:$max-mobile-width) {
+			width: 100%;
+			margin: auto;
+		}
+	}
+
+	.footer-container {
+		margin-top: 20px;
+		text-align: right;
+	}
+
+	
+}
+
+.edit-user {
+
+	// padding: 0px;
+	.edit-user-inputs .phone-number-container .phone-number-row .area-code-container {
+		margin-top: 20px;
+	}
+
+	.update-info-element {
+		.custom-span-text {
+			font-family: 'Rubik-Light';
+			text-align: right;
+			margin-bottom: 15px;
+			font-weight: 500;
+			font-stretch: normal;
+			font-style: normal;
+			letter-spacing: normal;
+			color: $color-blue-normal;
+		}
+	}
+
+	.title-container {
+		width: fit-content;
+		@media only screen and (min-width:$max-mobile-width) {
+			margin-bottom: 18px;
+		}
+
+		@media only screen and (max-width:$max-mobile-width) {
+			margin-bottom: 10px;
+		}
+
+
+	}
+}
+
+b,
+strong {
+	font-size: large;
+}
+
+.edit-user-inputs .phone-number-container .phone-number-row .area-code-container .custom-selector-container .custom-select-input-container .select-prefix-phone-number {
+	height: 40px;
+}
+
+

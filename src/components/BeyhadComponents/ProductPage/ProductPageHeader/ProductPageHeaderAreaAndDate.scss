@@ -1,0 +1,46 @@
+.product-page-hedaer-area-and-date-container {
+	width: 100%;
+
+	.product-page-hedaer-area-and-date-title {
+		color: black;
+
+		.custom-header-container {
+			margin-bottom: 6px;
+		}
+	}
+
+	.product-page-hedaer-area {
+		.custom-selector-container {
+			.custom-select-input-container {
+				.product-page-hedaer-area-selector {
+					width: 100%;
+					height: 30px;
+				}
+			}
+		}
+	}
+
+	.product-page-hedaer-date {
+		display: flex;
+		margin-bottom: 5px;
+
+		.product-page-hedaer-selector-date {
+			flex: 5;
+
+			.product-page-hedaer-selector-date-select {
+				width: 100%;
+				height: 30px;
+			}
+		}
+
+		.product-page-hedaer-selector-time {
+			flex: 1;
+			margin-right: 8px;
+
+			.product-page-hedaer-selector-time-select {
+				height: 30px;
+				width: 100%;
+			}
+		}
+	}
+}

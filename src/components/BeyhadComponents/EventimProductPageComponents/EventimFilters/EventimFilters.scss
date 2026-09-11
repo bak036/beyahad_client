@@ -1,0 +1,97 @@
+:root {
+	--select-border: #777;
+	--select-focus: blue;
+	--select-arrow: var(--select-border);
+  }
+
+.eventim-filters-container {
+	background: white;
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	margin-top: 64px;
+
+	.custom-header-container {
+		margin-bottom: 20px;
+	}
+
+	.custom-item-wrapper{
+		margin-bottom: 0px;
+	}
+
+	// "general" container for the title & selector/s
+	.filter-container {
+		width: 100%;
+
+		.custom-header-text {
+			font-size: 1.5rem;
+			color: black;
+		}
+
+		.custom-selector-container {
+			.custom-input-label-container {
+				margin-bottom: 0;
+			}
+		}
+
+		.custom-select-input-container {
+			border: 0px solid lightgray;
+			position: relative;
+			margin-bottom: 20px;;
+
+			.events-select {
+				text-align: right;
+    			padding-right: 10px;
+				height: 45px;
+				width: 100%;
+				border: 1px solid lightgray;
+				border-radius: 5px;
+				background-color: white;
+				appearance: none;
+			}
+		}
+
+		.custom-select-input-container::after{
+			content: '';
+			position: absolute;
+			left: 15px;
+			top: 20px;
+			border: solid black;
+			border-width: 0 2px 2px 0;
+			display: inline-block;
+			padding: 3px;
+			transform: rotate(45deg);
+			-webkit-transform: rotate(45deg);
+		}
+	}
+
+	// Vanues selector
+	.vaneu-selection-container {
+	}
+
+	// Date & Time selector
+	.date-time-selection-container {
+		.date-time {
+			text-align: right;
+			display: flex;
+			justify-content: start;
+
+			.date {
+				display: inline-block;
+				width: 60%;
+				margin-left: 10px;
+				.custom-select-input-container {
+					margin-bottom: 0;
+				}
+			}
+
+			.time {
+				display: inline-block;
+				width: calc(40% - 10px);
+				.custom-select-input-container {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+}

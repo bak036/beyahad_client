@@ -1,0 +1,47 @@
+.tabs-wrapper {
+    width: 100%;
+
+    .tabs-container {
+        display: flex;
+        justify-content: space-between;
+        margin: 15px 0 25px 0;
+
+        .container {
+            width: 50%;
+        }
+
+        .tub-menu-item {
+            width: 100%;
+
+
+
+            border-bottom: 1px solid $text-color-gray;
+            padding-bottom: 5px;
+            cursor: pointer;
+            font-family: 'Rubik-Light';
+            font-weight: 300;
+            font-stretch: normal;
+            font-style: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: #000;
+            @media only screen and (max-width: $max-mobile-width) {
+                height: 40px;
+            }
+        }
+
+        .active {
+            font-family: 'Rubik-Bold';
+            border-bottom: 2px solid $color-blue-light;
+            color: $color-blue-normal;
+        }
+
+        .triple {
+            clip-path: polygon(0 0, 49% 61%, 100% 0);
+            background-color: $color-blue-light;
+            width: 8px;
+            height: 8px;
+            margin: auto;
+        }
+    }
+}

@@ -1,0 +1,141 @@
+.hide-on-mobile {
+	display: none;
+
+	@media only screen and (min-width: $max-mobile-width) {
+		display: block;
+	}
+}
+
+.hide-on-desktop {
+	display: none;
+
+	@media only screen and (max-width: $max-mobile-width) {
+		display: block;
+	}
+}
+
+.footer-main-container {
+	padding-top: 10px;
+	margin: auto;
+	padding-bottom: 40px;
+	text-align: center;
+	background-color: #{$color-white};
+	align-items: center;
+
+	@media only screen and (min-width:$max-mobile-width) {
+		padding-bottom: unset;
+	}
+	@media only screen and (max-width:$max-mobile-width) {
+		padding-bottom: 90px;
+	}
+	.icons-footer-container {
+		width: 100%;
+		border: 0.1px solid lightgrey;
+		border-style: solid none solid none;
+		margin: auto;
+		padding-top: 15px;
+		// padding: 30px 0;
+		// .menu-footer{
+		// 	position: fixed;
+		// 	top: 91vh;
+		// 	.icons-footer-botom{
+		// 		background-color: white;
+		// 		box-shadow: #ddd 0px 0px 5px;
+		// 		padding-top: 5px;
+		// 	}
+		// }
+		.icons-footer {
+			//display:'flex',width:'60%',justifyContent:'space-between',margin:'auto'
+			display: flex;
+			width: 70%;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			margin: auto;
+
+			@media only screen and (max-width:$max-mobile-width) {
+				width: 95%;
+			}
+
+			div {
+				cursor: pointer;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				@media only screen and (max-width:$max-mobile-width) {
+					width: 30%;
+					margin-top: 10px;
+				}
+
+				img {
+					height: 50%;
+				}
+
+
+
+				.custom-span-text {
+					font-size: 16px;
+					color: #1c4ca1;
+					margin-top: 10px;
+					vertical-align: baseline;
+
+					@media only screen and (max-width:$max-mobile-width) {
+						font-size: 13px;
+						margin-top: 5px;
+					}
+				}
+			}
+
+			.topFooterHTML {
+				width: 100%;
+			}
+		}
+
+		@media only screen and (min-width:$max-mobile-width) {
+			.container-three-icons {
+				width: 30%;
+			}
+		}
+	}
+
+	.icons-footer-botom {
+		width: 71px !important;
+		// box-shadow: #ddd 0px 0px 5px;
+	}
+
+	.icons-footer-container-botom {
+		border: none;
+		// width: 98%;
+		@media only screen and (max-width:$max-mobile-width) {
+			position: fixed;
+			bottom: 0px;
+			background-color: white;
+			width: 100%;
+			z-index: 15;
+	}
+	}
+
+	.footerHTML {
+		display: grid;
+		justify-content: center;
+		padding: 20px;
+		height: 230px;
+		width: 100%;
+		overflow: auto;
+		text-align: right;
+	}
+
+	.footerHTML * {
+		vertical-align: middle;
+	}
+
+	.botom-footer-mobile {
+		display: flex;
+		flex-direction: row;
+	}
+}
+
+@media only screen and (min-width:$max-mobile-width) {
+	.icons-footer-container-botom {
+		display: none;
+	}
+}

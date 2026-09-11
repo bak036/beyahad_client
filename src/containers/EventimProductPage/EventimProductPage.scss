@@ -1,0 +1,816 @@
+.hide-on-desktop {
+	display: none;
+	@media only screen and (max-width:$max-mobile-width) {
+		display: block;
+	}
+}
+
+.hide-on-mobile {
+	display: none;
+	@media only screen and (min-width:$max-mobile-width) {
+		display: block;
+	}
+}
+
+
+/* old: redesign is here */
+
+.eventim-product-page-container {
+
+	.eventim-product-page-header { /* === product-page-image-header-info-tab */
+
+		border: 1px solid lightgray;
+		margin-bottom: 20px;
+
+		.product-page-image-info-tab {
+			display: flex;
+			flex-direction: column;
+			flex: 2;
+
+			.product-page-top-image{
+				height: auto;
+			/*	max-width: 650px; */
+
+				img {
+					border-radius: 10px;
+    				width: 100%;
+
+					@media only screen and (max-width: $max-mobile-width){
+						border-radius: 10px 10px 0 0;
+					}
+				}
+			}	
+		}
+
+		.eventim-product-page-description-container { /* === prouct-page-header-container */
+			@media only screen and (min-width:$max-mobile-width) {
+				display: flex;
+				flex-direction: column;
+				
+				margin-top: 0px;
+				margin-bottom: 0px;
+				margin-left: 0px;
+				width: 100%;
+				border-bottom: 0px solid lightgray;
+				padding-left: 70px;
+			}
+			@media only screen and (max-width: $min-desktop-width) {
+				padding: 1rem 1rem 0;
+			}
+
+			.custom-span-text {
+				font-size: 1.2rem;
+			}
+	
+			@media only screen and (max-width: $min-desktop-width)
+			{
+				border-bottom: 0px solid lightgray;
+				margin-bottom: 15px;
+			}
+
+			.prouct-page-header-info {
+				margin-top: 0px;
+				margin-bottom: 0px;    
+				display: flex;
+				flex-direction: row;
+
+				.custom-text  {
+					max-width: 250px;
+					line-height: 1.5rem;
+				}
+
+				@media only screen and (max-width: $max-mobile-width)
+				{
+					flex-direction: column;
+				}
+
+				.description_modified_container {
+					font-size: 1.2rem;
+					position: relative;
+					top: -3px;
+					
+					.line_1{
+						margin-bottom: 5px;
+						.amount_description{
+							font-size:1.5rem;
+						}
+					}
+				}
+			}
+			.prouct-page-header-info-price {
+				margin-right: 5px;
+				text-decoration: line-through;
+				margin-left: 5px;
+			}
+	
+			.prouct-page-header-info-price-bold {
+				font-weight: bold;
+			}
+	
+
+				
+			.custom-item-wrapper {
+				border-right: 1px solid lightgray;
+				// padding-right: 9px;
+				display: flex;
+				flex-direction: row;
+				align-items: flex-start;
+				padding-right: 20px;
+
+				@media only screen and (max-width:$max-mobile-width) {
+					border-right: 0px solid lightgray;
+					padding-right: 00px;
+				}
+			}
+
+
+			.custom-item-wrapper:first-child {
+				border-right: 0px solid lightgray;
+				padding-right: 0;
+				display: flex;
+				align-items: flex-start;
+			}
+
+
+
+
+			.route-and-tickets-variants-list-container {
+				padding: 0;
+
+				.route-and-redeem-type-container {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					margin-bottom: 15px;
+
+					.redeem-type-container {
+						.redeem-type-text {
+							color: #777;
+						}
+
+						@media only screen and (max-width: $max-mobile-width) {
+							align-self: flex-start;
+						}
+					}
+
+					.back-to-events-list-button-container {
+						.custom-button-container {
+							button {
+								height: 30px;
+								width: 150px;
+							}
+						}
+					}
+
+					@media only screen and (max-width:$max-mobile-width) {
+						flex-direction: column;
+					}
+				}
+
+				.product-header-page-cart-button{
+					display: flex;
+    				justify-content: end;
+
+					@media only screen and (max-width:$max-mobile-width){
+						justify-content: center;
+					}
+
+					.button-wrapper{
+						margin-left: 0px
+					}
+				}
+			}
+		}
+		@media only screen and (max-width:$max-mobile-width) {
+			background-color: $color-white;
+			border-radius: 20px;
+			box-shadow: #ddd 0px 0px 20px;
+		}
+		@media only screen and (min-width:$max-mobile-width) {
+			display: grid;
+			grid-template-columns: 50% 50%;
+			padding: 50px;
+			margin-top: 30px;
+			margin-bottom:39px;
+			background-color: $color-white;
+			border-radius: 20px;
+			box-shadow: #ddd 0px 0px 20px;
+		}
+	}
+
+	.eventim-product-page-tabs-container {
+		margin-top: 10px;
+		padding-right: 10px;
+		padding-left: 10px;
+		@media only screen and (min-width:$max-mobile-width) {
+			padding: 0px;
+		}
+
+		.product-page-info-tab {
+			padding-bottom: 0px;
+		}
+
+		.product-page-tabs-main-container {
+			margin-bottom: 10px;
+			border: 1px solid lightgray;
+		}
+	}
+	.seat-map-container {
+		box-shadow: #ddd 0px 0px 20px;
+		padding: 50px;
+		border-radius: 20px;
+		background-color: $color-white;
+		border: 1px solid lightgray;
+		@media only screen and (max-width:$max-mobile-width) {
+			border: 0px solid lightgray;
+			margin: 0px;
+			box-shadow: #ddd 0px 0px 0px;
+			border-radius: 0;
+			background-color: transparent !important;
+			padding: 0;
+			padding-bottom: 30px;
+
+			.seat-map-inner-container{
+				position: relative;
+			}
+
+			.custom-header-container {
+				margin-bottom: 15px;
+				margin-top: 15px;
+			}
+		}
+
+		.custom-header-container {
+			display: inline-block;
+		}
+	}
+
+	.varient-main-container{
+		.varient-item-container {
+			grid-template-columns: 53% 32% 15%;
+			align-items: start;
+			border: 0px solid $color-light-gray;
+			&.col-2{
+				grid-template-columns: 85% 15%;
+			}
+			@media only screen and (max-width: $max-mobile-width) {
+				&.col-2{
+					grid-template-columns: 70% 30%;
+				}
+				&.col-3{
+					grid-template-columns: 35% 40% 25%;
+				}			
+			}
+			
+			.varient-item-text-container {
+				padding-left: 3rem;
+
+				@media only screen and (max-width: $max-mobile-width){
+					padding-left: 1.5rem;
+					padding-top: 0px;
+				}
+			}
+
+			@media only screen and (max-width: $max-mobile-width){
+				grid-template-columns: 45% 25% 30%;
+			}
+		}
+	}
+
+	@media only screen and (max-width: $max-mobile-width){
+		padding: 15px;
+		border-radius: 20px;
+	}
+}
+
+
+.htmlMap {
+	direction: ltr;
+
+	#tickettypeselection{
+	color: black;
+	overflow-y: auto;
+    position: absolute;
+    width: 250px;
+    font-family: "Rubik-Regular";
+    font-size: 1.2rem;
+    max-height: 250px;
+    display: none;
+    z-index: 10;
+    background: $color-white;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+	box-shadow: #aaa 0px 5px 10px;
+		.tickettype {
+			display: inline-block;
+			z-index: 2;
+			border-top: 1px solid lightgray;
+			cursor: pointer;
+			width: 100%;
+			padding: 15px;
+
+			.tickettype-price {
+			float: left !important;
+			display: inline-block;
+			}
+		}
+
+		@media only screen and (max-width:$max-mobile-width) {
+			left: 0 !important;
+			top:0 !important;
+		}
+	}
+
+	div#tickettypeselection > div:first-child {
+		padding: 15px !important;
+		font-weight: bold;
+	}
+	@media only screen and (max-width:$max-mobile-width){
+		.seatmap-form{
+			position: relative;
+			margin-bottom: 15px;
+		}
+	}
+
+
+	#map.map-container {
+		border: 1px solid lightgray;
+	}
+
+	.container {
+		font-family: 'Rubik-Regular';
+		border: 0px solid lightgray;
+
+		@media only screen and (max-width:$max-mobile-width) {
+			display: flex;
+			flex-direction: column-reverse;
+		}
+
+		.seatMap{
+			@media only screen and (max-width: $max-mobile-width){
+				max-height: 35px;
+			}
+
+		/* top menu */
+		.seatmap-menu{
+			
+			@media only screen and (max-width: $max-mobile-width){
+				display: flex ;
+				height: auto;
+				min-width: 0px !important;
+				z-index: 0;
+				padding: 0;
+				height: auto;
+				top: 0;
+				position: static;
+			}
+
+			/* כל הקטגוריות*/
+			#pc-list{
+					border-radius: 5px;
+					border: 0px solid #ffffff;
+					background: $color-white;
+					display: block;
+					width: 345px;
+					height: 45px;
+					margin-right: 2px;
+					float: right;
+					box-shadow: #ccc 0px 0px 10px;
+				.pc-list-button{
+					cursor: pointer;
+					color: #001d3c;
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					padding: 15px;
+					height: 100%;
+
+					.pk-number{
+						background: none;
+						box-shadow: none;
+						font-size: 1.1rem !important;
+						padding: 3px;
+						padding-left: 3px;
+						top: 0;
+						width: auto !important;
+						position: relative;
+						border-radius: 5px;
+						margin-left: 6px;
+						margin-right: 0;
+					}
+
+					.pc-list-text{
+						font-weight: 100;
+						width: 100%;
+						font-size: 1.2rem;
+					}
+
+					i.fa-caret-down {
+						color: black;
+
+						:before{
+							font-size: 1.2rem;
+						}
+					}
+				}
+
+				.dropdown{
+					box-shadow: #ccc 0px 5px 10px;
+					width: 100%;
+					margin-left: 0px;
+					background: white;
+					margin-top: 0;
+					border-radius: 0 0 5px 5px;
+					border: 1px solid lightgray;
+
+					ul#pc-list-elements {				
+						width: 100%;
+						font-size: 1.2rem;
+
+						li.pc-list-element{
+							padding: 15px;
+    						width: 100%;
+							position: relative;
+							border-bottom: 1px solid $color-light-gray;
+							display: inline-block;
+
+							.pc-checked{
+								color: black;
+    							font-size: 1.2rem;
+							}
+							.pk-number{
+								background: none;
+								box-shadow: none;
+								font-size: 1.2rem !important;
+								padding: 3px;
+								padding-left: 3px;
+								top: 0;
+								width: auto !important;
+								position: relative;
+								border-radius: 5px;
+								margin-left: 6px;
+								margin-right: 0;
+							}
+
+							.pc-price-info{
+								float: left;
+								width: 120px;
+								text-align: left;
+							}
+						}
+					}
+					div.pc-list-element{
+						cursor: pointer;
+						padding: 15px;
+						font-weight: normal;
+						text-align: center;
+						border-top: 1px solid #ffffff;
+						font-size: 1.2rem;
+						display: inline-block;
+
+						i.fa-chevron-right {
+							display: none;
+						}
+						&#pc-close{
+							float:left;
+							padding-left: 15px !important;
+
+							span {
+								color: $color-blue-normal;
+								position: relative;
+								
+								&::after {
+									position: absolute;
+									content: '';
+									width: 100%;
+									height: 1px;
+									background-color: $color-blue-normal;
+									right: 0;
+									left: 0;
+									bottom: 0;
+								}
+							}
+						}
+
+						&#pc-showAll{
+							span {
+								color: $color-blue-normal;
+								position: relative;
+
+								&::after{
+									position: absolute;
+									content: '';
+									width: 100%;
+									height: 1px;
+									background-color: #0f6bb3;
+									right: 0;
+									left: 0;
+									bottom: 0;
+								}
+							}
+						}
+					}
+				}
+			}
+
+			/* the 2 zoom buttons */
+			.zoom-container{
+				width: 100px;
+				margin: auto;
+				height: 35px;
+				@media only screen and (max-width: $max-mobile-width) {
+					position: absolute;
+					top: 15px;
+					left: 0;
+				}
+
+				#zoom {
+					padding-top: 0px;
+					text-align: center;
+					height: 35px;
+					display: flex;
+					flex-direction: row;
+					width: 100px;
+					justify-content: space-evenly;
+
+					@media only screen and (max-width: $max-mobile-width){
+						justify-content: end;
+					}
+					
+					#zoom-in, #zoom-out {
+						border: 0px solid #f2f2f2;
+						display: inline-block;
+						cursor: pointer;
+						color: white;
+
+						.gradient{							
+							background-color: transparent;
+							background-image: none;
+
+							i {
+								height: 35px;
+								line-height: 35px;
+								text-align: center;
+								width: 35px;
+								display: block;
+								background: $color-blue-normal;
+								border-radius: 30px;
+
+								@media only screen and (max-width: $max-mobile-width){
+									height: 27px;
+									line-height: 28px;
+									text-align: center;
+									width: 27px;
+									display: block;
+									background: $color-blue-normal;
+									border-radius: 30px;
+								}
+							}
+
+						}
+					}
+
+					#zoom-out {
+						@media only screen and (max-width: $max-mobile-width){
+							margin-left: 10px;
+						}
+					}
+
+				}
+			}
+
+			/* the selected seat lists in top menu */
+			#seat-selection{
+				border-radius: 5px;
+				border: 0px solid #ffffff;
+				background: $color-white;
+				display: block;
+				width: 345px;
+				height: 45px;
+				margin-right: 2px;
+				float: right;
+				box-shadow: #ccc 0px 0px 10px;
+				border: 1px solid lightgray;
+
+				@media only screen and (max-width: $max-mobile-width){
+					height: auto;
+					width: auto;
+				}
+
+				.seatmap-menu-button {
+					cursor: pointer;
+					color: #001d3c;
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					padding: 15px;
+					height: 100%;
+					border: 1px solid lightgray;
+
+					.seat-selection-text.text {
+						font-weight: 100;
+						width: 100%;
+						font-size: 1.2rem;
+					}
+
+					i.fa-caret-down {
+						color: black;
+						font-size: 1.2rem;
+					}
+				}
+
+				.dropdown{
+					box-shadow: #ccc 0px 5px 10px;
+					width: 100%;
+					margin-left: 0px;
+					background: white;
+					margin-top: 0;
+					border-radius: 0 0 5px 5px;
+					border-top: 1px solid $color-light-gray;
+
+					@media only screen and (max-width:$max-mobile-width){
+						z-index: 999 !important;
+    					position: absolute;
+					}
+
+					ul.seat-selection-container-list {				
+						width: 100%;
+						font-size: 1.2rem;
+
+						@media only screen and (max-height:$max-mobile-width){
+							max-height: 450px !important;
+						}
+
+						li.seat-selection-element{
+							padding: 15px;
+    						width: 100%;
+							position: relative;
+							border-bottom: 1px solid $color-light-gray;
+							
+							.seat-pk-icon{
+								background: none;
+								box-shadow: none;
+								font-size: 1.1rem !important;
+								padding: 3px;
+								padding-left: 3px;
+								top: -3px;
+								width: auto !important;
+								position: relative;
+								border-radius: 5px;
+							}
+
+							.seat-info{
+								line-height: 1.5rem;
+
+								strong {
+									&:first-child {
+										display: block;
+										color: $color-blue-normal !important;
+									}
+								}
+							}
+							.seat-rs-info{
+								margin-top: 15px;
+
+								strong {
+									font-weight: normal;
+								}
+
+									select {
+										width: 100%;
+										padding: 6px;
+										margin: 0;
+										position: relative;
+										top: -15px;
+										border: 1px solid $color-light-gray;
+										border-radius: 3px;
+									}
+							}
+						}
+
+						.button-delete{
+							position: absolute;
+							left: 15px;
+
+							i {
+								color: $color-blue-normal;
+								font-size: 1.5rem;
+							}
+						}
+
+					}
+
+					.seat-selection-bottom-elements{
+						font-size: 1.2rem;
+						padding: 15px;
+    					background: $color-white;
+						margin-top: -3px;
+						position: relative;
+						line-height: 1.5rem;
+						border-top: 1px solid $color-light-gray;
+						border-radius: 0 0 5px 5px;
+						
+						.all-ticket-info{
+							line-height: 1.8rem;
+							margin: 0;
+							.button-delete-all{
+								position: absolute;
+								left: 15px;
+
+								i {
+									color: $color-blue-normal;
+									font-size: 1.5rem;
+								}
+							}
+
+							.total-value-price{
+								color:black;
+							}
+						}
+
+						#seatmapShoppingCartBtn {
+							width: 100%;
+							padding: 12px;
+							border: 0px solid #fff;
+							text-align: center;
+							background-image: none;
+							background-color:$color-blue-normal !important;
+							font-size: 1.2rem;
+							font-weight: bold;
+							border-color: transparent;
+							border-radius: 10px;
+							margin-top: 10px;
+							span.btnText{
+								i.shoppingCart {
+									display: none !important;
+								}
+								span.intoShoppingCart{
+									font-size: 1.2rem;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+	}
+
+	.seatmap-menu {
+		display: flex !important;
+		flex-direction: column !important;
+		height: 110px !important;
+		min-width: 0px !important;
+		z-index: 1 !important;
+		@media only screen and (min-width:$max-mobile-width) {
+			display: block !important;
+			flex-direction: row !important;
+			height: unset !important;
+			min-width: 550px !important;
+		}
+	}
+
+	#minimapToggle {
+		z-index: 0 !important;
+	}
+
+	.minimap-container {
+		z-index: 0 !important;
+		border:1px solid $color-light-gray;
+	}
+
+	.pc-list-container {
+		margin: auto !important;
+		float: none !important;
+		@media only screen and (min-width:$max-mobile-width) {
+			margin: unset !important;
+			float: left !important;
+		}
+	}
+
+	.seat-selection-container {
+		margin: auto !important;
+		float: none !important;
+		@media only screen and (min-width:$max-mobile-width) {
+			margin: unset !important;
+			float: right !important;
+		}
+	}
+
+	@media only screen and (max-width: #{$max-mobile-width}) {
+		.container {
+			position: relative;
+			display: flex;
+			flex-direction: column-reverse;
+		}
+
+		#seatmapMinimap {
+			display: none !important;
+		}
+
+		#pc-list {
+			display: none !important;
+		}
+	}
+  }
+}

@@ -1,0 +1,36 @@
+.bread-crumbs-container {
+	display: flex;
+	padding: 10px 0;
+	line-height: 20px;
+	flex-wrap: wrap;
+
+	flex:wrap;
+	.single-crumb-container {
+		position: relative;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		font-size: 1.1rem;
+		&:hover{
+			span{
+				text-decoration: underline black;
+			}
+			
+		}
+		span {
+			margin: 0 1px;
+		}
+	}
+
+	.single-crumb-container:last-child {
+		font-weight: bold;
+	}
+	@media only screen and (min-width:$max-mobile-width) {
+		padding: 10px 0 0 0;
+	}
+}
+
+@media only screen and (min-width:$max-mobile-width) {
+	.bread-crumbs-container {
+		background-color: unset; // Use parent background on desktop
+	}
+}

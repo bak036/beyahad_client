@@ -1,0 +1,117 @@
+.second-modal-container {
+	width: 87%;
+	margin: auto;
+	text-align: center;
+	margin-top: 20px;
+	@media only screen and (max-width: $max-mobile-width) {
+		width: 100%;
+	}
+	.custom-header-container{
+		.custom-header-text{
+			@media only screen and (max-width: $max-mobile-width) {
+				font-size: 24px;
+			}
+		}
+	}
+	.headers-container {
+		padding-bottom: 10px;
+		.text-container {
+			text-align: center;
+			font-size: 24px;
+			@media only screen and (max-width: $max-mobile-width) {
+				font-size: 14px;
+			}
+		}
+	}
+	.first-text{
+		font-family: 'Rubik-Light';
+		font-size: 16px;
+		color: #000000;
+		@media only screen and (max-width: $max-mobile-width) {
+			font-size: 14px;
+		}
+	}
+	.second-text{
+		font-family: 'Rubik-Bold';
+		font-size: 18px;
+		color: $color-blue-normal;
+		margin-top: 12px;
+		@media only screen and (max-width: $max-mobile-width) {
+			font-size: 14px;
+		}
+	}
+	.third-text{
+		font-family: 'Rubik-Bold';
+		font-size: 16px;
+		color: #000000;
+		@media only screen and (max-width: $max-mobile-width) {
+			font-size: 14px;
+			margin-top: 10px;
+		}
+	}
+	
+	.blue-button{
+		color: $color-blue-normal;
+		font-family: 'Rubik-Bold';
+		font-size: 16px;
+		width: 208px;
+		margin: auto;
+		border: solid 1px $color-blue-light;
+		padding: 10px 0;
+		border-radius: 10px;
+		text-align: center;
+		margin-top: 10px;
+		&.margin-buttom{
+			margin-bottom: 20px;
+		}
+		&.blue-button-disabled{
+			color: white;
+			background: #d9d9d9;
+			border: none;
+		}
+		@media only screen and (max-width: $max-mobile-width) {
+			width: 128px;
+			height: max-content;
+			font-size: 14px;
+			padding: 7px;
+		}
+	}
+	.blue-button-hover:hover{
+		cursor: pointer;
+		background: $color-blue-normal;
+		color: #ffffff;
+	}
+	.agreement-container {
+		display: flex;
+		text-align: center;
+		width: 100%;
+		margin: initial;
+		.agree-checkbox {
+			cursor: pointer;
+			padding-top: 3px;
+			input[type="checkbox"]{
+				cursor:default;
+				background-color:#ffffff;
+				width: 22px;
+				height: 22px;
+				outline: solid 1px #d9d9d9;
+				border-radius: 5px;
+				border: solid 1px #d9d9d9;
+			}
+		}
+		.agree-text {
+			text-align: center;
+			padding-right: 10px;
+		}
+		@media only screen and (max-width: $max-mobile-width) {
+			margin-top: 14px;
+		}
+	}
+	.buttons-container {
+		display: flex;
+		padding-top: 15px;
+		.block-btn {
+			padding-bottom: 7px;
+		}
+	}
+}

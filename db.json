@@ -1,0 +1,1086 @@
+{
+	"walletNames": [
+		{"id": "1", "walletName": "ביחד 11% הנחה ויקטורי+שוק העיר"},
+		{"id": "2", "walletName": "ביחד 19% הנחה שופרסל"}
+	],
+	"wallets": [
+		{
+			"id": "1",
+			"walletName": "ביחד 11% הנחה ויקטורי+שוק העיר",
+			"cardNumber": "12345678",
+			"statusCard": "active",
+			"totalBalance": 190,
+			"dateOfActivation": "1/1/2010",
+			"validDate": "31/03/2020",
+			"discount": 11,
+			"userDeatils": {
+				"identityNumber": "203854114"
+			},
+			"transactions": [
+				{
+					"id": "1",
+					"date": "23.8.18 , 10:00",
+					"transactionNumber": "001221234",
+					"receiptID": "0023131",
+					"netName": "רמי לוי",
+					"branchName": "כנפי נשריפ",
+					"transactionAction": "טעינה",
+					"totalPrice": 190
+				},
+				{
+					"id": "2",
+					"date": "24.8.18 , 10:00",
+					"transactionNumber": "001221234",
+					"receiptID": "0123131",
+					"netName": "שופרסל",
+					"branchName": "כנפי נשריפ",
+					"transactionAction": "טעינה",
+					"totalPrice": 290
+				},
+				{
+					"id": "3",
+					"date": "27.8.18 , 10:00",
+					"transactionNumber": "001221234",
+					"receiptID": "110023131",
+					"netName": "רמי לוי",
+					"branchName": "כנפי נשריפ",
+					"transactionAction": "טעינה",
+					"totalPrice": 400
+				},
+				{
+					"id": "4",
+					"date": "31.8.18 , 10:00",
+					"transactionNumber": "001221234",
+					"receiptID": "0023131",
+					"netName": "רמי לוי",
+					"branchName": "כנפי נשריפ",
+					"transactionAction": "טעינה",
+					"totalPrice": 700
+				},
+				{
+					"id": "5",
+					"date": "23.9.18 , 10:00",
+					"transactionNumber": "001221234",
+					"receiptID": "0023131",
+					"netName": "רמי לוי",
+					"branchName": "כנפי נשריפ",
+					"transactionAction": "טעינה",
+					"totalPrice": 190
+				}
+			]
+		},
+		{
+			"id": "2",
+			"walletName": "ביחד 19% הנחה שופרסל",
+			"cardNumber": "11221122",
+			"statusCard": "active",
+			"totalBalance": 190,
+			"discount": 19,
+			"dateOfActivation": "1/1/2010",
+			"validDate": "31/03/2020",
+			"userDeatils": {
+				"identityNumber": "203854114"
+			},
+			"transactions": [
+				{
+					"id": "1",
+					"date": "23.8.18 , 10:00",
+					"transactionNumber": "001221234",
+					"receiptID": "0023131",
+					"netName": "שימי הדייג",
+					"branchName": "כנפי נשריפ",
+					"transactionAction": "טעינה",
+					"totalPrice": 190
+				},
+				{
+					"id": "2",
+					"date": "24.8.18 , 10:00",
+					"transactionNumber": "001221234",
+					"receiptID": "0123131",
+					"netName": "שופרסל",
+					"branchName": "כנפי נשריפ",
+					"transactionAction": "טעינה",
+					"totalPrice": 290
+				},
+				{
+					"id": "3",
+					"date": "27.8.18 , 10:00",
+					"transactionNumber": "001221234",
+					"receiptID": "110023131",
+					"netName": "שימי הדייג",
+					"branchName": "כנפי נשריפ",
+					"transactionAction": "טעינה",
+					"totalPrice": 400
+				},
+				{
+					"id": "4",
+					"date": "31.8.18 , 10:00",
+					"transactionNumber": "001221234",
+					"receiptID": "0023131",
+					"netName": "שימי הדייג",
+					"branchName": "כנפי נשריפ",
+					"transactionAction": "טעינה",
+					"totalPrice": 700
+				},
+				{
+					"id": "5",
+					"date": "23.9.18 , 10:00",
+					"transactionNumber": "001221234",
+					"receiptID": "0023131",
+					"netName": "רמי לוי",
+					"branchName": "כנפי נשריפ",
+					"transactionAction": "טעינה",
+					"totalPrice": 190
+				}
+			]
+		}
+	],
+
+	"prodcutRequest": [
+		{
+			"id": 1,
+			"status": false,
+			"data": "MSG_NOT_FRIEND",
+			"error": false
+		},
+		{
+			"id": 2,
+			"status": false,
+			"data": "MSG_MAX_ADD_TO_CART",
+			"error": false
+		},
+		{
+			"id": 3,
+			"status": false,
+			"data": "OK",
+			"error": false
+		}
+	],
+	"payment": {
+		"status": "ok"
+	},
+	"categories": [
+		{
+			"id": "1",
+			"name": "1",
+			"imges": ["hami-gash.png"],
+			"shortDescription": "להנות מ2 הופעות של הכוכבים הכי גדולים במדינה בכרטיס 1 ורק בפסטיבל סוף חורף אפשר יהיה בגוט טלנט שנה שעברה עם מופע פעלולים בלתי נשכח",
+			"price": 300,
+			"discount": 190,
+			"location": "תל אביב",
+			"eventDate": "14/2/2019",
+			"moreInfo": "געש מרחצאות געש הם עולם אקסולובי של פינוק לגוף ולנשמה מכל מקום נמצתא אתר המחרצאות הספרא הנופש והבילוי מרחצאות במרכז הארץ 12 דקות מתל אביב ובמרחק מסיעה קרהצ",
+			"phone": "0395862919",
+			"webSite": "http://www.hameigaash.co.il",
+			"mapLandMarks": {
+				"altitude": 32.068915,
+				"latitude": 34.770627
+			},
+			"categoryType": "show",
+			"moreInfoTab": "המים הטבעיים לשימוש חופשי במתקני האתר +2 כוסות יין לבחירה לאורך 60 דק לכל אחד מבני הזוג הכניסה לבריכות חבילות ספא זוגי 60 דק +2 כוסוץ יין עיסוי מפנק מבצע חורף האתר ארוחת צהריים בשרית עיסקית במסעדת נוסאטלגיה כניסה לבריכות המים הטבעיים ושינוש חפופי במתקן אקסלוסבי כניסה לבריכות המים הטבעיים ושימוש חלופי במתקן",
+			"howToUse": "המים הטבעיים לשימוש חופשי במתקני האתר +2 כוסות יין לבחירה לאורך 60 דק לכל אחד מבני הזוג הכניסה לבריכות חבילות ספא זוגי 60 דק +2 כוסוץ יין עיסוי מפנק מבצע חורף האתר ארוחת צהריים בשרית עיסקית במסעדת נוסאטלגיה כניסה לבריכות המים הטבעיים ושינוש חפופי במתקן אקסלוסבי כניסה לבריכות המים הטבעיים ושימוש חלופי במתקן גדזשב זסב שדג זסבדשג זסב שדג זסב זסב דשג זסב זסב שדג זסבזסגב שדג זסב זסג שד'ג זסב ",
+			"termsOfUse": "המים הטבעיים לשימוש חופשי במתקני האתר +2 כוסות יין לבחירה לאורך 60 דק לכל אחד מבני הזוג הכניסה לבריכות חבילות ספא זוגי 60 דק +2 כוסוץ יין עיסוי מפנק מבצע חורף האתר ארוחת צהריים בשרית עיסקית במסעדת נוסאטלגיה כניסה לבריכות המים הטבעיים ושינוש חפופי במתקן אקסלוסבי כניסה לבריכות המים הטבעיים ושימוש חלופי במתקן גבךסזבחדשג.זףסבתזסבלשד לדגזסב דשגךבזסב דשגזסץך.ב זסדגכבלז בס",
+			"varients": [
+				{
+					"varientName": "כניסה לימי א'-ה' 1+1",
+					"price": 100,
+					"discount": 50,
+					"validDate": "31/03/2020",
+					"quantity": 1,
+					"maxToBuy": "2",
+					"sale": false,
+					"outofStock": false
+				},
+				{
+					"varientName": "כניסה שישי שבת חג וחוה\"מ 1+1",
+					"price": 300,
+					"discount": 100,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "3",
+					"sale": true,
+					"outofStock": false
+				},
+				{
+					"varientName": "מבצע חורף - חבילת ספא זוגי 60 דקות + 2 כוסות יין",
+					"price": 400,
+					"discount": 350,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "2",
+					"sale": false,
+					"outofStock": false
+				},
+				{
+					"varientName": "מבצע חורף - חבילת ספא זוגי 30 דקות + ארוחת צהריים",
+					"price": 700,
+					"discount": 400,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "3",
+					"sale": false,
+					"outofStock": true
+				},
+				{
+					"varientName": "כניסה ארוחת ערב/צהרים ימי א-ו יחיד",
+					"price": 300,
+					"discount": 110,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "3",
+					"sale": false,
+					"outofStock": true
+				},
+				{
+					"varientName": "כניסה + 45 דק עיסוי בכל ימות השבוע - יחיד",
+					"price": 300,
+					"discount": 100,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "3",
+					"sale": false,
+					"outofStock": false
+				},
+				{
+					"varientName": "כניסה בכל ימות השבוע-יחיד",
+					"price": 300,
+					"discount": 250,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "3",
+					"sale": true,
+					"outofStock": false
+				},
+				{
+					"varientName": "כניסה+ 45 דק עיסוי + א.צהריים/ערב בימים א-ו-יחיד",
+					"price": 300,
+					"discount": 100,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "3",
+					"sale": false,
+					"outofStock": false
+				}
+			]
+		},
+		{
+			"id": "2",
+			"name": "מיקי וציפי בקרקס - כרטיסים",
+			"imges": ["hami-gash.png", "hami-gash.png", "hami-gash.png"],
+			"shortDescription": "להנות מ2 הופעות של הכוכבים הכי גדולים במדינה בכרטיס 1 ורק בפסטיבל סוף חורף אפשר יהיה בגוט טלנט שנה שעברה עם מופע פעלולים בלתי נשכח",
+			"price": 300,
+			"discount": 40,
+			"location": "israel",
+			"eventDate": "14.2.2019",
+			"moreInfo": "געש מרחצאות געש הם עולם אקסולובי של פינוק לגוף ולנשמה מכל מקום נמצתא אתר המחרצאות הספרא הנופש והבילוי מרחצאות במרכז הארץ 12 דקות מתל אביב ובמרחק מסיעה קרהצ",
+			"phone": "0395862919",
+			"mapLandMarks": [
+				{
+					"altitude": 32.098766,
+					"latitude": 34.863983
+				}
+			],
+			"categoryType": "show",
+			"varients": [
+				{
+					"varientName": "כניסה מבוגר",
+					"price": 100,
+					"discount": 50,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "3",
+					"sale": true,
+					"outofStock": false
+				},
+				{
+					"varientName": "כניסה ילד",
+					"price": 100,
+					"discount": 40,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "3",
+					"sale": false,
+					"outofStock": true
+				}
+			]
+		},
+		{
+			"id": "3",
+			"name": "מיקי וציפי בקרקס - כרטיסים",
+			"imges": ["hami-gash.png", "hami-gash.png", "hami-gash.png"],
+			"shortDescription": "להנות מ2 הופעות של הכוכבים הכי גדולים במדינה בכרטיס 1 ורק בפסטיבל סוף חורף אפשר יהיה בגוט טלנט שנה שעברה עם מופע פעלולים בלתי נשכח",
+			"price": 300,
+			"discount": 40,
+			"location": "israel",
+			"eventDate": "14.2.2019",
+			"moreInfo": "געש מרחצאות געש הם עולם אקסולובי של פינוק לגוף ולנשמה מכל מקום נמצתא אתר המחרצאות הספרא הנופש והבילוי מרחצאות במרכז הארץ 12 דקות מתל אביב ובמרחק מסיעה קרהצ",
+			"phone": "0395862919",
+			"mapLandMarks": [
+				{
+					"altitude": 32.098766,
+					"latitude": 34.863983
+				}
+			],
+			"categoryType": "show",
+			"varients": [
+				{
+					"varientName": "כניסה מבוגר",
+					"price": 100,
+					"discount": 50,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "3",
+					"sale": true,
+					"outofStock": false
+				},
+				{
+					"varientName": "כניסה ילד",
+					"price": 100,
+					"discount": 40,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "3",
+					"sale": false,
+					"outofStock": true
+				}
+			]
+		},
+		{
+			"id": "4",
+			"name": "מיקי וציפי בקרקס - כרטיסים",
+			"imges": ["hami-gash.png", "hami-gash.png", "hami-gash.png"],
+			"shortDescription": "להנות מ2 הופעות של הכוכבים הכי גדולים במדינה בכרטיס 1 ורק בפסטיבל סוף חורף אפשר יהיה בגוט טלנט שנה שעברה עם מופע פעלולים בלתי נשכח",
+			"price": 300,
+			"discount": 40,
+			"location": "israel",
+			"eventDate": "14.2.2019",
+			"moreInfo": "געש מרחצאות געש הם עולם אקסולובי של פינוק לגוף ולנשמה מכל מקום נמצתא אתר המחרצאות הספרא הנופש והבילוי מרחצאות במרכז הארץ 12 דקות מתל אביב ובמרחק מסיעה קרהצ",
+			"phone": "0395862919",
+			"mapLandMarks": [
+				{
+					"altitude": 32.098766,
+					"latitude": 34.863983
+				}
+			],
+			"categoryType": "show",
+			"varients": [
+				{
+					"varientName": "כניסה מבוגר",
+					"price": 100,
+					"discount": 50,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "3",
+					"sale": true,
+					"outofStock": false
+				},
+				{
+					"varientName": "כניסה ילד",
+					"price": 100,
+					"discount": 40,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "3",
+					"sale": false,
+					"outofStock": true
+				}
+			]
+		},
+		{
+			"id": "5",
+			"name": "מיקי וציפי בקרקס - כרטיסים",
+			"imges": ["hami-gash.png", "hami-gash.png", "hami-gash.png"],
+			"shortDescription": "להנות מ2 הופעות של הכוכבים הכי גדולים במדינה בכרטיס 1 ורק בפסטיבל סוף חורף אפשר יהיה בגוט טלנט שנה שעברה עם מופע פעלולים בלתי נשכח",
+			"price": 300,
+			"discount": 40,
+			"location": "israel",
+			"eventDate": "14.2.2019",
+			"moreInfo": "געש מרחצאות געש הם עולם אקסולובי של פינוק לגוף ולנשמה מכל מקום נמצתא אתר המחרצאות הספרא הנופש והבילוי מרחצאות במרכז הארץ 12 דקות מתל אביב ובמרחק מסיעה קרהצ",
+			"phone": "0395862919",
+			"mapLandMarks": [
+				{
+					"altitude": 32.098766,
+					"latitude": 34.863983
+				}
+			],
+			"categoryType": "show",
+			"varients": [
+				{
+					"varientName": "כניסה מבוגר",
+					"price": 100,
+					"discount": 50,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "3",
+					"sale": true,
+					"outofStock": false
+				},
+				{
+					"varientName": "כניסה ילד",
+					"price": 100,
+					"discount": 40,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "3",
+					"sale": false,
+					"outofStock": true
+				}
+			]
+		},
+		{
+			"id": "6",
+			"name": "מיקי וציפי בקרקס - כרטיסים",
+			"imges": ["hami-gash.png", "hami-gash.png", "hami-gash.png"],
+			"shortDescription": "להנות מ2 הופעות של הכוכבים הכי גדולים במדינה בכרטיס 1 ורק בפסטיבל סוף חורף אפשר יהיה בגוט טלנט שנה שעברה עם מופע פעלולים בלתי נשכח",
+			"price": 300,
+			"discount": 40,
+			"location": "israel",
+			"eventDate": "14.2.2019",
+			"moreInfo": "געש מרחצאות געש הם עולם אקסולובי של פינוק לגוף ולנשמה מכל מקום נמצתא אתר המחרצאות הספרא הנופש והבילוי מרחצאות במרכז הארץ 12 דקות מתל אביב ובמרחק מסיעה קרהצ",
+			"phone": "0395862919",
+			"mapLandMarks": [
+				{
+					"altitude": 32.098766,
+					"latitude": 34.863983
+				}
+			],
+			"categoryType": "show",
+			"varients": [
+				{
+					"varientName": "כניסה מבוגר",
+					"price": 100,
+					"discount": 50,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "3",
+					"sale": true,
+					"outofStock": false
+				},
+				{
+					"varientName": "כניסה ילד",
+					"price": 100,
+					"discount": 40,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "3",
+					"sale": false,
+					"outofStock": true
+				}
+			]
+		},
+		{
+			"id": "7",
+			"name": "מיקי וציפי בקרקס - כרטיסים",
+			"imges": ["hami-gash.png", "hami-gash.png", "hami-gash.png"],
+			"shortDescription": "להנות מ2 הופעות של הכוכבים הכי גדולים במדינה בכרטיס 1 ורק בפסטיבל סוף חורף אפשר יהיה בגוט טלנט שנה שעברה עם מופע פעלולים בלתי נשכח",
+			"price": 300,
+			"discount": 40,
+			"location": "israel",
+			"eventDate": "14.2.2019",
+			"moreInfo": "געש מרחצאות געש הם עולם אקסולובי של פינוק לגוף ולנשמה מכל מקום נמצתא אתר המחרצאות הספרא הנופש והבילוי מרחצאות במרכז הארץ 12 דקות מתל אביב ובמרחק מסיעה קרהצ",
+			"phone": "0395862919",
+			"mapLandMarks": [
+				{
+					"altitude": 32.098766,
+					"latitude": 34.863983
+				}
+			],
+			"categoryType": "show",
+			"varients": [
+				{
+					"varientName": "כניסה מבוגר",
+					"price": 100,
+					"discount": 50,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "3",
+					"sale": true,
+					"outofStock": false
+				},
+				{
+					"varientName": "כניסה ילד",
+					"price": 100,
+					"discount": 40,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "3",
+					"sale": false,
+					"outofStock": true
+				}
+			]
+		},
+		{
+			"id": "8",
+			"name": "מיקי וציפי בקרקס - כרטיסים",
+			"imges": ["hami-gash.png", "hami-gash.png", "hami-gash.png"],
+			"shortDescription": "להנות מ2 הופעות של הכוכבים הכי גדולים במדינה בכרטיס 1 ורק בפסטיבל סוף חורף אפשר יהיה בגוט טלנט שנה שעברה עם מופע פעלולים בלתי נשכח",
+			"price": 300,
+			"discount": 40,
+			"location": "israel",
+			"eventDate": "14.2.2019",
+			"moreInfo": "געש מרחצאות געש הם עולם אקסולובי של פינוק לגוף ולנשמה מכל מקום נמצתא אתר המחרצאות הספרא הנופש והבילוי מרחצאות במרכז הארץ 12 דקות מתל אביב ובמרחק מסיעה קרהצ",
+			"phone": "0395862919",
+			"mapLandMarks": [
+				{
+					"altitude": 32.098766,
+					"latitude": 34.863983
+				}
+			],
+			"categoryType": "show",
+			"varients": [
+				{
+					"varientName": "כניסה מבוגר",
+					"price": 100,
+					"discount": 50,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "3",
+					"sale": true,
+					"outofStock": false
+				},
+				{
+					"varientName": "כניסה ילד",
+					"price": 100,
+					"discount": 40,
+					"validDate": "31/03/2020",
+					"quantity": 2,
+					"maxToBuy": "3",
+					"sale": false,
+					"outofStock": true
+				}
+			]
+		}
+	],
+
+	"categoryForMenu": [
+		{
+			"id": 1,
+			"name": "בילוי ופנאי",
+			"subCategories": [
+				{
+					"id": 11,
+					"name": "אטרקציות"
+				},
+				{
+					"id": 12,
+					"name": "חוויה קולינרית"
+				},
+				{
+					"id": 13,
+					"name": "טיולים וסיורים"
+				},
+				{
+					"id": 14,
+					"name": "פארק מים ובריכות"
+				},
+				{
+					"id": 15,
+					"name": "קולנוע"
+				},
+				{
+					"id": 16,
+					"name": "חדרי קריוקי"
+				},
+				{
+					"id": 17,
+					"name": "באולינג"
+				},
+				{
+					"id": 18,
+					"name": "חדרי בריחה"
+				},
+				{
+					"id": 19,
+					"name": "תרבות והעשרה"
+				},
+				{
+					"id": 110,
+					"name": "יופי וטיפוח"
+				},
+				{
+					"id": 111,
+					"name": "טעימות ויין"
+				},
+				{
+					"id": 112,
+					"name": "לימודים"
+				},
+				{
+					"id": 113,
+					"name": "מגזינים וספרים"
+				},
+				{
+					"id": 114,
+					"name": "טיולים וסיורים"
+				}
+			],
+			"imges": "category1background.png"
+		},
+		{
+			"id": 2,
+			"name": "מסעדות וארוחות",
+			"subCategories": [
+				{
+					"id": 21,
+					"name": "אטרקציות"
+				}
+			],
+			"imges": "category1background.png"
+		},
+		{
+			"id": 3,
+			"name": "תיירות ונופש",
+			"subCategories": [
+				{
+					"id": 31,
+					"name": "אטרקציות"
+				}
+			],
+			"imges": "category1background.png"
+		},
+		{
+			"id": 4,
+			"name": "מופעים והצגות",
+			"subCategories": [
+				{
+					"id": 41,
+					"name": "אטרקציות"
+				}
+			],
+			"imges": "category1background.png"
+		},
+		{
+			"id": 5,
+			"name": "ספא",
+			"subCategories": [
+				{
+					"id": 51,
+					"name": "אטרקציות"
+				}
+			],
+			"imges": "category1background.png"
+		},
+		{
+			"id": 6,
+			"name": "מבצעי רכב",
+			"subCategories": [
+				{
+					"id": 61,
+					"name": "אטרקציות"
+				}
+			],
+			"imges": "category1background.png"
+		},
+		{
+			"id": 7,
+			"name": "צרכנות",
+			"subCategories": [
+				{
+					"id": 71,
+					"name": "אטרקציות"
+				}
+			],
+			"imges": "category1background.png"
+		},
+		{
+			"id": 8,
+			"name": "כושר וספורט",
+			"subCategories": [
+				{
+					"id": 81,
+					"name": "אטרקציות"
+				}
+			],
+			"imges": "category1background.png"
+		},
+		{
+			"id": 9,
+			"name": "כושר וספורט",
+			"subCategories": [
+				{
+					"id": 91,
+					"name": "אטרקציות"
+				}
+			],
+			"imges": "category1background.png"
+		},
+		{
+			"id": 10,
+			"name": "ביטוח ופיננסים",
+			"subCategories": [
+				{
+					"id": 101,
+					"name": "אטרקציות"
+				}
+			],
+			"imges": "category1background.png"
+		},
+		{
+			"id": 11,
+			"name": "גמלאים ונהנים",
+			"subCategories": [
+				{
+					"id": 111,
+					"name": "אטרקציות"
+				}
+			],
+			"imges": "category1background.png"
+		}
+	],
+
+	"leafCategories": [
+		{
+			"id": "2",
+			"name": "אטרקציות",
+			"imges": "category1background.png",
+			"subCategories": [
+				{
+					"id": "111",
+					"name": "חופשה בקפריסין",
+					"shortDescription": "הכוכבים הכי גדולים במדינה בכרטיס 1 אפשר יהיה להנות מ2 הופעות רק בפסטיבל סוף חורף",
+					"imges": ["category1background.png"],
+					"location": "האי קפריסין",
+					"price": 300,
+					"discountTitle": "החל מ 190 שח",
+					"isLeaf": true
+				},
+				{
+					"id": "112",
+					"name": "סינמה סיטי VIP ",
+					"shortDescription": "הכוכבים הכי גדולים במדינה בכרטיס 1 אפשר יהיה להנות מ2 הופעות רק בפסטיבל סוף חורף",
+					"imges": ["category1background.png"],
+					"location": "ראשון לציון",
+					"price": 300,
+					"discountTitle": "החל מ 190 שח",
+					"isLeaf": true
+				},
+				{
+					"id": "113",
+					"name": " מרכז ליופי",
+					"shortDescription": "הכוכבים הכי גדולים במדינה בכרטיס 1 אפשר יהיה להנות מ2 הופעות רק בפסטיבל סוף חורף",
+					"imges": ["category1background.png"],
+					"location": "חדרה",
+					"price": 300,
+					"discountTitle": "החל מ 190 שח",
+					"isLeaf": true
+				},
+				{
+					"id": "114",
+					"name": "חמי געש",
+					"shortDescription": "הכוכבים הכי גדולים במדינה בכרטיס 1 אפשר יהיה להנות מ2 הופעות רק בפסטיבל סוף חורף",
+					"imges": ["category1background.png"],
+					"location": "חמי געש",
+					"price": 300,
+					"discountTitle": "החל מ 190 שח",
+					"isLeaf": true
+				},
+				{
+					"id": "115",
+					"name": "חופשה בקפריסין",
+					"imges": ["category1background.png"],
+					"location": "האי קפריסין",
+					"price": 300,
+					"discountTitle": "החל מ 190 שח",
+					"isLeaf": true
+				},
+				{
+					"id": "116",
+					"name": "סינמה סיטי VIP ",
+					"imges": ["category1background.png"],
+					"location": "ראשון לציון",
+					"price": 300,
+					"discountTitle": "החל מ 190 שח",
+					"isLeaf": true
+				},
+				{
+					"id": "117",
+					"name": " מרכז ליופי",
+					"imges": ["category1background.png"],
+					"location": "חדרה",
+					"price": 300,
+					"discountTitle": "החל מ 190 שח",
+					"isLeaf": true
+				},
+				{
+					"id": "118",
+					"name": "חמי געש",
+					"imges": ["category1background.png"],
+					"location": "חמי געש",
+					"price": 300,
+					"discountTitle": "החל מ 190 שח",
+					"isLeaf": true
+				}
+			],
+			"isLeaf": false
+		}
+	],
+
+	"categoryForCategoryLobby": [
+		{
+			"id": 1,
+			"name": "בילוי ופנאי",
+			"subCategories": [
+				{
+					"id": 2,
+					"name": "אטרקציות",
+					"imges": "category1background.png",
+					"subCategories": [
+						{
+							"id": 111,
+							"name": "חופשה בקפריסין",
+							"imges": "category1background.png",
+							"location": "האי קפריסין",
+							"price": 300,
+							"isLeaf": true
+						},
+						{
+							"id": 112,
+							"name": "סינמה סיטי VIP ",
+							"imges": "category1background.png",
+							"location": "ראשון לציון",
+							"price": 300,
+							"isLeaf": true
+						},
+						{
+							"id": 113,
+							"name": "סטייליש מרכז ליופי וקוסמטיקה",
+							"imges": "category1background.png",
+							"location": "חדרה",
+							"price": 300,
+							"isLeaf": true
+						},
+						{
+							"id": 114,
+							"name": "חמי געש",
+							"imges": "category1background.png",
+							"location": "חמי געש",
+							"price": 300,
+							"isLeaf": true
+						}
+					],
+					"isLeaf": true
+				},
+				{
+					"id": 12,
+					"name": "חוויה קולינרית",
+					"imges": "category1background.png",
+					"isLeaf": false
+				},
+				{
+					"id": 13,
+					"name": "טיולים וסיורים",
+					"imges": "category1background.png",
+					"isLeaf": false
+				},
+				{
+					"id": 14,
+					"name": "פארק מים ובריכות",
+					"imges": "category1background.png",
+					"isLeaf": false
+				},
+				{
+					"id": 15,
+					"name": "קולנוע",
+					"imges": "category1background.png",
+					"isLeaf": false
+				},
+				{
+					"id": 16,
+					"name": "חדרי קריוקי",
+					"imges": "category1background.png",
+					"isLeaf": false
+				},
+				{
+					"id": 17,
+					"name": "באולינג",
+					"imges": "category1background.png",
+					"isLeaf": false
+				},
+				{
+					"id": 18,
+					"name": "חדרי בריחה",
+					"imges": "category1background.png",
+					"isLeaf": false
+				},
+				{
+					"id": 19,
+					"name": "תרבות והעשרה",
+					"imges": "category1background.png",
+					"isLeaf": false
+				},
+				{
+					"id": 110,
+					"name": "יופי וטיפוח",
+					"imges": "category1background.png",
+					"isLeaf": false
+				},
+				{
+					"id": 111,
+					"name": "טעימות ויין",
+					"imges": "category1background.png",
+					"isLeaf": false
+				},
+				{
+					"id": 112,
+					"name": "לימודים",
+					"imges": "category1background.png",
+					"isLeaf": false
+				},
+				{
+					"id": 113,
+					"name": "מגזינים וספרים",
+					"imges": "category1background.png",
+					"isLeaf": false
+				},
+				{
+					"id": 114,
+					"name": "טיולים וסיורים",
+					"imges": "category1background.png",
+					"isLeaf": false
+				}
+			],
+			"imges": "category1background.png",
+			"isLeaf": false
+		},
+		{
+			"id": 12,
+			"name": "מסעדות וארוחות",
+			"subCategories": [
+				{
+					"id": 3,
+					"name": "dsfsdfdsfsdf",
+					"imges": "category1background.png",
+					"isLeaf": true
+				}
+			],
+			"imges": "category1background.png",
+			"isLeaf": false
+		},
+		{
+			"id": 3,
+			"name": "תיירות ונופש",
+			"subCategories": [
+				{
+					"id": 31,
+					"name": "אטרקציות",
+					"imges": "category1background.png",
+					"isLeaf": true
+				}
+			],
+			"imges": "category1background.png",
+			"isLeaf": false
+		},
+		{
+			"id": 4,
+			"name": "מופעים והצגות",
+			"subCategories": [
+				{
+					"subCategoryId": 41,
+					"category": "אטרקציות",
+					"img": "category1background.png",
+					"isLeaf": true
+				}
+			],
+			"imges": "category1background.png",
+			"isLeaf": false
+		},
+		{
+			"id": 5,
+			"name": "ספא",
+			"subCategories": [
+				{
+					"id": 51,
+					"name": "אטרקציות",
+					"imges": "category1background.png",
+					"isLeaf": true
+				}
+			],
+			"imges": "category1background.png",
+			"isLeaf": false
+		},
+		{
+			"id": 6,
+			"name": "מבצעי רכב",
+			"subCategories": [
+				{
+					"id": 61,
+					"name": "אטרקציות",
+					"imges": "category1background.png",
+					"isLeaf": true
+				}
+			],
+			"imges": "category1background.png",
+			"isLeaf": false
+		},
+		{
+			"id": 7,
+			"name": "צרכנות",
+			"subCategories": [
+				{
+					"name": 71,
+					"id": "אטרקציות",
+					"imges": "category1background.png",
+					"isLeaf": true
+				}
+			],
+			"imges": "category1background.png",
+			"isLeaf": false
+		},
+		{
+			"id": 8,
+			"name": "כושר וספורט",
+			"subCategories": [
+				{
+					"id": 81,
+					"name": "אטרקציות",
+					"imges": "category1background.png",
+					"isLeaf": true
+				}
+			],
+			"imges": "category1background.png",
+			"isLeaf": false
+		},
+		{
+			"id": 9,
+			"name": "כושר וספורט",
+			"subCategories": [
+				{
+					"id": 91,
+					"name": "אטרקציות",
+					"imges": "category1background.png",
+					"isLeaf": true
+				}
+			],
+			"imges": "category1background.png",
+			"isLeaf": false
+		},
+		{
+			"id": 100,
+			"name": "ביטוח ופיננסים",
+			"subCategories": [
+				{
+					"id": 1001,
+					"name": "אטרקציות",
+					"imges": "category1background.png",
+					"isLeaf": true
+				}
+			],
+			"imges": "category1background.png",
+			"isLeaf": false
+		},
+		{
+			"id": 101,
+			"name": "גמלאים ונהנים",
+			"subCategories": [
+				{
+					"id": 1011,
+					"name": "אטרקציות",
+					"imges": "category1background.png",
+					"isLeaf": true
+				}
+			],
+			"imges": "category1background.png",
+			"isLeaf": false
+		}
+	]
+}

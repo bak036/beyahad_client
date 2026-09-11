@@ -1,0 +1,48 @@
+.contact-approval-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  .contact-approval-error {
+    color: red;
+    margin-right: 28px;
+    margin-top: 4px;
+    font-weight: bold;
+  }
+
+  .contact-approval-checkbox-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+
+    .checkbox-error {
+      input {
+        outline: 2px solid red;
+        outline-offset: -1px;
+      }
+    }
+
+    .control {
+      margin-top: 2px;
+      position: relative;
+    }
+
+    .agreement-text {
+      flex: 1;
+      padding-bottom: 20px;
+
+      @media only screen and (min-width: $max-mobile-width) {
+        padding-bottom: 10px;
+      }
+
+      .agree-item-text {
+        font-family: "Rubik-Regular";
+        font-size: 14px;
+
+        @media only screen and (min-width: $max-mobile-width) {
+          color: #000;
+        }
+      }
+    }
+  }
+}

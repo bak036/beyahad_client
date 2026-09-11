@@ -1,0 +1,557 @@
+@media only screen and (min-width:$max-mobile-width) {
+	.card-with-btn {
+		border: 0.1px solid lightgray;
+		background-color: white;
+		margin-right: 21px;
+		margin-bottom: 19px;
+		padding-top: 10px;
+		width: 340px;
+		border: none;
+		box-shadow: $box-shadow-element;
+		border-radius: $border-radius-element;
+
+		.card-main-container {
+			// background-image: url('../assets/wallet.png');
+			background-size: 100% 100%;
+			border-radius: 7px;
+			height: fit-content;
+			width: fit-content;
+			margin: 0px 15px;
+			padding-top: 7px;
+			margin-bottom: 10px;
+
+			.card-inner-container {
+				.header-container {
+					font-family: 'Rubik-Bold';
+					height: 90px;
+
+					.item-text {
+						font-family: 'Rubik-Regular';
+						word-wrap: break-word;
+						width: 100%;
+
+						.custom-span-text {
+							font-size: 16px;
+							font-weight: bold;
+							line-height: 20px;
+						}
+					}
+
+					.sub-header {
+						margin-top: 10px;
+						width: 100%;
+
+						.custom-span-text {
+							font-size: 14px;
+							font-weight: normal;
+						}
+					}
+				}
+
+				.content-container {
+					border: 1px solid lightgrey;
+					height: 130px;
+					width: 280px;
+					text-align: right;
+					margin: auto;
+					padding: 0;
+					border-radius: $border-radius-element;
+					margin-top: 10px;
+					background-repeat: no-repeat;
+					background-size: cover;
+
+					.item-text {
+						.custom-span-text {
+							font-size: 12px;
+						}
+					}
+
+					.max-cancel-balance-container {
+						display: flex;
+						justify-content: flex-start;
+						margin-top: 0px;
+
+						.balance-right {
+							padding-top: 5px;
+							padding-left: 10px;
+
+							.custom-span-text {
+								font-size: 14px;
+								color: red;
+							}
+						}
+
+						.balance-left {
+							margin-top: 3px;
+							padding: 5px;
+							font-size: 18px;
+							background-color: white;
+							border: 0.1px solid lightgray;
+						}
+					}
+
+					.new-balance-container {
+						display: flex;
+						flex-direction: column;
+						justify-content: flex-start;
+						font-family: 'Rubik-Bold';
+						width: max-content;
+						margin: auto;
+						color: #000000;
+						margin-right: 28%;
+
+						.balance-right {
+							padding-top: 18px;
+							padding-left: 10px;
+
+							.custom-span-text {
+								font-size: 16px;
+							}
+						}
+
+						.balance-left {
+							margin-top: 3px;
+							font-size: 24px;
+							width: max-content;
+							font-weight: bold;
+						}
+
+						.recharge-balance {
+							margin-top: 10px;
+							font-family: 'Rubik-Regular';
+							font-size: 14px;
+						}
+					}
+				}
+			}
+		}
+
+		.load-and-payment {
+			display: flex;
+			max-width: 280px;
+			margin: auto;
+
+			.new-card-btn {
+				font-family: 'Rubik-Bold';
+				font-size: 16px;
+				color: #ffffff;
+				display: flex;
+				flex-direction: column;
+				background: $color-blue-normal;
+				width: 133px;
+				margin: auto;
+				border-radius: $border-radius-element;
+				padding: 20px 0;
+				height: 98px;
+				cursor: pointer;
+
+				div {
+					width: max-content;
+					margin: auto;
+				}
+
+				.text-wallet {
+					margin-top: 10px;
+				}
+
+				&.button-disabled {
+					background: #ccc;
+				}
+
+				&.button-hover:hover {
+					@media only screen and (max-width:$max-mobile-width) {
+						cursor: pointer;
+						background: #009fd9;
+					}
+
+					// color: $color-blue-normal;
+				}
+			}
+		}
+
+		.blue-button {
+			color: $color-blue-normal;
+			font-family: 'Rubik-Bold';
+			font-size: 16px;
+			width: 80%;
+			margin: auto;
+			border: solid 1px $color-blue-light;
+			padding: 10px 0;
+			border-radius: 10px;
+			text-align: center;
+			margin-top: 10px;
+
+			&.margin-buttom {
+				margin-bottom: 20px;
+			}
+
+			&.blue-button-disabled {
+				color: #c1c1c1;
+				border-color: #c1c1c1;
+				cursor: default;
+			}
+
+		}
+
+		.blue-button-hover:hover {
+			cursor: pointer;
+			background: #009fd9;
+			color: #ffffff;
+		}
+
+		.blue-button-hover.blue-button-disabled:hover {
+			color: #c1c1c1;
+			border-color: #c1c1c1;
+			cursor: default;
+
+		}
+	}
+}
+
+
+
+
+@media only screen and (max-width:$max-mobile-width) {
+	.card-with-btn {
+		border: 0.1px solid lightgray;
+		background-color: white;
+		margin-right: 15px;
+		margin-bottom: 19px;
+		padding-top: 10px;
+		width: 286px;
+		border: none;
+		box-shadow: $box-shadow-element;
+		border-radius: $border-radius-element;
+		margin-top: 10px;
+
+		.card-main-container {
+			// background-image: url('../assets/wallet.png');
+			background-size: 100% 100%;
+			border-radius: 7px;
+			height: fit-content;
+			width: fit-content;
+			margin: 0px 15px;
+			padding-top: 7px;
+			margin-bottom: 10px;
+
+			.card-inner-container {
+				.header-container {
+					padding: 0 8px;
+					font-family: 'Rubik-Bold';
+
+					.item-text {
+						width: 80%;
+						font-family: 'Rubik-Regular';
+						word-wrap: break-word;
+
+						.custom-span-text {
+							font-size: 14px;
+							font-weight: bold;
+							line-height: 20px;
+						}
+					}
+
+					.sub-header {
+						margin-top: 10px;
+
+						.custom-span-text {
+							font-size: 12px;
+							font-weight: normal;
+						}
+					}
+
+					.property {
+						font-family: 'Rubik-Light';
+						font-size: 12px;
+						font-weight: 300;
+						font-stretch: normal;
+						font-style: normal;
+						line-height: 1.58;
+						letter-spacing: normal;
+
+						.bold {
+							font-family: 'Rubik-Bold';
+						}
+					}
+				}
+
+				.content-container {
+					border: 1px solid lightgrey;
+					width: 246px;
+					height: 115px;
+					background-size: 246px 115px;
+					text-align: right;
+					margin: auto;
+					padding: 0;
+					border-radius: $border-radius-element;
+					margin-top: 10px;
+					background-repeat: no-repeat;
+					background-size: cover;
+
+					.item-text {
+						.custom-span-text {
+							font-size: 12px;
+						}
+					}
+
+					.max-cancel-balance-container {
+						display: flex;
+						justify-content: flex-start;
+						margin-top: 0px;
+
+						.balance-right {
+							padding-top: 5px;
+							padding-left: 10px;
+
+							.custom-span-text {
+								font-size: 14px;
+								color: red;
+							}
+						}
+
+						.balance-left {
+							margin-top: 3px;
+							padding: 5px;
+							font-size: 18px;
+							background-color: white;
+							border: 0.1px solid lightgray;
+						}
+					}
+
+					.new-balance-container {
+						display: flex;
+						flex-direction: column;
+						justify-content: flex-start;
+						font-family: 'Rubik-Bold';
+						width: max-content;
+						margin: auto;
+						color: #000000;
+						margin-right: 28%;
+
+						.balance-right {
+							padding-top: 18px;
+							padding-left: 10px;
+
+							.custom-span-text {
+								font-size: 14px;
+							}
+						}
+
+						.balance-left {
+							margin-top: 3px;
+							font-size: 18px;
+							width: max-content;
+							font-weight: bold;
+						}
+
+						.recharge-balance {
+							margin-top: 10px;
+							font-family: 'Rubik-Regular';
+							font-size: 12px;
+						}
+					}
+				}
+			}
+		}
+
+		.load-and-payment {
+			display: flex;
+			max-width: 255px;
+			margin: auto;
+
+			.new-card-btn {
+				.img-wallet-right {
+					img {
+						content: url('../assets/wallet-mobile.png');
+					}
+				}
+
+				.img-wallet-left {
+					img {
+						content: url('../assets/pay-card-mobile.png');
+					}
+				}
+
+				font-family: 'Rubik-Bold';
+				font-size: 14px;
+				color: #ffffff;
+				display: flex;
+				flex-direction: column;
+				background: $color-blue-normal;
+				width: 118px;
+				margin: auto;
+				border-radius: $border-radius-element;
+				padding: 20px 0;
+				height: 98px;
+				cursor: pointer;
+
+				div {
+					width: max-content;
+					margin: auto;
+				}
+
+				.text-wallet {
+					margin-top: 10px;
+				}
+
+				&.button-disabled {
+					background: #ccc;
+				}
+
+				&.button-hover:hover {
+					@media only screen and (min-width:$max-mobile-width) {
+						cursor: pointer;
+						background: #009fd9;
+					}
+
+					// color: $color-blue-normal;
+				}
+			}
+		}
+
+		.blue-button {
+			color: $color-blue-normal;
+			font-family: 'Rubik-Bold';
+			font-size: 16px;
+			width: 246px;
+			margin: auto;
+			border: solid 1px $color-blue-light;
+			padding: 10px 0;
+			border-radius: 10px;
+			text-align: center;
+			margin-top: 10px;
+
+			&.margin-buttom {
+				margin-bottom: 20px;
+			}
+
+			&.blue-button-disabled {
+				color: #c1c1c1;
+				border-color: #c1c1c1;
+			}
+		}
+
+		.blue-button-hover:hover {
+			cursor: pointer;
+			background: $color-blue-normal;
+			color: #ffffff;
+		}
+	}
+}
+
+// @media only screen and (max-width:$max-mobile-width) {
+// 	.card-with-btn {
+// 		margin-left: 10px;
+// 		margin-top: 10px;
+// 		border: 0.1px solid lightgray;
+// 		background-color: white;
+// 		width: 96%;
+// 		margin: auto;
+// 		margin-left: 10px;
+// 		padding-right: 10px;
+// 		padding-left: 10px;
+
+// 		.card-main-container {
+// 			height: fit-content;
+// 			background-image: url('../assets/wallet.png');
+// 			background-repeat: no-repeat;
+// 			background-size: 234px 147px;
+// 			width: 234px;
+// 			margin: auto;
+// 			margin-bottom: 10px;
+// 			margin-top: 10px;
+// 			border-radius: 7px;
+
+// 			.card-inner-container {
+// 				width: 250px;
+// 				margin-right: 60px;
+// 				padding-top: 20px;
+
+// 				.header-container {
+// 					padding-top: 10px;
+// 					padding-right: 14px;
+// 					text-align: right;
+// 					max-width: 140px;
+// 					.item-text {
+// 						word-wrap: break-word;
+// 						.custom-span-text {
+// 							font-size: 12px;
+// 						}
+// 					}
+// 				}
+// 				.content-container {
+// 					text-align: right;
+// 					padding-top: 10px;
+// 					.item-text {
+// 						.custom-span-text {
+// 							font-size: 14px;
+// 							max-width: 140px;
+// 						}
+// 					}
+// 					.max-cancel-balance-container {
+// 						display: flex;
+// 						justify-content: flex-start;
+// 						margin-top: 0px;
+
+// 						.balance-right {
+// 							padding-top: 3px;
+// 							padding-left: 10px;
+// 							.custom-span-text {
+// 								font-size: 18px;
+// 								color: red;
+// 							}
+// 						}
+
+// 						.balance-left {
+// 							padding: 5px;
+// 							background-color: white;
+// 							border: 0.1px solid lightgray;
+// 						}
+// 					}
+// 					.new-balance-container {
+// 						display: flex;
+// 						justify-content: flex-start;
+// 						margin-top: 10px;
+
+// 						.balance-right {
+// 							padding-top: 3px;
+// 							padding-left: 10px;
+// 							.custom-span-text {
+// 								font-size: 18px;
+// 							}
+// 						}
+
+// 						.balance-left {
+// 							padding: 5px;
+// 							background-color: white;
+// 							border: 0.1px solid lightgray;
+// 						}
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+// }
+@media only screen and (max-width:$max-mobile-width) {
+	.card-with-btn {
+		.card-main-container {
+			.card-inner-container {
+				.header-container {
+					height: 90px;
+
+					.item-text,
+					.sub-header {
+						width: 100%;
+					}
+
+				}
+			}
+		}
+	}
+
+}
+
+.club-color-text {
+	color: #0057b8;
+	/* החלף בצבע המועדון */
+}

@@ -1,0 +1,31 @@
+.transaction-component-container {
+	display: flex;
+	.sum {
+		direction: ltr;
+		text-align: right
+	}
+	.transaction-item {
+		flex-grow: 1;
+		// padding: 10px;
+		width: 25%;
+	}
+}
+
+.btn-open-and-close-details {
+	width: fit-content;
+	margin: auto;
+}
+
+.transaction-component-container-block {
+	.sum {
+		direction: ltr;
+		text-align: right
+	}
+
+	padding-top: 8px;
+	margin-bottom: 10px;
+
+	.transaction-component-block-item {
+		padding-bottom: 5px;
+	}
+}

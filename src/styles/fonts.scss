@@ -1,0 +1,56 @@
+@font-face {
+	font-family: 'OEMishtameshPro';
+	// prettier-ignore
+	src: url('../assets/fonts/OEMishtameshPro-Regular.woff2') format('woff2'),
+	url('../assets/fonts/OEMishtameshPro-Regular.woff') format('woff'),
+	url('../assets/fonts/OEMishtameshPro-Regular.eot');
+	font-weight: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'OEMishtameshPro';
+	// prettier-ignore
+	src: url('../assets/fonts/OEMishtameshPro-Bold.woff2') format('woff2'),
+	url('../assets/fonts/OEMishtameshPro-Bold.woff') format('woff'),
+	url('../assets/fonts/OEMishtameshPro-Bold.eot');
+	font-weight: bold;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Rubik-Medium';
+	src: url('../assets/fonts/Rubik-Medium.ttf');
+}
+
+
+@font-face {
+	font-family: 'Rubik-Bold';
+	src: url('../assets/fonts/Rubik-Bold.ttf');
+}
+
+@font-face {
+	font-family: 'Rubik-Regular';
+	src: url('../assets/fonts/Rubik-Regular.ttf');
+}
+
+@font-face {
+	font-family: 'Rubik-Light';
+	src: url('../assets/fonts/Rubik-Light.ttf');
+}
+
+@font-face {
+	font-family: 'Rubik-BoldItalic';
+	src: url('../assets/fonts/Rubik-BoldItalic.ttf');
+}
+
+@font-face {
+	font-family: 'Rubik-Black';
+	src: url('../assets/fonts/Rubik-Black.ttf');
+}
+
+html,
+body {
+	font-family: 'Rubik-Regular', sans-serif;
+	font-weight: normal;
+}

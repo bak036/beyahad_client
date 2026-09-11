@@ -1,0 +1,464 @@
+.city-container {
+	.custom-auto-complete-container {
+		margin-top: 0px;
+	}
+}
+
+.edit-user-inputs {
+
+	.title-seconde {
+		h1 {
+			font-size: 1.3rem;
+			margin: 20px 0 0 0;
+		}
+	}
+
+	.disabled {
+		background-color: #f4f4f6 !important;
+
+	}
+.edit-user-inputs-date-profile,
+	.edit-user-inputs-date-container {
+		input {
+			font-size: 1rem;
+			padding-left: 10px;
+			background-color: white;
+		}
+	}
+	
+	.row {
+		@media only screen and (min-width: $max-mobile-width) {
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+			margin-bottom: 10px;
+		}
+		.custom-input-text-container {
+			margin: 0;
+		}
+	.edit-user-inputs-date-profile,
+			.custom-input-text-container,
+			.edit-user-inputs-date-container,
+			.row-with-2-equal-elements,
+			.phone-number-container,
+			.working-place,
+			.email,
+			.street-auto-container,
+			.three-elements,
+			.city {
+				// width: 100%;
+				@media only screen and (max-width: $max-mobile-width) {
+					.hight-14px{
+						height: 14px;
+					}
+				}
+				@media only screen and (min-width: $max-mobile-width) {
+					width: 31.5%;
+					position: relative;
+				}
+
+				input,
+				.custom-input-text-input-container,
+				.custom-auto-complete-input-container {
+					border-radius: 5px;
+				}
+			}
+			.number-container {
+				div {
+					width: 100%;
+				}
+			}
+
+			.working-place,.email,.Postal-code {
+				.custom-input-text-container {
+					width: 100%;
+				}
+			}
+
+			.row-with-2-equal-elements>div {
+				width: 48%;
+			}
+			
+			&.first-line{
+				@media only screen and (min-width: $max-mobile-width) {
+					margin-bottom: 24px;
+				}
+			}
+		}
+
+	.two-element {
+		justify-content: flex-start;
+
+		.edit-user-inputs-date-container,
+		.Mailbox-input {
+			margin-left: 2.5%;
+		}
+		.Postal-code{
+			margin-top: 9px;
+			width: 33%;
+		}
+		.Mailbox-input {
+			margin-top: 9px;
+			width: 64.5%; 
+			display: flex;
+			justify-content: space-between;
+			.custom-input-text-container {
+				width: 100%;
+			}
+		}
+
+	}
+	.working-place,.email{
+		@media only screen and (max-width: $max-mobile-width) {
+			margin-top: 14px;
+		}
+	}
+	.phone-number-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+
+		.disabled-wrapper select {
+			background-color: #F4F4F6;
+			pointer-events: none;
+
+		}
+
+		@media only screen and (max-width: $max-mobile-width) {
+			margin-top: 14px;
+		}
+		.phone-number-row {
+			display: flex;
+			width: 100%;
+
+			.error {
+				margin-top: 2px;
+				background-image:url('../assets/icons/warning.svg');
+				background-position-x: right;
+				background-size: 10px;
+				display: block;
+				background-repeat: no-repeat;
+				padding-right: 15px;
+				font-size: 1rem;
+			}
+
+
+			.area-code-container {
+				flex-grow: 1;
+				margin-top: 15px;
+
+				.custom-selector-container {
+					.custom-select-input-container {
+						select {
+							border: 1px solid lightgray;
+							height: 33px;
+							@media only screen and (min-width: $max-mobile-width) {
+								margin-top: -1px;
+							}
+
+
+						}
+					}
+				}
+
+				.area-code-red {
+					.custom-selector-container {
+						.custom-select-input-container {
+							select {
+								height: 33px;
+								border-width: 2px;
+								border-color: red;
+								@media only screen and (min-width: $max-mobile-width) {
+									margin-top: -1px;
+								}
+
+
+							}
+						}
+					}
+				}
+			}
+
+			.number-container {
+				flex-grow: 3;
+				padding-left: 5px;
+
+				.without-area-code-red {
+					.custom-input-text-container {
+						.custom-input-text-container-without-error {
+							.custom-input-text-input-container {
+								background-color: red;
+								padding: 2px;
+
+								input {
+									padding: 0;
+								}
+							}
+						}
+					}
+				}
+			}
+
+		}
+	}
+
+	.city-container {
+		.label-city{
+			font-family: 'Rubik-Regular';
+    		font-size: 16px;
+    		font-weight: 300;
+    		font-stretch: normal;
+    		font-style: normal;
+    		line-height: 1.19;
+    		letter-spacing: normal;
+    		color: #000;
+    		text-align: right;
+		}
+		.city-input{
+			border: 1px solid lightgray;
+			background: white;
+			height: 40px;
+			display: flex;
+			flex-flow: column;
+			font-family: 'Rubik-Regular';
+			font-size: 16px;
+			font-weight: 300;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 1.19;
+			letter-spacing: normal;
+			color: #000;
+			text-align: right;
+			width: 100%;
+		}
+		.red{
+			border: 2px solid red;
+		}
+		>div {
+			width: 100%;
+			z-index: 1;
+			@media only screen and (max-width: $max-mobile-width) {
+				margin-bottom: 10px;
+			}
+
+
+			.custom-selector-container {}
+
+			.custom-auto-complete-input-container {
+				border-width: 1;
+			}
+
+			.react-autosuggest__input {
+				border-width: 0;
+				appearance: none;
+			}
+		}
+
+		.city-container-other {
+			padding-top: 14px;
+		}
+
+		.city-red {
+					input{
+						border-width: 2px;
+						border-color: red;
+					}
+		}
+
+		.street-text-red {
+			input {
+				border-width: 2px;
+				border-color: red;
+			}
+		}
+		
+		.street-auto-container {
+			.custom-auto-complete-container {
+				margin-top: 0px;
+			}
+		}
+
+		.street-auto-complete-red {
+			input {
+				border-width: 2px;
+				border-color: red;
+			}
+
+			.error {
+				position: relative;
+				margin-bottom: 20px;
+
+				@media only screen and (min-width: $max-mobile-width) {
+					margin-bottom: 0px;
+				}
+			}
+		}
+	}
+
+	.row-with-2-equal-elements,
+	.three-elements {
+		display: flex;
+		justify-content: space-between;
+		flex-direction: row;
+		align-items: flex-start;
+
+		select {
+			height: 33px;
+		}
+
+		@media only screen and (max-width: $max-mobile-width) {
+			//margin-top: -8px;
+		}
+
+		>div {
+			width: 100%;
+		}
+
+		// targeting number of children misbehaving when width smaller then 70px on mobile
+		// also targeting apartment num but does no change as both margin and width are already larger
+		>div:nth-child(2) {
+			@media only screen and (max-width: $max-mobile-width) {
+				min-width: 70px;
+				margin-right: 12px;
+			}
+		}
+	}
+
+	.three-elements {
+
+		>div:nth-child(2) {
+			@media only screen and (max-width: $max-mobile-width) {
+				min-width: 0;
+				margin-right: 0;
+			}
+		}
+
+		>div {
+			width: 30%;
+		}
+	}
+
+	@media only screen and (max-width:$max-mobile-width) {
+		.cointerner-mobile {
+			width: 95%;
+			padding: 5%;
+			border-radius: 20px;
+			box-shadow: #ddd 0px 0px 20px;
+			margin: 10px auto;
+		}
+	}
+}
+
+@media only screen and (min-width:$max-mobile-width) {
+	.edit-user-inputs {
+
+		
+		.row-with-2-equal-elements,
+		.three-elements {
+			>div {
+				width: 45%;
+			}
+		}
+
+		.three-elements {
+			>div {
+				width: 30%;
+			}
+		}
+
+		.city-container {
+			.custom-selector-container {
+				margin-bottom: 0px;
+			}
+
+			>div {
+				select {
+					height: 33px;
+				}
+
+				width: 45%;
+			}
+		}
+	}
+}
+
+
+@media only screen and (min-width:$max-mobile-width) {
+	
+.half-line-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  gap: 30px; 
+
+
+  > div {
+    width: 48%;
+  }
+}
+}
+
+// .row.postal-row {
+//   display: flex;
+//   flex-wrap: nowrap;
+//   justify-content: flex-start;
+//   align-items: flex-start;
+//   gap: 16px; 
+
+//   > div {
+//     .custom-input-text-container {
+//       width: 100%;
+//     }
+//   }
+
+//   @media only screen and (min-width: $max-mobile-width) {
+//     > div.Mailbox-input {
+//       flex: 2;
+//       min-width: 0;
+	  
+//     }
+//     > div.Postal-code {
+//       flex: 1;
+//       min-width: 0;
+//     }
+//   }
+
+//   @media only screen and (max-width: $max-mobile-width) {
+//     flex-wrap: wrap;
+
+//     > div {
+//       width: 48%;
+//       margin-top: 10px;
+//     }
+//   }
+// }
+@media only screen and (max-width: $max-mobile-width) {
+  .edit-user-inputs {
+    .postal-mailbox-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+
+      .Mailbox-input {
+        margin-top: 9px;
+        width: 64.5%;
+        display: flex;
+        justify-content: space-between;
+
+        .custom-input-text-container {
+          width: 100%;
+        }
+      }
+
+      .Postal-code {
+        margin-top: 9px;
+        width: 33%;
+      }
+    }
+  }
+}
+
+
+

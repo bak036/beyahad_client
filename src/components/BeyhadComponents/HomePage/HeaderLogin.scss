@@ -1,0 +1,90 @@
+    .header-login-container {
+        height: 150px;
+        background-color: #fff;
+        box-shadow: #ddd 0px 0px 20px;
+        border-radius: 20px 20px 0 0;
+        margin-top: 18px;
+        display: flex;
+        justify-content: space-between;
+        padding: 2.5% 5% 3%  8%;
+        align-items: center;
+        .title-header-container {
+            
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 0.67;
+            letter-spacing: normal;
+            color: $color-blue-normal;
+            font-size: 35px;
+            padding: 20px 0;
+
+            .title-header {
+                font-weight: 900;
+                margin-bottom: 10px;
+                font-family: 'Rubik-black';
+            }
+
+            .second-title-header {
+                font-weight: 500;
+                font-family: 'Rubik-Medium';
+
+            }
+        }
+
+        .logo-header-container {
+            padding: 20px 0;
+            .logo-one {
+                img {
+                    width: 143px;
+                    height: 63px;
+                }
+            }
+
+            .logo-two {
+                img {
+                    width: 90px;
+                    height: 80px;
+                    margin: 0 20px 0 0;
+                }
+            }
+        }
+    }
+
+    .header-mobile-container {
+        height: 93px;
+        // background-image: url('../assets/hue-saturation-1-copy.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 25px 15px 25px 0;
+        font-family:'Rubik-Medium';
+        .title-mobile-header {
+            font-size: 30px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 0.6;
+            letter-spacing: normal;
+            color: $color-blue-normal;
+
+        }
+
+        .title-img-header-mobile {
+            display: flex;
+            .second-title-mobile-header {
+                margin: 12px 0 9px 4px;
+                font-size: 18px;
+                font-weight: 500;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: 1;
+                letter-spacing: normal;
+                color: $color-blue-normal;
+            }
+            img{
+                width: 50px;
+                height: 38px;
+                margin: 9px 2px 0 1px;
+                object-fit: contain;
+            }
+        }
+    }

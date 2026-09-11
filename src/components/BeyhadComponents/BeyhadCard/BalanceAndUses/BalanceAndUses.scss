@@ -1,0 +1,70 @@
+.hide-on-mobile {
+	display: none;
+
+	@media only screen and (min-width: $max-mobile-width) {
+		display: block;
+	}
+}
+
+.balance-container {
+
+	
+
+	border-radius: 22px;
+	box-shadow: #ddd 0px 0px 20px;
+
+	background: white;
+	padding-top: 20px;
+
+	.wallet-details-container {
+		padding-top: 10px;
+		width: 90%;
+		margin: auto;
+
+		.selector-container {
+			padding-bottom: 15px;
+		}
+
+		.wallet-details {
+			.item-detail {
+				padding-bottom: 7px;
+			}
+		}
+	}
+	// @include custom-border(1px solid #e1e1e1);
+	@media only screen and (max-width: $max-mobile-width) {
+		.custom-header-container h1.custom-header-text,.title-balance-and-uses {
+			text-align: right;
+			font-family: 'Rubik-Bold';
+			font-size: 18px;
+			font-weight: bold;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 1.06;
+			letter-spacing: normal;
+			display: block;
+			margin-right: 5%;
+		}
+
+		.seperator {
+			margin-top: 5px;
+		}
+
+		.titles-container {
+			.title-container {
+				// padding-right: 8px;
+			}
+		}
+
+		.transaction-component-container {
+			.btn {
+				display: flex;
+				flex-direction: row-reverse;
+
+				.btn-open-and-close-details {
+					margin: 0;
+				}
+			}
+		}
+	}
+}

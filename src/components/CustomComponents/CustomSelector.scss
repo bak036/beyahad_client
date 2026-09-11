@@ -1,0 +1,32 @@
+.custom-selector-container {
+	.custom-input-error-container {
+		.custom-input-error-label {
+			color: red;
+		}
+	}
+	.custom-input-label-container {
+		font-weight: bold;
+		color: #00173a;
+		margin-bottom: 10px;
+		text-align: right;
+		label {
+		}
+	}
+	.custom-select-input-container {
+		&.error {
+			border-color: #{$error-color};
+			border-width: 2px;
+		}
+
+		select {
+			text-align: center;
+			height: 33.3px;
+			width: 100%;
+			border: 1px solid lightgray;
+			background-color: white;
+			&.red-border {
+				border: 1px solid lightgray;
+			}
+		}
+	}
+}

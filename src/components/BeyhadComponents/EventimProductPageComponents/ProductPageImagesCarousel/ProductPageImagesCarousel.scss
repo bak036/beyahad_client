@@ -1,0 +1,35 @@
+.product-page-images-carousel-container {
+	height: 100%;
+	width: 100%;
+
+	> div {
+		height: 100%;
+
+		// class of react-responsive-carousel
+		.carousel.carousel-slider {
+			height: 100%;
+			border: 1px solid lightgray;
+			border-radius: 10px;
+			@media only screen and (min-width:$max-mobile-width) {
+				height: 500px;
+			}
+
+			@media only screen and (max-width:$max-mobile-width) {
+				border-radius: 20px 20px 0 0;
+			}	
+
+			.product-page-carousel-item-image-container {
+				height: 100%;
+
+				// Edit this in order to design the "img" element
+				// .product-page-carousel-image-item{}
+			}
+		}
+	}
+}
+
+.carousel.carousel-slider {
+	height: 100%;
+	// border: 1px solid lightgray;
+	border-radius: 10px;
+}

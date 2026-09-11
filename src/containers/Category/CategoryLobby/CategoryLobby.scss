@@ -1,0 +1,165 @@
+@import '../CategoriesContainer//CategoriesContainer.scss';
+@import '../CategoryLobby/CategoryLobbyFilter/CategoryLobbyFilter.scss';
+
+.category-lobby-main-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	background-color:white;
+	width: 100%;
+	margin: auto;
+	@media only screen and (max-width:$max-mobile-width){
+		width: 100%;
+		padding: 0;
+		padding: 0 15px;
+	}
+
+	.category-lobby-advertising-container {
+		width: 100%;
+		margin-top: 10px;
+	}
+
+	.header-lobby-container{
+		width: 100%;
+		height: 290px;
+		// background-image: url('../assets/Biluy_PopCorn.png');
+		border-radius: $border-radius-element;
+		display: flex;
+		flex-direction: row;
+		margin-top: 15px;
+		background-size: cover;
+		background-position: right;
+		@media only screen and (max-width:$max-mobile-width){
+			width: 100%;
+			border-radius: 0;
+			height: 93px;
+		}
+		div{
+			font-family: 'Rubik-Medium';
+			font-size: 30px;
+			font-weight: 500;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 1;
+			letter-spacing: normal;
+			// text-align: left;
+			color: $color-blue-normal;
+			width: max-content;
+			margin: auto;
+			height: max-content;
+		}
+	}
+
+	.category-lobby-header {
+		text-align: center;
+		width: 100%;
+	}
+
+	.all-categories-for-loby-container{
+		width: 97%;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		margin-top: 28px;
+		.category-lobby-item {
+			cursor: pointer;
+			display: flex;
+			flex-direction: column;
+			background: white;
+			height: 112px;
+			//width: 40%;
+			width: 24%;
+			height: auto;
+			box-shadow: $box-shadow-element;
+			border-radius: 10px;
+			margin: 10px 0;
+			@media only screen and (max-width:$max-mobile-width) {
+				//1024
+				width: 48%;
+			}
+			.category-lobby-item-img {
+				height: auto;
+    			width: 100%;
+				border-radius: 10px 10px 0 0;
+			}
+			
+			.category-lobby-item-text {
+				text-align: center;
+				margin-top: 5px;
+				font-family: 'Rubik-Bold';
+				color: $color-blue-normal;
+				padding: 18px 0;
+				margin: auto;
+				@media only screen and (min-width:$min-tablet-width) {
+					//500px
+					font-size: 1.2rem;
+				}
+				@media only screen and (min-width:$mobile-width-550) {
+					//550px
+					font-size: 1.2rem;
+				}
+				@media only screen and (min-width:$mobile-width-600) {
+					//600px
+					font-size: 1.2rem;
+					// margin-top: 10px;
+				}
+				@media only screen and (min-width:$mobile-width-650) {
+					//650px
+					font-size: 1.3rem;
+					// margin-top: 10px;
+				}
+				@media only screen and (min-width:$medium-tablet-width) {
+					//700px
+					font-size: 1.3rem;
+					// margin-top: 10px;
+				}
+				@media only screen and (min-width:$mobile-width-750) {
+					//750px
+					font-size: 1.3rem;
+					// margin-top: 10px;
+				}
+				@media only screen and (min-width:$mobile-width-800) {
+					//800px
+					font-size: 1.4rem;
+					// margin-top: 10px;
+				}
+				@media only screen and (min-width:$max-tablet-width) {
+					//850px
+					font-size: 1.4rem;
+					// margin-top: 10px;
+				}
+				@media only screen and (min-width:$mobile-width-900) {
+					//900px
+					font-size: 1.4rem;
+					// margin-top: 10px;
+				}
+				@media only screen and (min-width:$max-mobile-width) {
+					//1024
+					font-size: 1.5rem;
+					// margin-top: 10px;
+				}
+				@media only screen and (min-width:$desktop-width-1150) {
+					//1150
+					font-size: 1.5rem;
+					// margin-top: 10px;
+				}
+			}
+		}
+	}
+	@media only screen and (min-width:$max-mobile-width){
+		.all-categories-for-loby-container{
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 30px;
+			.category-lobby-item {
+				width: 100%;
+			}
+		}
+	}
+
+}
+
+.show-all-categories-container-page {
+	padding-top: 20px;
+	background-color:white;
+}

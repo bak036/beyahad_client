@@ -1,0 +1,131 @@
+.registration {
+	.header-container-injoin {
+		width: 70%;
+		margin-right: 120px;
+	}
+}
+.registration-container {
+	width: 100%;
+	padding: 15px 0px;
+	margin-bottom: 20px;
+
+
+
+
+	.padding-container {
+		background: white;
+		width: 100%;
+		input,select,.custom-selector-container .custom-select-input-container select{
+			text-align: right;
+		}
+		@media only screen and (min-width: $max-mobile-width) {
+			width: 70%;
+			margin-right: 120px;
+			border-radius: 0 0 20px 20px;
+			box-shadow: #ddd 0px 0px 20px;
+			padding: 20px;
+
+		}
+
+		// @media only screen and (min-width: $max-mobile-width) {
+		// 	width: 53%;
+		// }
+
+		.title {
+			margin-top: 10px;
+			margin-bottom: 40px;
+			text-align: right;
+		}
+
+
+		.agree-message {
+			margin-top: 10px;
+			margin-bottom: 10px;
+
+			@media only screen and (max-width: $max-mobile-width) {
+				margin-right: 25px;
+			}
+		}
+
+		.phone-number-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			.area-code-container {
+				width: 80px;
+			}
+
+			.number-container {
+				width: 100%;
+				padding-left: 5px;
+			}
+		}
+
+		.row-with-2-equal-elements {
+			display: flex;
+			justify-content: space-between;
+
+			>div {
+				width: 100%;
+
+				@media only screen and (min-width: $max-mobile-width) {
+					width: 45%;
+
+				}
+			}
+		}
+
+		.three-elements>div {
+			width: 30%;
+		}
+
+		.agreement-registration-container {
+			display: flex;
+			flex-direction: column;
+         
+			padding-top: 10px;
+			@media only screen and (max-width: $max-mobile-width) {
+				padding: 10px;
+			}
+
+			.agreement-registration {
+				display: flex;
+				.check-box-container {
+					flex: 0 0 auto;
+					margin-left: 13px;
+				}
+
+				.text-container {
+					flex: 10;
+
+					@media only screen and (min-width: $max-mobile-width) {
+						color: #000;
+					}
+				}
+			}
+		}
+
+		.registration-btn {
+			padding-top: 12px;
+
+			.button {
+				font-family: 'Rubik-Bold';
+				border-radius: 10px;
+				background-color: #179bd3;
+			}
+		}
+	}
+}
+
+// @media only screen and (min-width:$max-mobile-width) {
+// 	.edit-user-inputs {
+// 		> div {
+// 			display: flex;
+// 			justify-content: space-between;
+// 			> div {
+// 				width: 45%;
+// 			}
+// 		}
+// 	}
+// }

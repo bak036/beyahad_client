@@ -1,0 +1,36 @@
+.not-found-inner-con {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 150px;
+    margin-bottom: 150px;
+
+
+    .not-found-text {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-items: center;
+
+        .custom-header-container{
+            font-weight: 600;
+            margin-bottom: 50px;
+        }
+
+    }
+
+    .notfound-title {
+        color: $color-blue-normal;
+        font-weight: bold;
+        margin-bottom: 50px;
+    }
+
+    .button-wrapper {
+        margin-left: 0;
+    }
+
+    @media screen and (max-width:$min-desktop-width){
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+}

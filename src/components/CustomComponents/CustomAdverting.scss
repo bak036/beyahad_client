@@ -1,0 +1,159 @@
+$slider-max-height: 450px;
+
+.advertising-container {
+	border-radius: 20px;
+	// TODO: Show this to Tania
+	// height: calc(150px + 10vw);
+
+	// Dealing with max-height (mobile, tablet, desktop)
+	max-height: #{$slider-max-height};
+
+	> div {
+		height: 100%;
+		
+		.carousel.carousel-slider {
+			height: 100%;
+
+			.control-arrow {
+				height: 100%;
+				background: #111;
+				opacity: 0.1;
+				padding: 0;
+				// The z-index is here because the hover of "shoppinBasket" is hiden by this arrow
+				z-index: 1;
+			}
+
+			.slider-wrapper.axis-horizontal {
+				height: 100%;
+				direction: ltr;
+				border-radius: 20px;
+				.slider {
+					height: 100%;
+
+					.slide {
+						height: 100%;
+
+						.single-advertising-container {
+							height: 100%;
+							text-align: center;
+							background: white;
+							.single-advertising-image {
+								height: 100%;
+								object-fit: cover;
+								object-position: center;
+								max-height: #{$slider-max-height};
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// dots...
+		.carousel.carousel-slider {
+			padding-bottom: calc(6% - 1vw);
+
+			.control-arrow.control-prev {
+				border-radius: 90px 0px 0px 90px;
+				height: 88%;
+				margin-top: 4px;
+			}
+
+			.control-arrow.control-next {
+				border-radius: 0px 90px 90px 0px;
+				height: 88%;
+				margin-top: 4px;
+				
+			}
+
+			@media only screen and (min-width: 400px) {
+				padding-bottom: 5%;
+			}
+
+			@media only screen and (min-width: 500px) {
+				padding-bottom: 4.5%;
+			}
+
+			@media only screen and (min-width: 600px) {
+				padding-bottom: 4%;
+			}
+
+			@media only screen and (min-width: 700px) {
+				padding-bottom: 3%;
+			}
+
+			@media only screen and (min-width: 900px) {
+				padding-bottom: 2%;
+			}
+
+			.control-arrow {
+				height: 80%;
+
+				@media only screen and (min-width: 600px) {
+					height: 83%;
+				}
+
+				@media only screen and (min-width: 700px) {
+					height: 85%;
+				}
+
+				@media only screen and (min-width: 900px) {
+					height: 90%;
+				}
+			}
+
+			.control-dots {
+				margin: 5px 0;
+
+				@media only screen and (min-width: $max-mobile-width) {
+					margin: 8px 0;
+				}
+			}
+		}
+	}
+
+	// .control-dots {
+	// 	.dot {
+	// 		outline: 0 !important;
+	// 		height: 12px !important;
+	// 		width: 12px !important;
+	// 		opacity: 0.6 !important;
+
+	// 		&.selected {
+	// 			opacity: 1 !important;
+	// 			background: #00173a;
+	// 		}
+	// 	}
+	// }
+
+	// .control-arrow {
+	// 	margin-top: 56px;
+	// 	height: 210px;
+	// 	transform: scale(1.6) !important;
+	// 	opacity: 0.6 !important;
+
+	// 	&.control-next {
+	// 		margin-right: 8px;
+	// 		height: 53%;
+	// 		top: 32px;
+	// 		@media only screen and (min-width:$max-mobile-width) {
+	// 			height: 55%;
+	// 			top: 62px;
+	// 		}
+	// 	}
+
+	// 	&.control-prev {
+	// 		margin-left: 8px;
+	// 		height: 53%;
+	// 		top: 32px;
+	// 		@media only screen and (min-width:$max-mobile-width) {
+	// 			height: 55%;
+	// 			top: 62px;
+	// 		}
+	// 	}
+
+	// 	&:hover {
+	// 		opacity: 1 !important;
+	// 	}
+	// }
+}

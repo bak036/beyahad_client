@@ -1,0 +1,19 @@
+.load-card-modal {
+	.content {
+	}
+	.btn-group {
+		display: flex;
+		padding-top: 20px;
+		margin: auto;
+		.load-btn {
+			flex: 1;
+		}
+		.loed-card-size{
+			font-size: 97%;
+		}
+		.cancel-btn {
+			flex: 1;
+			padding-right: 7px;
+		}
+	}
+}

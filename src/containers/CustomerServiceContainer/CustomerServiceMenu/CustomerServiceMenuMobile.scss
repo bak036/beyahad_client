@@ -1,0 +1,39 @@
+.menu-mobile-container {
+	margin: auto;
+	width: 96%;
+	.chat-btn-container {
+	}
+	.two-btn {
+		display: flex;
+		.contact-btn-container {
+			flex: 1;
+		}
+		.question-answer-btn {
+			flex: 1;
+		}
+	}
+	.three-btn {
+		display: flex;
+		.taknon-btn {
+			flex: 1;
+		}
+		.changes-notification-btn {
+			flex: 1;
+		}
+		.survey-btn {
+			flex: 1;
+		}
+		.yor-btn {
+			flex: 1;
+		}
+		.negishot-btn {
+			flex: 1;
+		}
+		.benfits-btn {
+			flex: 1;
+		}
+		.barcode-payemnt-btn{
+			flex: 1;
+		}
+	}
+}

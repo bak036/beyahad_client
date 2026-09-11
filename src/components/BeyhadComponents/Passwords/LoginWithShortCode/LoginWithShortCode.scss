@@ -1,0 +1,165 @@
+.login-with-shortcode-main-container {
+	margin: auto;
+	width: 100%;
+
+	// margin-bottom: 25px;
+	// border: 0.1px solid lightgrey;
+	// background-color: white;
+	// margin-bottom: 40px;
+	// margin-top: 25px;
+	// padding-top: 10px;
+	.login-with-shortcode-instructions {
+		color: black;
+		font-size: 1.2rem;
+		text-align: center;
+		margin: auto;
+	}
+
+	.secondery-title {
+		font-weight: bold;
+		margin: 15px;
+	}
+
+	.login-with-shortcode-content-container {
+		margin: auto;
+		width: 100%;
+
+		.update-inputs-container {
+			padding-bottom: 20px;
+
+
+			@media only screen and (min-width:$max-mobile-width) {
+				// width: 22%;
+				margin: auto;
+				padding-bottom: 0px;
+			}
+
+			.disabeldButton {
+				background-color: #00173a21;
+				color: #00173a;
+				cursor: not-allowed;
+			}
+
+			.mt-10 {
+				margin-top: 10px;
+			}
+
+			.red {
+				.custom-input-text-input-container {
+					border-color: red;
+					border-width: 2px;
+				}
+			}
+
+			.error-message {
+				text-align: center;
+				margin-top: 10px;
+				margin-bottom: 10px;
+			}
+
+
+			.agreement-registration-container {
+				display: flex;
+				flex-direction: column;
+
+				padding-top: 10px;
+
+				@media only screen and (max-width: $max-mobile-width) {
+					padding: 10px;
+				}
+
+				.agreement-registration {
+					display: flex;
+
+					.privacy-message {
+						text-align: right;
+					}
+
+					.check-box-container {
+						flex: 0 0 auto;
+						margin-left: 3px;
+					}
+
+					.text-container {
+						flex: 10;
+
+						@media only screen and (min-width: $max-mobile-width) {
+							color: #000;
+						}
+					}
+				}
+			}
+
+		}
+	}
+
+	.cencel-biometrics-container {
+		border: solid 1px #19a4de;
+		background-color: white;
+		border-radius: 10px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		height: 38px;
+		margin-top: 25px;
+
+		.cancel-biometrics-text {
+			font-family: 'Rubik-Bold';
+			font-size: 14px;
+			font-weight: bold;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 1.14;
+			letter-spacing: normal;
+			text-align: center;
+			color: $color-blue-normal;
+		}
+	}
+
+	.custom-button-container .button.disabled {
+		background: #ccc !important;
+	}
+}
+
+.login-with-shortcode-instructions {
+	font-family: 'Rubik-Light';
+}
+
+.update-inputs-container {
+	font-family: 'Rubik-Light';
+
+	.custom-lable-container {
+		text-align: center;
+	}
+
+	.custom-input-text-input-container {
+		border-radius: 5px;
+		border: solid 1px $color-light-gray;
+	}
+
+	.custom-input-text-container {
+		margin-left: 0;
+	}
+
+	.custom-button-container .button.primary-design {
+		border-radius: 10px;
+		background-color: $color-blue-normal;
+		margin: 5px 0 5px 0;
+	}
+
+	.click-in-order-to-get-code {
+		// margin-top: 22px;
+		font-family: 'Rubik-Light';
+		font-size: 14px;
+		font-weight: 300;
+		font-stretch: normal;
+		font-style: normal;
+		line-height: 1.36;
+		letter-spacing: normal;
+		text-align: center;
+		color: $color-blue-normal;
+		display: block;
+		padding-bottom: 0px;
+	}
+}

@@ -1,0 +1,11 @@
+$show-time-container-width: 60%;
+$shows-info-item-width: 25%;
+$title-container-width: 40%;
+
+@import './ShowBox/ShowBox';
+@import './ShowTicket/ShowTicket';
+@import './ShowsHeader/ShowsHeader';
+@import './ShowVarient/ShowVarient';
+@import './ShowVarient//HistoryVariantMobile';
+@import './ShowVarient/ConfirmOrderComponent';
+@import './CuponPopup/CuponPopup.scss';

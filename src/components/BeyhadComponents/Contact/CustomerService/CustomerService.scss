@@ -1,0 +1,40 @@
+.customer-service-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 15px;
+
+  .customer-service-row {
+    line-height: 22px;
+    display: block;
+  }
+
+  .customer-service-text {
+    font-size: 0.9em;
+    color: black;
+    font-weight: 300;
+  }
+
+  .customer-service-times {
+    font-weight: 600;
+  }
+}
+
+@media only screen and (min-width:$max-mobile-width) {
+  .customer-service-container {
+    height: 80%;
+    display: flex;
+    align-items: center;
+    margin-bottom: unset;
+
+    .customer-service-row {
+      line-height: 40px;
+    }
+
+    .customer-service-text {
+      font-size: 1.1em;
+    }
+    .customer-padding {
+      margin: auto;
+    }
+  }
+}

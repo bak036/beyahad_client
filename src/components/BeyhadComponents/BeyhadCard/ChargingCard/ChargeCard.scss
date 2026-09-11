@@ -1,0 +1,12 @@
+@import './Card';
+@import './LoadCard';
+
+.wallet-main-container {
+	display: none;
+	@media only screen and (min-width:$max-mobile-width) {
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+		flex-basis: 50%;
+	}
+}

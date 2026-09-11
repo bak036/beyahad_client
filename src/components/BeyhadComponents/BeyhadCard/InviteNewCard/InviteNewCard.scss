@@ -1,0 +1,23 @@
+.actions-nocard-modal {
+	text-align: center;
+	padding: 20px;
+
+	.headers-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		.nocard-black-text {
+			.custom-header-text {
+				color: black;
+			}
+		}
+
+		.custom-header-container {
+			.custom-header-text {
+				font-size: 18px;
+			}
+		}
+	}
+}

@@ -1,0 +1,21 @@
+.changes-main-container {
+	width: 90%;
+	margin: auto;
+	.custom-header {
+		text-align: center;
+		padding-top: 20px;
+	}
+	.yor-content-container {
+		padding-top: 20px;
+		width: 70%;
+		margin: auto;
+		.yor-content-item {
+			padding-bottom: 5px;
+		}
+		.yor-name-container {
+			.yor-name-item {
+				padding-bottom: 5px;
+			}
+		}
+	}
+}

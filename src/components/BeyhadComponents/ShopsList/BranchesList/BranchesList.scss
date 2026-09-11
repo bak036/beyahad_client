@@ -1,0 +1,226 @@
+.branches-header {
+  text-align: center;
+  margin-bottom: 27px;
+  padding-right: 97px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  @media only screen and (max-width: $max-mobile-width) {
+    margin-bottom: 27px;
+    padding: 0;
+
+    .custom-header-text {
+      font-size: 20px !important;
+    }
+  }
+}
+
+.branches-back-btn {
+  text-align: right;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  transition: color 0.2s ease;
+
+  @media only screen and (max-width: $max-mobile-width) {
+    display: none !important;
+  }
+}
+
+.branches-back-btn .arrow {
+  margin-top: 1px;
+  width: 13px;
+  height: 13px;
+}
+
+.branches-list-container {
+  display: block;
+  background-color: white;
+  margin-bottom: 17px;
+}
+
+.branches-category-chip {
+  width: fit-content;
+  padding: 10px;
+  padding-top: 15px;
+  color: rgba(47, 107, 181, 1);
+  font-size: 1.5rem;
+
+  @media only screen and (max-width: $max-mobile-width) {
+    padding-right: 5px;
+  }
+}
+
+.branches-branch-chip {
+  font-weight: bold;
+  width: 100%;
+  padding-block: 1rem;
+  color: rgba(47, 107, 181, 1);
+  text-align: right;
+  font-size: 1.8rem;
+}
+
+.branches-details-list-root {
+  text-align: center;
+}
+
+.branches-details-list {
+  width: 100%;
+  display: inline-block;
+  padding-right: 97px;
+
+  @media only screen and (max-width: $max-mobile-width) {
+    padding: 0px 11px;
+  }
+}
+
+.input-search-branches {
+  width: 12rem;
+  border-radius: 6px;
+  margin-inline: 1rem;
+  padding-block: 0.4rem;
+  height: 2rem;
+}
+
+.branch-row-header {
+  padding-block: 1rem;
+  background: rgba(227, 239, 255, 1);
+}
+
+.branch-detail-header {
+  font-size: 24px;
+  display: inline-block;
+  text-align: right;
+  color: rgba(47, 107, 181, 1);
+  width: 20%;
+  font-weight: bold;
+  padding-inline: 0.2rem;
+}
+
+.branchName-header {
+  font-weight: bold;
+  width: 36%;
+  padding-inline: 0.2rem;
+}
+
+.BranchAddress-header {
+  width: 31%;
+}
+
+.branchPhone-header {
+  width: 20%;
+}
+
+.distance-header {
+  width: 13%;
+}
+
+/* ✅ התאמות כותרות ועמודות כשאין עמודת מרחק בדסקטופ */
+.branches-list-container.with-distance {
+  .branchName-header { width: 36%; }
+  .BranchAddress-header { width: 31%; }
+  .branchPhone-header { width: 20%; }
+  .distance-header { width: 13%; }
+}
+
+.branches-list-container.no-distance {
+  /* כל אחת מתרחבת ב-4% כדי לפצות על היעדר המרחק */
+  .branchName-header { width: calc(36% + 4%); }
+  .BranchAddress-header { width: calc(31% + 4%); }
+  .branchPhone-header { width: calc(20% + 4%); }
+}
+
+.branch-row.no-distance {
+  .branchName { width: calc(36% + 4%); }
+  .branchAddress { width: calc(31% + 4%); }
+  .branchPhone { width: calc(20% + 4%); }
+}
+
+
+.branch-website-section {
+  text-align: right;
+}
+
+.branch-chain-name {
+  font-weight: bold;
+  color: rgba(47, 107, 181, 1);
+  font-size: 22px;
+
+  @media only screen and (max-width: $max-mobile-width) {
+    font-size: 20px;
+  }
+}
+
+/* ✅ יישור תקין וריווחים נכונים בדסקטופ */
+.branch-website-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: nowrap;
+  direction: rtl;
+}
+
+.website-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-left: 6px; 
+  position: relative; 
+  top: 4px; 
+}
+
+
+.website-label {
+  color: rgba(47, 107, 181, 1);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.website-link {
+  color: rgba(47, 107, 181, 1);
+  font-size: 18px;
+  text-decoration: underline;
+  cursor: pointer;
+  direction: ltr;
+  white-space: nowrap;
+  padding-top: 2px;
+}
+
+/* ✅ מובייל – יורד שורה */
+@media only screen and (max-width: $max-mobile-width) {
+  .branch-website-row {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+  }
+
+  .website-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+  }
+
+  .website-link {
+    font-size: 1.3rem;
+    word-break: break-all;
+    text-align: right;
+    direction: ltr;
+    padding-top: 0px;
+  }
+  .website-icon {
+     margin-left: 2px;
+     top: 0px;
+   }
+
+  .branch-row-header {
+    display: none;
+  }
+}

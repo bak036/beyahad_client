@@ -1,0 +1,203 @@
+.payment-form-cancel {
+    .propertys-credit-card{
+        font-family: 'Rubik-Light';
+        font-size: 14px;
+        font-weight: 300;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.19;
+        letter-spacing: normal;
+        color: #000;
+        margin-top: 15px;
+        display: block;
+    }
+    .custom-input-text-container {
+        margin: 0;
+    }
+
+    .custom-input-text-input-container {
+        border-radius: 5px;
+    }
+
+    .custom-input-text-container .custom-input-text-input-container.disabled {
+        background-color: #f4f4f6;
+    }
+
+    .title {
+        font-family: 'Rubik-Bold';
+        font-size: 18px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 0.79;
+        letter-spacing: normal;
+        color: $color-blue-normal;
+    }
+
+
+    .custom-input-text-container .custom-input-label-container,
+    .custom-selector-container .custom-input-label-container {
+        font-family: 'Rubik-Light';
+        font-size: 16px;
+        font-weight: 300;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.19;
+        letter-spacing: normal;
+        color: #000;
+    }
+
+    .payment-btn {
+                // height: 230px;
+                margin-top: 15px;
+                padding: 40px 20px;
+        @media only screen and (min-width: $max-mobile-width) {
+            box-shadow: $box-shadow-element;
+            border-radius: 20px;
+        }
+
+
+    }
+
+    .credit-card-details-for-cancel,
+    .customer-details-cancel {
+        box-shadow: $box-shadow-element;
+        border-radius: 20px;
+        // height: 230px;
+        margin-top: 15px;
+        padding: 40px 20px;
+
+    }
+
+    .customer-details-cancel {
+        display: flex;
+
+        flex-direction: column;
+
+        width: 100%;
+
+        .row-customer-details {
+            display: flex;
+            justify-content: space-between;
+            @media only screen and (min-width: $max-mobile-width) {
+                flex-direction: row;
+            }
+
+
+
+            .column {
+                margin-top: 20px;
+                @media only screen and (min-width: $max-mobile-width) {
+                    width: 30%;
+                }
+
+
+            }
+
+
+
+            .phone-detail {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                .phone-number {
+                    width: 75%;
+                }
+
+                .prefix-number {
+                    width: 24%;
+                    margin-top: 17px;
+                }
+            }
+        }
+    }
+
+    .agreement-container,
+    .attention-box {
+        margin-bottom: 15px;
+        font-family: 'Rubik-Light';
+        font-size: 16px;
+        font-weight: 300;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        color: #000;
+
+       
+    }
+
+    .credit-card-details-for-cancel {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .cancel-details-box {
+            display: flex;
+            justify-content: space-between;
+            @media only screen and (min-width: $max-mobile-width) {
+                margin-top: 20px;
+                flex-direction: row;
+            }
+
+
+        }
+
+        .validation-card-with-payments,
+        .credit-card-detail,
+        .id-detail {
+            @media only screen and (min-width: $max-mobile-width) {
+                width: 30%;
+            }
+
+            .validation-card {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .validation-card>div {
+                width: 32%;
+            }
+        }
+
+
+    }
+
+    .payment-btn {
+        button {
+            border-radius: 10px;
+            background-color: $color-blue-light;
+            color: white;
+        }
+    }
+}
+
+.agreement-container {
+    display: flex;
+    flex-direction: row;
+}
+.title-attention {
+    font-family: 'Rubik-Bold';
+    color: $color-blue-normal;
+}
+@media only screen and (max-width: $max-mobile-width) {
+
+    .row-customer-details,
+    .cancel-details-box {
+        flex-direction: column;
+
+        .cancel-details-box>div,
+        .column {
+            width: 100%;
+        }
+
+       .credit-card-detail,.id-detail, .cancel-details-box>div {
+            margin-top: 20px;
+        }
+        .validation-card{
+            margin-top: 22px;
+        }
+
+    }
+}

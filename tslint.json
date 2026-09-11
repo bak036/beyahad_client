@@ -1,0 +1,25 @@
+{
+  "parser": "typescript-eslint-parser",
+  "extends": [
+    "tslint-react"
+  ],
+  "rules": {
+    "no-unused-variable": false,
+    "jsx-no-multiline-js": false,
+    "jsx-no-lambda": false,
+    "arrow-parens": false,
+    "jsx-wrap-multiline": false,
+    "eofline": false,
+    "jsx-self-close": false,
+    "max-statements-per-line": false,
+    "linebreak-style": false,
+    "comma-dangle": false,
+    "jsx-alignment": false,
+    "jsx-align": false,
+    "no-unused-expression": false,
+    "jsx-equals-spacing": false,
+    "jsx-boolean-value": false
+  }
+}
+
+

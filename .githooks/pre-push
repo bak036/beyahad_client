@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# ===========================================================
+# GIT PRE-PUSH HOOK - Deploy to PP Branch
+# ===========================================================
+# Location: .git/hooks/pre-push
+#
+# This hook:
+# 1. Detects pushes to PP branch
+# 2. Runs deployment script (deploy_PP_with_publish.sh) from repo root
+# ===========================================================
+
+# Read refs from stdin
+while read local_ref local_sha remote_ref remote_sha; do
+    REMOTE_REF="$remote_ref"
+done
+
+# Only run for PP branch
+if [[ "$REMOTE_REF" != "refs/heads/PP" ]]; then
+    exit 0
+fi
+
+echo "🚀 Push to 'PP' branch — running deployment..."
+
+# Get repository root
+ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
+# DEPLOY_SCRIPT="$ROOT/deploy_PP.sh"
+# DEPLOY_SCRIPT="$ROOT/deploy_PP_with_publish copy.sh"
+
+DEPLOY_SCRIPT="$ROOT/deploy_PP_with_publish.sh"
+LOG_FILE="$ROOT/automation_master_log.txt"
+
+# Check for deploy script
+if [ ! -f "$DEPLOY_SCRIPT" ]; then
+    echo "❌ ERROR: Deploy script not found at: $DEPLOY_SCRIPT"
+    exit 1
+fi
+
+# Run deployment
+if bash "$DEPLOY_SCRIPT"; then
+    # Success is handled inside the script
+    :
+else
+    echo "❌ Deployment failed!"
+    echo "Push will continue, but deployment had issues."
+    echo "Check logs: $LOG_FILE"
+fi
+
+# Allow push to continue
+exit 0

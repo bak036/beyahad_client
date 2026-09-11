@@ -1,0 +1,101 @@
+$input-background-color: white;
+$input-border-color: lightgray;
+$disable-color: #ccc;
+$registration-input-label-mobile-font-size: 14px;
+$input-text-color: black;
+
+.custom-input-text-container {
+	min-height: 50px;
+	margin-bottom: 10px;
+
+	.custom-input-error-container {
+		.custom-input-error-label {
+			color: red;
+		}
+	}
+
+	&.short {
+		margin-bottom: 0;
+		min-height: 60px;
+	}
+
+	/* label container & label */
+	.custom-input-label-container {
+		font-weight: bold;
+		color: #{$color-blue-dark};
+		margin-bottom: 10px;
+		text-align: right;
+	}
+
+	/* custom input text & date */
+	.custom-input-text-input-container {
+		position: relative;
+		border: 1px solid #{$input-border-color};
+		background: #{$input-background-color};
+		line-height: 20px;
+		line-height: 27.5px;
+		padding: 0px 2px;
+
+		&.nofshonit {
+			border-radius: 4px;
+			height: 35px;
+		}
+
+		&.error {
+			border-color: #{$error-color};
+			border-width: 2px;
+		}
+
+		&.disabled {
+			background: #{$disable-color};
+
+			input[disabled] {
+				background-color: rgba(0, 0, 0, 0);
+			}
+		}
+		input::-webkit-outer-spin-button,
+		input::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+		input[type='number'] {
+			-moz-appearance: textfield; /* Firefox */
+		}
+
+		input {
+			padding: 2px;
+			width: 100%;
+			border: 0;
+			background: #{$input-background-color};
+			font-size: #{$registration-input-label-mobile-font-size};
+			font-weight: bold;
+			color: #{$input-text-color};
+		}
+
+		.password-btn-location {
+			position: absolute;
+			left: 2px;
+			bottom: 5px;
+			height: 20px;
+
+			&.enable-view-password {
+				-webkit-user-select: none; /* Chrome all / Safari all */
+				-moz-user-select: none; /* Firefox all */
+				-ms-user-select: none; /* IE 10+ */
+				user-select: none;
+				content: url('../assets/view-password-enable.png');
+			}
+
+			&.disable-view-password {
+				-webkit-user-select: none; /* Chrome all / Safari all */
+				-moz-user-select: none; /* Firefox all */
+				-ms-user-select: none; /* IE 10+ */
+				user-select: none;
+				content: url('../assets/view-password-disable.png');
+			}
+		}
+	}
+}
+.custom-input-error-label {
+	color: red;
+}

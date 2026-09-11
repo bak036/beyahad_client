@@ -1,0 +1,87 @@
+.transactions-container {
+	width: 98%;
+	margin: auto;
+	padding-top: 8px;
+
+	@media only screen and (min-width:$max-mobile-width) {
+		padding-bottom: 20px;
+	}
+
+	@media only screen and (max-width:$max-mobile-width) {
+		font-size: calc((1vw + 9px) / 1.05);
+		margin-top: 60px;
+
+	}
+
+	.titles-container {
+		font-weight: bold;
+		display: flex;
+		padding-right: 0px;
+		padding-bottom: 5px;
+
+		@media only screen and (max-width:$max-mobile-width) {}
+	}
+
+	.title-container {
+		width: 30%;
+
+		@media only screen and (max-width:$max-mobile-width) {
+			font-size: calc((1vw + 11px) / 1.05);
+		}
+
+		@media only screen and (min-width:$max-mobile-width) {
+			text-align: center;
+		}
+	}
+
+	.title-container-type {
+		width: 17%;
+	}
+
+	.transaction-container {
+		display: flex;
+		padding-top: 7px;
+		margin-top: 25px;
+
+		.sum {
+			direction: ltr;
+			text-align: right
+		}
+
+		.transaction-item {
+			width: 20%;
+			text-align: center;
+			padding-top: 12px;
+			padding-left: 0;
+
+			&.btn {
+				padding-top: 0px;
+				min-width: 61px;
+
+				.btn-open-and-close-details {
+					width: fit-content;
+					margin: auto;
+				}
+			}
+
+			&.overflow {
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+
+			.sum {
+				direction: ltr;
+				text-align: right
+			}
+		}
+	}
+
+	.transaction-container-block {
+		padding-top: 15px;
+
+		.transaction-block-item {
+			padding-bottom: 5px;
+		}
+	}
+}

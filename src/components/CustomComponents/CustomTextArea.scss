@@ -1,0 +1,34 @@
+.custom-text-area-container {
+	margin-bottom: 10px;
+	/* label container & label */
+	.custom-input-label-container {
+		font-weight: bold;
+		color: #{$color-blue-dark};
+		margin-bottom: 10px;
+		text-align: right;
+	}
+	/* custom input text & date */
+	.custom-input-text-input-container {
+		@include custom-border(1px solid #e1e1e1);
+		background: white;
+		textarea {
+			width: 100%;
+			border: 0;
+			resize: none;
+			background: white;
+			font-size: 14px;
+			font-weight: bold;
+			color: black;
+			padding: unset;
+		}
+		&.error {
+			border-color: #{$error-color};
+			border-width: 2px;
+		}
+		@media only screen and (min-width:#{$max-mobile-width}) {
+			textarea {
+				line-height: 27px;
+			}
+		}
+	}
+}

@@ -1,0 +1,68 @@
+.home-page-carusel {
+	text-align: right;
+	direction: ltr;
+	padding-bottom: 10px;
+	margin: auto;
+	width: 97%;
+	margin: auto;
+	@media only screen and (max-width: $max-mobile-width) {
+		height: auto;
+	}
+	.alice-carousel__next-btn-item::after{
+		content: url('../assets/arrow-write.png');
+	}
+	.alice-carousel__prev-btn-item::after{
+		content: url('../assets/arrow-left-new.png');
+	}
+	// TODO: Remove this because we set the width in CustomTagCarousel
+	// @media only screen and (min-width: 400px) {
+	// 	padding-bottom: 28px;
+	// 	width: 88%;
+	// }
+
+	// @media only screen and (min-width: 650px) {
+	// 	width: 90%;
+	// }
+
+	// @media only screen and (min-width: 900px) {
+	// 	width: 92%;
+	// }
+
+	.carousel .slide {
+		background: white;
+		padding: 0px 8px;
+		@media only screen and (max-width: $max-mobile-width) {
+			max-height: 185px;
+		}
+
+		.carusel-item-container {
+			padding: 9px 9px;
+			height: 300px;
+
+
+			width: 145px;
+			height: 255px;
+			border: 0.1px solid lightgrey;
+			@media only screen and (min-width: $max-mobile-width) {
+				width: 215px;
+			}
+			@media only screen and (max-width: $max-mobile-width) {
+				max-height: 185px;
+			}
+		}
+	}
+
+	.control-arrow {
+		&.control-next {
+			width: 85px;
+		}
+
+		&.control-prev {
+			width: 85px;
+		}
+	}
+}
+
+.control-dots {
+	direction: ltr;
+}

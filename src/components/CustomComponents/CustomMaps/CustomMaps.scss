@@ -1,0 +1,29 @@
+.gmap_canvas {
+	.place-card-medium {
+		display: none;
+	}
+
+	.profile-photo {
+		&.profile-email {
+			&.profile-photo-light {
+				display: none;
+			}
+		}
+	}
+
+	.gm-inset {
+		&.gm-inset-hover-enabled {
+			display: none;
+		}
+	}
+
+	.gmnoprint {
+		display: none !important;
+	}
+}
+
+.place-card {
+	&.place-card-medium {
+		display: none !important;
+	}
+}

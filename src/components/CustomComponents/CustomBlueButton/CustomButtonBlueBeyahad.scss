@@ -1,0 +1,37 @@
+.blue-button{
+    color: $color-blue-normal;
+    font-family: 'Rubik-Bold';
+    font-size: 16px;
+    width: 208px;
+    margin: auto;
+    border: solid 1px $color-blue-light;
+    padding: 10px 0;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 10px;
+    &.margin-buttom{
+        margin-bottom: 20px;
+    }
+    &.blue-button-disabled{
+        color: white;
+        background: #d9d9d9;
+        border: none;
+    }
+    &.blue-one-button{
+        cursor: pointer;
+        background: $color-blue-normal;
+        color: #ffffff;
+    }
+    @media only screen and (max-width: $max-mobile-width) {
+        width: 128px;
+        height: max-content;
+        font-size: 14px;
+        padding: 7px;
+    }
+}
+
+.blue-button:hover:not(.blue-button-disabled){
+    cursor: pointer;
+    background: $color-blue-normal;
+    color: #ffffff;
+}

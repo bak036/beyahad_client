@@ -1,0 +1,20 @@
+.geo-btn {
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+
+    .geo-icon {
+      width: 64px;
+      padding-top: 2px;
+      @media only screen and (max-width: $max-mobile-width) {
+        width: 61px;
+    }
+  }
+}

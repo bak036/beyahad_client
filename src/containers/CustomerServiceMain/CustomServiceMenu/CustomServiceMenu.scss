@@ -1,0 +1,10 @@
+.customer-service-menu-container {}
+
+@media only screen and (min-width:$max-mobile-width) {
+	.customer-service-menu-container {
+		border-radius: 20px;
+		background-color: #fff;
+		box-shadow: #ddd 0px 0px 20px;
+		padding: 39px 0;
+	}
+}

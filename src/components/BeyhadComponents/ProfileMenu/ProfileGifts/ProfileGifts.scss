@@ -1,0 +1,42 @@
+.profile-gifts-container {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	text-align: center;
+	align-items: center;
+	line-height: 15px;
+	.item {
+		display: flex;
+	}
+	.gifts-container {
+		flex-direction: column;
+		.amount-gifts {
+			font-size: 1.1rem;
+			color: $color-blue-normal;
+		}
+	}
+	.activate-link {
+		line-height: 30px;
+		width: 100px;
+		background-color: $color-orange;
+		opacity: 1;
+	}
+}
+
+@media only screen and (min-width:$max-mobile-width) {
+	.profile-gifts-container {
+		flex-direction: column;
+		.item {
+			margin-bottom: 10px;
+		}
+		.gifts-container {
+			line-height: 25px;
+			.amount-gifts {
+				font-size: 3rem;
+			}
+		}
+		.activate-link {
+			width: 100%;
+		}
+	}
+}

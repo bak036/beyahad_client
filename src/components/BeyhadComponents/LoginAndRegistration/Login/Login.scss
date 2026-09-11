@@ -1,0 +1,408 @@
+
+.login-main-container {
+	font-family: 'Rubik-Light';
+	margin-top: 10px;
+	background-color: white;
+	width: 53%;
+	margin-right: 120px;
+	padding: 3%;
+	padding-top: 6%;
+	padding-bottom: 20px;
+	display: flex;
+	justify-content: space-between;
+
+	// &.with-padding-top{
+	// 	padding-top: 7%;
+	// }
+	
+	.cencel-biometrics-container {
+		border: solid 1px #19a4de;
+		background-color: white;
+		border-radius: 10px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		height: 38px;
+		margin-top: 25px;
+		font-family: 'Rubik-Bold';
+		font-size: 14px;
+		font-weight: bold;
+		font-stretch: normal;
+		font-style: normal;
+		line-height: 1.14;
+		letter-spacing: normal;
+		text-align: center;
+		color: $color-blue-normal;
+
+		.custom-span-text {
+			padding-bottom: 0;
+		}
+	}
+
+
+	@media only screen and (min-width:$max-mobile-width) {
+		border-radius: 0 0 20px 20px;
+		box-shadow: #ddd 0px 0px 20px;
+		height: 550px;
+
+		.tabs-wrapper .tabs-container .tub-menu-item {
+			height: 35px;
+		}
+	}
+
+	.login-container-and-title.with-padding-top {
+		padding-top: 40px;
+	}
+
+
+	.join-container {
+		padding-top: 34px;
+	}
+	.login-container-and-title,
+	.join-container {
+		width: 45%;
+	}
+
+	.img-login-container {
+		img {
+			margin: auto;
+			width: 24px;
+			height: 24px;
+			display: block;
+			margin-bottom: 10px;
+		}
+	}
+
+	.join-container {
+	 	text-align: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		padding-bottom: 60px;
+
+		.header-join-container {
+			font-family: 'Rubik-Medium';
+			font-size: 18px;
+			font-weight: 500;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 0.85;
+			letter-spacing: normal;
+			color: $color-blue-normal;
+		}
+
+		.registration-for-club-members {
+			font-family: 'Rubik-Light';
+			font-size: 14px;
+			font-weight: 300;
+			font-stretch: normal;
+			font-style: normal;
+			letter-spacing: normal;
+			text-align: left;
+			color: #000;
+		}
+
+		.secondry-design {
+			border-radius: 10px;
+			border: solid 1px $color-blue-light;
+			background-color: #FFFFFF;
+			font-family: 'Rubik-Bold';
+			font-size: 14px;
+			font-weight: bold;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 1.13;
+			letter-spacing: normal;
+			color: $color-blue-normal;
+			width: 55%;
+			margin-top: 25px;
+		}
+	}
+
+	.login-container-and-title {
+		.custom-header-container{
+			margin: 0 auto;
+		}
+		.custom-header-container h2.custom-header-text {
+			font-family: 'Rubik-Medium';
+			font-size: 28px;
+			font-weight: 500;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 0.5;
+			letter-spacing: normal;
+			color: $color-blue-normal;
+			margin-bottom: 25px;
+		}
+	}
+
+	.login-container-and-title {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	
+		
+		.login-container {
+			margin:0 auto;
+			text-align: center;
+			position: relative;
+			.vl {
+				position: absolute;
+				left: -51px;
+				top: 0;
+				bottom: 0;
+				border-left: 1px solid $text-color-gray;
+				&.otp {
+					left: -73px;
+				}
+				
+				&.login-id-password{
+					left: -40px;
+					margin-top: 7px;
+				}
+		    }
+		}
+
+		.login-agent-title,
+		.login-with-short-code {
+			font-family: 'Rubik-Medium';
+			font-weight: 300;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 1.17;
+			letter-spacing: normal;
+			color: $color-blue-normal;
+			display: block;
+		}
+
+		.login-with-short-code {
+			font-size: 18px;
+		}
+
+		.login-agent-title{
+			font-size: 25px;
+		}
+
+		.inputs-container {
+			position: relative;
+			text-align: center;
+			font-family: 'Rubik-Light';
+			color: #000;
+
+			.custom-input-text-container {
+				margin: 10px 0 0 0;
+
+				.custom-input-label-container {
+					text-align: center;
+					font-size: 16px;
+					font-weight: 300;
+					font-stretch: normal;
+					font-style: normal;
+					line-height: 1.34;
+					letter-spacing: normal;
+					color: #000000;
+				}
+
+				.custom-input-text-input-container {
+					border-radius: 5px;
+					border: solid 1px $color-light-gray;
+				}
+			}
+
+			.guidelines-ID {
+				font-size: 14px;
+				font-weight: 300;
+				font-stretch: normal;
+				font-style: normal;
+				line-height: 1.54;
+				letter-spacing: normal;
+			}
+
+			.primary-design {
+				border-radius: 10px;
+				background-color: $color-blue-normal;
+				margin: 22px 0 0 0;
+			}
+
+			.forgot-password,.back-to-options {
+				padding-top: 15px;
+				.custom-span-text {
+					font-weight: bolder;
+					text-decoration: underline;
+					color: $color-blue-normal;
+					padding-bottom: 0px;
+				}
+			}
+
+		}
+
+		.switch-to-password-login {
+			margin-top: auto; 
+			margin-right: 25px;
+			font-size: 14px;
+			color: $color-blue-normal;
+			cursor: pointer;
+			font-weight: bold;
+			text-decoration: underline;
+				
+		}
+	}
+}
+
+@media only screen and (max-width:$max-mobile-width) {
+	.login-main-container {
+		width: 100%;
+		margin-right: 0;
+		justify-content: center;
+		flex-direction: column;
+
+		.login-container-and-title {
+			width: 100%;
+		}
+
+		.login-container-with-biometric {
+			border-radius: 20px;
+			box-shadow: #ddd 0px 0px 20px;
+			width: 100%;
+			margin: 0;
+			padding: 20px 20px 30px 20px;
+		}
+
+		.tabs-wrapper .tabs-container {
+			margin: 15px 0 10px 0;
+		}
+
+		.join-container {
+			padding: 30px 5px 0px 5px;
+			width: 100%;
+			flex-direction: column;
+
+			.custom-header-container {
+				margin-block-end: 0;
+			}
+
+			.secondry-design {
+				width: 100%;
+				margin: 10px 0 10px 0;
+
+			}
+		}
+	}
+
+}
+
+
+.login-biometrics-root {
+	.wl {
+		border-top: 1px solid $text-color-gray;
+		width: 60%;
+		margin: auto;
+		margin-top: 20px;
+	}
+
+	.login-biometrics-container {
+		margin-top: 40px;
+		margin-bottom: 20px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.icon-biometrics {
+		width: 20px;
+		height: 24px;
+	}
+
+	.txt-biometrics {
+		margin-top: 10px;
+		font-family: 'Rubik-Medium';
+		font-size: 18px;
+		font-weight: 500;
+		font-stretch: normal;
+		font-style: normal;
+		line-height: 1;
+		letter-spacing: normal;
+		text-align: center;
+		color: $color-blue-normal;
+	}
+}
+
+.modal-biometrics-not-enrolled {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+	img {
+		width: 29px;
+		height: 36px;
+		margin: 40px 0 20px 0;
+	}
+
+	.title-biometrics-not-enrolled {
+		font-family: 'Rubik-Medium';
+		font-size: 18px;
+		font-weight: 500;
+		font-stretch: normal;
+		font-style: normal;
+		line-height: 1.33;
+		letter-spacing: normal;
+		text-align: center;
+		color: $color-blue-normal;
+	}
+
+	.text-biometrics-not-enrolled {
+		width: 80%;
+		margin: 20px 0 30px 0;
+		font-family: 'Rubik-Light';
+		font-size: 14px;
+		font-weight: 300;
+		font-stretch: normal;
+		font-style: normal;
+		line-height: 1.36;
+		letter-spacing: normal;
+		text-align: center;
+		color: #000;
+	}
+
+	.container-btn-biometrics-settings {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+		width: 100%;
+
+		.btn-biometrics-settings {
+			border-radius: 10px;
+			border: solid 1px #19a4de;
+			background-color: white;
+			color: $color-blue-normal;
+			height: 38px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 40%;
+		}
+	}
+}
+
+.header-biometrics-settings-container {
+	width: 100%;
+	text-align: center;
+	margin: 20px 0;
+
+	.header-biometrics-settings-text {
+		font-family: 'Rubik-Medium';
+		font-size: 18px;
+		font-weight: 500;
+		font-stretch: normal;
+		font-style: normal;
+		line-height: 1;
+		letter-spacing: normal;
+		text-align: center;
+		color: $color-blue-normal;
+	}
+}

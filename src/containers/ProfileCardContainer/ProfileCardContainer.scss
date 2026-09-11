@@ -1,0 +1,491 @@
+@import '../../components/BeyhadComponents/BeyhadCard/BeyhadCard';
+@import './BarcodePaymentContainer/BarcodePayment';
+@import './IframeLink/IframeLink.scss';
+
+.menu-and-content-card-container {
+	@media only screen and (min-width: $max-mobile-width) {
+		padding: 10px;
+	}
+
+	.my-card {
+		font-size: 36px;
+		font-weight: 500;
+		color: $color-blue-normal;
+		margin-top: 20px;
+		margin-bottom: 35px;
+		font-family: 'Rubik-Medium';
+
+	}
+
+	.flex-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+
+		@media only screen and (min-width: $max-mobile-width) {
+			flex-wrap: nowrap;
+		}
+
+		.top-menu-container {
+			width: 100%;
+			padding: 10px 0px 0px 20px;
+			display: flex;
+			flex-direction: column;
+
+			@media only screen and (min-width: $max-mobile-width) {
+				padding: 0px;
+				width: unset;
+
+				.wallet-main-container {
+					display: none;
+				}
+			}
+
+			.top-menu-cards {
+				padding: 0px !important;
+				margin-bottom: -10px;
+				display: flex;
+				overflow-x: auto;
+
+				@media only screen and (min-width: $max-mobile-width) {
+					margin-right: 20px;
+					display: none;
+
+					.card-with-btn {
+						margin-left: 10px;
+					}
+				}
+
+
+			}
+		}
+
+		.menu-container {
+			background-color: white;
+			border-radius: 5px;
+			margin: 10px 10px 10px 10px;
+			width: 100%;
+			height: fit-content;
+
+			@media only screen and (min-width: $max-mobile-width) {
+				box-shadow: $box-shadow-element;
+				border-radius: $border-radius-element;
+				margin: 0px 0px 20px 0px;
+				width: 281px;
+			}
+
+			.profile-card-menu {
+				display: flex;
+				flex-flow: column;
+				width: 100%;
+				margin: auto;
+				margin-bottom: 10px;
+				color: $color-blue-normal;
+
+				@media only screen and (min-width: $max-mobile-width) {
+					display: block;
+				}
+
+				.quick-actions {
+					font-family: 'Rubik-Medium';
+					font-size: 24px;
+					font-weight: 500;
+					padding: 25px 25px;
+				}
+
+				.inner-link-container-one {
+					cursor: pointer;
+					border-top: 1px solid #f0f0f2;
+					padding: 25px 25px;
+
+					@media only screen and (min-width: $max-mobile-width) {
+						display: flex;
+						align-items: center;
+					}
+
+					.custom-link-container {
+						font-family: 'Rubik-Bold';
+						margin-right: 14px;
+						font-size: 16px;
+						font-weight: bold;
+						padding: 0;
+
+						.custom-link-container {
+							color: white;
+							background: $color-blue-normal;
+						}
+					}
+
+					img {
+						width: 24px;
+						height: 24px;
+					}
+				}
+
+				.on-over-one:hover {
+					color: white;
+					background: $color-blue-normal;
+
+					img {
+						content: url('../assets/wallet-white.svg');
+					}
+				}
+
+				.on-over-five:hover {
+					color: white;
+					background: $color-blue-normal;
+
+					img {
+						content: url('../assets/prohibition-white.svg');
+					}
+				}
+
+				@media only screen and (min-width:$max-mobile-width) {
+					.on-over-two:hover {
+						color: white;
+						background: $color-blue-normal;
+
+						img {
+							content: url('../assets/wallet-1-white.svg');
+						}
+					}
+				}
+
+				.on-over-three:hover {
+					color: white;
+					background: $color-blue-normal;
+
+					img {
+						content: url('../assets/credit-card-white.svg');
+					}
+				}
+
+				.on-over-four:hover {
+					color: white;
+					background: $color-blue-normal;
+
+					img {
+						content: url('../assets/document-white.svg');
+					}
+				}
+
+				.block-card-btn {
+					height: 80px;
+
+					.block-card-button {
+						font-family: 'Rubik-Bold';
+						cursor: pointer;
+						font-size: 16px;
+						padding: 14px 10px;
+						color: white;
+						background-color: #b72020;
+						width: 93%;
+						margin: auto;
+						border-radius: 10px;
+						text-align: center;
+						margin-top: 10px;
+						max-width: 500px;
+					}
+
+					button {
+						font-size: 16px;
+						height: 36px;
+
+						@media only screen and (min-width: $max-mobile-width) {
+							height: 42px;
+						}
+					}
+				}
+
+				.inner-link-container-one:hover,
+				.selected,
+				.inner-link-container-one:has(> .selected) {
+					color: white;
+					background: $color-blue-normal;
+					opacity: 1;
+
+					.text-container,
+					.custom-link-container {
+						color: white;
+						opacity: 1;
+						background: $color-blue-normal;
+					}
+
+					img {
+						filter: brightness(0) invert(1);
+					}
+				}
+
+				.inner-link-container-one {
+						opacity: 1;
+
+						.text-container,
+						.custom-link-container {
+							color: $color-blue-normal;
+							background: white;
+							opacity: 1;
+						
+					}
+
+				}
+
+				// .inner-link-container-one:hover{
+				// 	color: white;
+				// 	background: $color-blue-normal;
+				// 	img{
+				// 		content: url('../assets/credit-card-white.svg');
+				// 	}
+
+				// }
+				.inner-link-container-two {
+					display: flex;
+					justify-content: space-between;
+
+					@media only screen and (min-width: $max-mobile-width) {
+						display: block;
+					}
+
+					.custom-link-container {
+						width: 49.7%;
+						padding-bottom: 2px;
+
+						@media only screen and (min-width: $max-mobile-width) {
+							width: 100%;
+							padding-bottom: 7px;
+						}
+
+						.item-link-container {
+							flex-direction: column;
+							height: 80px;
+							padding-right: 10px;
+							padding-left: 10px;
+
+							@media only screen and (min-width: $max-mobile-width) {
+								flex-direction: row;
+								height: unset;
+								padding-right: 0px;
+								padding-left: 0px;
+							}
+
+							// media query for IE - https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet
+							@media all and (-ms-high-contrast: none),
+							(-ms-high-contrast: active) {
+								height: 36.8px;
+							}
+						}
+					}
+				}
+
+				.inner-link-container-three {
+					display: flex;
+					justify-content: space-between;
+
+					@media only screen and (min-width: $max-mobile-width) {
+						display: block;
+					}
+
+					.custom-link-container {
+						width: 49.7%;
+
+						@media only screen and (min-width: $max-mobile-width) {
+							width: 100%;
+						}
+
+						.item-link-container {
+							flex-direction: column;
+							height: 77.5px;
+							padding-right: 10px;
+							padding-left: 10px;
+
+							@media only screen and (min-width: $max-mobile-width) {
+								flex-direction: row;
+								height: unset;
+								padding-right: 0px;
+								padding-left: 0px;
+							}
+
+							// media query for IE - https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet
+							@media all and (-ms-high-contrast: none),
+							(-ms-high-contrast: active) {
+								height: 36.8px;
+							}
+						}
+					}
+				}
+
+				.inner-link-container-four {
+					display: none;
+
+					@media only screen and (min-width: $max-mobile-width) {
+						display: block;
+					}
+				}
+
+				.inner-link-container-five {
+					@media only screen and (min-width: $max-mobile-width) {
+						display: block;
+					}
+
+					.block-card-btn {
+						.block-card-button {
+							background-color: #b72020;
+							width: 80%;
+							margin: auto;
+							border-radius: 10px;
+						}
+
+						button {
+							font-size: 16px;
+							height: 36px;
+
+							@media only screen and (min-width: $max-mobile-width) {
+								height: 42px;
+							}
+						}
+					}
+				}
+
+				.custom-link-container {
+					padding-bottom: 7px;
+
+					.item-link-container {
+						justify-content: center;
+
+						.item-icon {
+							margin: unset;
+
+							@media only screen and (min-width: $max-mobile-width) {
+								position: absolute;
+								margin-right: -100px;
+							}
+
+							// media query for IE - https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet
+							@media all and (-ms-high-contrast: none),
+							(-ms-high-contrast: active) {
+								position: absolute;
+								margin-right: -25px;
+								margin-top: -11px;
+							}
+
+							&.smaller {
+								&>img {
+									width: 26px;
+								}
+							}
+
+							&.icon-pad {
+								@media only screen and (min-width: $max-mobile-width) {
+									padding-right: 3px;
+								}
+							}
+						}
+
+						.item-text-container {
+							font-size: calc(1rem + 0.7vw);
+							margin: unset;
+
+							@media only screen and (min-width: $max-mobile-width) {
+								font-size: 16px;
+								height: 22px;
+								margin: 4px 28px 0 0;
+							}
+
+
+
+							&.text-pad-right {
+								@media only screen and (min-width: $max-mobile-width) {
+									padding-right: 7px;
+								}
+							}
+
+							&.text-pad-left {
+								@media only screen and (min-width: $max-mobile-width) {
+									padding-left: 3px;
+								}
+							}
+						}
+					}
+				}
+
+				@media only screen and (max-width: $max-mobile-width) {
+					.block-card-button {
+						width: 93%;
+					}
+
+					.flex-mobile {
+						display: flex;
+						flex-wrap: wrap;
+						justify-content: space-evenly;
+						margin: auto;
+						font-size: 14px;
+						text-align: center;
+
+						.flex-mobile>div {}
+
+						.inner-link-container-one {
+							box-shadow: $box-shadow-element;
+							border-radius: $border-radius-element;
+							aspect-ratio: 1 / 0.7;
+							width: 45%;
+							margin-top: 10px;
+							display: flex;
+							flex-direction: column;
+							justify-content: center;
+							align-items: center;
+						}
+
+						.flex-mobile-img {
+							width: max-content;
+						}
+
+						.on-over-one {
+							display: none;
+						}
+
+						.custom-link-container {
+							margin: 0;
+						}
+					}
+				}
+			}
+		}
+
+		.content-container {
+			width: 100%;
+			padding: 0px 0px 10px 0px;
+
+			// media query for IE - https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet
+			@media all and (-ms-high-contrast: none),
+			(-ms-high-contrast: active) {
+				margin-right: -456px !important;
+			}
+
+			@media only screen and (min-width: $max-mobile-width) {
+				width: 100%;
+				margin-right: 10px;
+			}
+		}
+	}
+}
+
+.ant-modal {
+	width: 588px;
+
+	@media only screen and (max-width: $max-mobile-width) {
+		width: 330px;
+	}
+}
+
+.ant-modal-close {
+	left: 0 !important;
+	text-align: -webkit-left;
+
+	span {
+		font-size: 24px !important;
+		color: #000;
+	}
+}
+
+.ant-modal-content {
+	border-radius: $border-radius-element;
+}

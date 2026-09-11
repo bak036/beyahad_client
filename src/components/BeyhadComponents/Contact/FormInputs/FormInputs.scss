@@ -1,0 +1,222 @@
+$desktop-right-inputs-width: 30%;
+$desktop-left-inputs-width: 70%;
+
+.form-body {
+	direction: rtl;
+	margin-bottom: 15px;
+
+	.title-form-body {
+		font-family: 'Rubik-Bold';
+		font-size: 18px;
+		font-weight: bold;
+		font-stretch: normal;
+		font-style: normal;
+		line-height: 1.06;
+		letter-spacing: normal;
+		color: #0f6bb3;
+		display: block;
+		margin-bottom: 15px;
+	}
+
+	.select-prefix {
+		margin-top: 6px;
+	}
+
+	.phone-container {
+		display: flex;
+		flex-direction: column;
+
+		.top {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+
+			.left {
+				width: 30%;
+				padding-top: 3px;
+			}
+
+			.right {
+				width: 68%;
+			}
+
+			.right-error {
+				.custom-input-text-input-container {
+					border-color: red;
+					border-width: 2px;
+				}
+			}
+
+			.left-error {
+				.custom-select-input-container select {
+					border-color: red;
+					border-width: 2px;
+				}
+			}
+		}
+
+		.bottom {
+			margin-bottom: 8px;
+
+			.phone-error-color {
+				color: #595959;
+			}
+		}
+	}
+
+	.desktop-left-inputs {
+		flex-grow: 4;
+
+		.selection-error {
+			border-color: red;
+			border-width: 2px;
+		}
+	}
+
+	.contact-submit-btn {
+		height: 25px;
+		width: 100%;
+		background-color: blue;
+		border: unset;
+		color: white;
+		font-size: 1.1em;
+	}
+
+	.contact-content-input {
+		height: 60px;
+		border: 1px;
+	}
+
+	.text-area-content {
+		width: 100%;
+		padding: unset;
+	}
+
+	.content-input-container {
+		width: 100%;
+		text-align: right;
+	}
+
+	.form-inputs-container {
+		margin-bottom: 15px;
+
+		.custom-text-area-container .custom-input-label-container {
+			padding-top: 10px;
+		}
+	}
+
+	.contact-message {
+		margin-top: 20px;
+		padding-bottom: 20px;
+	}
+}
+
+@media only screen and (min-width:$max-mobile-width) {
+	.form-body {
+		width: 65%;
+		margin: auto;
+
+		.primary-design {
+			display: inline-block;
+		}
+
+		.desktop-right-inputs {
+			display: inline-block;
+			flex-grow: 1;
+			margin-left: 20px;
+
+			// Removes input field (number) side arrows for Chrome, Firefox, Safari & Some IE
+			input::-webkit-outer-spin-button,
+			input::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
+
+			input[type='number'] {
+				-moz-appearance: textfield;
+				/* Firefox */
+			}
+
+			.selection-error {
+				border-color: red;
+				border-width: 2px;
+			}
+
+			.phone-container {
+				display: flex;
+				flex-direction: column;
+				min-width: 180px;
+
+				.top {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					justify-content: space-between;
+
+					.left {
+						width: 30%;
+						padding-top: 3px;
+					}
+
+					.right {
+						width: 68%;
+					}
+
+					.right-error {
+						.custom-input-text-input-container {
+							border-color: red;
+							border-width: 2px;
+						}
+					}
+
+					.left-error {
+						.custom-select-input-container select {
+							border-color: red;
+							border-width: 2px;
+						}
+					}
+				}
+
+				.bottom {
+					margin-bottom: 8px;
+
+					.phone-error-color {
+						color: #595959;
+					}
+				}
+			}
+		}
+
+		.desktop-left-inputs {
+			display: inline-block;
+			flex-grow: 4;
+
+			.selection-error {
+				border-color: red;
+				border-width: 2px;
+			}
+		}
+
+		.form-inputs-container {
+			height: 80%;
+			display: flex;
+			align-items: center;
+			margin: unset;
+			margin-bottom: 20px;
+		}
+
+		.form-footer {
+			height: 20%;
+			display: flex;
+			align-items: center;
+			margin-bottom: 20px;
+		}
+
+		.form-inputs-padding {
+			display: flex;
+			width: 100%;
+			margin: auto;
+		}
+	}
+}

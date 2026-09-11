@@ -1,0 +1,125 @@
+.barcode-payment-container {
+	height: 100%;
+	display: block;
+	background-color: $background-color;
+
+	.barcode-payment-padding {
+		width: 100%;
+
+
+
+		padding-bottom: 20px;
+		background-color: white;
+		border-radius: 22px;
+		box-shadow: #ddd 0px 0px 20px;
+
+		.barcode-payment-title-container {
+			.custom-header-text {
+				font-family: 'Rubik-Bold';
+				font-size: 18px;
+				font-weight: bold;
+				font-stretch: normal;
+				font-style: normal;
+				line-height: 1.06;
+				letter-spacing: normal;
+				color: $color-blue-normal
+			}
+		}
+
+		.barcode-payment-container {
+			font-family: 'Rubik-Regular';
+			font-size: 16px;
+			font-weight: normal;
+			font-stretch: normal;
+			font-style: normal;
+			letter-spacing: normal;
+			color: #000;
+
+			@media only screen and (min-width:$max-mobile-width) {
+				line-height: 1.88;
+			}
+		}
+
+		@media only screen and (max-width:$max-mobile-width) {
+			.barcode-payment-container>div {
+				margin-bottom: 10px;
+			}
+		}
+
+		.button-style {
+			background-color: #15a0cf;
+			font-size: 18px;
+		}
+
+		.btn-container {
+			padding-top: 12px;
+			width: 17%;
+
+			// margin: auto;
+			.active-generate-bar-code,
+			.button-generate-bar-code {
+				color: white;
+				border-radius: 10px;
+			}
+
+			.active-generate-bar-code {
+				background-color: #19a4de;
+			}
+
+			.button-generate-bar-code {
+				background-color: $color-blue-normal;
+			}
+
+			@media only screen and (max-width:$max-mobile-width) {
+				width: 100%;
+				padding-top: 15px;
+			}
+		}
+
+		.contain-barcode {
+			display: flex;
+			padding-top: 40px;
+			padding-bottom: 20px;
+
+			.generatedBarcode {
+				font-family: 'Rubik-Regular';
+				font-size: 14px;
+				font-weight: normal;
+				font-stretch: normal;
+				font-style: normal;
+				line-height: 1.88;
+				letter-spacing: normal;
+				color: #000;
+
+				.custom-span-text {
+					padding-bottom: 0;
+				}
+				@media only screen and (max-width:$max-mobile-width) {
+					width: 100%;
+					.barcode-number{
+						margin: auto;
+						width: max-content;
+					}
+				}
+			}
+		}
+
+		.button-print {
+			background-color: #00173a;
+			font-size: 18px;
+			width: 200px;
+			margin-top: 20px;
+
+			@media only screen and (max-width:$max-mobile-width) {
+				display: none;
+			}
+		}
+		@media only screen and (min-width:$max-mobile-width) {
+			padding: 30px;
+		}
+
+		@media only screen and (max-width:$max-mobile-width) {
+			padding: 20px;
+		}
+	}
+}

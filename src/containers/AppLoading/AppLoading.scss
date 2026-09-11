@@ -1,0 +1,127 @@
+.react-loading {
+	position: absolute;
+	overflow-x: hidden;
+	&.hide {
+		display: none;
+	}
+	.react-loading-container {
+		width: 100%;
+		height: 250vh;
+		position: fixed;
+		z-index: 5;
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		background: white;
+		opacity: 0.8;
+		box-shadow: 0px 0px 17px 19px white;
+		.react-loading-class {
+			margin: 300px auto;
+			@media only screen and (max-width: $max-mobile-width) {
+				margin: 220px auto;
+			}
+			// media query for IE - https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet
+			@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+				margin-right: 0px;
+				margin-top: 188px;
+			}
+		}
+
+		&.react-loading-container--wallet {
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: center;
+
+			.react-loading-class {
+				margin: 170px auto 0 auto;
+
+				@media only screen and (max-width: $max-mobile-width) {
+					margin: 140px auto 0 auto;
+				}
+			}
+		}
+	}
+	.app-loading-text {
+		width: 100%;
+		height: 250vh;
+		position: fixed;
+		z-index: 5;
+		display: flex;
+		justify-content: center;
+		.app-loading-text-propery {
+			position: fixed;
+			z-index: 500;
+			margin: calc(291px + 12vw) auto;
+			font-size: calc((1vw + 28px) / 1.05);
+			// media query for IE - https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet
+			@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+				margin-right: -95px;
+			}
+			@media only screen and (max-width: $max-mobile-width) {
+				margin: calc(231px + 26vw) auto;
+			}
+		}
+	}
+
+	.app-loading-wallet-text {
+		z-index: 500;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		direction: rtl;
+		color: #2f3237;
+		width: min(92vw, 560px);
+		line-height: 1.35;
+		margin-top: 20px;
+
+		@media only screen and (max-width: $max-mobile-width) {
+			width: min(92vw, 360px);
+			margin-top: 16px;
+		}
+	}
+
+	.app-loading-wallet-text__title {
+		font-size: 34px;
+		font-weight: 600;
+
+		@media only screen and (max-width: $max-mobile-width) {
+			font-size: 22px;
+		}
+	}
+
+	.app-loading-wallet-text__managed-by {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin-top: 12px;
+		font-size: 20px;
+		font-weight: 500;
+		color: #5f6270;
+
+		@media only screen and (max-width: $max-mobile-width) {
+			font-size: 16px;
+		}
+	}
+
+	.app-loading-wallet-text__logo {
+		height: 24px;
+		width: auto;
+
+		@media only screen and (max-width: $max-mobile-width) {
+			height: 20px;
+		}
+	}
+
+	.app-loading-wallet-text__company {
+		margin-top: 8px;
+		font-size: 30px;
+		font-weight: 700;
+		color: #3d414d;
+
+		@media only screen and (max-width: $max-mobile-width) {
+			font-size: 18px;
+			line-height: 1.25;
+		}
+	}
+}

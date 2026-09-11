@@ -1,0 +1,184 @@
+@media only screen and (min-width:$max-mobile-width) {
+	.customer-service-actions-container {
+		.box-img-and-title {
+			height: 70px;
+			border-top: 1px solid #f0f0f2;
+			display: flex;
+			align-items: center;
+		}
+	}
+
+}
+
+@media only screen and (max-width:$max-mobile-width) {
+
+
+	.customer-service-actions-container {
+		margin-bottom: 20px;
+
+		.selected {
+			.text-container {
+				color: #ffffff;
+			}
+
+			background-color: $color-blue-normal;
+
+			.custom-link-container {
+				background-color: $color-blue-normal;
+			}
+
+			img {
+				filter: brightness(0) invert(1);
+			}
+		}
+
+		.custom-link-container.icon-top.start-chat-container {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+
+			.icon-container {
+				margin: 0;
+			}
+
+			.text-container {
+				margin: 0;
+				margin: 0 10px 10px 0;
+				font-family: 'Rubik-Bold';
+				font-size: 14px;
+				font-weight: bold;
+				font-stretch: normal;
+				font-style: normal;
+				line-height: 1.29;
+				letter-spacing: normal;
+				text-align: left;
+			}
+		}
+
+		.link-with-icon-container {
+			display: flex;
+			justify-content: space-between;
+
+			.custom-link-container {
+				padding: 30px;
+				width: 48%;
+				height: 100px;
+				border-radius: 10px;
+				box-shadow: #ddd 0px 0px 20px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+			}
+
+			.custom-link-container.selected {
+				.text-container {
+					color: #ffffff;
+				}
+
+				background-color: $color-blue-normal;
+			}
+		}
+
+		.custom-link-container .text-container {
+			font-family: 'Rubik-Bold';
+			font-size: 14px;
+			font-weight: bold;
+			font-stretch: normal;
+			font-style: normal;
+			letter-spacing: normal;
+		}
+
+		.icon-element {
+			height: 24px;
+		}
+
+		.phone-icon {
+			content: url('../assets/question@2x.png');
+		}
+
+		.question-icon {
+			content: url('../assets/question@2x.png');
+		}
+
+		.chat-container {
+			content: url('../assets/צאט סטיקי.png');
+		}
+
+		.row {
+			display: flex;
+			justify-content: space-between;
+			flex-direction: row;
+
+			.box-img-and-title {
+				width: 32%;
+				height: 80px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				border-radius: 10px;
+				box-shadow: #ddd 0px 0px 20px;
+				margin-top: 20px;
+
+			}
+		}
+	}
+}
+
+
+
+
+.customer-service-actions-container {
+	img {
+		width: 27px;
+		height: 27px;
+		margin: 0 25px;
+	}
+
+	.box-img-and-title {
+		cursor: pointer;
+		background-color: #FFFFFF;
+
+
+	}
+
+	.custom-link-container {
+		background-color: #FFFFFF;
+		opacity: 1;
+
+	}
+
+	.box-img-and-title:first-of-type {
+		border: 0;
+	}
+
+	.custom-link-container .text-container {
+		color: $color-blue-normal;
+		font-family: 'Rubik-Bold';
+		font-size: 14px;
+		font-weight: bold;
+		font-stretch: normal;
+		font-style: normal;
+		line-height: 1.16;
+		letter-spacing: normal;
+	}
+
+	.box-img-and-title:has(> .selected) {
+		.text-container {
+			color: #ffffff;
+		}
+
+		background-color: $color-blue-normal;
+
+		.custom-link-container {
+			background-color: $color-blue-normal;
+		}
+
+		img {
+			filter: brightness(0) invert(1);
+		}
+	}
+
+
+}

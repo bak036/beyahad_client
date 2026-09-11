@@ -1,0 +1,54 @@
+@import 'reset';
+@import './variables/variables';
+@import 'fonts';
+@import 'functions';
+@import 'components';
+@import 'common';
+//css for react-carousel
+// @import 'react-responsive-carousel/lib/styles/carousel.min.css';
+
+html,
+body,
+#root {
+	height: 100%;
+	width: 100%;
+	direction: rtl;
+	font-size: $font-size-base-mobile;
+	background-color: $background-color;
+}
+
+.main-homepage-content {
+	background-color: white;
+}
+
+@media print {
+	.footer-main-container,
+	.by-main-nav-bar,#OA_Container,#glassix-container {
+		display: none;
+	}
+	.carusel-products-container{
+		display:none;
+	}
+	.flex-container{
+		.card-with-btn{
+			display:none;
+		}
+		.menu-container{
+			display:none;
+		}
+	}
+
+}
+
+@media only screen and (min-width: $max-mobile-width) {
+	html,
+	body,
+	#root {
+		font-size: $font-size-base-desktop;
+	}
+
+	.beyahad-main-container {
+		max-width: 1600px;
+		margin: auto;
+	}
+}

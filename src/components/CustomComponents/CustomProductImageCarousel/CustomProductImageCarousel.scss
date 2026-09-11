@@ -1,0 +1,186 @@
+.product-page-carousel-main-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	position: relative;
+	@media only screen and (max-width:$max-mobile-width) {
+		height: 283px;
+		background: white;
+	}
+.alice-carousel__prev-btn-item,
+.alice-carousel__next-btn-item {
+	position:absolute;
+	z-index: 999;
+	@media only screen and (min-width:$max-mobile-width) {
+		display: block;
+	}
+}
+
+.alice-carousel {
+	width: 100%;
+	@media only screen and (min-width:$max-mobile-width) {
+		width: 100%;
+	}
+
+	// background: white;
+	// .alice-carousel__wrapper{
+	// 	.alice-carousel__stage{
+	// 		transform: translate3d(-195px, 0px, 0px);
+
+	// 	}
+	// }
+	.carusel-item-container {
+		border: 1px solid rgba(0, 23, 58, 0.2);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		height: 286px;
+		width: 85%;
+
+		@media only screen and (min-width: 300px) {
+			width: 90%;
+		}
+
+		@media only screen and (min-width: 370px) {
+			width: 84%;
+		}
+
+		@media only screen and (min-width: 420px) {
+			width: 85%;
+		}
+
+		@media only screen and (min-width: 480px) {
+			width: 86%;
+		}
+
+		@media only screen and (min-width: 520px) {
+			width: 82%;
+		}
+
+		@media only screen and (min-width: 580px) {
+			width: 80%;
+		}
+
+		@media only screen and (min-width: 625px) {
+			width: 85%;
+		}
+
+		@media only screen and (min-width: 690px) {
+			width: 80%;
+		}
+
+		@media only screen and (min-width: 800px) {
+			width: 74%;
+		}
+
+		@media only screen and (min-width: 830px) {
+			width: 74%;
+		}
+
+		@media only screen and (min-width: 870px) {
+			width: 80%;
+		}
+
+		@media only screen and (min-width: 920px) {
+			width: 85%;
+		}
+
+		@media only screen and (min-width: 1000px) {
+			width: 82%;
+		}
+
+		@media only screen and (min-width:$max-mobile-width) {
+			width: 87%;
+		}
+
+		@media only screen and (min-width: 1150px) {
+			width: 95%;
+			height: 310px;
+		}
+
+		@media only screen and (min-width: 1250px) {
+			width: 88%;
+		}
+
+		.img-container {
+			.img-item {
+				width: 100%;
+				//padding: 4px;
+				border-top-right-radius: 8px;
+				border-top-left-radius: 8px;
+				@media only screen and (min-width:$max-mobile-width) {
+					//padding: 0 3px 0px 3px;
+				}
+			}
+		}
+	}
+}
+
+//the after is for for IE
+.alice-carousel__next-btn-item::after {
+	margin: 0 5px;
+	content: url('../assets/right.svg');
+	width: 18px;
+	height: 28px;
+	user-select: none;
+	@media only screen and (min-width:$max-mobile-width) {
+		margin: 0 10px;
+	}
+}
+
+//the after is for for IE
+.alice-carousel__prev-btn-item::after {
+	margin: 0 5px;
+	content: url('../assets/left.svg');
+	width: 18px;
+	height: 28px;
+	transform: rotate(180deg);
+	user-select: none;
+	@media only screen and (min-width:$max-mobile-width) {
+		margin: 0 10px;
+	}
+}
+
+.alice-carousel__prev-btn-item {
+	left: 0;
+	width: 30px;
+    display: block;
+    height: 30px;
+	position: absolute;
+	height: 100%;
+	background-image: linear-gradient(to left, rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.75), white);
+	
+	&::after {
+		width: 30px;
+		height: 30px;
+		left: 0;
+		position: absolute;
+		margin-left: 0;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+	}
+  }
+
+  .alice-carousel__next-btn-item {
+	right: 0;
+    width: 30px;
+    display: block;
+    height: 30px;
+	position: absolute;
+    height: 100%;
+	background-image: linear-gradient(to right, rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.75), white);
+
+	&::after {
+		width: 30px;
+		height: 30px;
+		right: 0;
+		position: absolute;
+		margin-right: 0;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+	}
+  }
+}

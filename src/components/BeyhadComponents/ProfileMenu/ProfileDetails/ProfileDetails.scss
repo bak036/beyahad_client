@@ -1,0 +1,67 @@
+.profile-details-container {
+	direction: rtl;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 100%;
+	line-height: 25px;
+	margin-bottom: 1rem;
+	@media only screen and (min-width:$max-mobile-width) {
+		padding-block: 1rem;
+	}
+
+	.custom-header-container {
+		margin: 0;
+	}
+
+	.custom-span-text {
+		padding-bottom: 0;
+	}
+
+	.user-name {
+
+		.custom-header-text {
+			font-size: 1.8rem;
+		}
+
+		.user-name-text {
+			color: #{$color-blue-normal};
+			font-weight: 700;
+			line-height: 1.2;
+		}
+	}
+
+	.profile-member {
+		font-size: 0.95rem;
+		width: 100%;
+		height: 1.8rem;
+		display: flex;
+		align-items: center;
+
+		.card-number {
+			font-weight: 300;
+		}
+
+		.copy-icon {
+			height: fit-content;
+			margin-right: 0.4rem;
+		}
+	}
+
+	.profile-email {
+		letter-spacing: -1px;
+		font-weight: 100;
+		font-size: 0.9rem;
+		color: black;
+	}
+
+	.underline {
+		cursor: pointer;
+	}
+
+	@media only screen and (max-width:$max-mobile-width) {
+		.logOutText {
+			// padding-top: 1rem;
+		}
+	}
+}

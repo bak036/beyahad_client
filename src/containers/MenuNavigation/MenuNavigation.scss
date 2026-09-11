@@ -1,0 +1,46 @@
+@import 'NavBar/Navbar.scss';
+@import 'SideBar/SideBar.scss';
+@import 'BarSearch/BarSearch.scss';
+@import 'SideBar/SideBarSearchHover/SideBarSearchHover.scss';
+.side-bar-bottom{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+	margin: 22px 2px 23px 52px;
+	padding: 11px 2px;
+	object-fit: contain;
+	border-radius: 30px;
+	box-shadow: $box-shadow-element;
+	background: #fff;
+	margin-right: 20px;
+.max-button{
+    border-radius: 21px;
+    background-color: #15244d;
+    color: white;
+    text-align: center;
+    width: 45%;
+    margin: 1%;
+    padding: 16px;
+    height: 65px;
+    cursor: pointer;
+	&:hover{
+		opacity: 0.8;
+	}
+    }
+    .right-button{
+        background-image: url('../assets/background_sky_points.png');
+        .sky-img{
+            top:3px;
+            position: relative;
+        }
+    }
+    .left-button{
+        background-image: url('../assets/background_max_benefits.png');
+        .max-img{
+        top:2px;
+        position: relative;
+        }
+    }
+}
+
