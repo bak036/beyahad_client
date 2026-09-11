@@ -61,36 +61,40 @@ _win_path() {
 }
 
 run_npm() {
-    if command -v cmd.exe >/dev/null 2>&1; then
+    local cmd_bin
+    cmd_bin=$(command -v cmd.exe 2>/dev/null)
+    if [[ -n "$cmd_bin" ]]; then
         local npm_win winpath
         npm_win=$(_resolve_win_shim npm)
         winpath=$(_win_path)
         if [[ -n "$npm_win" ]]; then
             if [[ -n "$winpath" ]]; then
-                MSYS_NO_PATHCONV=1 PATH="$winpath" cmd.exe /d /c "$npm_win" "$@"
+                MSYS_NO_PATHCONV=1 PATH="$winpath" "$cmd_bin" /d /c "$npm_win" "$@"
             else
-                MSYS_NO_PATHCONV=1 cmd.exe /d /c "$npm_win" "$@"
+                MSYS_NO_PATHCONV=1 "$cmd_bin" /d /c "$npm_win" "$@"
             fi
         else
-            MSYS_NO_PATHCONV=1 cmd.exe /d /c npm "$@"
+            MSYS_NO_PATHCONV=1 "$cmd_bin" /d /c npm "$@"
         fi
     else
         npm "$@"
     fi
 }
 run_npx() {
-    if command -v cmd.exe >/dev/null 2>&1; then
+    local cmd_bin
+    cmd_bin=$(command -v cmd.exe 2>/dev/null)
+    if [[ -n "$cmd_bin" ]]; then
         local npx_win winpath
         npx_win=$(_resolve_win_shim npx)
         winpath=$(_win_path)
         if [[ -n "$npx_win" ]]; then
             if [[ -n "$winpath" ]]; then
-                MSYS_NO_PATHCONV=1 PATH="$winpath" cmd.exe /d /c "$npx_win" "$@"
+                MSYS_NO_PATHCONV=1 PATH="$winpath" "$cmd_bin" /d /c "$npx_win" "$@"
             else
-                MSYS_NO_PATHCONV=1 cmd.exe /d /c "$npx_win" "$@"
+                MSYS_NO_PATHCONV=1 "$cmd_bin" /d /c "$npx_win" "$@"
             fi
         else
-            MSYS_NO_PATHCONV=1 cmd.exe /d /c npx "$@"
+            MSYS_NO_PATHCONV=1 "$cmd_bin" /d /c npx "$@"
         fi
     else
         npx "$@"

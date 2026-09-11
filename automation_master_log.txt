@@ -457,3 +457,35 @@
 [ 2026-09-11 18:22:06 ] ===================================================
 [ 2026-09-11 18:22:07 ]    Set REACT_APP_ENV=https://histbackpp.dts.co.il (from cross-env, applied directly — no nested npm call)
 [ 2026-09-11 18:22:07 ]    Running: npm run build (single npm layer)
+[ 2026-09-11 18:25:07 ] 🔍 Project: beyahad_client
+[ 2026-09-11 18:25:07 ] 🔍 Branch: PP
+[ 2026-09-11 18:25:07 ]    ✓ DB credentials loaded from .env (server: 172.29.92.20\sql2005, db: NofTest, user: alexk)
+[ 2026-09-11 18:25:08 ] 
+[ 2026-09-11 18:25:08 ] ===================================================
+[ 2026-09-11 18:25:08 ] 🔧 CHECKING PIPELINE PREREQUISITES (PowerShell / SQL)
+[ 2026-09-11 18:25:08 ] ===================================================
+[ 2026-09-11 18:25:18 ]    ✓ PowerShell/SqlServer module ready
+[ 2026-09-11 18:25:19 ]    ✓ Robocopy ready
+[ 2026-09-11 18:25:19 ] 
+[ 2026-09-11 18:25:20 ] 🌐 Checking network connectivity to 172.29.92.20:1433...
+[ 2026-09-11 18:25:27 ]    ✓ Network reachable
+[ 2026-09-11 18:25:27 ] 
+[ 2026-09-11 18:25:27 ] ===================================================
+[ 2026-09-11 18:25:27 ] 🚀 DEPLOYMENT STARTED
+[ 2026-09-11 18:25:27 ] ===================================================
+[ 2026-09-11 18:25:28 ] 
+[ 2026-09-11 18:25:28 ] ===================================================
+[ 2026-09-11 18:25:28 ] 🔎 [STEP 1/5] CHECKING PROJECT DEPENDENCIES
+[ 2026-09-11 18:25:28 ] ===================================================
+[ 2026-09-11 18:25:29 ]    ✓ node: v24.16.0
+[ 2026-09-11 18:25:30 ]    ✓ npm: 11.13.0
+[ 2026-09-11 18:25:30 ]    Checking local ("file:") sibling dependencies...
+[ 2026-09-11 18:25:31 ]    ✓ Found local dependency 'nofshonit-base-web-client' at /c/Users/alexk/Desktop/Automation/BitBuketProject/nofshonit-base-web-client
+[ 2026-09-11 18:25:31 ]    ✓ node_modules present
+[ 2026-09-11 18:25:32 ]    ✓ cross-env resolvable
+[ 2026-09-11 18:25:32 ] 
+[ 2026-09-11 18:25:32 ] ===================================================
+[ 2026-09-11 18:25:32 ] 🏗️  [STEP 2/5] BUILDING (npm run build:preprod)
+[ 2026-09-11 18:25:32 ] ===================================================
+[ 2026-09-11 18:25:33 ]    Set REACT_APP_ENV=https://histbackpp.dts.co.il (from cross-env, applied directly — no nested npm call)
+[ 2026-09-11 18:25:33 ]    Running: npm run build (single npm layer)
