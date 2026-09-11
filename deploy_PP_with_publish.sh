@@ -47,12 +47,30 @@ _resolve_win_shim() {
     cygpath -w "$shim" 2>/dev/null || echo "$shim"
 }
 
+# Bash's $PATH is Unix-style (colon-separated, e.g. "/c/Program Files/nodejs")
+# — cmd.exe cannot parse that at all. Finding npm.cmd's own full path (above)
+# sidesteps this for npm itself, but npm's OWN script runner then looks up
+# plain "node" via a normal (Windows-style) PATH search when running a
+# script like "node scripts/build.js" — and with a Unix-style PATH inherited
+# from bash, that lookup fails ("'node' is not recognized"), even though
+# node is right there in the Windows PATH. Converting $PATH to native
+# Windows form before invoking cmd.exe fixes this for every such nested
+# lookup, not just node.
+_win_path() {
+    cygpath -w -p "$PATH" 2>/dev/null
+}
+
 run_npm() {
     if command -v cmd.exe >/dev/null 2>&1; then
-        local npm_win
+        local npm_win winpath
         npm_win=$(_resolve_win_shim npm)
+        winpath=$(_win_path)
         if [[ -n "$npm_win" ]]; then
-            MSYS_NO_PATHCONV=1 cmd.exe /d /c "$npm_win" "$@"
+            if [[ -n "$winpath" ]]; then
+                MSYS_NO_PATHCONV=1 PATH="$winpath" cmd.exe /d /c "$npm_win" "$@"
+            else
+                MSYS_NO_PATHCONV=1 cmd.exe /d /c "$npm_win" "$@"
+            fi
         else
             MSYS_NO_PATHCONV=1 cmd.exe /d /c npm "$@"
         fi
@@ -62,10 +80,15 @@ run_npm() {
 }
 run_npx() {
     if command -v cmd.exe >/dev/null 2>&1; then
-        local npx_win
+        local npx_win winpath
         npx_win=$(_resolve_win_shim npx)
+        winpath=$(_win_path)
         if [[ -n "$npx_win" ]]; then
-            MSYS_NO_PATHCONV=1 cmd.exe /d /c "$npx_win" "$@"
+            if [[ -n "$winpath" ]]; then
+                MSYS_NO_PATHCONV=1 PATH="$winpath" cmd.exe /d /c "$npx_win" "$@"
+            else
+                MSYS_NO_PATHCONV=1 cmd.exe /d /c "$npx_win" "$@"
+            fi
         else
             MSYS_NO_PATHCONV=1 cmd.exe /d /c npx "$@"
         fi
