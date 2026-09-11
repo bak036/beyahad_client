@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # ===========================================================
 # GIT PRE-PUSH HOOK - Deploy to PP Branch
+# GIT PRE-PUSH HOOK - Deploy to PP Branch
+
 # ===========================================================
 # Location: .git/hooks/pre-push
 #

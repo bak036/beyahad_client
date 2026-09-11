@@ -21,6 +21,29 @@ set +u
 if (set -o pipefail >/dev/null 2>&1); then set -o pipefail; fi
 
 # ============================================================
+# npm scripts that themselves invoke "node ..." (e.g. CRA's
+# "build": "node scripts/build.js") can fail with a literal
+# '"node"' is not recognized as an internal or external command
+# error when npm is run directly from Git Bash/MSYS — MSYS's path
+# translation corrupts the quoting cmd.exe uses to spawn the nested
+# node process. Running npm through cmd.exe /c sidesteps this by
+# keeping the whole call chain in native Windows context.
+run_npm() {
+    if command -v cmd.exe >/dev/null 2>&1; then
+        cmd.exe /d /s /c "npm $*"
+    else
+        npm "$@"
+    fi
+}
+run_npx() {
+    if command -v cmd.exe >/dev/null 2>&1; then
+        cmd.exe /d /s /c "npx $*"
+    else
+        npx "$@"
+    fi
+}
+
+# ============================================================
 # Robust PowerShell detection — same rationale as the backend script:
 # works regardless of which shell actually executes this script
 # (Git Bash vs. WSL vs. plain PowerShell).
@@ -328,9 +351,9 @@ if [[ -n "$FILE_DEPS" ]]; then
                 log "   → Will attempt: npm install + npm run build inside $dep_path (if it has a build script)"
                 (
                     cd "$dep_path"
-                    npm install
+                    run_npm install
                     if node -e "process.exit(require('./package.json').scripts && require('./package.json').scripts.build ? 0 : 1)" 2>/dev/null; then
-                        npm run build
+                        run_npm run build
                     fi
                 )
                 if [[ ! -f "$dep_path/$dep_main" ]]; then
@@ -352,7 +375,7 @@ fi
 # ── node_modules for the project itself ──
 if [[ ! -d "$ROOT/node_modules" ]]; then
     log "   ⚙  node_modules not found — running npm install..."
-    npm install
+    run_npm install
     log "   ✓ npm install completed"
 else
     log "   ✓ node_modules present"
@@ -361,7 +384,7 @@ fi
 # ── cross-env must be resolvable, since build:preprod depends on it ──
 if [[ ! -f "$ROOT/node_modules/.bin/cross-env" && ! -f "$ROOT/node_modules/.bin/cross-env.cmd" ]]; then
     log "   ⚙  cross-env not found in node_modules/.bin — running npm install..."
-    npm install
+    run_npm install
 fi
 if [[ ! -f "$ROOT/node_modules/.bin/cross-env" && ! -f "$ROOT/node_modules/.bin/cross-env.cmd" ]]; then
     log "❌ cross-env still not resolvable after npm install — check package.json devDependencies"
@@ -377,7 +400,7 @@ log "==================================================="
 log "🏗️  [STEP 2/5] BUILDING (npm run build:preprod)"
 log "==================================================="
 
-npm run build:preprod
+run_npm run build:preprod
 if [[ $? -ne 0 ]]; then
     log "❌ npm run build:preprod failed"
     exit 1
@@ -409,7 +432,7 @@ log "🔒 DEVSEC VULNERABILITY SCAN"
 log "==================================================="
 
 log "   📦 Scanning npm dependencies (npm audit)..."
-NPM_AUDIT_OUTPUT=$(npm audit 2>&1) || true
+NPM_AUDIT_OUTPUT=$(run_npm audit 2>&1) || true
 NPM_AUDIT_VULN_COUNT=0
 if echo "$NPM_AUDIT_OUTPUT" | grep -qiE "found [1-9][0-9]* vulnerabilit"; then
     NPM_AUDIT_VULN_COUNT=$(echo "$NPM_AUDIT_OUTPUT" | grep -oiE "found [0-9]+ vulnerabilit[a-z]*" | grep -oE '[0-9]+' | head -1)
@@ -424,7 +447,7 @@ fi
 log "   🌐 Scanning installed packages (retire.js) in: $ROOT/node_modules"
 RETIRE_OUTPUT=""
 if command -v npx &> /dev/null; then
-    RETIRE_SCAN=$(npx --yes retire --path "$ROOT/node_modules" --outputformat text --severity low 2>&1) || true
+    RETIRE_SCAN=$(run_npx --yes retire --path "$ROOT/node_modules" --outputformat text --severity low 2>&1) || true
     if [[ -n "$RETIRE_SCAN" ]] && echo "$RETIRE_SCAN" | grep -qi "vulnerabilit"; then
         log "   ⚠️  Vulnerable libraries found (retire.js):"
         while IFS= read -r scanline; do
@@ -774,6 +797,7 @@ log ""
 log "✅ Done!"
 log ""
 log "==================================================="
+log "🏁 PIPELINE FINISHED"
 log "🏁 PIPELINE FINISHED"
 log "==================================================="
 
