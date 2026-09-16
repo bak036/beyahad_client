@@ -149,19 +149,14 @@ POWERSHELL=$(find_powershell) || {
     exit 1
 }
 
-# ============================================================
-# SFTP via curl instead of WinSCP: curl ships built into Windows 10/11
-# (System32\curl.exe since ~2018) AND with Git for Windows itself — so
-# every machine that can run this script already has it, with nothing
-# to install. curl's SFTP support (via libssh2) also doesn't do
-# interactive host-key verification, matching WinSCP's -hostkey=*
-# bypass with no extra flags needed.
-# ============================================================
-find_curl() {
+find_winscp() {
     local candidates=(
-        "curl"
-        "/c/Windows/System32/curl.exe"
-        "/mnt/c/Windows/System32/curl.exe"
+        "winscp.com"
+        "/c/Program Files (x86)/WinSCP/WinSCP.com"
+        "/c/Program Files/WinSCP/WinSCP.com"
+        "/mnt/c/Program Files (x86)/WinSCP/WinSCP.com"
+        "/mnt/c/Program Files/WinSCP/WinSCP.com"
+        "$HOME/.winscp-portable/WinSCP.com"
     )
     local c
     for c in "${candidates[@]}"; do
@@ -172,8 +167,59 @@ find_curl() {
     return 1
 }
 
-CURL_BIN=$(find_curl) || {
-    echo "❌ ERROR: curl not found (should ship with Windows 10/11 and Git for Windows)"
+# Auto-download a portable copy if WinSCP isn't installed anywhere standard,
+# so a developer never has to manually install anything to deploy. Portable
+# build (a plain .zip, no installer/admin rights/UAC needed) — cached under
+# the user's home folder so this only happens once per machine.
+#
+# The download URL is pinned to a specific version and WILL go stale as new
+# WinSCP releases come out — that's an accepted tradeoff for a stable,
+# predictable URL rather than trying to scrape "latest" from the download
+# page. If this ever starts failing, get a fresh Portable .zip link from
+# https://winscp.net/eng/download.php and update WINSCP_PORTABLE_URL below.
+WINSCP_PORTABLE_URL="https://winscp.net/download/WinSCP-6.5.7-Portable.zip/download"
+
+download_winscp_portable() {
+    local cache_dir="$HOME/.winscp-portable"
+    local exe_path="$cache_dir/WinSCP.com"
+
+    echo "⚙  WinSCP not found — downloading portable copy (one-time, ~10MB)..." >&2
+    mkdir -p "$cache_dir"
+    local zip_path="$cache_dir/winscp-portable.zip"
+    rm -f "$zip_path"
+
+    if ! curl -sSL --connect-timeout 15 --max-time 90 -o "$zip_path" "$WINSCP_PORTABLE_URL"; then
+        echo "❌ Failed to download WinSCP portable from $WINSCP_PORTABLE_URL" >&2
+        rm -f "$zip_path"
+        return 1
+    fi
+
+    local zip_win cache_win
+    zip_win=$(cygpath -w "$zip_path" 2>/dev/null || echo "$zip_path")
+    cache_win=$(cygpath -w "$cache_dir" 2>/dev/null || echo "$cache_dir")
+
+    "$POWERSHELL" -NoProfile -Command "
+        try {
+            Expand-Archive -Path '$zip_win' -DestinationPath '$cache_win' -Force
+            Write-Output 'OK'
+        } catch {
+            Write-Output (\"FAILED: \" + \$_.Exception.Message)
+        }
+    " > /dev/null 2>&1
+    rm -f "$zip_path"
+
+    if [[ -f "$exe_path" ]]; then
+        echo "   ✓ WinSCP portable ready at $cache_dir" >&2
+        echo "$exe_path"
+        return 0
+    fi
+    echo "❌ WinSCP.com not found after extracting portable package — URL may be stale, see winscp.net/eng/download.php" >&2
+    return 1
+}
+
+WINSCP=$(find_winscp) || WINSCP=$(download_winscp_portable) || {
+    echo "❌ ERROR: WinSCP not found and automatic download failed."
+    echo "   Install manually from winscp.net, or check network/proxy access to winscp.net."
     exit 1
 }
 
@@ -675,23 +721,32 @@ log "📤 [STEP 5/5] UPLOADING TO SFTP VAULT ($SFTP_HOST:$SFTP_PORT$SFTP_UPLOAD_
 log "==================================================="
 
 SFTP_ZIP_NAME="${PROJECT}_${BRANCH}_publish.zip"
-CURL_LOG="$ROOT/.curl_upload.log"
-rm -f "$CURL_LOG"
+WINSCP_LOG="$ROOT/.winscp_upload.log"
+rm -f "$WINSCP_LOG"
 
-"$CURL_BIN" -sS --connect-timeout 15 --max-time 120 \
-    --user "${SFTP_USER}:${SFTP_PASSWORD}" \
-    -T "$ZIP_PATH" \
-    "sftp://${SFTP_HOST}:${SFTP_PORT}${SFTP_UPLOAD_DIR}/${SFTP_ZIP_NAME}" \
-    > "$CURL_LOG" 2>&1
+UPLOAD_SCRIPT=$(mktemp)
+cat > "$UPLOAD_SCRIPT" <<EOF
+option batch abort
+option confirm off
+option transfer binary
+open sftp://${SFTP_USER}:${SFTP_PASSWORD}@${SFTP_HOST}:${SFTP_PORT}/ -hostkey=*
+lcd $(cygpath -m "$(dirname "$ZIP_PATH")" 2>/dev/null || dirname "$ZIP_PATH")
+put $(basename "$ZIP_PATH") ${SFTP_UPLOAD_DIR}/${SFTP_ZIP_NAME}
+exit
+EOF
+
+MSYS_NO_PATHCONV=1 timeout 120 "$WINSCP" /log="$(cygpath -w "$WINSCP_LOG" 2>/dev/null || echo "$WINSCP_LOG")" /ini=nul \
+    /script="$(cygpath -w "$UPLOAD_SCRIPT" 2>/dev/null | sed 's/^\\//')" 2>&1
 UPLOAD_EXIT=$?
+rm -f "$UPLOAD_SCRIPT"
 
-if [[ $UPLOAD_EXIT -eq 28 ]]; then
+if [[ $UPLOAD_EXIT -eq 124 ]]; then
     log "❌ SFTP upload timed out after 120s"
     exit 1
 fi
 if [[ $UPLOAD_EXIT -ne 0 ]]; then
-    log "❌ SFTP upload failed (curl exit $UPLOAD_EXIT)"
-    [[ -f "$CURL_LOG" ]] && tail -20 "$CURL_LOG" | while IFS= read -r l; do log "   $l"; done
+    log "❌ SFTP upload failed (exit $UPLOAD_EXIT)"
+    [[ -f "$WINSCP_LOG" ]] && tail -20 "$WINSCP_LOG" | while IFS= read -r l; do log "   $l"; done
     exit 1
 fi
 log "   ✓ Uploaded to ${SFTP_UPLOAD_DIR}/${SFTP_ZIP_NAME}"
@@ -706,6 +761,7 @@ log "==================================================="
 
 LOCAL_CONFIRM_DIR="$ROOT/.deploy_confirmations"
 mkdir -p "$LOCAL_CONFIRM_DIR"
+LOCAL_CONFIRM_WIN=$(cygpath -w "$LOCAL_CONFIRM_DIR" 2>/dev/null | sed 's/^\\//')
 
 connStr="Server=${DB_SERVER};Database=${DB_NAME};User ID=${DB_USER};Password=${DB_PASSWORD};TrustServerCertificate=True;"
 SERVER_COUNT=$("$POWERSHELL" -NoProfile -Command "
@@ -731,25 +787,36 @@ for ((i=1; i<=MAX_WAIT/CHECK_INTERVAL; i++)); do
     ELAPSED=$((i * CHECK_INTERVAL))
 
     TMP_LIST=$(mktemp)
-    "$CURL_BIN" -sS --connect-timeout 10 --max-time 30 \
-        --user "${SFTP_USER}:${SFTP_PASSWORD}" \
-        "sftp://${SFTP_HOST}:${SFTP_PORT}${SFTP_CONFIRM_DIR}/" \
-        > "$TMP_LIST" 2>&1 || true
+    TMP_SCRIPT=$(mktemp)
+    cat > "$TMP_SCRIPT" <<EOF
+option batch continue
+option confirm off
+open sftp://${SFTP_USER}:${SFTP_PASSWORD}@${SFTP_HOST}:${SFTP_PORT}/ -hostkey=*
+cd ${SFTP_CONFIRM_DIR}
+ls
+exit
+EOF
+    MSYS_NO_PATHCONV=1 "$WINSCP" /log=NUL /ini=nul /script="$(cygpath -w "$TMP_SCRIPT" 2>/dev/null | sed 's/^\\//')" > "$TMP_LIST" 2>&1 || true
+    rm -f "$TMP_SCRIPT"
 
     while IFS= read -r line; do
         FNAME=$(echo "$line" | grep -oE "${PROJECT_NAME}_${BRANCH}_Deploy_Success_[^ ]+" | head -1) || true
         [[ -z "$FNAME" ]] && continue
         [[ -n "${SEEN_DEPLOY_FILES[$FNAME]:-}" ]] && continue
 
-        # Download the file, then delete it on the server — the "+" prefix on
-        # --quote runs that command AFTER a successful transfer (curl's SFTP
-        # post-transfer command syntax), so this is one call instead of two.
-        "$CURL_BIN" -sS --connect-timeout 10 --max-time 30 \
-            --user "${SFTP_USER}:${SFTP_PASSWORD}" \
-            --quote "+rm ${SFTP_CONFIRM_DIR}/${FNAME}" \
-            -o "${LOCAL_CONFIRM_DIR}/${FNAME}" \
-            "sftp://${SFTP_HOST}:${SFTP_PORT}${SFTP_CONFIRM_DIR}/${FNAME}" \
-            >/dev/null 2>&1 || true
+        TMP_GET=$(mktemp)
+        cat > "$TMP_GET" <<EOF
+option batch continue
+option confirm off
+open sftp://${SFTP_USER}:${SFTP_PASSWORD}@${SFTP_HOST}:${SFTP_PORT}/ -hostkey=*
+cd ${SFTP_CONFIRM_DIR}
+lcd ${LOCAL_CONFIRM_WIN}
+get "${FNAME}"
+rm "${FNAME}"
+exit
+EOF
+        MSYS_NO_PATHCONV=1 "$WINSCP" /log=NUL /ini=nul /script="$(cygpath -w "$TMP_GET" 2>/dev/null | sed 's/^\\//')" >/dev/null 2>&1 || true
+        rm -f "$TMP_GET"
 
         LOCAL_TXT="$LOCAL_CONFIRM_DIR/$FNAME"
         if [[ -f "$LOCAL_TXT" ]]; then

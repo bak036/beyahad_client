@@ -1925,3 +1925,63 @@
 [ 2026-09-16 14:18:29 ] ===================================================
 [ 2026-09-16 14:18:29 ] 🏁 PIPELINE FINISHED
 [ 2026-09-16 14:18:30 ] ===================================================
+[ 2026-09-16 15:10:53 ] 🔍 Project: beyahad-web-client
+[ 2026-09-16 15:10:53 ] 🔍 Branch: PP
+[ 2026-09-16 15:10:53 ]    ✓ DB credentials loaded from .env (server: 172.29.92.20\sql2005, db: NofTest, user: alexk)
+[ 2026-09-16 15:10:53 ] 
+[ 2026-09-16 15:10:53 ] ===================================================
+[ 2026-09-16 15:10:54 ] 🔧 CHECKING PIPELINE PREREQUISITES (PowerShell / SQL)
+[ 2026-09-16 15:10:54 ] ===================================================
+[ 2026-09-16 15:11:04 ]    ✓ PowerShell/SqlServer module ready
+[ 2026-09-16 15:11:05 ]    ✓ Robocopy ready
+[ 2026-09-16 15:11:05 ] 
+[ 2026-09-16 15:11:05 ] 🌐 Checking network connectivity to 172.29.92.20:1433...
+[ 2026-09-16 15:11:13 ]    ✓ Network reachable
+[ 2026-09-16 15:11:13 ] 
+[ 2026-09-16 15:11:13 ] ===================================================
+[ 2026-09-16 15:11:13 ] 🚀 DEPLOYMENT STARTED
+[ 2026-09-16 15:11:14 ] ===================================================
+[ 2026-09-16 15:11:14 ] 
+[ 2026-09-16 15:11:14 ] ===================================================
+[ 2026-09-16 15:11:14 ] 🔎 [STEP 1/5] CHECKING PROJECT DEPENDENCIES
+[ 2026-09-16 15:11:14 ] ===================================================
+[ 2026-09-16 15:11:15 ]    ✓ node: v24.16.0
+[ 2026-09-16 15:11:16 ]    ✓ npm: 11.13.0
+[ 2026-09-16 15:11:17 ]    Checking local ("file:") sibling dependencies...
+[ 2026-09-16 15:11:17 ]    ✓ Found local dependency 'nofshonit-base-web-client' at /c/Users/alexk/Desktop/Automation/BitBuketProject/nofshonit-base-web-client
+[ 2026-09-16 15:11:17 ]    ✓ node_modules present
+[ 2026-09-16 15:11:18 ]    ✓ cross-env resolvable
+[ 2026-09-16 15:11:18 ] 
+[ 2026-09-16 15:11:18 ] ===================================================
+[ 2026-09-16 15:11:18 ] 🏗️  [STEP 2/5] BUILDING (npm run build:preprod)
+[ 2026-09-16 15:11:19 ] ===================================================
+[ 2026-09-16 15:11:19 ]    Set REACT_APP_ENV=https://histbackpp.dts.co.il (from cross-env, applied directly — no nested npm call)
+[ 2026-09-16 15:11:19 ]    Running: npm run build (single npm layer)
+[ 2026-09-16 15:11:49 ]    ✓ Build completed
+[ 2026-09-16 15:11:50 ] 
+[ 2026-09-16 15:11:50 ] ===================================================
+[ 2026-09-16 15:11:50 ] 🔒 DEVSEC VULNERABILITY SCAN
+[ 2026-09-16 15:11:50 ] ===================================================
+[ 2026-09-16 15:11:51 ]    📦 Scanning npm dependencies (npm audit)...
+[ 2026-09-16 15:12:17 ]    ✓ npm audit: no known vulnerabilities found
+[ 2026-09-16 15:12:17 ]    🌐 Scanning installed packages (retire.js) in: C:/Users/alexk/Desktop/Automation/BitBuketProject/beyahad-web-client/node_modules
+[ 2026-09-16 15:13:24 ]    ✓ retire.js: no known-vulnerable libraries found
+[ 2026-09-16 15:13:25 ] ===================================================
+[ 2026-09-16 15:13:25 ] ✓ DevSec scan complete
+[ 2026-09-16 15:13:25 ] ===================================================
+[ 2026-09-16 15:13:25 ] 
+[ 2026-09-16 15:13:25 ] ===================================================
+[ 2026-09-16 15:13:26 ] ⏭  [STEP 3/5] PUBLISH — skipped (not applicable to front-end projects)
+[ 2026-09-16 15:13:26 ] ===================================================
+[ 2026-09-16 15:13:26 ] 
+[ 2026-09-16 15:13:26 ] ===================================================
+[ 2026-09-16 15:13:27 ] 📦 [STEP 4/5] CREATING DEPLOYMENT PACKAGE
+[ 2026-09-16 15:13:27 ] ===================================================
+[ 2026-09-16 15:13:27 ]    Copying build/ to temp directory (excluding configuration.json, web.config)...
+[ 2026-09-16 15:13:29 ]    ✓ Files staged (configuration.json / web.config excluded from the ZIP)
+[ 2026-09-16 15:13:29 ]    Creating ZIP archive...
+[ 2026-09-16 15:13:33 ]    ✓ ZIP created: beyahad-web-client_PP_publish.zip
+[ 2026-09-16 15:13:33 ] 
+[ 2026-09-16 15:13:33 ] ===================================================
+[ 2026-09-16 15:13:33 ] 📤 [STEP 5/5] UPLOADING TO SFTP VAULT (sftp.dts.co.il:22/pp)
+[ 2026-09-16 15:13:34 ] ===================================================
