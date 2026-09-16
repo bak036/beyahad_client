@@ -53,28 +53,25 @@ _resolve_win_shim() {
 # plain "node" via a normal (Windows-style) PATH search when running a
 # script like "node scripts/build.js" — and with a Unix-style PATH inherited
 # from bash, that lookup fails ("'node' is not recognized"), even though
-# node is right there in the Windows PATH.
+# node is right there in the Windows PATH. The same applies to anything a
+# package's install/build scripts shell out to — e.g. patch-package's
+# postinstall step needs "git", which failed the same way once node/npm
+# were fixed but git's own directory wasn't included.
 #
-# Converting the WHOLE ambient $PATH via "cygpath -w -p" is fragile: any
-# single MSYS-specific or otherwise unconvertible entry in bash's real
-# $PATH can make the whole conversion fail/return empty, silently
-# disabling the override. Instead, build a minimal, targeted Windows PATH
-# containing only what's actually needed: node's own directory, npm's own
-# directory, and System32/Windows (so cmd.exe's own built-ins keep
-# working) — each converted individually, so one bad entry can't break
-# the rest.
+# Converting the WHOLE ambient $PATH in one shot via "cygpath -w -p" is
+# fragile: a single MSYS-specific or otherwise unconvertible entry can make
+# the whole conversion fail/return empty, silently disabling the override.
+# Converting bash's REAL $PATH one segment at a time avoids both problems
+# at once: every tool already on PATH (node, npm, git, python, whatever a
+# future postinstall script needs) carries over, and one bad segment only
+# drops that one segment instead of the whole PATH.
 _win_path() {
-    local node_bin npm_bin node_dir npm_dir parts=()
-    node_bin=$(command -v node 2>/dev/null)
-    npm_bin=$(command -v npm 2>/dev/null)
-    if [[ -n "$node_bin" ]]; then
-        node_dir=$(cygpath -w "$(dirname "$node_bin")" 2>/dev/null)
-        [[ -n "$node_dir" ]] && parts+=("$node_dir")
-    fi
-    if [[ -n "$npm_bin" ]]; then
-        npm_dir=$(cygpath -w "$(dirname "$npm_bin")" 2>/dev/null)
-        [[ -n "$npm_dir" ]] && parts+=("$npm_dir")
-    fi
+    local IFS=':' seg parts=() dir
+    for seg in $PATH; do
+        [[ -z "$seg" ]] && continue
+        dir=$(cygpath -w "$seg" 2>/dev/null)
+        [[ -n "$dir" ]] && parts+=("$dir")
+    done
     parts+=("C:\\Windows\\System32")
     parts+=("C:\\Windows")
     parts+=("C:\\Windows\\System32\\Wbem")

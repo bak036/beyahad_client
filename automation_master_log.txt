@@ -2233,3 +2233,29 @@
 [ 2026-09-16 15:58:14 ]    ✓ Found local dependency 'nofshonit-base-web-client' at /c/Users/alexk/Desktop/Automation/BitBuketProject/nofshonit-base-web-client
 [ 2026-09-16 15:58:15 ]    ✓ node_modules present
 [ 2026-09-16 15:58:15 ]    ⚙  cross-env not found in node_modules/.bin — running npm install...
+[ 2026-09-16 16:06:21 ] 🔍 Project: beyahad-web-client
+[ 2026-09-16 16:06:21 ] 🔍 Branch: PP
+[ 2026-09-16 16:06:22 ]    ✓ DB credentials loaded from .env (server: 172.29.92.20\sql2005, db: NofTest, user: alexk)
+[ 2026-09-16 16:06:22 ] 
+[ 2026-09-16 16:06:22 ] ===================================================
+[ 2026-09-16 16:06:22 ] 🔧 CHECKING PIPELINE PREREQUISITES (PowerShell / SQL)
+[ 2026-09-16 16:06:22 ] ===================================================
+[ 2026-09-16 16:06:32 ]    ✓ PowerShell/SqlServer module ready
+[ 2026-09-16 16:06:33 ]    ✓ Robocopy ready
+[ 2026-09-16 16:06:33 ] 
+[ 2026-09-16 16:06:34 ] 🌐 Checking network connectivity to 172.29.92.20:1433...
+[ 2026-09-16 16:06:41 ]    ✓ Network reachable
+[ 2026-09-16 16:06:41 ] 
+[ 2026-09-16 16:06:41 ] ===================================================
+[ 2026-09-16 16:06:41 ] 🚀 DEPLOYMENT STARTED
+[ 2026-09-16 16:06:42 ] ===================================================
+[ 2026-09-16 16:06:42 ] 
+[ 2026-09-16 16:06:42 ] ===================================================
+[ 2026-09-16 16:06:42 ] 🔎 [STEP 1/5] CHECKING PROJECT DEPENDENCIES
+[ 2026-09-16 16:06:43 ] ===================================================
+[ 2026-09-16 16:06:43 ]    ✓ node: v24.16.0
+[ 2026-09-16 16:06:45 ]    ✓ npm: 11.13.0
+[ 2026-09-16 16:06:45 ]    Checking local ("file:") sibling dependencies...
+[ 2026-09-16 16:06:45 ]    ✓ Found local dependency 'nofshonit-base-web-client' at /c/Users/alexk/Desktop/Automation/BitBuketProject/nofshonit-base-web-client
+[ 2026-09-16 16:06:46 ]    ✓ node_modules present
+[ 2026-09-16 16:06:46 ]    ⚙  cross-env not found in node_modules/.bin — running npm install...
