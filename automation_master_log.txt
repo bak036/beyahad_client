@@ -1559,3 +1559,96 @@
 [ 2026-09-16 11:57:56 ] ===================================================
 [ 2026-09-16 11:57:56 ] 🏁 PIPELINE FINISHED
 [ 2026-09-16 11:57:56 ] ===================================================
+[ 2026-09-16 13:43:47 ] 🔍 Project: beyahad-web-client
+[ 2026-09-16 13:43:47 ] 🔍 Branch: PP
+[ 2026-09-16 13:43:47 ]    ✓ DB credentials loaded from .env (server: 172.29.92.20\sql2005, db: NofTest, user: alexk)
+[ 2026-09-16 13:43:48 ] 
+[ 2026-09-16 13:43:48 ] ===================================================
+[ 2026-09-16 13:43:48 ] 🔧 CHECKING PIPELINE PREREQUISITES (PowerShell / SQL)
+[ 2026-09-16 13:43:48 ] ===================================================
+[ 2026-09-16 13:43:58 ]    ✓ PowerShell/SqlServer module ready
+[ 2026-09-16 13:43:59 ]    ✓ Robocopy ready
+[ 2026-09-16 13:43:59 ] 
+[ 2026-09-16 13:44:00 ] 🌐 Checking network connectivity to 172.29.92.20:1433...
+[ 2026-09-16 13:44:07 ]    ✓ Network reachable
+[ 2026-09-16 13:44:07 ] 
+[ 2026-09-16 13:44:08 ] ===================================================
+[ 2026-09-16 13:44:08 ] 🚀 DEPLOYMENT STARTED
+[ 2026-09-16 13:44:08 ] ===================================================
+[ 2026-09-16 13:44:08 ] 
+[ 2026-09-16 13:44:09 ] ===================================================
+[ 2026-09-16 13:44:09 ] 🔎 [STEP 1/5] CHECKING PROJECT DEPENDENCIES
+[ 2026-09-16 13:44:09 ] ===================================================
+[ 2026-09-16 13:44:09 ]    ✓ node: v24.16.0
+[ 2026-09-16 13:44:11 ]    ✓ npm: 11.13.0
+[ 2026-09-16 13:44:11 ]    Checking local ("file:") sibling dependencies...
+[ 2026-09-16 13:44:12 ]    ✓ Found local dependency 'nofshonit-base-web-client' at /c/Users/alexk/Desktop/Automation/BitBuketProject/nofshonit-base-web-client
+[ 2026-09-16 13:44:12 ]    ✓ node_modules present
+[ 2026-09-16 13:44:13 ]    ✓ cross-env resolvable
+[ 2026-09-16 13:44:13 ] 
+[ 2026-09-16 13:44:13 ] ===================================================
+[ 2026-09-16 13:44:13 ] 🏗️  [STEP 2/5] BUILDING (npm run build:preprod)
+[ 2026-09-16 13:44:13 ] ===================================================
+[ 2026-09-16 13:44:14 ]    Set REACT_APP_ENV=https://histbackpp.dts.co.il (from cross-env, applied directly — no nested npm call)
+[ 2026-09-16 13:44:14 ]    Running: npm run build (single npm layer)
+[ 2026-09-16 13:44:45 ]    ✓ Build completed
+[ 2026-09-16 13:44:46 ] 
+[ 2026-09-16 13:44:46 ] ===================================================
+[ 2026-09-16 13:44:46 ] 🔒 DEVSEC VULNERABILITY SCAN
+[ 2026-09-16 13:44:47 ] ===================================================
+[ 2026-09-16 13:44:47 ]    📦 Scanning npm dependencies (npm audit)...
+[ 2026-09-16 13:45:11 ]    ✓ npm audit: no known vulnerabilities found
+[ 2026-09-16 13:45:11 ]    🌐 Scanning installed packages (retire.js) in: C:/Users/alexk/Desktop/Automation/BitBuketProject/beyahad-web-client/node_modules
+[ 2026-09-16 13:46:19 ]    ✓ retire.js: no known-vulnerable libraries found
+[ 2026-09-16 13:46:19 ] ===================================================
+[ 2026-09-16 13:46:19 ] ✓ DevSec scan complete
+[ 2026-09-16 13:46:20 ] ===================================================
+[ 2026-09-16 13:46:20 ] 
+[ 2026-09-16 13:46:20 ] ===================================================
+[ 2026-09-16 13:46:20 ] ⏭  [STEP 3/5] PUBLISH — skipped (not applicable to front-end projects)
+[ 2026-09-16 13:46:20 ] ===================================================
+[ 2026-09-16 13:46:21 ] 
+[ 2026-09-16 13:46:21 ] ===================================================
+[ 2026-09-16 13:46:21 ] 📦 [STEP 4/5] CREATING DEPLOYMENT PACKAGE
+[ 2026-09-16 13:46:21 ] ===================================================
+[ 2026-09-16 13:46:22 ]    Copying build/ to temp directory (excluding configuration.json, web.config)...
+[ 2026-09-16 13:46:24 ]    ✓ Files staged (configuration.json / web.config excluded from the ZIP)
+[ 2026-09-16 13:46:24 ]    Creating ZIP archive...
+[ 2026-09-16 13:46:26 ]    ✓ ZIP created: beyahad-web-client_PP_publish.zip
+[ 2026-09-16 13:46:27 ] 
+[ 2026-09-16 13:46:27 ] ===================================================
+[ 2026-09-16 13:46:27 ] 📤 [STEP 5/5] UPLOADING TO SFTP VAULT (sftp.dts.co.il:22/pp)
+[ 2026-09-16 13:46:27 ] ===================================================
+[ 2026-09-16 13:46:31 ]    ✓ Uploaded to /pp/beyahad-web-client_PP_publish.zip
+[ 2026-09-16 13:46:31 ] 
+[ 2026-09-16 13:46:31 ] ===================================================
+[ 2026-09-16 13:46:31 ] ⏳ WAITING FOR WATCHER CONFIRMATION
+[ 2026-09-16 13:46:32 ] ===================================================
+[ 2026-09-16 13:46:34 ]    Expecting responses from 1 server(s)...
+[ 2026-09-16 13:47:32 ] 
+[ 2026-09-16 13:47:33 ]    📥 Response from server: DTSLC-PP → Status: Success
+[ 2026-09-16 13:47:33 ]       | ﻿Branch=PP
+[ 2026-09-16 13:47:33 ]       | Time=2026-09-16 13:47:10
+[ 2026-09-16 13:47:33 ]       | DeployPath=C:\inetpub\wwwroot\site\Productions\HistadrutClient\build-client
+[ 2026-09-16 13:47:34 ]       | Site=HistadrutClient
+[ 2026-09-16 13:47:34 ]       | TriggeredBy=AutoDeploy
+[ 2026-09-16 13:47:34 ]       | IISRestart=[2026-09-16 13:47:07] ▶ Starting IIS app pool → HistadrutClient [2026-09-16 13:47:09] ▶ Starting IIS site → HistadrutClient [2026-09-16 13:47:10]    ⏳ Verifying IIS started... [2026-09-16 13:47:10]    ✓ App pool confirmed started (after 0s) [2026-09-16 13:47:10]    ✓ Site confirmed running Yes
+[ 2026-09-16 13:47:34 ]       | Project=beyahad-web-client
+[ 2026-09-16 13:47:35 ]       | BackupPath=C:\inetpub\wwwroot\site\Productions\HistadrutClient\build-client.2026-09-16_13.47.03
+[ 2026-09-16 13:47:35 ]       | SmokeTestDetail=No smoke test directory configured for this project
+[ 2026-09-16 13:47:35 ]       | Status=Success
+[ 2026-09-16 13:47:35 ]       | Pool=HistadrutClient
+[ 2026-09-16 13:47:36 ]       | DeploymentType=Standard
+[ 2026-09-16 13:47:36 ]       | SmokeTestStatus=Skipped
+[ 2026-09-16 13:47:36 ]       | WatcherNode=DTSLC-PP
+[ 2026-09-16 13:47:37 ] 
+[ 2026-09-16 13:47:37 ] ===================================================
+[ 2026-09-16 13:47:37 ] 🎉 DEPLOYMENT COMPLETE — 1/1 servers responded
+[ 2026-09-16 13:47:37 ] ===================================================
+[ 2026-09-16 13:47:39 ]    ⏭ Not tested — No smoke test directory configured for this project
+[ 2026-09-16 13:47:43 ] 
+[ 2026-09-16 13:47:44 ] ✅ Done!
+[ 2026-09-16 13:47:44 ] 
+[ 2026-09-16 13:47:44 ] ===================================================
+[ 2026-09-16 13:47:44 ] 🏁 PIPELINE FINISHED
+[ 2026-09-16 13:47:45 ] ===================================================
