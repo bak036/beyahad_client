@@ -80,14 +80,12 @@ set +a
 : "${SFTP_PASSWORD:?Missing SFTP_PASSWORD in .env}"
 SFTP_UPLOAD_DIR="${SFTP_UPLOAD_DIR:-/pp}"
 
-# ===== WINSCP =====
-find_winscp() {
+# ===== SFTP via curl (no separate install — ships with Windows 10/11 and Git for Windows) =====
+find_curl() {
     local candidates=(
-        "winscp.com"
-        "/c/Program Files (x86)/WinSCP/WinSCP.com"
-        "/c/Program Files/WinSCP/WinSCP.com"
-        "/mnt/c/Program Files (x86)/WinSCP/WinSCP.com"
-        "/mnt/c/Program Files/WinSCP/WinSCP.com"
+        "curl"
+        "/c/Windows/System32/curl.exe"
+        "/mnt/c/Windows/System32/curl.exe"
     )
     local c
     for c in "${candidates[@]}"; do
@@ -98,24 +96,46 @@ find_winscp() {
     return 1
 }
 
-WINSCP=$(find_winscp) || {
-    echo "❌ ERROR: WinSCP.com not found. Install WinSCP (winscp.net)."
+CURL_BIN=$(find_curl) || {
+    echo "❌ ERROR: curl not found (should ship with Windows 10/11 and Git for Windows)"
     exit 1
 }
 
 SFTP_TMP="$ROOT/.sftp_tmp_$$"
 mkdir -p "$SFTP_TMP"
-SFTP_TMP_WIN=$(echo "$SFTP_TMP" | sed 's|^/mnt/\([a-zA-Z]\)/|\1:\\|; s|^/\([a-zA-Z]\)/|\1:\\|; s|/|\\|g')
 cleanup_sftp() { rm -rf "$SFTP_TMP" 2>/dev/null || true; }
 trap cleanup_sftp EXIT
 
-run_winscp() {
-    local script_file="$1"
-    local output_file="$2"
-    local script_win
-    # Use sed to convert path — cygpath may mishandle /mnt/c/ style paths
-    script_win=$(echo "$script_file" | sed 's|^/mnt/\([a-zA-Z]\)/|\1:\\|; s|^/\([a-zA-Z]\)/|\1:\\|; s|/|\\|g')
-    MSYS_NO_PATHCONV=1 "$WINSCP" /ini=nul /script="$script_win" > "$output_file" 2>&1
+# Upload a local file to a remote SFTP path.
+sftp_put() {
+    local local_file="$1" remote_path="$2" log_file="$3"
+    "$CURL_BIN" -sS --connect-timeout 15 --max-time 60 \
+        --user "${SFTP_USER}:${SFTP_PASSWORD}" \
+        -T "$local_file" \
+        "sftp://${SFTP_HOST}:${SFTP_PORT}${remote_path}" \
+        > "$log_file" 2>&1
+}
+
+# List a remote SFTP directory's contents.
+sftp_list() {
+    local remote_dir="$1" out_file="$2"
+    "$CURL_BIN" -sS --connect-timeout 10 --max-time 30 \
+        --user "${SFTP_USER}:${SFTP_PASSWORD}" \
+        "sftp://${SFTP_HOST}:${SFTP_PORT}${remote_dir}/" \
+        > "$out_file" 2>&1
+}
+
+# Download a remote file, then delete it on the server (the "+" prefix on
+# --quote runs that command AFTER a successful transfer — one call instead
+# of a separate get + rm).
+sftp_get_and_delete() {
+    local remote_dir="$1" fname="$2" local_dest="$3" log_file="$4"
+    "$CURL_BIN" -sS --connect-timeout 10 --max-time 30 \
+        --user "${SFTP_USER}:${SFTP_PASSWORD}" \
+        --quote "+rm ${remote_dir}/${fname}" \
+        -o "$local_dest" \
+        "sftp://${SFTP_HOST}:${SFTP_PORT}${remote_dir}/${fname}" \
+        > "$log_file" 2>&1
 }
 
 # Logging helper
@@ -438,26 +458,15 @@ log "🪶 [1/2] Creating rollback flag..."
 
 FLAG_PATH="$SFTP_TMP/${RAW_FLAG}"
 echo "rollback triggered $(date)" > "$FLAG_PATH"
-FLAG_WIN=$(echo "$FLAG_PATH" | sed 's|^/mnt/\([a-zA-Z]\)/|\1:\\|; s|^/\([a-zA-Z]\)/|\1:\\|; s|/|\\|g')
 log "   ✓ Flag created: $RAW_FLAG"
 
 ROLLBACK_START_LOCAL=$("$POWERSHELL" -NoProfile -Command "(Get-Date).ToString('yyyy-MM-dd HH:mm:ss')" 2>/dev/null | tr -d '\r\n') || ROLLBACK_START_LOCAL=""
 
 log "📤 Uploading rollback flag → ${SFTP_UPLOAD_DIR}/${RAW_FLAG}"
 
-PUT_SCRIPT="$SFTP_TMP/put_flag.txt"
 PUT_LOG="$SFTP_TMP/put_flag.log"
-cat > "$PUT_SCRIPT" <<EOF
-option batch abort
-option confirm off
-option transfer binary
-open sftp://${SFTP_HOST}:${SFTP_PORT}/ -username="${SFTP_USER}" -password="${SFTP_PASSWORD}" -hostkey="*"
-cd "${SFTP_UPLOAD_DIR}"
-put "${FLAG_WIN}" "${RAW_FLAG}"
-exit
-EOF
 
-run_winscp "$PUT_SCRIPT" "$PUT_LOG" && {
+sftp_put "$FLAG_PATH" "${SFTP_UPLOAD_DIR}/${RAW_FLAG}" "$PUT_LOG" && {
     log "   ✓ Rollback flag uploaded successfully"
 } || {
     log "❌ ERROR: Failed to upload rollback flag"
@@ -476,7 +485,6 @@ RESULT_FILE=""
 
 LOCAL_CONFIRM_DIR="$ROOT/.rollback_confirmations"
 mkdir -p "$LOCAL_CONFIRM_DIR"
-LOCAL_CONFIRM_WIN=$(echo "$LOCAL_CONFIRM_DIR" | sed 's|^/mnt/\([a-zA-Z]\)/|\1:\\|; s|^/\([a-zA-Z]\)/|\1:\\|; s|/|\\|g')
 
 # ── Query expected server count from ProjectRules ────────────────────
 connStr="Server=${DB_SERVER};Database=${DB_NAME};User ID=${DB_USER};Password=${DB_PASSWORD};TrustServerCertificate=True;"
@@ -498,41 +506,20 @@ set +e
 for ((i=1; i<=MAX_WAIT/CHECK_INTERVAL; i++)); do
     ELAPSED=$((i * CHECK_INTERVAL))
 
-    LIST_SCRIPT="$SFTP_TMP/list_results.txt"
     LIST_LOG="$SFTP_TMP/list_results.log"
-
-    cat > "$LIST_SCRIPT" <<EOF
-option batch continue
-option confirm off
-open sftp://${SFTP_USER}:${SFTP_PASSWORD}@${SFTP_HOST}:${SFTP_PORT}/ -hostkey=*
-cd ${SFTP_UPLOAD_DIR}
-ls
-exit
-EOF
-    run_winscp "$LIST_SCRIPT" "$LIST_LOG" || true
+    sftp_list "${SFTP_UPLOAD_DIR}" "$LIST_LOG" || true
 
     while IFS= read -r line; do
         FNAME=$(echo "$line" | grep -oE "${PROJECT_NAME}_${BRANCH}_Rollback_Success_[^ ]+" | head -1 | tr -d '\r') || true
         [[ -z "$FNAME" ]] && continue
         [[ -n "${SEEN_ROLLBACK_FILES[$FNAME]:-}" ]] && continue
 
-        GET_SCRIPT="$SFTP_TMP/get_result.txt"
         GET_LOG="$SFTP_TMP/get_result.log"
-        cat > "$GET_SCRIPT" <<EOF
-option batch continue
-option confirm off
-open sftp://${SFTP_USER}:${SFTP_PASSWORD}@${SFTP_HOST}:${SFTP_PORT}/ -hostkey=*
-cd ${SFTP_UPLOAD_DIR}
-lcd ${LOCAL_CONFIRM_WIN}
-get "${FNAME}"
-rm "${FNAME}"
-exit
-EOF
-        run_winscp "$GET_SCRIPT" "$GET_LOG" || true
-
         RESULT_LOCAL="$LOCAL_CONFIRM_DIR/$FNAME"
+        sftp_get_and_delete "${SFTP_UPLOAD_DIR}" "$FNAME" "$RESULT_LOCAL" "$GET_LOG" || true
+
         if [[ ! -f "$RESULT_LOCAL" ]]; then
-            log "[DEBUG] GET failed for $FNAME — LOCAL_CONFIRM_WIN=$LOCAL_CONFIRM_WIN"
+            log "[DEBUG] GET failed for $FNAME"
             cat "$GET_LOG" 2>/dev/null | tail -5 | while IFS= read -r l; do log "   GET: $l"; done
             continue
         fi
