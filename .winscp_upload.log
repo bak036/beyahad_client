@@ -1,162 +1,162 @@
-. 2026-09-14 18:10:11.832 --------------------------------------------------------------------------
-. 2026-09-14 18:10:11.832 WinSCP Version 6.5.3 (Build 16364 2025-07-16) (OS 10.0.19045 – Windows 10 Pro)
-. 2026-09-14 18:10:11.832 Configuration: nul
-. 2026-09-14 18:10:11.833 Log level: Normal
-. 2026-09-14 18:10:11.833 Local account: DTS\alexk
-. 2026-09-14 18:10:11.833 Working directory: C:\Users\alexk\Desktop\Automation\BitBuketProject\beyahad-web-client
-. 2026-09-14 18:10:11.833 Process ID: 13400
-. 2026-09-14 18:10:11.863 Ancestor processes: WinSCP, timeout, timeout, ...
-. 2026-09-14 18:10:11.864 Command-line: "C:\Program Files (x86)\WinSCP\WinSCP.exe" /console=6.5.3 /consoleinstance=_18196_814 "/log=C:\Users\alexk\Desktop\Automation\BitBuketProject\beyahad-web-client\.winscp_upload.log" "/ini=nul" "/script=C:\Users\alexk\AppData\Local\Temp\tmp.BHorDRFSlU" 
-. 2026-09-14 18:10:11.870 Time zone: Current: GMT+3, Standard: GMT+2 (Jerusalem Standard Time), DST: GMT+3 (Jerusalem Daylight Time), DST Start: 27/03/2026, DST End: 25/10/2026
-. 2026-09-14 18:10:11.870 Login time: יום שני 14 ספטמבר 2026 18:10:11
-. 2026-09-14 18:10:11.871 --------------------------------------------------------------------------
-. 2026-09-14 18:10:11.871 Script: Retrospectively logging previous script records:
-> 2026-09-14 18:10:11.871 Script: option batch abort
-< 2026-09-14 18:10:11.871 Script: batch           abort     
-> 2026-09-14 18:10:11.871 Script: option confirm off
-< 2026-09-14 18:10:11.871 Script: confirm         off       
-> 2026-09-14 18:10:11.871 Script: option transfer binary
-< 2026-09-14 18:10:11.871 Script: transfer        binary    
-> 2026-09-14 18:10:11.871 Script: open sftp://bitbucketpp:***@sftp.dts.co.il:22/ -hostkey=*
-. 2026-09-14 18:10:11.871 --------------------------------------------------------------------------
-. 2026-09-14 18:10:11.871 Session name: bitbucketpp@sftp.dts.co.il (Ad-Hoc site)
-. 2026-09-14 18:10:11.871 Host name: sftp.dts.co.il (Port: 22)
-. 2026-09-14 18:10:11.871 User name: bitbucketpp (Password: Yes, Key file: No, Passphrase: No)
-. 2026-09-14 18:10:11.871 Tunnel: No
-. 2026-09-14 18:10:11.871 Transfer Protocol: SFTP
-. 2026-09-14 18:10:11.871 Ping type: Off, Ping interval: 30 sec; Timeout: 15 sec
-. 2026-09-14 18:10:11.871 Disable Nagle: No
-. 2026-09-14 18:10:11.871 Proxy: None
-. 2026-09-14 18:10:11.872 Send buffer: 262144
-. 2026-09-14 18:10:11.872 Compression: No
-. 2026-09-14 18:10:11.872 Bypass authentication: No
-. 2026-09-14 18:10:11.872 Try agent: Yes; Agent forwarding: No; KI: Yes; GSSAPI: Yes
-. 2026-09-14 18:10:11.872 GSSAPI: KEX: No; Forwarding: No; Libs: gssapi32,sspi,custom; Custom: 
-. 2026-09-14 18:10:11.872 Ciphers: aes,chacha20,aesgcm,3des,WARN,des,blowfish,arcfour; Ssh2DES: No
-. 2026-09-14 18:10:11.872 KEX: ntru-curve25519,mlkem-curve25519,mlkem-nist,ecdh,dh-gex-sha1,dh-group18-sha512,dh-group17-sha512,dh-group16-sha512,dh-group15-sha512,dh-group14-sha1,rsa,WARN,dh-group1-sha1
-. 2026-09-14 18:10:11.872 SSH Bugs: Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto
-. 2026-09-14 18:10:11.872 Simple channel: Yes
-. 2026-09-14 18:10:11.872 Return code variable: Autodetect; Lookup user groups: Auto
-. 2026-09-14 18:10:11.872 Shell: default
-. 2026-09-14 18:10:11.872 EOL: LF, UTF: Auto
-. 2026-09-14 18:10:11.872 Clear aliases: Yes, Unset nat.vars: Yes, Resolve symlinks: Yes; Follow directory symlinks: No
-. 2026-09-14 18:10:11.872 LS: ls -la, Ign LS warn: Yes, Scp1 Comp: No; Exit code 1 is error: No
-. 2026-09-14 18:10:11.872 SFTP Bugs: Auto,Auto
-. 2026-09-14 18:10:11.872 SFTP Server: default
-. 2026-09-14 18:10:11.872 Local directory: default, Remote directory: home, Update: Yes, Cache: Yes
-. 2026-09-14 18:10:11.872 Cache directory changes: Yes, Permanent: Yes
-. 2026-09-14 18:10:11.872 Recycle bin: Delete to: No, Overwritten to: No, Bin path: 
-. 2026-09-14 18:10:11.872 DST mode: Unix
-. 2026-09-14 18:10:11.873 --------------------------------------------------------------------------
-< 2026-09-14 18:10:11.873 Script: Searching for host...
-. 2026-09-14 18:10:11.874 Looking up host "sftp.dts.co.il" for SSH connection
-. 2026-09-14 18:10:11.896 Connecting to 172.29.35.10 port 22
-. 2026-09-14 18:10:11.898 Connected to 172.29.35.10 (from 172.17.200.160:55317)
-< 2026-09-14 18:10:11.899 Script: Connecting to host...
-. 2026-09-14 18:10:11.899 We claim version: SSH-2.0-WinSCP_release_6.5.3
-. 2026-09-14 18:10:11.899 Connected to 172.29.35.10 (from 172.17.200.160:55317)
-. 2026-09-14 18:10:11.924 Remote version: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.19
-. 2026-09-14 18:10:11.924 Using SSH protocol version 2
-. 2026-09-14 18:10:11.928 Enabling strict key exchange semantics
-. 2026-09-14 18:10:11.928 Doing NTRU Prime / Curve25519 hybrid key exchange, using hash SHA-512 (unaccelerated)
-. 2026-09-14 18:10:12.140 Server also has ecdsa-sha2-nistp256/rsa-sha2-512/rsa-sha2-256 host keys, but we don't know any of them
-. 2026-09-14 18:10:12.140 Host key fingerprint is:
-. 2026-09-14 18:10:12.140 ssh-ed25519 255 SHA256:jAm6rCMCEYval5xAXTU7vfytO5BCTjDwpX/QQjELPdQ
-< 2026-09-14 18:10:12.141 Script: Authenticating...
-< 2026-09-14 18:10:12.141 Script: WARNING! Giving up security and accepting any host key as configured!
-* 2026-09-14 18:10:12.141 WARNING! Giving up security and accepting any host key as configured!
-. 2026-09-14 18:10:12.142 Initialised AES-256 SDCTR (AES-NI accelerated) [aes256-ctr] outbound encryption
-. 2026-09-14 18:10:12.142 Initialised HMAC-SHA-256 outbound MAC algorithm
-. 2026-09-14 18:10:12.142 Initialised AES-256 SDCTR (AES-NI accelerated) [aes256-ctr] inbound encryption
-. 2026-09-14 18:10:12.142 Initialised HMAC-SHA-256 inbound MAC algorithm
-! 2026-09-14 18:10:12.146 Using username "bitbucketpp".
-< 2026-09-14 18:10:12.146 Script: Using username "bitbucketpp".
-. 2026-09-14 18:10:12.152 Server offered these authentication methods: publickey,password
-. 2026-09-14 18:10:12.152 Prompt (password, "SSH password", <no instructions>, "&Password: ")
-. 2026-09-14 18:10:12.152 Using stored password.
-< 2026-09-14 18:10:12.152 Script: Authenticating with pre-entered password.
-. 2026-09-14 18:10:12.153 Sent password
-. 2026-09-14 18:10:12.163 Access granted
-. 2026-09-14 18:10:12.164 Opening main session channel
-. 2026-09-14 18:10:12.322 Opened main channel
-. 2026-09-14 18:10:12.325 Started a shell/command
-< 2026-09-14 18:10:12.325 Script: Authenticated.
-. 2026-09-14 18:10:12.325 --------------------------------------------------------------------------
-. 2026-09-14 18:10:12.326 Using SFTP protocol.
-. 2026-09-14 18:10:12.326 Doing startup conversation with host.
-< 2026-09-14 18:10:12.326 Script: Starting the session...
-. 2026-09-14 18:10:12.326 Well known server, allowing SFTP version 6.
-> 2026-09-14 18:10:12.327 Type: SSH_FXP_INIT, Size: 5, Number: -1
-< 2026-09-14 18:10:12.328 Type: SSH_FXP_VERSION, Size: 318, Number: -1
-. 2026-09-14 18:10:12.328 SFTP version 3 negotiated.
-. 2026-09-14 18:10:12.328 Supports extension posix-rename@openssh.com="1"
-. 2026-09-14 18:10:12.328 Supports statvfs@openssh.com extension version 2
-. 2026-09-14 18:10:12.329 Unknown server extension fstatvfs@openssh.com="2"
-. 2026-09-14 18:10:12.329 Supports hardlink@openssh.com extension version 1
-. 2026-09-14 18:10:12.329 Unknown server extension fsync@openssh.com="1"
-. 2026-09-14 18:10:12.329 Unknown server extension lsetstat@openssh.com="1"
-. 2026-09-14 18:10:12.329 Supports limits@openssh.com extension version 1
-. 2026-09-14 18:10:12.329 Unknown server extension expand-path@openssh.com="1"
-. 2026-09-14 18:10:12.329 Supports extension copy-data="1"
-. 2026-09-14 18:10:12.329 Unknown server extension home-directory="1"
-. 2026-09-14 18:10:12.329 Unknown server extension users-groups-by-id@openssh.com="1"
-. 2026-09-14 18:10:12.329 We believe the server has signed timestamps bug
-. 2026-09-14 18:10:12.329 We will use UTF-8 strings until server sends an invalid UTF-8 string as with SFTP version 3 and older UTF-8 strings are not mandatory
-> 2026-09-14 18:10:12.329 Type: SSH_FXP_EXTENDED, Size: 27, Number: 200
-< 2026-09-14 18:10:12.332 Type: SSH_FXP_EXTENDED_REPLY, Size: 37, Number: 200
-. 2026-09-14 18:10:12.332 Limiting packet size to server's limit of 262144 + 4 bytes
-. 2026-09-14 18:10:12.332 Getting current directory name.
-. 2026-09-14 18:10:12.332 Getting real path for '.'
-> 2026-09-14 18:10:12.332 Type: SSH_FXP_REALPATH, Size: 10, Number: 272
-< 2026-09-14 18:10:12.334 Type: SSH_FXP_NAME, Size: 23, Number: 272
-. 2026-09-14 18:10:12.334 Real path is '/'
-. 2026-09-14 18:10:12.334 Startup conversation with host finished.
-< 2026-09-14 18:10:12.334 Script: Session started.
-< 2026-09-14 18:10:12.335 Script: Active session: [1] bitbucketpp@sftp.dts.co.il
-> 2026-09-14 18:10:12.336 Script: lcd C:/Users/alexk/Desktop/Automation/BitBuketProject/beyahad-web-client/.deploy_output
-< 2026-09-14 18:10:12.336 Script: C:\Users\alexk\Desktop\Automation\BitBuketProject\beyahad-web-client\.deploy_output
-> 2026-09-14 18:10:12.338 Script: put beyahad-web-client_PP_publish.zip /pp/beyahad-web-client_PP_publish.zip
-. 2026-09-14 18:10:12.339 Copying 1 files/directories to remote directory "/pp/" - total size: 25,746,231
-. 2026-09-14 18:10:12.339   PrTime: Yes; PrRO: No; Rght: rw-r--r--; PrR: No (No); FnCs: N; RIC: 0001; Resume: S (102400); CalcS: No; Mask: beyahad-web-client_PP_publish.zip
-. 2026-09-14 18:10:12.339   TM: B; ClAr: No; RemEOF: No; RemBOM: No; CPS: 0; NewerOnly: No; EncryptNewFiles: Yes; ExcludeHiddenFiles: No; ExcludeEmptyDirectories: No; InclM: ; ResumeL: 0
-. 2026-09-14 18:10:12.339   AscM: *.*html; *.htm; *.txt; *.php; *.php3; *.cgi; *.c; *.cpp; *.h; *.pas; *.bas; *.tex; *.pl; *.js; .htaccess; *.xtml; *.css; *.cfg; *.ini; *.sh; *.xml
-. 2026-09-14 18:10:12.340 File: 'beyahad-web-client_PP_publish.zip' [2026-09-14T15:10:09.353Z] [25746231]
-. 2026-09-14 18:10:12.340 Copying "beyahad-web-client_PP_publish.zip" to remote directory started.
-. 2026-09-14 18:10:12.341 Binary transfer mode selected.
-. 2026-09-14 18:10:12.341 Checking existence of file.
-> 2026-09-14 18:10:12.341 Type: SSH_FXP_LSTAT, Size: 46, Number: 519
-< 2026-09-14 18:10:12.343 Type: SSH_FXP_STATUS, Size: 29, Number: 519
-< 2026-09-14 18:10:12.343 Status code: 2
-. 2026-09-14 18:10:12.343 Checking existence of partially transferred file.
-> 2026-09-14 18:10:12.343 Type: SSH_FXP_LSTAT, Size: 55, Number: 775
-< 2026-09-14 18:10:12.345 Type: SSH_FXP_STATUS, Size: 29, Number: 775
-< 2026-09-14 18:10:12.345 Status code: 2
-. 2026-09-14 18:10:12.345 Opening remote file.
-> 2026-09-14 18:10:12.345 Type: SSH_FXP_OPEN, Size: 71, Number: 1027
-< 2026-09-14 18:10:12.348 Type: SSH_FXP_HANDLE, Size: 13, Number: 1027
-> 2026-09-14 18:10:12.349 Type: SSH_FXP_WRITE, Size: 32761, Number: 1542
-. 2026-09-14 18:10:12.357 Skipped 14 SSH_FXP_WRITE packets
-< 2026-09-14 18:10:12.358 Type: SSH_FXP_STATUS, Size: 24, Number: 1542
-< 2026-09-14 18:10:12.358 Status code: 0
-. 2026-09-14 18:10:12.897 Increasing send buffer from 262144 to 524288
-. 2026-09-14 18:10:13.421 Skipped 772 SSH_FXP_WRITE and 765 SSH_FXP_STATUS packets
-> 2026-09-14 18:10:13.421 Type: SSH_FXP_CLOSE, Size: 13, Number: 203012
-. 2026-09-14 18:10:13.451 Skipped 21 SSH_FXP_STATUS packets
-< 2026-09-14 18:10:13.451 Type: SSH_FXP_STATUS, Size: 24, Number: 203012
-< 2026-09-14 18:10:13.451 Status code: 0
-> 2026-09-14 18:10:13.451 Type: SSH_FXP_RENAME, Size: 96, Number: 203282
-< 2026-09-14 18:10:13.460 Type: SSH_FXP_STATUS, Size: 24, Number: 203282
-< 2026-09-14 18:10:13.460 Status code: 0
-. 2026-09-14 18:10:13.460 Preserving timestamp [2026-09-14T15:10:09.000Z]
-> 2026-09-14 18:10:13.460 Type: SSH_FXP_SETSTAT, Size: 58, Number: 1289
-< 2026-09-14 18:10:13.464 Type: SSH_FXP_STATUS, Size: 24, Number: 1289
-< 2026-09-14 18:10:13.464 Status code: 0
-. 2026-09-14 18:10:13.464 Transfer done: 'beyahad-web-client_PP_publish.zip' => '/pp/beyahad-web-client_PP_publish.zip' [25746231]
-. 2026-09-14 18:10:13.464 Copying finished: Transferred: 25,746,231, Elapsed: 0:00:01, CPS: 22,885,538/s
-> 2026-09-14 18:10:13.464 Script: exit
-. 2026-09-14 18:10:13.464 Script: Exit code: 0
-. 2026-09-14 18:10:13.464 Closing connection.
-. 2026-09-14 18:10:13.464 Sending special code: 1
-. 2026-09-14 18:10:13.472 Session sent command exit status 0
-. 2026-09-14 18:10:13.472 Main session channel closed
-. 2026-09-14 18:10:13.473 All channels closed
+. 2026-09-15 17:34:24.659 --------------------------------------------------------------------------
+. 2026-09-15 17:34:24.659 WinSCP Version 6.5.3 (Build 16364 2025-07-16) (OS 10.0.19045 – Windows 10 Pro)
+. 2026-09-15 17:34:24.659 Configuration: nul
+. 2026-09-15 17:34:24.659 Log level: Normal
+. 2026-09-15 17:34:24.659 Local account: DTS\alexk
+. 2026-09-15 17:34:24.659 Working directory: C:\Users\alexk\Desktop\Automation\BitBuketProject\beyahad-web-client
+. 2026-09-15 17:34:24.659 Process ID: 16140
+. 2026-09-15 17:34:24.691 Ancestor processes: WinSCP, timeout, timeout, ...
+. 2026-09-15 17:34:24.692 Command-line: "C:\Program Files (x86)\WinSCP\WinSCP.exe" /console=6.5.3 /consoleinstance=_16648_929 "/log=C:\Users\alexk\Desktop\Automation\BitBuketProject\beyahad-web-client\.winscp_upload.log" "/ini=nul" "/script=C:\Users\alexk\AppData\Local\Temp\tmp.Nl6vq3IJ8q" 
+. 2026-09-15 17:34:24.692 Time zone: Current: GMT+3, Standard: GMT+2 (Jerusalem Standard Time), DST: GMT+3 (Jerusalem Daylight Time), DST Start: 27/03/2026, DST End: 25/10/2026
+. 2026-09-15 17:34:24.693 Login time: יום שלישי 15 ספטמבר 2026 17:34:24
+. 2026-09-15 17:34:24.693 --------------------------------------------------------------------------
+. 2026-09-15 17:34:24.693 Script: Retrospectively logging previous script records:
+> 2026-09-15 17:34:24.693 Script: option batch abort
+< 2026-09-15 17:34:24.693 Script: batch           abort     
+> 2026-09-15 17:34:24.693 Script: option confirm off
+< 2026-09-15 17:34:24.693 Script: confirm         off       
+> 2026-09-15 17:34:24.693 Script: option transfer binary
+< 2026-09-15 17:34:24.693 Script: transfer        binary    
+> 2026-09-15 17:34:24.693 Script: open sftp://bitbucketpp:***@sftp.dts.co.il:22/ -hostkey=*
+. 2026-09-15 17:34:24.693 --------------------------------------------------------------------------
+. 2026-09-15 17:34:24.693 Session name: bitbucketpp@sftp.dts.co.il (Ad-Hoc site)
+. 2026-09-15 17:34:24.693 Host name: sftp.dts.co.il (Port: 22)
+. 2026-09-15 17:34:24.693 User name: bitbucketpp (Password: Yes, Key file: No, Passphrase: No)
+. 2026-09-15 17:34:24.693 Tunnel: No
+. 2026-09-15 17:34:24.693 Transfer Protocol: SFTP
+. 2026-09-15 17:34:24.693 Ping type: Off, Ping interval: 30 sec; Timeout: 15 sec
+. 2026-09-15 17:34:24.693 Disable Nagle: No
+. 2026-09-15 17:34:24.693 Proxy: None
+. 2026-09-15 17:34:24.693 Send buffer: 262144
+. 2026-09-15 17:34:24.693 Compression: No
+. 2026-09-15 17:34:24.693 Bypass authentication: No
+. 2026-09-15 17:34:24.693 Try agent: Yes; Agent forwarding: No; KI: Yes; GSSAPI: Yes
+. 2026-09-15 17:34:24.693 GSSAPI: KEX: No; Forwarding: No; Libs: gssapi32,sspi,custom; Custom: 
+. 2026-09-15 17:34:24.693 Ciphers: aes,chacha20,aesgcm,3des,WARN,des,blowfish,arcfour; Ssh2DES: No
+. 2026-09-15 17:34:24.693 KEX: ntru-curve25519,mlkem-curve25519,mlkem-nist,ecdh,dh-gex-sha1,dh-group18-sha512,dh-group17-sha512,dh-group16-sha512,dh-group15-sha512,dh-group14-sha1,rsa,WARN,dh-group1-sha1
+. 2026-09-15 17:34:24.693 SSH Bugs: Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto
+. 2026-09-15 17:34:24.693 Simple channel: Yes
+. 2026-09-15 17:34:24.693 Return code variable: Autodetect; Lookup user groups: Auto
+. 2026-09-15 17:34:24.693 Shell: default
+. 2026-09-15 17:34:24.693 EOL: LF, UTF: Auto
+. 2026-09-15 17:34:24.693 Clear aliases: Yes, Unset nat.vars: Yes, Resolve symlinks: Yes; Follow directory symlinks: No
+. 2026-09-15 17:34:24.693 LS: ls -la, Ign LS warn: Yes, Scp1 Comp: No; Exit code 1 is error: No
+. 2026-09-15 17:34:24.693 SFTP Bugs: Auto,Auto
+. 2026-09-15 17:34:24.694 SFTP Server: default
+. 2026-09-15 17:34:24.694 Local directory: default, Remote directory: home, Update: Yes, Cache: Yes
+. 2026-09-15 17:34:24.694 Cache directory changes: Yes, Permanent: Yes
+. 2026-09-15 17:34:24.694 Recycle bin: Delete to: No, Overwritten to: No, Bin path: 
+. 2026-09-15 17:34:24.694 DST mode: Unix
+. 2026-09-15 17:34:24.694 --------------------------------------------------------------------------
+< 2026-09-15 17:34:24.694 Script: Searching for host...
+. 2026-09-15 17:34:24.697 Looking up host "sftp.dts.co.il" for SSH connection
+. 2026-09-15 17:34:24.718 Connecting to 172.29.35.10 port 22
+. 2026-09-15 17:34:24.721 Connected to 172.29.35.10 (from 172.17.200.160:61560)
+< 2026-09-15 17:34:24.721 Script: Connecting to host...
+. 2026-09-15 17:34:24.721 We claim version: SSH-2.0-WinSCP_release_6.5.3
+. 2026-09-15 17:34:24.722 Connected to 172.29.35.10 (from 172.17.200.160:61560)
+. 2026-09-15 17:34:24.723 Remote version: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.19
+. 2026-09-15 17:34:24.723 Using SSH protocol version 2
+. 2026-09-15 17:34:24.743 Enabling strict key exchange semantics
+. 2026-09-15 17:34:24.744 Doing NTRU Prime / Curve25519 hybrid key exchange, using hash SHA-512 (unaccelerated)
+. 2026-09-15 17:34:24.975 Server also has ecdsa-sha2-nistp256/rsa-sha2-512/rsa-sha2-256 host keys, but we don't know any of them
+. 2026-09-15 17:34:24.976 Host key fingerprint is:
+. 2026-09-15 17:34:24.976 ssh-ed25519 255 SHA256:jAm6rCMCEYval5xAXTU7vfytO5BCTjDwpX/QQjELPdQ
+< 2026-09-15 17:34:24.976 Script: Authenticating...
+< 2026-09-15 17:34:24.976 Script: WARNING! Giving up security and accepting any host key as configured!
+* 2026-09-15 17:34:24.977 WARNING! Giving up security and accepting any host key as configured!
+. 2026-09-15 17:34:24.977 Initialised AES-256 SDCTR (AES-NI accelerated) [aes256-ctr] outbound encryption
+. 2026-09-15 17:34:24.977 Initialised HMAC-SHA-256 outbound MAC algorithm
+. 2026-09-15 17:34:24.977 Initialised AES-256 SDCTR (AES-NI accelerated) [aes256-ctr] inbound encryption
+. 2026-09-15 17:34:24.977 Initialised HMAC-SHA-256 inbound MAC algorithm
+! 2026-09-15 17:34:24.981 Using username "bitbucketpp".
+< 2026-09-15 17:34:24.981 Script: Using username "bitbucketpp".
+. 2026-09-15 17:34:24.992 Server offered these authentication methods: publickey,password
+. 2026-09-15 17:34:24.992 Prompt (password, "SSH password", <no instructions>, "&Password: ")
+. 2026-09-15 17:34:24.992 Using stored password.
+< 2026-09-15 17:34:24.992 Script: Authenticating with pre-entered password.
+. 2026-09-15 17:34:24.992 Sent password
+. 2026-09-15 17:34:25.003 Access granted
+. 2026-09-15 17:34:25.004 Opening main session channel
+. 2026-09-15 17:34:25.160 Opened main channel
+. 2026-09-15 17:34:25.160 Started a shell/command
+< 2026-09-15 17:34:25.160 Script: Authenticated.
+. 2026-09-15 17:34:25.160 --------------------------------------------------------------------------
+. 2026-09-15 17:34:25.160 Using SFTP protocol.
+. 2026-09-15 17:34:25.160 Doing startup conversation with host.
+< 2026-09-15 17:34:25.160 Script: Starting the session...
+. 2026-09-15 17:34:25.160 Well known server, allowing SFTP version 6.
+> 2026-09-15 17:34:25.160 Type: SSH_FXP_INIT, Size: 5, Number: -1
+< 2026-09-15 17:34:25.160 Type: SSH_FXP_VERSION, Size: 318, Number: -1
+. 2026-09-15 17:34:25.160 SFTP version 3 negotiated.
+. 2026-09-15 17:34:25.160 Supports extension posix-rename@openssh.com="1"
+. 2026-09-15 17:34:25.160 Supports statvfs@openssh.com extension version 2
+. 2026-09-15 17:34:25.160 Unknown server extension fstatvfs@openssh.com="2"
+. 2026-09-15 17:34:25.160 Supports hardlink@openssh.com extension version 1
+. 2026-09-15 17:34:25.160 Unknown server extension fsync@openssh.com="1"
+. 2026-09-15 17:34:25.160 Unknown server extension lsetstat@openssh.com="1"
+. 2026-09-15 17:34:25.160 Supports limits@openssh.com extension version 1
+. 2026-09-15 17:34:25.160 Unknown server extension expand-path@openssh.com="1"
+. 2026-09-15 17:34:25.160 Supports extension copy-data="1"
+. 2026-09-15 17:34:25.160 Unknown server extension home-directory="1"
+. 2026-09-15 17:34:25.160 Unknown server extension users-groups-by-id@openssh.com="1"
+. 2026-09-15 17:34:25.160 We believe the server has signed timestamps bug
+. 2026-09-15 17:34:25.160 We will use UTF-8 strings until server sends an invalid UTF-8 string as with SFTP version 3 and older UTF-8 strings are not mandatory
+> 2026-09-15 17:34:25.160 Type: SSH_FXP_EXTENDED, Size: 27, Number: 200
+< 2026-09-15 17:34:25.160 Type: SSH_FXP_EXTENDED_REPLY, Size: 37, Number: 200
+. 2026-09-15 17:34:25.160 Limiting packet size to server's limit of 262144 + 4 bytes
+. 2026-09-15 17:34:25.160 Getting current directory name.
+. 2026-09-15 17:34:25.160 Getting real path for '.'
+> 2026-09-15 17:34:25.160 Type: SSH_FXP_REALPATH, Size: 10, Number: 272
+< 2026-09-15 17:34:25.176 Type: SSH_FXP_NAME, Size: 23, Number: 272
+. 2026-09-15 17:34:25.176 Real path is '/'
+. 2026-09-15 17:34:25.176 Startup conversation with host finished.
+< 2026-09-15 17:34:25.176 Script: Session started.
+< 2026-09-15 17:34:25.176 Script: Active session: [1] bitbucketpp@sftp.dts.co.il
+> 2026-09-15 17:34:25.177 Script: lcd C:/Users/alexk/Desktop/Automation/BitBuketProject/beyahad-web-client/.deploy_output
+< 2026-09-15 17:34:25.177 Script: C:\Users\alexk\Desktop\Automation\BitBuketProject\beyahad-web-client\.deploy_output
+> 2026-09-15 17:34:25.179 Script: put beyahad-web-client_PP_publish.zip /pp/beyahad-web-client_PP_publish.zip
+. 2026-09-15 17:34:25.179 Copying 1 files/directories to remote directory "/pp/" - total size: 25,746,229
+. 2026-09-15 17:34:25.179   PrTime: Yes; PrRO: No; Rght: rw-r--r--; PrR: No (No); FnCs: N; RIC: 0001; Resume: S (102400); CalcS: No; Mask: beyahad-web-client_PP_publish.zip
+. 2026-09-15 17:34:25.179   TM: B; ClAr: No; RemEOF: No; RemBOM: No; CPS: 0; NewerOnly: No; EncryptNewFiles: Yes; ExcludeHiddenFiles: No; ExcludeEmptyDirectories: No; InclM: ; ResumeL: 0
+. 2026-09-15 17:34:25.179   AscM: *.*html; *.htm; *.txt; *.php; *.php3; *.cgi; *.c; *.cpp; *.h; *.pas; *.bas; *.tex; *.pl; *.js; .htaccess; *.xtml; *.css; *.cfg; *.ini; *.sh; *.xml
+. 2026-09-15 17:34:25.180 File: 'beyahad-web-client_PP_publish.zip' [2026-09-15T14:34:21.795Z] [25746229]
+. 2026-09-15 17:34:25.181 Copying "beyahad-web-client_PP_publish.zip" to remote directory started.
+. 2026-09-15 17:34:25.181 Binary transfer mode selected.
+. 2026-09-15 17:34:25.181 Checking existence of file.
+> 2026-09-15 17:34:25.181 Type: SSH_FXP_LSTAT, Size: 46, Number: 519
+< 2026-09-15 17:34:25.183 Type: SSH_FXP_STATUS, Size: 29, Number: 519
+< 2026-09-15 17:34:25.183 Status code: 2
+. 2026-09-15 17:34:25.183 Checking existence of partially transferred file.
+> 2026-09-15 17:34:25.183 Type: SSH_FXP_LSTAT, Size: 55, Number: 775
+< 2026-09-15 17:34:25.183 Type: SSH_FXP_STATUS, Size: 29, Number: 775
+< 2026-09-15 17:34:25.183 Status code: 2
+. 2026-09-15 17:34:25.183 Opening remote file.
+> 2026-09-15 17:34:25.183 Type: SSH_FXP_OPEN, Size: 71, Number: 1027
+< 2026-09-15 17:34:25.190 Type: SSH_FXP_HANDLE, Size: 13, Number: 1027
+> 2026-09-15 17:34:25.191 Type: SSH_FXP_WRITE, Size: 32761, Number: 1542
+. 2026-09-15 17:34:25.191 Skipped 14 SSH_FXP_WRITE packets
+< 2026-09-15 17:34:25.191 Type: SSH_FXP_STATUS, Size: 24, Number: 1542
+< 2026-09-15 17:34:25.191 Status code: 0
+. 2026-09-15 17:34:25.721 Increasing send buffer from 262144 to 524288
+. 2026-09-15 17:34:26.222 Skipped 772 SSH_FXP_WRITE and 738 SSH_FXP_STATUS packets
+> 2026-09-15 17:34:26.222 Type: SSH_FXP_CLOSE, Size: 13, Number: 203012
+. 2026-09-15 17:34:26.293 Skipped 48 SSH_FXP_STATUS packets
+< 2026-09-15 17:34:26.293 Type: SSH_FXP_STATUS, Size: 24, Number: 203012
+< 2026-09-15 17:34:26.293 Status code: 0
+> 2026-09-15 17:34:26.293 Type: SSH_FXP_RENAME, Size: 96, Number: 203282
+< 2026-09-15 17:34:26.293 Type: SSH_FXP_STATUS, Size: 24, Number: 203282
+< 2026-09-15 17:34:26.293 Status code: 0
+. 2026-09-15 17:34:26.293 Preserving timestamp [2026-09-15T14:34:21.000Z]
+> 2026-09-15 17:34:26.293 Type: SSH_FXP_SETSTAT, Size: 58, Number: 1289
+< 2026-09-15 17:34:26.293 Type: SSH_FXP_STATUS, Size: 24, Number: 1289
+< 2026-09-15 17:34:26.293 Status code: 0
+. 2026-09-15 17:34:26.293 Transfer done: 'beyahad-web-client_PP_publish.zip' => '/pp/beyahad-web-client_PP_publish.zip' [25746229]
+. 2026-09-15 17:34:26.293 Copying finished: Transferred: 25,746,229, Elapsed: 0:00:01, CPS: 23,111,516/s
+> 2026-09-15 17:34:26.293 Script: exit
+. 2026-09-15 17:34:26.293 Script: Exit code: 0
+. 2026-09-15 17:34:26.293 Closing connection.
+. 2026-09-15 17:34:26.293 Sending special code: 1
+. 2026-09-15 17:34:26.309 Session sent command exit status 0
+. 2026-09-15 17:34:26.309 Main session channel closed
+. 2026-09-15 17:34:26.309 All channels closed
