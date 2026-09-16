@@ -81,9 +81,24 @@ _win_path() {
     (IFS=';'; echo "${parts[*]}")
 }
 
+# command -v cmd.exe alone has, in practice, silently failed to find it on
+# at least one machine (cause unconfirmed — PATH not including System32 in
+# that particular bash session, most likely). Falling back to the standard
+# absolute paths (same pattern as find_powershell above) makes this
+# resilient instead of silently degrading to a broken bare "npm"/"npx" call.
+_find_cmd_exe() {
+    local c
+    c=$(command -v cmd.exe 2>/dev/null)
+    if [[ -n "$c" ]]; then echo "$c"; return 0; fi
+    for c in "/c/Windows/System32/cmd.exe" "/mnt/c/Windows/System32/cmd.exe" "${SYSTEMROOT:-}/System32/cmd.exe"; do
+        [[ -n "$c" && -f "$c" ]] && { echo "$c"; return 0; }
+    done
+    return 1
+}
+
 run_npm() {
     local cmd_bin
-    cmd_bin=$(command -v cmd.exe 2>/dev/null)
+    cmd_bin=$(_find_cmd_exe)
     if [[ -n "$cmd_bin" ]]; then
         local npm_win winpath
         npm_win=$(_resolve_win_shim npm)
@@ -103,7 +118,7 @@ run_npm() {
 }
 run_npx() {
     local cmd_bin
-    cmd_bin=$(command -v cmd.exe 2>/dev/null)
+    cmd_bin=$(_find_cmd_exe)
     if [[ -n "$cmd_bin" ]]; then
         local npx_win winpath
         npx_win=$(_resolve_win_shim npx)
@@ -566,8 +581,46 @@ if [[ "$BUILD_SCRIPT_PARSE" == MATCH* ]]; then
                 ;;
         esac
     done <<< "$(echo "$BUILD_SCRIPT_PARSE" | tail -n +2)"
-    log "   Running: npm run $BUILD_TARGET (single npm layer)"
-    run_npm run "$BUILD_TARGET"
+
+    # If the target script is a plain "node <args>" call (true for CRA's
+    # custom "build": "node scripts/build.js"), invoke node.exe directly by
+    # its resolved absolute Windows path instead of going through "npm run"
+    # at all. This is the fix that actually worked in practice — the
+    # _win_path-based PATH reconstruction above helps run_npm/run_npx in
+    # general, but wasn't reliably enough on every machine to stop npm's own
+    # internal script-runner from losing "node" somewhere in the
+    # npm.cmd → node → child-cmd.exe chain. Calling node.exe ourselves by
+    # full path removes that whole chain — there is no PATH lookup left to
+    # break.
+    TARGET_SCRIPT_VALUE=$(node -e "
+const pkg = require('./package.json');
+console.log((pkg.scripts && pkg.scripts['$BUILD_TARGET']) || '');
+" 2>/dev/null)
+
+    NODE_DIRECT_MATCHED=false
+    if [[ "$TARGET_SCRIPT_VALUE" =~ ^node[[:space:]]+(.+)$ ]]; then
+        NODE_ARGS_STR="${BASH_REMATCH[1]}"
+        NODE_BIN=$(command -v node 2>/dev/null)
+        CMD_BIN=$(_find_cmd_exe)
+        if [[ -n "$NODE_BIN" && -n "$CMD_BIN" ]]; then
+            NODE_WIN=$(cygpath -w "$NODE_BIN" 2>/dev/null)
+            if [[ -n "$NODE_WIN" ]]; then
+                log "   Running directly: node $NODE_ARGS_STR (bypassing npm run — no PATH lookup involved)"
+                read -ra NODE_ARGS_ARR <<< "$NODE_ARGS_STR"
+                MSYS_NO_PATHCONV=1 "$CMD_BIN" /d /c "$NODE_WIN" "${NODE_ARGS_ARR[@]}"
+                NODE_DIRECT_MATCHED=true
+            else
+                log "   ⚠️  Could not resolve a Windows path for node ($NODE_BIN) — falling back to npm run"
+            fi
+        else
+            log "   ⚠️  Direct node invocation unavailable (node found: $([ -n "$NODE_BIN" ] && echo yes || echo no), cmd.exe found: $([ -n "$CMD_BIN" ] && echo yes || echo no)) — falling back to npm run"
+        fi
+    fi
+
+    if [[ "$NODE_DIRECT_MATCHED" != true ]]; then
+        log "   Running: npm run $BUILD_TARGET (single npm layer)"
+        run_npm run "$BUILD_TARGET"
+    fi
 else
     log "   ⚠️  Could not parse build:preprod as \"cross-env VAR=val npm run <target>\" — falling back to running it as-is"
     run_npm run build:preprod
