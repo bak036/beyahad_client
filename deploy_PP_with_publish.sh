@@ -497,7 +497,7 @@ if [[ -n "$FILE_DEPS" ]]; then
                 log "   → Will attempt: npm install + npm run build inside $dep_path (if it has a build script)"
                 (
                     cd "$dep_path"
-                    run_npm install
+                    run_npm install --legacy-peer-deps
                     if node -e "process.exit(require('./package.json').scripts && require('./package.json').scripts.build ? 0 : 1)" 2>/dev/null; then
                         run_npm run build
                     fi
@@ -519,9 +519,15 @@ if [[ "$DEP_PROBLEMS" -ne 0 ]]; then
 fi
 
 # ── node_modules for the project itself ──
+# --legacy-peer-deps: this project's dependency tree has real, unresolved
+# peer-dependency conflicts (e.g. fork-ts-checker-webpack-plugin wants
+# typescript ^2.x, the project uses ^3.3.3) — npm 7+ refuses to auto-resolve
+# these by default (ERESOLVE) on a from-scratch install, even though the
+# tree installs and builds fine. This never showed up before because
+# everyone's node_modules already existed from an older/legacy install.
 if [[ ! -d "$ROOT/node_modules" ]]; then
     log "   ⚙  node_modules not found — running npm install..."
-    run_npm install
+    run_npm install --legacy-peer-deps
     log "   ✓ npm install completed"
 else
     log "   ✓ node_modules present"
@@ -530,7 +536,7 @@ fi
 # ── cross-env must be resolvable, since build:preprod depends on it ──
 if [[ ! -f "$ROOT/node_modules/.bin/cross-env" && ! -f "$ROOT/node_modules/.bin/cross-env.cmd" ]]; then
     log "   ⚙  cross-env not found in node_modules/.bin — running npm install..."
-    run_npm install
+    run_npm install --legacy-peer-deps
 fi
 if [[ ! -f "$ROOT/node_modules/.bin/cross-env" && ! -f "$ROOT/node_modules/.bin/cross-env.cmd" ]]; then
     log "❌ cross-env still not resolvable after npm install — check package.json devDependencies"
