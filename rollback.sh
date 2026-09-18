@@ -9,26 +9,36 @@ if (set -o pipefail >/dev/null 2>&1); then set -o pipefail; fi
 # Ensure Git Bash utilities (cygpath, etc.) are in PATH
 export PATH="/usr/bin:/usr/local/bin:$PATH"
 
-# cygpath fallback if still not found
-if ! command -v cygpath >/dev/null 2>&1; then
-    cygpath() {
-        local flag="" path=""
-        while [[ $# -gt 0 ]]; do
-            case "$1" in
-                -w) flag="w"; shift ;;
-                -m) flag="m"; shift ;;
-                -u) flag="u"; shift ;;
-                *)  path="$1"; shift ;;
-            esac
-        done
-        if [[ "$flag" == "w" || "$flag" == "m" ]]; then
-            # Handle both /c/... and /mnt/c/... (WSL-style) paths
-            echo "$path" | sed 's|^/mnt/\([a-zA-Z]\)/|\1:\\|; s|^/\([a-zA-Z]\)/|\1:\\|; s|/|\\|g'
-        else
-            echo "$path"
-        fi
-    }
-fi
+# This script can end up running under either Git Bash (paths like
+# "/c/Users/...") or WSL (paths like "/mnt/c/Users/..." — happens if
+# Windows' own bash.exe, which launches WSL, sits earlier on PATH than
+# Git Bash's). Any place that needs a native Windows path for a real
+# Windows process (PowerShell, WinSCP) has to handle BOTH forms, or it
+# silently breaks the moment it's invoked from the other shell. These
+# two helpers are the single place that does that conversion — every
+# other spot in this script that needs a Windows path calls one of
+# these instead of its own ad hoc "cygpath -w ... || sed ..." construct.
+to_win_path() {
+    local p="$1" out
+    out=$(cygpath -w "$p" 2>/dev/null)
+    if [[ -n "$out" ]]; then
+        echo "$out"
+        return 0
+    fi
+    echo "$p" | sed 's|^/mnt/\([a-zA-Z]\)/|\1:\\|; s|^/\([a-zA-Z]\)/|\1:\\|; s|/|\\|g'
+}
+
+# Same idea, but "mixed" style (drive letter + forward slashes, e.g.
+# "C:/Users/...") for the odd spot that wants that form instead.
+to_win_path_mixed() {
+    local p="$1" out
+    out=$(cygpath -m "$p" 2>/dev/null)
+    if [[ -n "$out" ]]; then
+        echo "$out"
+        return 0
+    fi
+    echo "$p" | sed 's|^/mnt/\([a-zA-Z]\)/|\1:/|; s|^/\([a-zA-Z]\)/|\1:/|'
+}
 
 # Dynamic PowerShell path detection
 if [[ "$SHELL" == *bash* ]]; then
@@ -88,7 +98,7 @@ find_winscp() {
         "/c/Program Files/WinSCP/WinSCP.com"
         "/mnt/c/Program Files (x86)/WinSCP/WinSCP.com"
         "/mnt/c/Program Files/WinSCP/WinSCP.com"
-        "$HOME/.winscp-portable/WinSCP.com"
+        "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.winscp-portable/WinSCP.com"
     )
     local c
     for c in "${candidates[@]}"; do
@@ -112,7 +122,7 @@ find_winscp() {
 WINSCP_PORTABLE_URL="https://winscp.net/download/WinSCP-6.5.7-Portable.zip/download"
 
 download_winscp_portable() {
-    local cache_dir="$HOME/.winscp-portable"
+    local cache_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.winscp-portable"
     local exe_path="$cache_dir/WinSCP.com"
 
     echo "⚙  WinSCP not found — downloading portable copy (one-time, ~10MB)..." >&2
@@ -120,15 +130,17 @@ download_winscp_portable() {
     local zip_path="$cache_dir/winscp-portable.zip"
     rm -f "$zip_path"
 
-    if ! curl -sSL --connect-timeout 15 --max-time 90 -o "$zip_path" "$WINSCP_PORTABLE_URL"; then
-        echo "❌ Failed to download WinSCP portable from $WINSCP_PORTABLE_URL" >&2
+    local http_code
+    http_code=$(curl -sSL --connect-timeout 15 --max-time 90 -w "%{http_code}" -o "$zip_path" "$WINSCP_PORTABLE_URL")
+    if [[ "$http_code" != "200" ]]; then
+        echo "❌ Failed to download WinSCP portable (HTTP $http_code) from $WINSCP_PORTABLE_URL" >&2
         rm -f "$zip_path"
         return 1
     fi
 
     local zip_win cache_win
-    zip_win=$(cygpath -w "$zip_path" 2>/dev/null || echo "$zip_path")
-    cache_win=$(cygpath -w "$cache_dir" 2>/dev/null || echo "$cache_dir")
+    zip_win=$(to_win_path "$zip_path")
+    cache_win=$(to_win_path "$cache_dir")
 
     "$POWERSHELL" -NoProfile -Command "
         try {
@@ -157,7 +169,7 @@ WINSCP=$(find_winscp) || WINSCP=$(download_winscp_portable) || {
 
 SFTP_TMP="$ROOT/.sftp_tmp_$$"
 mkdir -p "$SFTP_TMP"
-SFTP_TMP_WIN=$(echo "$SFTP_TMP" | sed 's|^/mnt/\([a-zA-Z]\)/|\1:\\|; s|^/\([a-zA-Z]\)/|\1:\\|; s|/|\\|g')
+SFTP_TMP_WIN=$(to_win_path "$SFTP_TMP")
 cleanup_sftp() { rm -rf "$SFTP_TMP" 2>/dev/null || true; }
 trap cleanup_sftp EXIT
 
@@ -165,8 +177,7 @@ run_winscp() {
     local script_file="$1"
     local output_file="$2"
     local script_win
-    # Use sed to convert path — cygpath may mishandle /mnt/c/ style paths
-    script_win=$(echo "$script_file" | sed 's|^/mnt/\([a-zA-Z]\)/|\1:\\|; s|^/\([a-zA-Z]\)/|\1:\\|; s|/|\\|g')
+    script_win=$(to_win_path "$script_file")
     MSYS_NO_PATHCONV=1 "$WINSCP" /ini=nul /script="$script_win" > "$output_file" 2>&1
 }
 
@@ -490,7 +501,7 @@ log "🪶 [1/2] Creating rollback flag..."
 
 FLAG_PATH="$SFTP_TMP/${RAW_FLAG}"
 echo "rollback triggered $(date)" > "$FLAG_PATH"
-FLAG_WIN=$(echo "$FLAG_PATH" | sed 's|^/mnt/\([a-zA-Z]\)/|\1:\\|; s|^/\([a-zA-Z]\)/|\1:\\|; s|/|\\|g')
+FLAG_WIN=$(to_win_path "$FLAG_PATH")
 log "   ✓ Flag created: $RAW_FLAG"
 
 ROLLBACK_START_LOCAL=$("$POWERSHELL" -NoProfile -Command "(Get-Date).ToString('yyyy-MM-dd HH:mm:ss')" 2>/dev/null | tr -d '\r\n') || ROLLBACK_START_LOCAL=""
@@ -528,7 +539,7 @@ RESULT_FILE=""
 
 LOCAL_CONFIRM_DIR="$ROOT/.rollback_confirmations"
 mkdir -p "$LOCAL_CONFIRM_DIR"
-LOCAL_CONFIRM_WIN=$(echo "$LOCAL_CONFIRM_DIR" | sed 's|^/mnt/\([a-zA-Z]\)/|\1:\\|; s|^/\([a-zA-Z]\)/|\1:\\|; s|/|\\|g')
+LOCAL_CONFIRM_WIN=$(to_win_path "$LOCAL_CONFIRM_DIR")
 
 # ── Query expected server count from ProjectRules ────────────────────
 connStr="Server=${DB_SERVER};Database=${DB_NAME};User ID=${DB_USER};Password=${DB_PASSWORD};TrustServerCertificate=True;"

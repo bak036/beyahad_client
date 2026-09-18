@@ -21,6 +21,43 @@ set +u
 if (set -o pipefail >/dev/null 2>&1); then set -o pipefail; fi
 
 # ============================================================
+# This script can end up running under either Git Bash (paths like
+# "/c/Users/...") or WSL (paths like "/mnt/c/Users/..." — happens if
+# Windows' own bash.exe, which launches WSL, sits earlier on PATH than
+# Git Bash's). Any place that needs a native Windows path for a real
+# Windows process (PowerShell, WinSCP, cmd.exe) has to handle BOTH
+# forms, or it silently breaks the moment it's invoked from the other
+# shell. This one helper is the single place that does that
+# conversion — every other spot in this script that needs a Windows
+# path calls this instead of its own ad hoc "cygpath -w ... || sed
+# ..." construct, so there's exactly one thing to fix if this ever
+# needs to change again.
+to_win_path() {
+    local p="$1" out
+    out=$(cygpath -w "$p" 2>/dev/null)
+    if [[ -n "$out" ]]; then
+        echo "$out"
+        return 0
+    fi
+    # No cygpath (or it failed) — sed fallback covering both prefixes:
+    # "/mnt/c/..." (WSL) and "/c/..." (Git Bash/MSYS).
+    echo "$p" | sed 's|^/mnt/\([a-zA-Z]\)/|\1:\\|; s|^/\([a-zA-Z]\)/|\1:\\|; s|/|\\|g'
+}
+
+# Same idea as to_win_path, but "mixed" style (drive letter + forward
+# slashes, e.g. "C:/Users/...") — some WinSCP script commands (lcd) want
+# this form rather than backslashes.
+to_win_path_mixed() {
+    local p="$1" out
+    out=$(cygpath -m "$p" 2>/dev/null)
+    if [[ -n "$out" ]]; then
+        echo "$out"
+        return 0
+    fi
+    echo "$p" | sed 's|^/mnt/\([a-zA-Z]\)/|\1:/|; s|^/\([a-zA-Z]\)/|\1:/|'
+}
+
+# ============================================================
 # npm scripts that themselves invoke "node ..." (e.g. CRA's
 # "build": "node scripts/build.js") can fail with a literal
 # '"node"' is not recognized as an internal or external command
@@ -44,7 +81,7 @@ _resolve_win_shim() {
     dir=$(dirname "$bin" 2>/dev/null)
     shim="$dir/$1.cmd"
     [[ -f "$shim" ]] || return 1
-    cygpath -w "$shim" 2>/dev/null || echo "$shim"
+    to_win_path "$shim"
 }
 
 # Bash's $PATH is Unix-style (colon-separated, e.g. "/c/Program Files/nodejs")
@@ -69,7 +106,7 @@ _win_path() {
     local IFS=':' seg parts=() dir
     for seg in $PATH; do
         [[ -z "$seg" ]] && continue
-        dir=$(cygpath -w "$seg" 2>/dev/null)
+        dir=$(to_win_path "$seg")
         [[ -n "$dir" ]] && parts+=("$dir")
     done
     parts+=("C:\\Windows\\System32")
@@ -168,7 +205,7 @@ find_winscp() {
         "/c/Program Files/WinSCP/WinSCP.com"
         "/mnt/c/Program Files (x86)/WinSCP/WinSCP.com"
         "/mnt/c/Program Files/WinSCP/WinSCP.com"
-        "$HOME/.winscp-portable/WinSCP.com"
+        "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.winscp-portable/WinSCP.com"
     )
     local c
     for c in "${candidates[@]}"; do
@@ -192,7 +229,7 @@ find_winscp() {
 WINSCP_PORTABLE_URL="https://winscp.net/download/WinSCP-6.5.7-Portable.zip/download"
 
 download_winscp_portable() {
-    local cache_dir="$HOME/.winscp-portable"
+    local cache_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.winscp-portable"
     local exe_path="$cache_dir/WinSCP.com"
 
     echo "⚙  WinSCP not found — downloading portable copy (one-time, ~10MB)..." >&2
@@ -200,15 +237,17 @@ download_winscp_portable() {
     local zip_path="$cache_dir/winscp-portable.zip"
     rm -f "$zip_path"
 
-    if ! curl -sSL --connect-timeout 15 --max-time 90 -o "$zip_path" "$WINSCP_PORTABLE_URL"; then
-        echo "❌ Failed to download WinSCP portable from $WINSCP_PORTABLE_URL" >&2
+    local http_code
+    http_code=$(curl -sSL --connect-timeout 15 --max-time 90 -w "%{http_code}" -o "$zip_path" "$WINSCP_PORTABLE_URL")
+    if [[ "$http_code" != "200" ]]; then
+        echo "❌ Failed to download WinSCP portable (HTTP $http_code) from $WINSCP_PORTABLE_URL" >&2
         rm -f "$zip_path"
         return 1
     fi
 
     local zip_win cache_win
-    zip_win=$(cygpath -w "$zip_path" 2>/dev/null || echo "$zip_path")
-    cache_win=$(cygpath -w "$cache_dir" 2>/dev/null || echo "$cache_dir")
+    zip_win=$(to_win_path "$zip_path")
+    cache_win=$(to_win_path "$cache_dir")
 
     "$POWERSHELL" -NoProfile -Command "
         try {
@@ -606,7 +645,7 @@ console.log((pkg.scripts && pkg.scripts['$BUILD_TARGET']) || '');
         NODE_BIN=$(command -v node 2>/dev/null)
         CMD_BIN=$(_find_cmd_exe)
         if [[ -n "$NODE_BIN" && -n "$CMD_BIN" ]]; then
-            NODE_WIN=$(cygpath -w "$NODE_BIN" 2>/dev/null)
+            NODE_WIN=$(to_win_path "$NODE_BIN")
             if [[ -n "$NODE_WIN" ]]; then
                 log "   Running directly: node $NODE_ARGS_STR (bypassing npm run — no PATH lookup involved)"
                 read -ra NODE_ARGS_ARR <<< "$NODE_ARGS_STR"
@@ -786,13 +825,13 @@ option batch abort
 option confirm off
 option transfer binary
 open sftp://${SFTP_USER}:${SFTP_PASSWORD}@${SFTP_HOST}:${SFTP_PORT}/ -hostkey=*
-lcd $(cygpath -m "$(dirname "$ZIP_PATH")" 2>/dev/null || dirname "$ZIP_PATH")
+lcd $(to_win_path_mixed "$(dirname "$ZIP_PATH")")
 put $(basename "$ZIP_PATH") ${SFTP_UPLOAD_DIR}/${SFTP_ZIP_NAME}
 exit
 EOF
 
-MSYS_NO_PATHCONV=1 timeout 120 "$WINSCP" /log="$(cygpath -w "$WINSCP_LOG" 2>/dev/null || echo "$WINSCP_LOG")" /ini=nul \
-    /script="$(cygpath -w "$UPLOAD_SCRIPT" 2>/dev/null | sed 's/^\\//')" 2>&1
+MSYS_NO_PATHCONV=1 timeout 120 "$WINSCP" /log="$(to_win_path "$WINSCP_LOG")" /ini=nul \
+    /script="$(to_win_path "$UPLOAD_SCRIPT" | sed 's/^\\//')" 2>&1
 UPLOAD_EXIT=$?
 rm -f "$UPLOAD_SCRIPT"
 
@@ -817,7 +856,7 @@ log "==================================================="
 
 LOCAL_CONFIRM_DIR="$ROOT/.deploy_confirmations"
 mkdir -p "$LOCAL_CONFIRM_DIR"
-LOCAL_CONFIRM_WIN=$(cygpath -w "$LOCAL_CONFIRM_DIR" 2>/dev/null | sed 's/^\\//')
+LOCAL_CONFIRM_WIN=$(to_win_path "$LOCAL_CONFIRM_DIR" | sed 's/^\\//')
 
 connStr="Server=${DB_SERVER};Database=${DB_NAME};User ID=${DB_USER};Password=${DB_PASSWORD};TrustServerCertificate=True;"
 SERVER_COUNT=$("$POWERSHELL" -NoProfile -Command "
@@ -852,7 +891,7 @@ cd ${SFTP_CONFIRM_DIR}
 ls
 exit
 EOF
-    MSYS_NO_PATHCONV=1 "$WINSCP" /log=NUL /ini=nul /script="$(cygpath -w "$TMP_SCRIPT" 2>/dev/null | sed 's/^\\//')" > "$TMP_LIST" 2>&1 || true
+    MSYS_NO_PATHCONV=1 "$WINSCP" /log=NUL /ini=nul /script="$(to_win_path "$TMP_SCRIPT" | sed 's/^\\//')" > "$TMP_LIST" 2>&1 || true
     rm -f "$TMP_SCRIPT"
 
     while IFS= read -r line; do
@@ -871,7 +910,7 @@ get "${FNAME}"
 rm "${FNAME}"
 exit
 EOF
-        MSYS_NO_PATHCONV=1 "$WINSCP" /log=NUL /ini=nul /script="$(cygpath -w "$TMP_GET" 2>/dev/null | sed 's/^\\//')" >/dev/null 2>&1 || true
+        MSYS_NO_PATHCONV=1 "$WINSCP" /log=NUL /ini=nul /script="$(to_win_path "$TMP_GET" | sed 's/^\\//')" >/dev/null 2>&1 || true
         rm -f "$TMP_GET"
 
         LOCAL_TXT="$LOCAL_CONFIRM_DIR/$FNAME"
@@ -1007,7 +1046,7 @@ cat > "$HTML_FILE" << HTMLEOF
 </div>
 HTMLEOF
 
-RAW_HTML_FILE=$(cygpath -w "$HTML_FILE" 2>/dev/null || echo "$HTML_FILE" | sed -E 's|^/([a-zA-Z])/|\1:/|')
+RAW_HTML_FILE=$(to_win_path "$HTML_FILE")
 
 "$POWERSHELL" -NoProfile -Command "
     try {
