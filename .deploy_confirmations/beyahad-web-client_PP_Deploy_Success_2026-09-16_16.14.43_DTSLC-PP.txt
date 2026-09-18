@@ -1,0 +1,14 @@
+﻿Branch=PP
+Time=2026-09-16 16:14:50
+DeployPath=C:\inetpub\wwwroot\site\Productions\HistadrutClient\build-client
+Site=HistadrutClient
+TriggeredBy=AutoDeploy
+IISRestart=[2026-09-16 16:14:47] ▶ Starting IIS app pool → HistadrutClient [2026-09-16 16:14:49] ▶ Starting IIS site → HistadrutClient [2026-09-16 16:14:49]    ⏳ Verifying IIS started... [2026-09-16 16:14:49]    ✓ App pool confirmed started (after 0s) [2026-09-16 16:14:50]    ✓ Site confirmed running Yes
+Project=beyahad-web-client
+BackupPath=C:\inetpub\wwwroot\site\Productions\HistadrutClient\build-client.2026-09-16_16.14.43
+SmokeTestDetail=No smoke test directory configured for this project
+Status=Success
+Pool=HistadrutClient
+DeploymentType=FrontClient
+SmokeTestStatus=Skipped
+WatcherNode=DTSLC-PP

@@ -88,6 +88,7 @@ find_winscp() {
         "/c/Program Files/WinSCP/WinSCP.com"
         "/mnt/c/Program Files (x86)/WinSCP/WinSCP.com"
         "/mnt/c/Program Files/WinSCP/WinSCP.com"
+        "$HOME/.winscp-portable/WinSCP.com"
     )
     local c
     for c in "${candidates[@]}"; do
@@ -98,8 +99,59 @@ find_winscp() {
     return 1
 }
 
-WINSCP=$(find_winscp) || {
-    echo "❌ ERROR: WinSCP.com not found. Install WinSCP (winscp.net)."
+# Auto-download a portable copy if WinSCP isn't installed anywhere standard,
+# so a developer never has to manually install anything to roll back.
+# Portable build (a plain .zip, no installer/admin rights/UAC needed) —
+# cached under the user's home folder so this only happens once per machine.
+#
+# The download URL is pinned to a specific version and WILL go stale as new
+# WinSCP releases come out — that's an accepted tradeoff for a stable,
+# predictable URL rather than trying to scrape "latest" from the download
+# page. If this ever starts failing, get a fresh Portable .zip link from
+# https://winscp.net/eng/download.php and update WINSCP_PORTABLE_URL below.
+WINSCP_PORTABLE_URL="https://winscp.net/download/WinSCP-6.5.7-Portable.zip/download"
+
+download_winscp_portable() {
+    local cache_dir="$HOME/.winscp-portable"
+    local exe_path="$cache_dir/WinSCP.com"
+
+    echo "⚙  WinSCP not found — downloading portable copy (one-time, ~10MB)..." >&2
+    mkdir -p "$cache_dir"
+    local zip_path="$cache_dir/winscp-portable.zip"
+    rm -f "$zip_path"
+
+    if ! curl -sSL --connect-timeout 15 --max-time 90 -o "$zip_path" "$WINSCP_PORTABLE_URL"; then
+        echo "❌ Failed to download WinSCP portable from $WINSCP_PORTABLE_URL" >&2
+        rm -f "$zip_path"
+        return 1
+    fi
+
+    local zip_win cache_win
+    zip_win=$(cygpath -w "$zip_path" 2>/dev/null || echo "$zip_path")
+    cache_win=$(cygpath -w "$cache_dir" 2>/dev/null || echo "$cache_dir")
+
+    "$POWERSHELL" -NoProfile -Command "
+        try {
+            Expand-Archive -Path '$zip_win' -DestinationPath '$cache_win' -Force
+            Write-Output 'OK'
+        } catch {
+            Write-Output (\"FAILED: \" + \$_.Exception.Message)
+        }
+    " > /dev/null 2>&1
+    rm -f "$zip_path"
+
+    if [[ -f "$exe_path" ]]; then
+        echo "   ✓ WinSCP portable ready at $cache_dir" >&2
+        echo "$exe_path"
+        return 0
+    fi
+    echo "❌ WinSCP.com not found after extracting portable package — URL may be stale, see winscp.net/eng/download.php" >&2
+    return 1
+}
+
+WINSCP=$(find_winscp) || WINSCP=$(download_winscp_portable) || {
+    echo "❌ ERROR: WinSCP not found and automatic download failed."
+    echo "   Install manually from winscp.net, or check network/proxy access to winscp.net."
     exit 1
 }
 

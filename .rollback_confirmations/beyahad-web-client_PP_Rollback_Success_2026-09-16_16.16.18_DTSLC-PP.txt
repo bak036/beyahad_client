@@ -1,0 +1,13 @@
+﻿Branch=PP
+DeployRoot=C:\inetpub\wwwroot\site\Productions\HistadrutClient\build-client
+Time=2026-09-16 16:16:26
+TriggeredBy=AutoDeploy
+IISRestart=Yes
+Project=beyahad-web-client
+Site=HistadrutClient
+SmokeTestDetail=No smoke test directory configured for this project
+Status=Success
+BackupRemoved=C:\inetpub\wwwroot\site\Productions\HistadrutClient\build-client.2026-09-16_16.14.43
+Pool=HistadrutClient
+SmokeTestStatus=Skipped
+WatcherNode=DTSLC-PP
