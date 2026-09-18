@@ -1018,6 +1018,29 @@ _monorow() { echo "<tr style='border-bottom:1px solid #e0e0e0;'><td style='paddi
 BACKUP_ROW=""
 [[ -n "$BACKUP_PATH" ]] && BACKUP_ROW=$(_monorow "Backup" "$BACKUP_PATH")
 
+# Per-server results table — same idea as rollback.sh's, but keeps Pool as
+# its own column too (deploy results include it, rollback's don't).
+# IISRestart in a deploy result can be either a short "Yes"/"No" or (older
+# watcher format) a whole multi-line log blob ending in "Yes"/"No" — pull
+# just the trailing Yes/No off either shape rather than dumping the blob
+# into a table cell.
+SERVERS_TABLE_HTML=""
+if [[ ${#WATCHER_RESULT_FILES[@]} -gt 0 ]]; then
+    SERVERS_TABLE_HTML="<br><table border='1' style='border-collapse:collapse;width:100%;font-size:12px;'>"
+    SERVERS_TABLE_HTML+="<tr style='background:#f5f5f5;'><th style='padding:6px;'>Server</th><th style='padding:6px;'>Status</th><th style='padding:6px;'>IIS</th><th style='padding:6px;'>Pool</th><th style='padding:6px;'>Backup</th></tr>"
+    for TXT_FILE in "${WATCHER_RESULT_FILES[@]}"; do
+        R_SVR=$(grep -E 'WatcherNode=' "$TXT_FILE" | head -1 | cut -d'=' -f2- | tr -d '\r') || R_SVR="?"
+        R_STAT=$(grep -E 'Status=' "$TXT_FILE" | head -1 | cut -d'=' -f2- | tr -d '\r') || R_STAT="?"
+        R_IIS_RAW=$(grep -E 'IISRestart=' "$TXT_FILE" | head -1 | cut -d'=' -f2- | tr -d '\r') || R_IIS_RAW="?"
+        R_IIS=$(echo "$R_IIS_RAW" | grep -oE '(Yes|No)$' | tail -1)
+        [[ -z "$R_IIS" ]] && R_IIS="$R_IIS_RAW"
+        R_POOL=$(grep -E '^Pool=' "$TXT_FILE" | head -1 | cut -d'=' -f2- | tr -d '\r') || R_POOL="?"
+        R_BCK=$(grep -E '(BackupRemoved|BackupPath)=' "$TXT_FILE" | head -1 | cut -d'=' -f2- | tr -d '\r') || R_BCK="?"
+        SERVERS_TABLE_HTML+="<tr><td style='padding:6px;'>$R_SVR</td><td style='padding:6px;'>$R_STAT</td><td style='padding:6px;'>$R_IIS</td><td style='padding:6px;'>$R_POOL</td><td style='padding:6px;font-family:monospace;font-size:11px;'>$R_BCK</td></tr>"
+    done
+    SERVERS_TABLE_HTML+="</table>"
+fi
+
 cat > "$HTML_FILE" << HTMLEOF
 <div style="font-family:Arial,sans-serif;max-width:680px;margin:0 auto;">
   <div style="background:${HEADER_COLOR};padding:4px 18px;border-radius:6px 6px 0 0;"></div>
@@ -1038,6 +1061,7 @@ cat > "$HTML_FILE" << HTMLEOF
       $(_row "Site Status"  "${SITE_STATUS}")
       $(_row "DevSec Scan"  "${DEVSEC_SUMMARY}")
     </table>
+    ${SERVERS_TABLE_HTML}
     <div style="margin-top:20px;padding-top:14px;border-top:1px solid #ddd;font-size:12px;color:#555;">
       <div>${FOOTER_TEXT}</div>
       <div style="margin-top:2px;color:#888;">Detailed log attached for your records.</div>
