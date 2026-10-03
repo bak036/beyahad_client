@@ -171,7 +171,8 @@ SFTP_TMP="$ROOT/.sftp_tmp_$$"
 mkdir -p "$SFTP_TMP"
 SFTP_TMP_WIN=$(to_win_path "$SFTP_TMP")
 cleanup_sftp() { rm -rf "$SFTP_TMP" 2>/dev/null || true; }
-trap cleanup_sftp EXIT
+# cicd_on_exit (from cicd_db.sh, if loaded) marks the run FAILED if the script dies early
+trap 'cleanup_sftp; if declare -F cicd_on_exit >/dev/null; then cicd_on_exit; fi' EXIT
 
 run_winscp() {
     local script_file="$1"
@@ -382,9 +383,14 @@ log ""
 
 # ===== LOAD CONFIG FROM DB - FILTERED BY PROJECT AND BRANCH =====
 log "📊 Loading configuration from database..."
-log "   Server: 172.29.92.20\sql2005"
-log "   Database: NofTest"
+log "   Server: ${DB_SERVER}"
+log "   Database: ${DB_NAME}"
 log "   Looking for: Project='$PROJECT_NAME', Branch='$BRANCH'"
+
+# Connection string for the config lookup below comes from .env (no credentials hardcoded in this script)
+_q="'"
+CONN_PS="Server=${DB_SERVER};Database=${DB_NAME};User ID=${DB_USER};Password=${DB_PASSWORD};TrustServerCertificate=True;"
+CONN_PS="${CONN_PS//$_q/$_q$_q}"
 
 db_values=$("$POWERSHELL" -NoProfile -Command '
   $ErrorActionPreference = "Stop"
@@ -392,7 +398,7 @@ db_values=$("$POWERSHELL" -NoProfile -Command '
     # Ensure SqlServer module is imported
     Import-Module SqlServer -ErrorAction Stop | Out-Null
     
-    $connectionString = "Server=172.29.92.20\sql2005;Database=NofTest;User ID=alexk;Password=Dtsal21xk;TrustServerCertificate=True;";
+    $connectionString = '"'""$CONN_PS""'"';
     $query = "SELECT TOP 1 pr.ProjectName, pr.Branch, pr.FlagName, pr.ZipName, pr.AppPool, pr.SiteName, pdc.RemoteServer, pdc.RemoteUser, pdc.RemotePassword, pdc.LocalPublishDir FROM NofTest..ProjectRules pr LEFT JOIN NofTest..ProjectDepJoyConfig pdc ON pr.ProjectName = pdc.Project WHERE pr.ProjectName='"'$PROJECT_NAME'"' AND pr.Branch='"'$BRANCH'"'";
     
     $result = Invoke-Sqlcmd -ConnectionString $connectionString -Query $query -ErrorAction Stop;
@@ -496,7 +502,23 @@ log "SFTP folder:  $SFTP_UPLOAD_DIR"
 log "Deploy Root:  $DEPLOY_ROOT"
 log "==============================================================="
 
+# ============================================================
+# CI/CD telemetry — records this rollback in NofTest.dbo.CicdDeployments*
+# (ActionType='ROLLBACK', RollbackOfId = latest successful deploy of this
+# project/env). Helper: cicd_db.sh next to this script. Fully optional:
+# if it is missing or a DB write fails, the rollback continues unchanged.
+# ============================================================
+if [[ -f "$SCRIPT_DIR/cicd_db.sh" ]]; then
+    # shellcheck disable=SC1091
+    source "$SCRIPT_DIR/cicd_db.sh"
+fi
+for _f in cicd_start cicd_step cicd_update cicd_set_zip cicd_server_result_from_file cicd_set_smoke_from_file cicd_finish_auto cicd_on_exit; do
+    declare -F "$_f" >/dev/null || eval "$_f() { return 0; }"
+done
+cicd_start "ROLLBACK" "$PROJECT" "$BRANCH"
+
 # STEP 1: CREATE AND UPLOAD ROLLBACK FLAG
+T_FLAG=$(date +%s)
 log "🪶 [1/2] Creating rollback flag..."
 
 FLAG_PATH="$SFTP_TMP/${RAW_FLAG}"
@@ -528,11 +550,15 @@ run_winscp "$PUT_SCRIPT" "$PUT_LOG" && {
     exit 1
 }
 
+cicd_step "UPLOAD_FLAG" "SUCCESS" "$T_FLAG"
+
 # STEP 2: WAIT FOR WATCHER
+T_WAIT=$(date +%s)
 log "⏳ [2/2] Waiting for watcher confirmation via SFTP ($SFTP_UPLOAD_DIR)..."
 
 WATCHER_CONFIRMED=false
 WATCHER_RESULT_FILES=()
+FAILED_RESULT_FILES=()
 MAX_WAIT=600
 CHECK_INTERVAL=4
 RESULT_FILE=""
@@ -543,14 +569,22 @@ LOCAL_CONFIRM_WIN=$(to_win_path "$LOCAL_CONFIRM_DIR")
 
 # ── Query expected server count from ProjectRules ────────────────────
 connStr="Server=${DB_SERVER};Database=${DB_NAME};User ID=${DB_USER};Password=${DB_PASSWORD};TrustServerCertificate=True;"
-SERVER_COUNT=$("$POWERSHELL" -NoProfile -Command "
+# Expected server count: retried so that one transient DB hiccup does not silently turn a
+# multi-server project into a "1 server" wait.
+SERVER_COUNT=""
+for _sc_try in 1 2 3; do
+    SERVER_COUNT=$("$POWERSHELL" -NoProfile -Command "
     try {
         Import-Module SqlServer -ErrorAction Stop | Out-Null
         \$r = Invoke-Sqlcmd -ConnectionString '$connStr' -Query \"SELECT COUNT(*) AS cnt FROM ProjectRules WHERE ProjectName='${PROJECT_NAME}' AND Branch='${BRANCH}' AND ServerName IS NOT NULL AND ServerName != ''\"
         Write-Output \$r.cnt
-    } catch { Write-Output 1 }
-" 2>/dev/null | tr -d '\r\n') || SERVER_COUNT=1
-[[ "$SERVER_COUNT" =~ ^[0-9]+$ ]] || SERVER_COUNT=1
+    } catch { Write-Output 'ERR' }
+" 2>/dev/null | tr -d '\r\n') || SERVER_COUNT=""
+    [[ "$SERVER_COUNT" =~ ^[0-9]+$ ]] && break
+    log "   ⚠️  Server-count lookup failed (attempt $_sc_try/3)"
+    sleep 3
+done
+[[ "$SERVER_COUNT" =~ ^[0-9]+$ ]] || { log "   ⚠️  Could not read the server count from ProjectRules — assuming 1"; SERVER_COUNT=1; }
 [[ "$SERVER_COUNT" -eq 0 ]] && SERVER_COUNT=1
 
 log "   Expecting responses from $SERVER_COUNT server(s)..."
@@ -575,7 +609,7 @@ EOF
     run_winscp "$LIST_SCRIPT" "$LIST_LOG" || true
 
     while IFS= read -r line; do
-        FNAME=$(echo "$line" | grep -oE "${PROJECT_NAME}_${BRANCH}_Rollback_Success_[^ ]+" | head -1 | tr -d '\r') || true
+        FNAME=$(echo "$line" | grep -oE "${PROJECT_NAME}_${BRANCH}_Rollback_(Success|Failed)_[^ ]+" | head -1 | tr -d '\r') || true
         [[ -z "$FNAME" ]] && continue
         [[ -n "${SEEN_ROLLBACK_FILES[$FNAME]:-}" ]] && continue
 
@@ -601,11 +635,10 @@ EOF
         fi
 
         RESULT_BRANCH=$(grep -E 'Branch=' "$RESULT_LOCAL" | head -1 | cut -d'=' -f2- | tr -d '\r') || true
-        RESULT_STATUS=$(grep -E 'Status=' "$RESULT_LOCAL" | head -1 | cut -d'=' -f2- | tr -d '\r') || true
+        RESULT_STATUS=$(grep -E '^Status=' "$RESULT_LOCAL" | head -1 | cut -d'=' -f2- | tr -d '\r') || true
         RESULT_TIME=$(grep   -E 'Time='   "$RESULT_LOCAL" | head -1 | cut -d'=' -f2- | tr -d '\r') || true
 
         if [[ "$RESULT_BRANCH" != "$BRANCH" ]]; then continue; fi
-        if [[ "$RESULT_STATUS" != "Success" ]]; then continue; fi
 
         if [[ -n "$RESULT_TIME" && -n "$ROLLBACK_START_LOCAL" ]]; then
             RESULT_EPOCH=$("$POWERSHELL" -NoProfile -Command "try { [DateTimeOffset]::Parse('$RESULT_TIME').ToUnixTimeSeconds() } catch { 0 }" 2>/dev/null | tr -d '\r\n')
@@ -615,20 +648,38 @@ EOF
             fi
         fi
 
+        # Failed rollback reported by a watcher — record it, keep waiting for the other servers
+        if [[ "$RESULT_STATUS" != "Success" ]]; then
+            SEEN_ROLLBACK_FILES[$FNAME]=1
+            FAILED_RESULT_FILES+=("$RESULT_LOCAL")
+            R_SERVER=$(grep -E 'WatcherNode=' "$RESULT_LOCAL" | head -1 | cut -d'=' -f2- | tr -d '\r') || R_SERVER=""
+            if [[ -z "$R_SERVER" ]]; then R_SERVER="${FNAME%.txt}"; R_SERVER="${R_SERVER##*_}"; fi
+            log ""
+            log "   📥 Response from server: $R_SERVER → Status: ${RESULT_STATUS:-Failed}"
+            cat "$RESULT_LOCAL" | while IFS= read -r rline; do log "      | $rline"; done
+            cicd_server_result_from_file "$RESULT_LOCAL" "FAILED"
+            continue
+        fi
+
         SEEN_ROLLBACK_FILES[$FNAME]=1
         WATCHER_RESULT_FILES+=("$RESULT_LOCAL")
         R_SERVER=$(grep -E 'WatcherNode=' "$RESULT_LOCAL" | head -1 | cut -d'=' -f2- | tr -d '\r') || R_SERVER="?"
         log ""
         log "   📥 Response from server: $R_SERVER → Status: $RESULT_STATUS"
         cat "$RESULT_LOCAL" | while IFS= read -r rline; do log "      | $rline"; done
+        cicd_server_result_from_file "$RESULT_LOCAL" "SUCCESS"
 
     done < "$LIST_LOG"
 
     RECEIVED=${#WATCHER_RESULT_FILES[@]}
+    FAILED_N=${#FAILED_RESULT_FILES[@]}
     if [[ $RECEIVED -ge $SERVER_COUNT ]]; then
         WATCHER_CONFIRMED=true
         RESULT_FILE="${WATCHER_RESULT_FILES[0]}"
         log "   ✅ All $SERVER_COUNT server(s) confirmed after ${ELAPSED}s!"
+        break
+    elif (( RECEIVED + FAILED_N >= SERVER_COUNT )); then
+        log "   ❌ All $SERVER_COUNT server(s) responded — $FAILED_N reported a failed rollback"
         break
     fi
 
@@ -641,6 +692,11 @@ EOF
 done
 set -e
 RECEIVED=${#WATCHER_RESULT_FILES[@]}
+if [[ "$WATCHER_CONFIRMED" == true ]]; then
+    cicd_step "WAIT_WATCHER" "SUCCESS" "$T_WAIT"
+else
+    cicd_step "WAIT_WATCHER" "FAILED" "$T_WAIT"
+fi
 
 # Parse watcher result file to get rollback details
 if [[ "$WATCHER_CONFIRMED" == true ]] && [[ -n "$RESULT_FILE" ]]; then
@@ -666,6 +722,14 @@ else
     WATCHER_IIS=""
     WATCHER_SERVER=""
 fi
+
+# ---- CI/CD telemetry: smoke result + final status of the run ----
+if [[ ${#WATCHER_RESULT_FILES[@]} -gt 0 ]]; then cicd_set_smoke_from_file "${WATCHER_RESULT_FILES[0]}"; fi
+CICD_FAIL_REASON=""
+if [[ ${#FAILED_RESULT_FILES[@]} -gt 0 ]]; then
+    CICD_FAIL_REASON=$(grep -E '^Error=' "${FAILED_RESULT_FILES[0]}" | head -1 | cut -d'=' -f2- | tr -d '\r') || CICD_FAIL_REASON=""
+fi
+cicd_finish_auto "$RECEIVED" "${#FAILED_RESULT_FILES[@]}" "$SERVER_COUNT" "$CICD_FAIL_REASON"
 
 # Cleanup
 rm -f "$FLAG_PATH"
@@ -876,7 +940,7 @@ try {
         echo "<tr style='background:#f5f5f5;'><th style='padding:6px;'>Server</th><th style='padding:6px;'>Status</th><th style='padding:6px;'>IIS</th><th style='padding:6px;'>Backup</th></tr>"
         for TXT_FILE in "${WATCHER_RESULT_FILES[@]}"; do
           R_SERVER=$(grep -E 'WatcherNode=' "$TXT_FILE" | head -1 | cut -d'=' -f2- | tr -d '\r') || R_SERVER="?"
-          R_STATUS=$(grep -E 'Status=' "$TXT_FILE" | head -1 | cut -d'=' -f2- | tr -d '\r') || R_STATUS="?"
+          R_STATUS=$(grep -E '^Status=' "$TXT_FILE" | head -1 | cut -d'=' -f2- | tr -d '\r') || R_STATUS="?"
           R_IIS=$(grep -E 'IISRestart=' "$TXT_FILE" | head -1 | cut -d'=' -f2- | tr -d '\r') || R_IIS="?"
           R_BACKUP=$(grep -E '(BackupRemoved|BackupPath)=' "$TXT_FILE" | head -1 | cut -d'=' -f2- | tr -d '\r') || R_BACKUP="?"
           echo "<tr><td style='padding:6px;'>$R_SERVER</td><td style='padding:6px;'>$R_STATUS</td><td style='padding:6px;'>$R_IIS</td><td style='padding:6px;font-family:monospace;font-size:11px;'>$R_BACKUP</td></tr>"
