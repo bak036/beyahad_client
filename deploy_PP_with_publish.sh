@@ -313,10 +313,9 @@ fi
 #   DB_NAME=NofTest
 #   DB_USER=sqladmin
 #   DB_PASSWORD=********
-#   SFTP_HOST=sftp.dts.co.il
-#   SFTP_PORT=22
-#   SFTP_USER=bitbucketpp
-#   SFTP_PASSWORD=********
+# (optional) SFTP_UPLOAD_DIR / SFTP_CONFIRM_DIR — default /pp
+# SFTP host/port/user/password are NOT in .env: they are read from
+# NofTest..GlobalSettings (SftpHost, SftpPort, SftpUser, SftpPassword).
 # ============================================================
 ENV_FILE="$SCRIPT_DIR/.env"
 if [[ ! -f "$ENV_FILE" ]]; then
@@ -333,10 +332,8 @@ set +a
 : "${DB_NAME:?Missing DB_NAME in .env}"
 : "${DB_USER:?Missing DB_USER in .env}"
 : "${DB_PASSWORD:?Missing DB_PASSWORD in .env}"
-: "${SFTP_HOST:?Missing SFTP_HOST in .env}"
-: "${SFTP_PORT:?Missing SFTP_PORT in .env}"
-: "${SFTP_USER:?Missing SFTP_USER in .env}"
-: "${SFTP_PASSWORD:?Missing SFTP_PASSWORD in .env}"
+# SFTP_HOST / SFTP_PORT / SFTP_USER / SFTP_PASSWORD are no longer read from .env —
+# they are loaded from NofTest..GlobalSettings right after the network check below.
 SFTP_UPLOAD_DIR="${SFTP_UPLOAD_DIR:-/pp}"
 SFTP_CONFIRM_DIR="${SFTP_CONFIRM_DIR:-/pp}"
 
@@ -432,6 +429,57 @@ if [[ "$NET_CHECK" != "REACHABLE" ]]; then
     exit 1
 fi
 log "   ✓ Network reachable"
+log ""
+
+# ============================================================
+# SFTP connection details — loaded from NofTest..GlobalSettings
+# (SftpHost, SftpPort, SftpUser, SftpPassword), NOT from .env.
+# ============================================================
+log "🔗 Loading SFTP settings from database..."
+SFTP_MAX_RETRIES=3
+sftp_attempt=1
+sftp_values=""
+while (( sftp_attempt <= SFTP_MAX_RETRIES )); do
+    if (( sftp_attempt > 1 )); then
+        log "   ⟳ Retry $sftp_attempt/$SFTP_MAX_RETRIES after transient failure (waiting 5s)..."
+        sleep 5
+    fi
+    sftp_values=$("$POWERSHELL" -NoProfile -Command '
+      try {
+        Import-Module SqlServer -ErrorAction Stop | Out-Null
+        $connectionString = "Server=$($env:DB_SERVER);Database=$($env:DB_NAME);User ID=$($env:DB_USER);Password=$($env:DB_PASSWORD);TrustServerCertificate=True;";
+        $gsRows = Invoke-Sqlcmd -ConnectionString $connectionString -Query "SELECT SettingKey, SettingValue FROM GlobalSettings WHERE SettingKey LIKE '"'Sftp%'"'" -ErrorAction Stop;
+        $gs = @{};
+        foreach ($g in $gsRows) { $gs[[string]$g.SettingKey] = [string]$g.SettingValue }
+        Write-Output ($gs["SftpHost"] + "|||" + $gs["SftpPort"] + "|||" + $gs["SftpUser"] + "|||" + $gs["SftpPassword"])
+      } catch {
+        Write-Output ("ERROR: " + $_.Exception.Message)
+      }
+    ')
+    if [[ "$sftp_values" != ERROR* ]]; then
+        break
+    fi
+    log "   ⚠️  Attempt $sftp_attempt failed: $sftp_values"
+    (( sftp_attempt++ ))
+done
+
+if [[ "$sftp_values" == ERROR* ]]; then
+    log "❌ Failed to load SFTP settings from database"
+    log "   $sftp_values"
+    exit 1
+fi
+
+SFTP_HOST=$(echo "$sftp_values" | awk -F'\\|\\|\\|' '{print $1}' | tr -d '\r')
+SFTP_PORT=$(echo "$sftp_values" | awk -F'\\|\\|\\|' '{print $2}' | tr -d '\r')
+SFTP_USER=$(echo "$sftp_values" | awk -F'\\|\\|\\|' '{print $3}' | tr -d '\r')
+SFTP_PASSWORD=$(echo "$sftp_values" | awk -F'\\|\\|\\|' '{print $4}' | tr -d '\r')
+for _k in SFTP_HOST SFTP_PORT SFTP_USER SFTP_PASSWORD; do
+    if [[ -z "${!_k}" ]]; then
+        log "❌ Missing SFTP setting in NofTest..GlobalSettings (${_k} → SftpHost/SftpPort/SftpUser/SftpPassword)"
+        exit 1
+    fi
+done
+log "   ✓ SFTP settings loaded ($SFTP_HOST:$SFTP_PORT, user: $SFTP_USER)"
 log ""
 
 # ============================================================
@@ -802,7 +850,16 @@ if [[ "$BUILD_FILE_COUNT" -eq 0 ]]; then
 fi
 
 TEMP="$ROOT/.deploy_temp"
-rm -rf "$TEMP"
+# Leftovers from a previous run can stay locked by another process (antivirus,
+# indexer, IDE file watcher) -> "rm: Device or resource busy". Cleanup must never
+# abort the deploy (set -e): try to remove, and if the folder survives, stage
+# into a fresh uniquely-named folder instead.
+rm -rf "$ROOT"/.deploy_temp_* 2>/dev/null || true
+rm -rf "$TEMP" 2>/dev/null || true
+if [[ -d "$TEMP" ]]; then
+    TEMP="$ROOT/.deploy_temp_$(date +%Y%m%d_%H%M%S)"
+    log "   ⚠️  .deploy_temp is locked by another process — staging in $(basename "$TEMP") instead"
+fi
 mkdir -p "$TEMP"
 
 log "   Copying build/ to temp directory (excluding configuration.json, web.config)..."

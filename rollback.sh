@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ===============================================================
-# ♻️ UNIVERSAL AUTO-ROLLBACK SCRIPT — WITH AUTO-SETUP
+# ♻️ UNIVERSAL AUTO-ROLLBACK SCRIPT — beyahad client WITH AUTO-SETUP
 # ===============================================================
 
 set -e
@@ -84,10 +84,9 @@ set +a
 : "${DB_NAME:?Missing DB_NAME in .env}"
 : "${DB_USER:?Missing DB_USER in .env}"
 : "${DB_PASSWORD:?Missing DB_PASSWORD in .env}"
-: "${SFTP_HOST:?Missing SFTP_HOST in .env}"
-: "${SFTP_PORT:?Missing SFTP_PORT in .env}"
-: "${SFTP_USER:?Missing SFTP_USER in .env}"
-: "${SFTP_PASSWORD:?Missing SFTP_PASSWORD in .env}"
+# SFTP_HOST / SFTP_PORT / SFTP_USER / SFTP_PASSWORD are no longer read from .env —
+# they are loaded from NofTest..GlobalSettings (SftpHost/SftpPort/SftpUser/SftpPassword)
+# together with the project config in the DB lookup below.
 SFTP_UPLOAD_DIR="${SFTP_UPLOAD_DIR:-/pp}"
 
 # ===== WINSCP =====
@@ -399,15 +398,19 @@ db_values=$("$POWERSHELL" -NoProfile -Command '
     Import-Module SqlServer -ErrorAction Stop | Out-Null
     
     $connectionString = '"'""$CONN_PS""'"';
-    $query = "SELECT TOP 1 pr.ProjectName, pr.Branch, pr.FlagName, pr.ZipName, pr.AppPool, pr.SiteName, pdc.RemoteServer, pdc.RemoteUser, pdc.RemotePassword, pdc.LocalPublishDir FROM NofTest..ProjectRules pr LEFT JOIN NofTest..ProjectDepJoyConfig pdc ON pr.ProjectName = pdc.Project WHERE pr.ProjectName='"'$PROJECT_NAME'"' AND pr.Branch='"'$BRANCH'"'";
+    $query = "SELECT TOP 1 pr.ProjectName, pr.Branch, pr.FlagName, pr.ZipName, pr.AppPool, pr.SiteName, pr.LocalPublishDir FROM NofTest..ProjectRules pr WHERE pr.ProjectName='"'$PROJECT_NAME'"' AND pr.Branch='"'$BRANCH'"'";
     
     $result = Invoke-Sqlcmd -ConnectionString $connectionString -Query $query -ErrorAction Stop;
     
     if ($null -eq $result) {
       Write-Output "NO_RESULTS"
     } else {
+      # SFTP connection details live in GlobalSettings (not in .env)
+      $gsRows = Invoke-Sqlcmd -ConnectionString $connectionString -Query "SELECT SettingKey, SettingValue FROM NofTest..GlobalSettings WHERE SettingKey LIKE '"'Sftp%'"'" -ErrorAction Stop;
+      $gs = @{};
+      foreach ($g in $gsRows) { $gs[[string]$g.SettingKey] = [string]$g.SettingValue }
       foreach ($row in $result) {
-        $line = ($row.ProjectName + "|||DELIM|||" + $row.Branch + "|||DELIM|||" + $row.FlagName + "|||DELIM|||" + $row.ZipName + "|||DELIM|||" + $row.AppPool + "|||DELIM|||" + $row.SiteName + "|||DELIM|||" + $row.RemoteServer + "|||DELIM|||" + $row.RemoteUser + "|||DELIM|||" + $row.RemotePassword + "|||DELIM|||" + $row.LocalPublishDir)
+        $line = ($row.ProjectName + "|||DELIM|||" + $row.Branch + "|||DELIM|||" + $row.FlagName + "|||DELIM|||" + $row.ZipName + "|||DELIM|||" + $row.AppPool + "|||DELIM|||" + $row.SiteName + "|||DELIM|||" + $row.LocalPublishDir + "|||DELIM|||" + $gs["SftpHost"] + "|||DELIM|||" + $gs["SftpPort"] + "|||DELIM|||" + $gs["SftpUser"] + "|||DELIM|||" + $gs["SftpPassword"])
         Write-Output $line
       }
     }
@@ -444,23 +447,28 @@ FLAG_NAME=$(echo "$db_values" | awk -F'\\|\\|\\|DELIM\\|\\|\\|' '{print $3}')
 ZIP_NAME=$(echo "$db_values" | awk -F'\\|\\|\\|DELIM\\|\\|\\|' '{print $4}')
 APP_POOL=$(echo "$db_values" | awk -F'\\|\\|\\|DELIM\\|\\|\\|' '{print $5}')
 SITE_NAME=$(echo "$db_values" | awk -F'\\|\\|\\|DELIM\\|\\|\\|' '{print $6}')
-REMOTE_SERVER=$(echo "$db_values" | awk -F'\\|\\|\\|DELIM\\|\\|\\|' '{print $7}')
-REMOTE_USER=$(echo "$db_values" | awk -F'\\|\\|\\|DELIM\\|\\|\\|' '{print $8}')
-REMOTE_PASSWORD=$(echo "$db_values" | awk -F'\\|\\|\\|DELIM\\|\\|\\|' '{print $9}')
-DEPLOY_ROOT=$(echo "$db_values" | awk -F'\\|\\|\\|DELIM\\|\\|\\|' '{print $10}')
+DEPLOY_ROOT=$(echo "$db_values" | awk -F'\\|\\|\\|DELIM\\|\\|\\|' '{print $7}')
+# SFTP connection details come from NofTest..GlobalSettings (not from .env)
+SFTP_HOST=$(echo "$db_values" | awk -F'\\|\\|\\|DELIM\\|\\|\\|' '{print $8}' | tr -d '\r')
+SFTP_PORT=$(echo "$db_values" | awk -F'\\|\\|\\|DELIM\\|\\|\\|' '{print $9}' | tr -d '\r')
+SFTP_USER=$(echo "$db_values" | awk -F'\\|\\|\\|DELIM\\|\\|\\|' '{print $10}' | tr -d '\r')
+SFTP_PASSWORD=$(echo "$db_values" | awk -F'\\|\\|\\|DELIM\\|\\|\\|' '{print $11}' | tr -d '\r')
+
+for _k in SFTP_HOST SFTP_PORT SFTP_USER SFTP_PASSWORD; do
+    if [[ -z "${!_k}" ]]; then
+        log "❌ Missing SFTP setting in NofTest..GlobalSettings (${_k} → SftpHost/SftpPort/SftpUser/SftpPassword)"
+        exit 1
+    fi
+done
 
 # Replace variables in all config values
 log "🔄 Replacing variables in configuration..."
 PROJECT=$(replace_variables "$PROJECT")
 BRANCH=$(replace_variables "$BRANCH")
 FLAG_NAME=$(replace_variables "$FLAG_NAME")
-REMOTE_SERVER=$(replace_variables "$REMOTE_SERVER")
-REMOTE_USER=$(replace_variables "$REMOTE_USER")
-REMOTE_PASSWORD=$(replace_variables "$REMOTE_PASSWORD")
 DEPLOY_ROOT=$(replace_variables "$DEPLOY_ROOT")
 
 # Store RAW values for Windows paths
-RAW_REMOTE="$REMOTE_SERVER"
 RAW_FLAG="$FLAG_NAME"
 
 # Normalize paths for Bash
@@ -488,7 +496,6 @@ normalize_path() {
     echo "$path"
 }
 
-REMOTE_SERVER=$(normalize_path "$REMOTE_SERVER")
 
 
 log "==============================================================="
