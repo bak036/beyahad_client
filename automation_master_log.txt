@@ -3260,3 +3260,190 @@
 [ 2026-10-07 11:37:18 ] ===================================================
 [ 2026-10-07 11:37:18 ] 📦 [STEP 4/5] CREATING DEPLOYMENT PACKAGE
 [ 2026-10-07 11:37:19 ] ===================================================
+[ 2026-10-07 12:06:55 ] 🔍 Project: beyahad-web-client
+[ 2026-10-07 12:06:55 ] 🔍 Branch: PP
+[ 2026-10-07 12:06:55 ]    ✓ DB credentials loaded from .env (server: 172.29.92.20\sql2005, db: NofTest, user: alexk)
+[ 2026-10-07 12:06:56 ] 
+[ 2026-10-07 12:06:56 ] ===================================================
+[ 2026-10-07 12:06:56 ] 🔧 CHECKING PIPELINE PREREQUISITES (PowerShell / SQL)
+[ 2026-10-07 12:06:56 ] ===================================================
+[ 2026-10-07 12:07:06 ]    ✓ PowerShell/SqlServer module ready
+[ 2026-10-07 12:07:07 ]    ✓ Robocopy ready
+[ 2026-10-07 12:07:07 ] 
+[ 2026-10-07 12:07:07 ] 🌐 Checking network connectivity to 172.29.92.20:1433...
+[ 2026-10-07 12:07:21 ]    ✓ Network reachable
+[ 2026-10-07 12:07:21 ] 
+[ 2026-10-07 12:07:21 ] 🔗 Loading SFTP settings from database...
+[ 2026-10-07 12:07:24 ]    ✓ SFTP settings loaded (sftp.dts.co.il:22, user: bitbucketpp)
+[ 2026-10-07 12:07:24 ] 
+[ 2026-10-07 12:07:32 ]    📊 CI/CD run #52 registered (DEPLOY / PP / by bak036)
+[ 2026-10-07 12:07:32 ] ===================================================
+[ 2026-10-07 12:07:33 ] 🚀 DEPLOYMENT STARTED
+[ 2026-10-07 12:07:33 ] ===================================================
+[ 2026-10-07 12:07:33 ] 
+[ 2026-10-07 12:07:33 ] ===================================================
+[ 2026-10-07 12:07:33 ] 🔎 [STEP 1/5] CHECKING PROJECT DEPENDENCIES
+[ 2026-10-07 12:07:34 ] ===================================================
+[ 2026-10-07 12:07:34 ]    ✓ node: v24.16.0
+[ 2026-10-07 12:07:36 ]    ✓ npm: 11.13.0
+[ 2026-10-07 12:07:36 ]    Checking local ("file:") sibling dependencies...
+[ 2026-10-07 12:07:36 ]    ✓ Found local dependency 'nofshonit-base-web-client' at /c/Users/alexk/Desktop/Automation/BitBuketProject/nofshonit-base-web-client
+[ 2026-10-07 12:07:37 ]    ✓ node_modules present
+[ 2026-10-07 12:07:37 ]    ✓ cross-env resolvable
+[ 2026-10-07 12:07:37 ] 
+[ 2026-10-07 12:07:37 ] ===================================================
+[ 2026-10-07 12:07:38 ] 🏗️  [STEP 2/5] BUILDING (npm run build:preprod)
+[ 2026-10-07 12:07:38 ] ===================================================
+[ 2026-10-07 12:07:38 ]    Set REACT_APP_ENV=https://histbackpp.dts.co.il (from cross-env, applied directly — no nested npm call)
+[ 2026-10-07 12:07:39 ]    Running directly: node scripts/build.js (bypassing npm run — no PATH lookup involved)
+[ 2026-10-07 12:08:07 ]    ✓ Build completed
+[ 2026-10-07 12:08:07 ] 
+[ 2026-10-07 12:08:10 ] ===================================================
+[ 2026-10-07 12:08:10 ] 🔒 DEVSEC VULNERABILITY SCAN
+[ 2026-10-07 12:08:11 ] ===================================================
+[ 2026-10-07 12:08:11 ]    📦 Scanning npm dependencies (npm audit)...
+[ 2026-10-07 12:08:43 ]    ✓ npm audit: no known vulnerabilities found
+[ 2026-10-07 12:08:43 ]    🌐 Scanning installed packages (retire.js) in: C:/Users/alexk/Desktop/Automation/BitBuketProject/beyahad-web-client/node_modules
+[ 2026-10-07 12:08:54 ]    ✓ retire.js: no known-vulnerable libraries found
+[ 2026-10-07 12:08:59 ] ===================================================
+[ 2026-10-07 12:08:59 ] ✓ DevSec scan complete
+[ 2026-10-07 12:08:59 ] ===================================================
+[ 2026-10-07 12:08:59 ] 
+[ 2026-10-07 12:08:59 ] ===================================================
+[ 2026-10-07 12:09:00 ] ⏭  [STEP 3/5] PUBLISH — skipped (not applicable to front-end projects)
+[ 2026-10-07 12:09:00 ] ===================================================
+[ 2026-10-07 12:09:00 ] 
+[ 2026-10-07 12:09:00 ] ===================================================
+[ 2026-10-07 12:09:01 ] 📦 [STEP 4/5] CREATING DEPLOYMENT PACKAGE
+[ 2026-10-07 12:09:01 ] ===================================================
+[ 2026-10-07 12:09:02 ]    Copying build/ to temp directory (excluding configuration.json, web.config)...
+[ 2026-10-07 12:09:03 ]    ✓ Files staged (configuration.json / web.config excluded from the ZIP)
+[ 2026-10-07 12:09:03 ]    Creating ZIP archive...
+[ 2026-10-07 12:09:06 ]    ✓ ZIP created: beyahad-web-client_PP_publish.zip
+[ 2026-10-07 12:09:06 ] 
+[ 2026-10-07 12:09:11 ] ===================================================
+[ 2026-10-07 12:09:12 ] 📤 [STEP 5/5] UPLOADING TO SFTP VAULT (sftp.dts.co.il:22/pp)
+[ 2026-10-07 12:09:12 ] ===================================================
+[ 2026-10-07 12:09:16 ]    ✓ Uploaded to /pp/beyahad-web-client_PP_publish.zip
+[ 2026-10-07 12:09:16 ] 
+[ 2026-10-07 12:09:18 ] ===================================================
+[ 2026-10-07 12:09:19 ] ⏳ WAITING FOR WATCHER CONFIRMATION
+[ 2026-10-07 12:09:19 ] ===================================================
+[ 2026-10-07 12:09:21 ]    Expecting responses from 1 server(s)...
+[ 2026-10-07 12:10:10 ] 
+[ 2026-10-07 12:10:10 ]    📥 Response from server: DTSLC-PP → Status: Success
+[ 2026-10-07 12:10:11 ]       | ﻿Branch=PP
+[ 2026-10-07 12:10:11 ]       | Time=2026-10-07 12:09:56
+[ 2026-10-07 12:10:11 ]       | DeployPath=C:\inetpub\wwwroot\site\Productions\HistadrutClient\build-client
+[ 2026-10-07 12:10:11 ]       | Site=HistadrutClient
+[ 2026-10-07 12:10:11 ]       | TriggeredBy=AutoDeploy
+[ 2026-10-07 12:10:12 ]       | IISRestart=[2026-10-07 12:09:53] ▶ Starting IIS app pool → HistadrutClient [2026-10-07 12:09:56] ▶ Starting IIS site → HistadrutClient [2026-10-07 12:09:56]    ⏳ Verifying IIS started... [2026-10-07 12:09:56]    ✓ App pool confirmed started (after 0s) [2026-10-07 12:09:56]    ✓ Site confirmed running Yes
+[ 2026-10-07 12:10:12 ]       | Project=beyahad-web-client
+[ 2026-10-07 12:10:12 ]       | BackupPath=C:\inetpub\wwwroot\site\Productions\HistadrutClient\build-client.2026-10-07_12.09.49
+[ 2026-10-07 12:10:12 ]       | SmokeTestDetail=No smoke test directory configured for this project
+[ 2026-10-07 12:10:13 ]       | Status=Success
+[ 2026-10-07 12:10:13 ]       | Pool=HistadrutClient
+[ 2026-10-07 12:10:13 ]       | DeploymentType=FrontClient
+[ 2026-10-07 12:10:13 ]       | SmokeTestStatus=Skipped
+[ 2026-10-07 12:10:13 ]       | WatcherNode=DTSLC-PP
+[ 2026-10-07 12:10:19 ] 
+[ 2026-10-07 12:10:19 ] ===================================================
+[ 2026-10-07 12:10:19 ] 🎉 DEPLOYMENT COMPLETE — 1/1 servers responded
+[ 2026-10-07 12:10:19 ] ===================================================
+[ 2026-10-07 12:10:21 ]    ⏭ Not tested — No smoke test directory configured for this project
+[ 2026-10-07 12:10:25 ]    📊 CI/CD run #52 closed: SUCCESS
+[ 2026-10-07 12:10:31 ] 
+[ 2026-10-07 12:10:31 ] ✅ Done!
+[ 2026-10-07 12:10:31 ] 
+[ 2026-10-07 12:10:32 ] ===================================================
+[ 2026-10-07 12:10:32 ] 🏁 PIPELINE FINISHED
+[ 2026-10-07 12:10:32 ] ===================================================
+[ 2026-10-07 13:32:28 ] 🔍 Detected project: beyahad-web-client
+[ 2026-10-07 13:32:28 ] 🔍 Detected branch: PP
+[ 2026-10-07 13:32:28 ] 
+[ 2026-10-07 13:32:28 ] ===================================================
+[ 2026-10-07 13:32:28 ] 🔧 CHECKING & INSTALLING DEPENDENCIES
+[ 2026-10-07 13:32:28 ] ===================================================
+[ 2026-10-07 13:32:28 ] 📦 Checking PowerShell prerequisites...
+[ 2026-10-07 13:32:38 ]    ✓ PowerShell prerequisites already present
+[ 2026-10-07 13:32:38 ] 📦 Checking jq...
+[ 2026-10-07 13:32:38 ]    ⚙  jq not found. Installing...
+[ 2026-10-07 13:32:38 ] 📦 Checking SQL Server PowerShell module...
+[ 2026-10-07 13:32:40 ]    ✓ SqlServer module ready
+[ 2026-10-07 13:32:40 ] ===================================================
+[ 2026-10-07 13:32:40 ] ✓ All dependencies ready
+[ 2026-10-07 13:32:40 ] ===================================================
+[ 2026-10-07 13:32:40 ] 
+[ 2026-10-07 13:32:40 ] 📊 Loading configuration from database...
+[ 2026-10-07 13:32:40 ]    Server: 172.29.92.20\sql2005
+[ 2026-10-07 13:32:40 ]    Database: NofTest
+[ 2026-10-07 13:32:40 ]    Looking for: Project='beyahad-web-client', Branch='PP'
+[ 2026-10-07 13:32:42 ]    ✓ Configuration loaded from database
+[ 2026-10-07 13:32:42 ] 🔄 Replacing variables in configuration...
+[ 2026-10-07 13:32:42 ] ===============================================================
+[ 2026-10-07 13:32:42 ] == ♻️  ROLLBACK STARTED ==
+[ 2026-10-07 13:32:42 ] ===============================================================
+[ 2026-10-07 13:32:42 ] Project:      beyahad-web-client
+[ 2026-10-07 13:32:42 ] Branch:       PP
+[ 2026-10-07 13:32:42 ] Flag:         beyahad-web-client_PP_publish.flag
+[ 2026-10-07 13:32:42 ] SFTP:         sftp.dts.co.il:22
+[ 2026-10-07 13:32:42 ] SFTP folder:  /pp
+[ 2026-10-07 13:32:42 ] Deploy Root:  
+[ 2026-10-07 13:32:42 ] ===============================================================
+[ 2026-10-07 13:33:01 ]    📊 CI/CD run #53 registered (ROLLBACK / PP / by bak036)
+[ 2026-10-07 13:33:01 ] 🪶 [1/2] Creating rollback flag...
+[ 2026-10-07 13:33:01 ]    ✓ Flag created: beyahad-web-client_PP_publish.flag
+[ 2026-10-07 13:33:01 ] 📤 Uploading rollback flag → /pp/beyahad-web-client_PP_publish.flag
+[ 2026-10-07 13:33:02 ]    ✓ Rollback flag uploaded successfully
+[ 2026-10-07 13:33:04 ] ⏳ [2/2] Waiting for watcher confirmation via SFTP (/pp)...
+[ 2026-10-07 13:33:06 ]    Expecting responses from 1 server(s)...
+[ 2026-10-07 13:33:54 ] 
+[ 2026-10-07 13:33:54 ]    📥 Response from server: DTSLC-PP → Status: Success
+[ 2026-10-07 13:33:54 ]       | ﻿Branch=PP
+[ 2026-10-07 13:33:54 ]       | DeployRoot=C:\inetpub\wwwroot\site\Productions\HistadrutClient\build-client
+[ 2026-10-07 13:33:54 ]       | Time=2026-10-07 13:33:33
+[ 2026-10-07 13:33:54 ]       | TriggeredBy=AutoDeploy
+[ 2026-10-07 13:33:54 ]       | IISRestart=Yes
+[ 2026-10-07 13:33:54 ]       | Project=beyahad-web-client
+[ 2026-10-07 13:33:54 ]       | Site=HistadrutClient
+[ 2026-10-07 13:33:54 ]       | SmokeTestDetail=No smoke test directory configured for this project
+[ 2026-10-07 13:33:54 ]       | Status=Success
+[ 2026-10-07 13:33:54 ]       | BackupRemoved=C:\inetpub\wwwroot\site\Productions\HistadrutClient\build-client.2026-10-07_12.09.49
+[ 2026-10-07 13:33:54 ]       | Pool=HistadrutClient
+[ 2026-10-07 13:33:54 ]       | SmokeTestStatus=Skipped
+[ 2026-10-07 13:33:54 ]       | WatcherNode=DTSLC-PP
+[ 2026-10-07 13:33:57 ]    ✅ All 1 server(s) confirmed after 40s!
+[ 2026-10-07 13:33:58 ] 📄 Reading rollback details...
+[ 2026-10-07 13:33:58 ]    ✓ Deploy Root: C:\inetpub\wwwroot\site\Productions\HistadrutClient\build-client
+[ 2026-10-07 13:33:58 ]    ✓ Backup:      C:\inetpub\wwwroot\site\Productions\HistadrutClient\build-client.2026-10-07_12.09.49
+[ 2026-10-07 13:33:58 ]    ✓ IIS Restart: Yes
+[ 2026-10-07 13:33:58 ]    ✓ Server:      DTSLC-PP
+[ 2026-10-07 13:34:02 ]    📊 CI/CD run #53 closed: SUCCESS
+[ 2026-10-07 13:34:02 ] 
+[ 2026-10-07 13:34:02 ] ===================================================
+[ 2026-10-07 13:34:02 ] 🎉 ROLLBACK COMPLETE — 1/1 servers responded
+[ 2026-10-07 13:34:02 ]    ✓ Deploy Root: C:\inetpub\wwwroot\site\Productions\HistadrutClient\build-client
+[ 2026-10-07 13:34:02 ]    ✓ Backup:      C:\inetpub\wwwroot\site\Productions\HistadrutClient\build-client.2026-10-07_12.09.49
+[ 2026-10-07 13:34:02 ]    ✓ IIS Restart: Yes
+[ 2026-10-07 13:34:02 ] ===================================================
+[ 2026-10-07 13:34:02 ] 
+[ 2026-10-07 13:34:02 ] ===================================================
+[ 2026-10-07 13:34:02 ] 🧪 SMOKE TESTS (LOCAL) — SKIPPED
+[ 2026-10-07 13:34:02 ] ===================================================
+[ 2026-10-07 13:34:02 ]    ⏭  Smoke test step is disabled — not running
+[ 2026-10-07 13:34:03 ] 
+[ 2026-10-07 13:34:03 ]    👤 Detected user: bak036
+[ 2026-10-07 13:34:03 ]    📧 Email address: bak036@gmail.com
+[ 2026-10-07 13:34:03 ] 📝 DEBUG: Email variables before sending:
+[ 2026-10-07 13:34:03 ]    PROJECT='beyahad-web-client'
+[ 2026-10-07 13:34:03 ]    BRANCH='PP'
+[ 2026-10-07 13:34:03 ]    DEPLOY_ROOT='C:\inetpub\wwwroot\site\Productions\HistadrutClient\build-client'
+[ 2026-10-07 13:34:03 ]    BACKUP_REMOVED='C:\inetpub\wwwroot\site\Productions\HistadrutClient\build-client.2026-10-07_12.09.49'
+[ 2026-10-07 13:34:03 ]    IIS_RESTART='Yes'
+[ 2026-10-07 13:34:03 ]    SERVER='DTSLC-PP'
+[ 2026-10-07 13:34:03 ]    SITE_STATUS='⏭ Not tested — smoke test step is disabled'
+[ 2026-10-07 13:34:05 ]    ✓ Email sent successfully!
+[ 2026-10-07 13:34:05 ] 
+[ 2026-10-07 13:34:05 ] ===================================================
+[ 2026-10-07 13:34:05 ] 🏁 PIPELINE FINISHED
+[ 2026-10-07 13:34:05 ] ===================================================
