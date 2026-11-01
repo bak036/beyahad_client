@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # ===========================================================
 # deploy_PP_with_publish.sh - beyahad_client (front-end)
-# deploy_PP_with_publish.sh - beyahad_client (front-end)
 # Checks dependencies, builds the React app locally, packages
 # the "build" folder, and uploads it to the PP remote server.
 #
@@ -314,10 +313,9 @@ fi
 #   DB_NAME=NofTest
 #   DB_USER=sqladmin
 #   DB_PASSWORD=********
-#   SFTP_HOST=sftp.dts.co.il
-#   SFTP_PORT=22
-#   SFTP_USER=bitbucketpp
-#   SFTP_PASSWORD=********
+# (optional) SFTP_UPLOAD_DIR / SFTP_CONFIRM_DIR — default /pp
+# SFTP host/port/user/password are NOT in .env: they are read from
+# NofTest..GlobalSettings (SftpHost, SftpPort, SftpUser, SftpPassword).
 # ============================================================
 ENV_FILE="$SCRIPT_DIR/.env"
 if [[ ! -f "$ENV_FILE" ]]; then
@@ -334,10 +332,8 @@ set +a
 : "${DB_NAME:?Missing DB_NAME in .env}"
 : "${DB_USER:?Missing DB_USER in .env}"
 : "${DB_PASSWORD:?Missing DB_PASSWORD in .env}"
-: "${SFTP_HOST:?Missing SFTP_HOST in .env}"
-: "${SFTP_PORT:?Missing SFTP_PORT in .env}"
-: "${SFTP_USER:?Missing SFTP_USER in .env}"
-: "${SFTP_PASSWORD:?Missing SFTP_PASSWORD in .env}"
+# SFTP_HOST / SFTP_PORT / SFTP_USER / SFTP_PASSWORD are no longer read from .env —
+# they are loaded from NofTest..GlobalSettings right after the network check below.
 SFTP_UPLOAD_DIR="${SFTP_UPLOAD_DIR:-/pp}"
 SFTP_CONFIRM_DIR="${SFTP_CONFIRM_DIR:-/pp}"
 
@@ -436,6 +432,57 @@ log "   ✓ Network reachable"
 log ""
 
 # ============================================================
+# SFTP connection details — loaded from NofTest..GlobalSettings
+# (SftpHost, SftpPort, SftpUser, SftpPassword), NOT from .env.
+# ============================================================
+log "🔗 Loading SFTP settings from database..."
+SFTP_MAX_RETRIES=3
+sftp_attempt=1
+sftp_values=""
+while (( sftp_attempt <= SFTP_MAX_RETRIES )); do
+    if (( sftp_attempt > 1 )); then
+        log "   ⟳ Retry $sftp_attempt/$SFTP_MAX_RETRIES after transient failure (waiting 5s)..."
+        sleep 5
+    fi
+    sftp_values=$("$POWERSHELL" -NoProfile -Command '
+      try {
+        Import-Module SqlServer -ErrorAction Stop | Out-Null
+        $connectionString = "Server=$($env:DB_SERVER);Database=$($env:DB_NAME);User ID=$($env:DB_USER);Password=$($env:DB_PASSWORD);TrustServerCertificate=True;";
+        $gsRows = Invoke-Sqlcmd -ConnectionString $connectionString -Query "SELECT SettingKey, SettingValue FROM GlobalSettings WHERE SettingKey LIKE '"'Sftp%'"'" -ErrorAction Stop;
+        $gs = @{};
+        foreach ($g in $gsRows) { $gs[[string]$g.SettingKey] = [string]$g.SettingValue }
+        Write-Output ($gs["SftpHost"] + "|||" + $gs["SftpPort"] + "|||" + $gs["SftpUser"] + "|||" + $gs["SftpPassword"])
+      } catch {
+        Write-Output ("ERROR: " + $_.Exception.Message)
+      }
+    ')
+    if [[ "$sftp_values" != ERROR* ]]; then
+        break
+    fi
+    log "   ⚠️  Attempt $sftp_attempt failed: $sftp_values"
+    (( sftp_attempt++ ))
+done
+
+if [[ "$sftp_values" == ERROR* ]]; then
+    log "❌ Failed to load SFTP settings from database"
+    log "   $sftp_values"
+    exit 1
+fi
+
+SFTP_HOST=$(echo "$sftp_values" | awk -F'\\|\\|\\|' '{print $1}' | tr -d '\r')
+SFTP_PORT=$(echo "$sftp_values" | awk -F'\\|\\|\\|' '{print $2}' | tr -d '\r')
+SFTP_USER=$(echo "$sftp_values" | awk -F'\\|\\|\\|' '{print $3}' | tr -d '\r')
+SFTP_PASSWORD=$(echo "$sftp_values" | awk -F'\\|\\|\\|' '{print $4}' | tr -d '\r')
+for _k in SFTP_HOST SFTP_PORT SFTP_USER SFTP_PASSWORD; do
+    if [[ -z "${!_k}" ]]; then
+        log "❌ Missing SFTP setting in NofTest..GlobalSettings (${_k} → SftpHost/SftpPort/SftpUser/SftpPassword)"
+        exit 1
+    fi
+done
+log "   ✓ SFTP settings loaded ($SFTP_HOST:$SFTP_PORT, user: $SFTP_USER)"
+log ""
+
+# ============================================================
 # BUILD_DIR / ZIP_PATH are computed locally — NOT read from the DB.
 # Rationale: a developer's checkout isn't always on drive C:, so the
 # only machine-independent way to know where "build" and the ZIP live
@@ -454,6 +501,23 @@ ZIP_STAGING_DIR="$ROOT/.deploy_output"
 mkdir -p "$ZIP_STAGING_DIR"
 RAW_ZIP="$ZIP_STAGING_DIR/${PROJECT}_${BRANCH}_publish.zip"
 ZIP_PATH="$RAW_ZIP"
+
+# ============================================================
+# CI/CD telemetry — records this run in NofTest.dbo.CicdDeployments*
+# (schema: cicd_schema.sql, helper: cicd_db.sh next to this script).
+# Fully optional: if the helper is missing or a DB write fails, the
+# deploy continues exactly as before.
+# ============================================================
+if [[ -f "$SCRIPT_DIR/cicd_db.sh" ]]; then
+    # shellcheck disable=SC1091
+    source "$SCRIPT_DIR/cicd_db.sh"
+fi
+for _f in cicd_start cicd_step cicd_update cicd_set_zip cicd_server_result_from_file cicd_set_smoke_from_file cicd_finish_auto cicd_on_exit; do
+    declare -F "$_f" >/dev/null || eval "$_f() { return 0; }"
+done
+trap 'cicd_on_exit' EXIT
+cicd_start "DEPLOY" "$PROJECT" "$BRANCH" "${PROJECT}_${BRANCH}_publish.zip"
+T_BUILD=$(date +%s)
 
 log "==================================================="
 log "🚀 DEPLOYMENT STARTED"
@@ -695,6 +759,8 @@ log ""
 # silently miss most matches. node_modules is already on disk from the
 # npm install/build above, so this costs nothing extra to set up, just
 # scan time.
+cicd_step "BUILD" "SUCCESS" "$T_BUILD"
+T_DEVSEC=$(date +%s)
 log "==================================================="
 log "🔒 DEVSEC VULNERABILITY SCAN"
 log "==================================================="
@@ -744,6 +810,12 @@ else
     DEVSEC_HAS_ISSUES=false
 fi
 
+case "${DEVSEC_HAS_ISSUES:-}" in
+    true)  cicd_update "VulnScan='FAIL'" ;;
+    false) cicd_update "VulnScan='PASS'" ;;
+esac
+cicd_step "DEVSEC" "SUCCESS" "$T_DEVSEC"
+
 log "==================================================="
 log "✓ DevSec scan complete"
 log "==================================================="
@@ -760,6 +832,7 @@ log ""
 # ==================================================
 # STEP 5: CREATING DEPLOYMENT PACKAGE
 # ==================================================
+T_PACKAGE=$(date +%s)
 log "==================================================="
 log "📦 [STEP 4/5] CREATING DEPLOYMENT PACKAGE"
 log "==================================================="
@@ -777,7 +850,16 @@ if [[ "$BUILD_FILE_COUNT" -eq 0 ]]; then
 fi
 
 TEMP="$ROOT/.deploy_temp"
-rm -rf "$TEMP"
+# Leftovers from a previous run can stay locked by another process (antivirus,
+# indexer, IDE file watcher) -> "rm: Device or resource busy". Cleanup must never
+# abort the deploy (set -e): try to remove, and if the folder survives, stage
+# into a fresh uniquely-named folder instead.
+rm -rf "$ROOT"/.deploy_temp_* 2>/dev/null || true
+rm -rf "$TEMP" 2>/dev/null || true
+if [[ -d "$TEMP" ]]; then
+    TEMP="$ROOT/.deploy_temp_$(date +%Y%m%d_%H%M%S)"
+    log "   ⚠️  .deploy_temp is locked by another process — staging in $(basename "$TEMP") instead"
+fi
 mkdir -p "$TEMP"
 
 log "   Copying build/ to temp directory (excluding configuration.json, web.config)..."
@@ -808,10 +890,13 @@ if [ ! -f "$RAW_ZIP" ]; then
 fi
 log "   ✓ ZIP created: $(basename "$RAW_ZIP")"
 log ""
+cicd_set_zip "${PROJECT}_${BRANCH}_publish.zip" "$ZIP_PATH"
+cicd_step "PACKAGE" "SUCCESS" "$T_PACKAGE"
 
 # ==================================================
 # STEP 6: UPLOADING TO SFTP VAULT
 # ==================================================
+T_UPLOAD=$(date +%s)
 log "==================================================="
 log "📤 [STEP 5/5] UPLOADING TO SFTP VAULT ($SFTP_HOST:$SFTP_PORT$SFTP_UPLOAD_DIR)"
 log "==================================================="
@@ -847,10 +932,12 @@ if [[ $UPLOAD_EXIT -ne 0 ]]; then
 fi
 log "   ✓ Uploaded to ${SFTP_UPLOAD_DIR}/${SFTP_ZIP_NAME}"
 log ""
+cicd_step "UPLOAD" "SUCCESS" "$T_UPLOAD"
 
 # ==================================================
 # STEP 7: WAITING FOR WATCHER CONFIRMATION
 # ==================================================
+T_WAIT=$(date +%s)
 log "==================================================="
 log "⏳ WAITING FOR WATCHER CONFIRMATION"
 log "==================================================="
@@ -860,20 +947,29 @@ mkdir -p "$LOCAL_CONFIRM_DIR"
 LOCAL_CONFIRM_WIN=$(to_win_path "$LOCAL_CONFIRM_DIR" | sed 's/^\\//')
 
 connStr="Server=${DB_SERVER};Database=${DB_NAME};User ID=${DB_USER};Password=${DB_PASSWORD};TrustServerCertificate=True;"
-SERVER_COUNT=$("$POWERSHELL" -NoProfile -Command "
+# Expected server count: retried so that one transient DB hiccup does not silently turn a
+# multi-server project into a "1 server" wait.
+SERVER_COUNT=""
+for _sc_try in 1 2 3; do
+    SERVER_COUNT=$("$POWERSHELL" -NoProfile -Command "
     try {
         Import-Module SqlServer -ErrorAction Stop | Out-Null
         \$r = Invoke-Sqlcmd -ConnectionString '$connStr' -Query \"SELECT COUNT(*) AS cnt FROM ProjectRules WHERE ProjectName='${PROJECT_NAME}' AND Branch='${BRANCH}' AND ServerName IS NOT NULL AND ServerName != ''\"
         Write-Output \$r.cnt
-    } catch { Write-Output 1 }
-" 2>/dev/null | tr -d '\r\n') || SERVER_COUNT=1
-[[ "$SERVER_COUNT" =~ ^[0-9]+$ ]] || SERVER_COUNT=1
+    } catch { Write-Output 'ERR' }
+" 2>/dev/null | tr -d '\r\n') || SERVER_COUNT=""
+    [[ "$SERVER_COUNT" =~ ^[0-9]+$ ]] && break
+    log "   ⚠️  Server-count lookup failed (attempt $_sc_try/3)"
+    sleep 3
+done
+[[ "$SERVER_COUNT" =~ ^[0-9]+$ ]] || { log "   ⚠️  Could not read the server count from ProjectRules — assuming 1"; SERVER_COUNT=1; }
 [[ "$SERVER_COUNT" -eq 0 ]] && SERVER_COUNT=1
 
 log "   Expecting responses from $SERVER_COUNT server(s)..."
 
 WATCHER_CONFIRMED=false
 WATCHER_RESULT_FILES=()
+FAILED_RESULT_FILES=()
 declare -A SEEN_DEPLOY_FILES
 CHECK_INTERVAL=4
 MAX_WAIT=600
@@ -896,9 +992,23 @@ EOF
     rm -f "$TMP_SCRIPT"
 
     while IFS= read -r line; do
-        FNAME=$(echo "$line" | grep -oE "${PROJECT_NAME}_${BRANCH}_Deploy_Success_[^ ]+" | head -1) || true
+        FNAME=$(echo "$line" | grep -oE "${PROJECT_NAME}_${BRANCH}_Deploy_(Success|Failed)_[^ ]+" | head -1) || true
         [[ -z "$FNAME" ]] && continue
         [[ -n "${SEEN_DEPLOY_FILES[$FNAME]:-}" ]] && continue
+
+        # A Failed result left on SFTP by an older run must not be attributed
+        # to this run — skip it (and leave it untouched) if its timestamp
+        # predates this script's start.
+        if [[ "$FNAME" == *"_Deploy_Failed_"* ]]; then
+            F_TS=$(echo "$FNAME" | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}_[0-9]{2}\.[0-9]{2}\.[0-9]{2}' | head -1) || F_TS=""
+            if [[ -n "$F_TS" ]]; then
+                F_EPOCH=$(date -d "${F_TS:0:10} ${F_TS:11:2}:${F_TS:14:2}:${F_TS:17:2}" +%s 2>/dev/null) || F_EPOCH=0
+                if (( F_EPOCH > 0 && F_EPOCH < ${CICD_START_EPOCH:-0} - 120 )); then
+                    SEEN_DEPLOY_FILES[$FNAME]=1
+                    continue
+                fi
+            fi
+        fi
 
         TMP_GET=$(mktemp)
         cat > "$TMP_GET" <<EOF
@@ -917,19 +1027,34 @@ EOF
         LOCAL_TXT="$LOCAL_CONFIRM_DIR/$FNAME"
         if [[ -f "$LOCAL_TXT" ]]; then
             SEEN_DEPLOY_FILES[$FNAME]=1
+            if [[ "$FNAME" == *"_Deploy_Failed_"* ]]; then
+                FAILED_RESULT_FILES+=("$LOCAL_TXT")
+                R_SERVER=$(grep -E 'WatcherNode=' "$LOCAL_TXT" | head -1 | cut -d'=' -f2- | tr -d '\r') || R_SERVER=""
+                if [[ -z "$R_SERVER" ]]; then R_SERVER="${FNAME%.txt}"; R_SERVER="${R_SERVER##*_}"; fi
+                log ""
+                log "   📥 Response from server: $R_SERVER → Status: Failed"
+                cat "$LOCAL_TXT" | while IFS= read -r rline; do log "      | $rline"; done
+                cicd_server_result_from_file "$LOCAL_TXT" "FAILED"
+                continue
+            fi
             WATCHER_RESULT_FILES+=("$LOCAL_TXT")
             R_SERVER=$(grep -E 'WatcherNode=' "$LOCAL_TXT" | head -1 | cut -d'=' -f2- | tr -d '\r') || R_SERVER="?"
-            R_STATUS=$(grep -E 'Status=' "$LOCAL_TXT" | head -1 | cut -d'=' -f2- | tr -d '\r') || R_STATUS="?"
+            R_STATUS=$(grep -E '^Status=' "$LOCAL_TXT" | head -1 | cut -d'=' -f2- | tr -d '\r') || R_STATUS="?"
             log ""
             log "   📥 Response from server: $R_SERVER → Status: $R_STATUS"
             cat "$LOCAL_TXT" | while IFS= read -r rline; do log "      | $rline"; done
+            cicd_server_result_from_file "$LOCAL_TXT" "SUCCESS"
         fi
     done < "$TMP_LIST"
     rm -f "$TMP_LIST"
 
     RECEIVED=${#WATCHER_RESULT_FILES[@]}
+    FAILED_N=${#FAILED_RESULT_FILES[@]}
     if [[ $RECEIVED -ge $SERVER_COUNT ]]; then
         WATCHER_CONFIRMED=true
+        break
+    elif (( RECEIVED + FAILED_N >= SERVER_COUNT )); then
+        log "   ❌ All $SERVER_COUNT server(s) responded — $FAILED_N reported a failed deployment"
         break
     fi
 
@@ -943,6 +1068,11 @@ done
 set -e
 
 RECEIVED=${#WATCHER_RESULT_FILES[@]}
+if [[ "$WATCHER_CONFIRMED" == true ]]; then
+    cicd_step "WAIT_WATCHER" "SUCCESS" "$T_WAIT"
+else
+    cicd_step "WAIT_WATCHER" "FAILED" "$T_WAIT"
+fi
 
 log ""
 log "==================================================="
@@ -979,6 +1109,14 @@ if [[ "$WATCHER_CONFIRMED" == true ]]; then
 else
     log "   ⏭  Skipped — watcher did not confirm the deployment"
 fi
+
+# ---- CI/CD telemetry: smoke result + final status of the run ----
+if [[ ${#WATCHER_RESULT_FILES[@]} -gt 0 ]]; then cicd_set_smoke_from_file "${WATCHER_RESULT_FILES[0]}"; fi
+CICD_FAIL_REASON=""
+if [[ ${#FAILED_RESULT_FILES[@]} -gt 0 ]]; then
+    CICD_FAIL_REASON=$(grep -E '^Error=' "${FAILED_RESULT_FILES[0]}" | head -1 | cut -d'=' -f2- | tr -d '\r') || CICD_FAIL_REASON=""
+fi
+cicd_finish_auto "$RECEIVED" "${#FAILED_RESULT_FILES[@]}" "$SERVER_COUNT" "$CICD_FAIL_REASON"
 
 # ==================================================
 # STEP 8: SEND EMAIL

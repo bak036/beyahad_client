@@ -1,19 +1,23 @@
 #!/usr/bin/env bash
 # ===========================================================
-# deploy_PP_with_publish.sh - beyahad_client (front-end)
-# Checks dependencies, builds the React app locally, packages
-# the "build" folder, and uploads it to the PP remote server.
+# deploy_PP_with_publish.sh - HIST CLIENT (front-end)
+# Checks dependencies, builds the React app locally, syncs the PP
+# config files into build/, packages the "build" folder, and uploads
+# it to the PP remote server.
 #
-# Differences vs. the .NET (beyahad_backend) version of this script:
+# Differences vs. the .NET (backend) version of this script:
 #   • No "dotnet publish" step — replaced by dependency checks +
 #     "npm install" (if needed) + "npm run build:preprod".
 #   • No publish/config-injection step at all — not applicable to
 #     front-end projects.
-#   • The ZIP contains the "build" folder as-is EXCEPT
-#     configuration.json and web.config, which stay out of the ZIP
-#     entirely (per spec — the watcher-side CLIENT flow is the one
-#     that owns those 2 files on the server, they are never shipped
-#     from here and never injected into the ZIP).
+#   • STEP 3A (new): after the build, the PP config files
+#     (asset-manifest_PP.json, configuration_PP.json, manifest_PP.json,
+#     web_PP.config) are compared by SHA256 with build/ and replace /
+#     are added to build/ before packaging.
+#   • The ZIP contains the "build" folder as-is EXCEPT web.config,
+#     which stays out of the ZIP (the watcher-side CLIENT flow owns it
+#     on the server). configuration.json IS shipped (PP version), and
+#     web_PP.config is shipped under its own name for the watcher.
 # ===========================================================
 
 set -e
@@ -741,6 +745,99 @@ log "   ✓ Build completed"
 log ""
 
 # ==================================================
+# STEP 3A: SYNC PP CONFIG FILES INTO build/ (CLIENT projects only)
+# ==================================================
+# For each pair  <source in project>  ->  <file in build/>:
+#   asset-manifest_PP.json -> build/asset-manifest.json
+#   configuration_PP.json  -> build/configuration.json
+#   manifest_PP.json       -> build/manifest.json
+#   web_PP.config          -> build/web_PP.config   (name kept; the watcher
+#                             decides what to do with it on the server)
+#   - missing source file   -> ERROR, deploy stops
+#   - build file missing    -> source is copied in
+#   - SHA256 differs        -> build file is deleted and replaced
+#   - SHA256 identical      -> left untouched
+# Sources are looked up in the project root ($ROOT); if they are not
+# there, next to this script ($SCRIPT_DIR).
+log "==================================================="
+log "🔁 SYNC PP CONFIG FILES INTO build/ (asset-manifest / configuration / manifest / web_PP.config)"
+log "==================================================="
+
+BUILD_DIR="$ROOT/build"
+if [[ ! -d "$BUILD_DIR" ]]; then
+    log "❌ Build output folder not found: $BUILD_DIR — cannot sync PP config files"
+    exit 1
+fi
+
+PP_FILES_DIR="$ROOT"
+if [[ ! -f "$ROOT/asset-manifest_PP.json" && -f "$SCRIPT_DIR/asset-manifest_PP.json" ]]; then
+    PP_FILES_DIR="$SCRIPT_DIR"
+fi
+log "   PP source folder: $PP_FILES_DIR"
+
+file_sha256() {
+    local f="$1" h
+    h=$(sha256sum "$f" 2>/dev/null | awk '{print $1}') || h=""
+    if [[ -z "$h" ]]; then
+        h=$("$POWERSHELL" -NoProfile -Command "(Get-FileHash -Algorithm SHA256 -LiteralPath '$(to_win_path "$f")').Hash.ToLower()" 2>/dev/null | tr -d '\r\n') || h=""
+    fi
+    echo "$h"
+}
+
+# "source-name:build-name" pairs
+PP_SYNC_PAIRS=(
+    "asset-manifest_PP.json:asset-manifest.json"
+    "configuration_PP.json:configuration.json"
+    "manifest_PP.json:manifest.json"
+    "web_PP.config:web_PP.config"
+)
+
+# Verify ALL sources exist first, so one run reports every missing file
+PP_MISSING=0
+for _pair in "${PP_SYNC_PAIRS[@]}"; do
+    _srcname="${_pair%%:*}"
+    if [[ ! -f "$PP_FILES_DIR/$_srcname" ]]; then
+        log "❌ Missing source file: $PP_FILES_DIR/$_srcname"
+        PP_MISSING=1
+    fi
+done
+if [[ "$PP_MISSING" -ne 0 ]]; then
+    log "❌ Aborting — required PP config file(s) not found (see above)."
+    exit 1
+fi
+
+for _pair in "${PP_SYNC_PAIRS[@]}"; do
+    _srcname="${_pair%%:*}"
+    _dstname="${_pair##*:}"
+    _src="$PP_FILES_DIR/$_srcname"
+    _dst="$BUILD_DIR/$_dstname"
+    if [[ ! -f "$_dst" ]]; then
+        cp -f "$_src" "$_dst"
+        log "   ➕ $_dstname missing in build/ — copied from $_srcname"
+    else
+        _h_src=$(file_sha256 "$_src")
+        _h_dst=$(file_sha256 "$_dst")
+        if [[ -z "$_h_src" || -z "$_h_dst" ]]; then
+            log "❌ Could not compute SHA256 for $_srcname / $_dstname"
+            exit 1
+        fi
+        if [[ "$_h_src" == "$_h_dst" ]]; then
+            log "   ≈ $_dstname identical to $_srcname — unchanged"
+            continue
+        fi
+        rm -f "$_dst"
+        cp -f "$_src" "$_dst"
+        log "   ⚡ $_dstname differed from $_srcname — deleted and replaced"
+    fi
+    if [[ "$(file_sha256 "$_src")" != "$(file_sha256 "$_dst")" ]]; then
+        log "❌ Verification failed after copying $_srcname → $_dstname"
+        exit 1
+    fi
+done
+log "   ✓ PP config files synced into build/"
+log ""
+
+# ==================================================
 # STEP 3B: DEVSEC — VULNERABILITY SCAN (npm audit + retire.js)
 # ==================================================
 # Informational only — findings are logged and included in the email but
@@ -862,20 +959,20 @@ if [[ -d "$TEMP" ]]; then
 fi
 mkdir -p "$TEMP"
 
-log "   Copying build/ to temp directory (excluding configuration.json, web.config)..."
+log "   Copying build/ to temp directory (excluding web.config)..."
 "$POWERSHELL" -NoProfile -Command "
     \$robocopyArgs = @(
         '$BUILD_DIR',
         '$TEMP',
         '/MIR', '/R:0', '/W:0',
-        '/XF', 'configuration.json', 'web.config',
+        '/XF', 'web.config',
         '/NFL', '/NDL', '/NJH', '/NJS'
     )
     \$null = & robocopy @robocopyArgs
     if (\$LASTEXITCODE -lt 8) { Write-Output 'OK' }
 " 2>&1
 
-log "   ✓ Files staged (configuration.json / web.config excluded from the ZIP)"
+log "   ✓ Files staged (web.config excluded from the ZIP; configuration.json and web_PP.config included)"
 
 log "   Creating ZIP archive..."
 "$POWERSHELL" -NoProfile -Command "

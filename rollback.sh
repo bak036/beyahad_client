@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ===============================================================
-# ♻️ UNIVERSAL AUTO-ROLLBACK SCRIPT — beyahad client WITH AUTO-SETUP
+# ♻️ UNIVERSAL AUTO-ROLLBACK SCRIPT — HIST client WITH AUTO-SETUP
 # ===============================================================
 
 set -e
